@@ -11,7 +11,6 @@ let fuseInstance = null;
 let currentFilter = 'all';
 let activeTask = null;
 let activeFile = null;
-let activeVivaCategory = 'all';
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
@@ -32,7 +31,6 @@ async function initApp() {
 
         initFuse();
         renderTasks(labData.tasks);
-        initVivaSection();
         setupEventListeners();
     } catch (err) {
         console.error("Initialization error:", err);
@@ -454,171 +452,6 @@ function showToast(message) {
     toastTimeout = setTimeout(() => {
         toast.classList.add('hidden');
     }, 2800);
-}
-
-function initVivaSection() {
-    if (!labData || !labData.vivaCategories) return;
-
-    renderVivaTabs();
-    renderVivaAccordion();
-
-    const vivaSearch = document.getElementById('vivaSearchInput');
-    if (vivaSearch) {
-        vivaSearch.addEventListener('input', (e) => {
-            renderVivaAccordion(e.target.value);
-        });
-    }
-}
-
-function renderVivaTabs() {
-    const tabsContainer = document.getElementById('vivaTabs');
-    if (!tabsContainer || !labData.vivaCategories) return;
-
-    let html = `
-        <button 
-            onclick="setVivaCategory('all')" 
-            class="viva-tab ${activeVivaCategory === 'all' ? 'active bg-white text-slate-950 font-semibold' : 'bg-slate-800 text-slate-300 hover:bg-slate-700 border border-slate-700/80'} px-3 py-1.5 rounded transition-colors"
-        >
-            All Languages (${labData.vivaCategories.reduce((acc, c) => acc + c.questions.length, 0)})
-        </button>
-    `;
-
-    labData.vivaCategories.forEach(cat => {
-        const isActive = activeVivaCategory === cat.languageId;
-        const activeClass = isActive ? 'active bg-white text-slate-950 font-semibold' : 'bg-slate-800 text-slate-300 hover:bg-slate-700 border border-slate-700/80';
-        html += `
-            <button 
-                onclick="setVivaCategory('${cat.languageId}')" 
-                class="viva-tab ${activeClass} px-3 py-1.5 rounded transition-colors flex items-center gap-1.5"
-            >
-                <span>${cat.languageName}</span>
-                <span class="text-[10px] opacity-75 font-mono">(${cat.questions.length})</span>
-            </button>
-        `;
-    });
-
-    tabsContainer.innerHTML = html;
-}
-
-function setVivaCategory(catId) {
-    activeVivaCategory = catId;
-    renderVivaTabs();
-    const searchVal = document.getElementById('vivaSearchInput') ? document.getElementById('vivaSearchInput').value : '';
-    renderVivaAccordion(searchVal);
-}
-
-function renderVivaAccordion(filterQuery = '') {
-    const container = document.getElementById('vivaContainer');
-    if (!container || !labData.vivaCategories) return;
-
-    const query = filterQuery.trim().toLowerCase();
-
-    let categoriesToRender = labData.vivaCategories;
-    if (activeVivaCategory !== 'all') {
-        categoriesToRender = categoriesToRender.filter(c => c.languageId === activeVivaCategory);
-    }
-
-    let totalQuestionsRendered = 0;
-    let html = '';
-
-    categoriesToRender.forEach(category => {
-        const matchingQuestions = category.questions.filter(item => {
-            if (!query) return true;
-            return item.q.toLowerCase().includes(query) || item.a.toLowerCase().includes(query);
-        });
-
-        if (matchingQuestions.length === 0) return;
-
-        totalQuestionsRendered += matchingQuestions.length;
-
-        html += `
-            <div class="mb-6 space-y-2">
-                <!-- Category Heading -->
-                <div class="flex items-center gap-2 pb-1.5 border-b border-slate-800">
-                    <h3 class="text-xs font-bold uppercase tracking-wider text-slate-300 font-mono">${category.languageName} Viva Voce</h3>
-                    <span class="text-xs text-slate-500 font-mono">(${matchingQuestions.length} questions)</span>
-                </div>
-
-                <!-- Questions List -->
-                <div class="space-y-2 pt-1">
-                    ${matchingQuestions.map((item, idx) => {
-                        const itemId = `viva_${category.languageId}_${idx}`;
-                        const formattedAnswer = item.a.split('\n').map(line => `<p class="leading-relaxed py-0.5">${escapeHtml(line)}</p>`).join('');
-
-                        return `
-                            <div class="bg-[#0f172a] border border-slate-800 hover:border-slate-700 rounded-lg overflow-hidden transition-all duration-150">
-                                <button 
-                                    type="button"
-                                    onclick="toggleAccordion('${itemId}')"
-                                    class="w-full text-left p-3.5 sm:p-4 flex justify-between items-center gap-3 cursor-pointer select-none"
-                                    aria-expanded="false"
-                                    id="header_${itemId}"
-                                >
-                                    <div class="flex items-start gap-2.5">
-                                        <span class="text-slate-400 font-mono text-xs font-bold pt-0.5">Q${idx + 1}.</span>
-                                        <span class="text-xs sm:text-sm font-medium text-slate-200">${escapeHtml(item.q)}</span>
-                                    </div>
-                                    <div class="flex-shrink-0 text-slate-400 ml-2">
-                                        <svg id="arrow_${itemId}" class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                                        </svg>
-                                    </div>
-                                </button>
-                                <div id="content_${itemId}" class="hidden px-4 pb-4 pt-1 border-t border-slate-800/80 bg-[#090d16] text-xs text-slate-300">
-                                    <div class="pt-2 pl-4 space-y-1 border-l-2 border-slate-600">
-                                        ${formattedAnswer}
-                                    </div>
-                                </div>
-                            </div>
-                        `;
-                    }).join('')}
-                </div>
-            </div>
-        `;
-    });
-
-    if (totalQuestionsRendered === 0) {
-        html = `
-            <div class="py-12 text-center bg-[#0f172a] rounded border border-slate-800">
-                <p class="text-xs text-slate-400">No viva questions matching "${escapeHtml(filterQuery)}"</p>
-                <button onclick="document.getElementById('vivaSearchInput').value=''; renderVivaAccordion();" class="mt-2 text-xs text-slate-300 hover:underline">
-                    Clear viva search
-                </button>
-            </div>
-        `;
-    }
-
-    container.innerHTML = html;
-}
-
-function toggleAccordion(itemId) {
-    const content = document.getElementById(`content_${itemId}`);
-    const arrow = document.getElementById(`arrow_${itemId}`);
-    const header = document.getElementById(`header_${itemId}`);
-    if (!content || !arrow) return;
-
-    const isHidden = content.classList.contains('hidden');
-    if (isHidden) {
-        content.classList.remove('hidden');
-        arrow.style.transform = 'rotate(180deg)';
-        if (header) header.setAttribute('aria-expanded', 'true');
-    } else {
-        content.classList.add('hidden');
-        arrow.style.transform = 'rotate(0deg)';
-        if (header) header.setAttribute('aria-expanded', 'false');
-    }
-}
-
-function expandAllViva() {
-    document.querySelectorAll('[id^="content_viva_"]').forEach(el => el.classList.remove('hidden'));
-    document.querySelectorAll('[id^="arrow_viva_"]').forEach(el => el.style.transform = 'rotate(180deg)');
-    document.querySelectorAll('[id^="header_viva_"]').forEach(el => el.setAttribute('aria-expanded', 'true'));
-}
-
-function collapseAllViva() {
-    document.querySelectorAll('[id^="content_viva_"]').forEach(el => el.classList.add('hidden'));
-    document.querySelectorAll('[id^="arrow_viva_"]').forEach(el => el.style.transform = 'rotate(0deg)');
-    document.querySelectorAll('[id^="header_viva_"]').forEach(el => el.setAttribute('aria-expanded', 'false'));
 }
 
 function setupEventListeners() {

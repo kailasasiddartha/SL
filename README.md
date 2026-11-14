@@ -22,10 +22,6 @@ A clean, fast, 100% frontend-only web application for university Scripting Langu
   - **Download ZIP**: One-click download of `/tasks/taskX.zip`.
   - **View / Open Folder**: Modal file switcher showing all source code files, `.docx` lab record documents, and output screenshots with browser preview.
   - **Copy Code**: One-click instant clipboard copy with toast feedback.
-- **Viva Voce & Short Q&A Accordion**:
-  - 35 high-yield university exam questions categorized by language (**HTML**, **CSS**, **JavaScript**, **XML**, **PHP**).
-  - 7 questions per language, each accompanied by a detailed 6–7 line academic explanation.
-  - Expand/collapse toggle arrows, global expand/collapse controls, and instant keyword filter.
 - **Zero Backend Dependencies**:
   - Pure HTML5, CSS3 / Tailwind CSS (CDN), Vanilla JavaScript.
   - Works directly by opening `index.html` locally or hosting statically.
@@ -38,8 +34,8 @@ A clean, fast, 100% frontend-only web application for university Scripting Langu
 .
 ├── index.html              # Main single-page web portal application
 ├── style.css               # Minimalist, distraction-free custom styles
-├── app.js                  # Search, modal file switcher, and accordion logic
-├── data.js                 # Central configuration file (tasks & viva questions)
+├── app.js                  # Search, filtering, and modal file switcher logic
+├── data.js                 # Central configuration file for all 12 tasks
 ├── data.json               # JSON version of the central configuration
 ├── netlify.toml            # Netlify deployment configuration & cache headers
 ├── _headers                # Static headers for instant Netlify drag-and-drop
@@ -53,29 +49,13 @@ A clean, fast, 100% frontend-only web application for university Scripting Langu
 
 ---
 
-## 🛠️ How to Add or Modify Tasks and Languages
+## 🛠️ How to Add or Modify Tasks
 
 The portal is designed for easy extensibility:
 
 1. **Add/Edit Task Assets**: Place new code files or documents into `/tasks/taskX/` and update `/tasks/taskX.zip`.
 2. **Update Configuration**: Open `data.js` and add/edit the task entry in `LAB_DATA.tasks`.
-3. **Add New Programming Languages to Viva Reference**:
-   - In `data.js`, add a new object to `LAB_DATA.vivaCategories`:
-     ```javascript
-     {
-       languageId: "python",
-       languageName: "Python",
-       categoryBadge: "Scripting",
-       icon: "🐍",
-       description: "Python scripting fundamentals, lists, dictionaries, and modules.",
-       questions: [
-         {
-           q: "Your Question Here?",
-           a: "Line 1...\nLine 2...\nLine 3...\nLine 4...\nLine 5...\nLine 6...\nLine 7..."
-         }
-       ]
-     }
-     ```
+3. **Re-index or Test**: Run `node server.js` to test locally or deploy directly.
    - The UI will automatically generate the tab, filter, and accordion items.
 
 ---

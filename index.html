@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scripting Languages Lab Portal | GRIET (GR25A2082 / GR20)</title>
-    <meta name="description" content="Clean, functional, 100% frontend-only university laboratory portal for Scripting Languages. 12 comprehensive lab tasks, source codes, original task documents, and viva reference.">
+    <meta name="description" content="Clean, functional, 100% frontend-only university laboratory portal for Scripting Languages. 12 comprehensive lab tasks, source codes, and original task documents.">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -58,7 +58,7 @@
             <div class="flex items-center gap-4 text-slate-400 text-[11px]">
                 <span class="hidden sm:inline">100% Frontend-Only • Netlify Ready</span>
                 <span class="hidden sm:inline text-slate-600">•</span>
-                <a href="#vivaSection" class="hover:text-white transition-colors">Viva Voce Q&A (35)</a>
+                <span>Zero Backend Dependencies</span>
             </div>
         </div>
     </div>
@@ -72,16 +72,13 @@
                 </div>
                 <div>
                     <h1 class="text-base sm:text-lg font-bold text-white leading-tight tracking-tight">Scripting Languages Lab Portal</h1>
-                    <p class="text-xs text-slate-400">12 Lab Tasks • Working Solutions • Original Documents • Viva Reference</p>
+                    <p class="text-xs text-slate-400">12 Lab Tasks • Working Solutions • Original Documents</p>
                 </div>
             </div>
 
             <div class="flex items-center gap-2">
                 <a href="#tasksSection" class="text-xs px-3 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors font-medium border border-slate-700">
                     Lab Tasks (12)
-                </a>
-                <a href="#vivaSection" class="text-xs px-3 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors font-medium border border-slate-700">
-                    Viva Reference
                 </a>
                 <button id="btnScrollTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="text-xs px-2.5 py-1.5 rounded bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition-colors border border-slate-700" title="Scroll to Top">
                     <svg class="w-3.5 h-3.5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
@@ -168,59 +165,6 @@
             </div>
         </section>
 
-        <!-- ================= BOTTOM SECTION: LANGUAGE-WISE VIVA Q&A ACCORDION ================= -->
-        <section id="vivaSection" class="pt-8 border-t border-slate-800 space-y-5">
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-3">
-                <div>
-                    <div class="flex items-center gap-2 text-slate-400 text-xs font-semibold uppercase tracking-wider">
-                        <span>Academic Examination Reference</span>
-                    </div>
-                    <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Viva Voce & Short Q&A Reference</h2>
-                    <p class="text-xs text-slate-400 mt-1">
-                        High-yield viva questions categorized by language (HTML, CSS, JavaScript, XML, PHP) with comprehensive 6–7 line answers.
-                    </p>
-                </div>
-
-                <!-- Accordion Global Controls -->
-                <div class="flex items-center gap-2 text-xs">
-                    <button onclick="expandAllViva()" class="px-3 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors border border-slate-700">
-                        Expand All
-                    </button>
-                    <button onclick="collapseAllViva()" class="px-3 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors border border-slate-700">
-                        Collapse All
-                    </button>
-                </div>
-            </div>
-
-            <!-- Viva Language Tabs & Search Filter -->
-            <div class="bg-[#0f172a] border border-slate-800 rounded-xl p-4 space-y-3">
-                <div class="flex flex-col sm:flex-row justify-between items-center gap-3">
-                    <!-- Language Switcher Tabs -->
-                    <div id="vivaTabs" class="flex flex-wrap gap-1.5 w-full sm:w-auto text-xs">
-                        <!-- Populated by app.js -->
-                    </div>
-
-                    <!-- Viva Search Filter -->
-                    <div class="relative w-full sm:w-64">
-                        <input
-                            type="text"
-                            id="vivaSearchInput"
-                            placeholder="Filter questions or answers..."
-                            class="w-full bg-[#090d16] border border-slate-700 focus:border-slate-400 rounded pl-8 pr-3 py-1.5 text-xs text-slate-100 placeholder-slate-500 focus:outline-none"
-                        >
-                        <div class="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none text-slate-500">
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Viva Accordion Container -->
-            <div id="vivaContainer" class="space-y-3">
-                <!-- Dynamically populated by app.js -->
-            </div>
-        </section>
-
     </main>
 
     <!-- Footer -->
@@ -231,7 +175,7 @@
                 <p class="text-[11px] text-slate-400 mt-0.5">Frontend-only architecture: HTML5, CSS3/Tailwind, Vanilla JS, Fuse.js, Prism.js, JSZip.</p>
             </div>
             <div class="text-[11px] text-slate-400">
-                <span>To add tasks or viva questions: update </span>
+                <span>To add or edit tasks: update </span>
                 <code class="text-white font-mono bg-slate-900 px-1 py-0.5 rounded border border-slate-700">data.js</code>
                 <span> and drop files in </span>
                 <code class="text-white font-mono bg-slate-900 px-1 py-0.5 rounded border border-slate-700">/tasks</code>

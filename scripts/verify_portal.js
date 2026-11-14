@@ -68,10 +68,11 @@ if (!fs.existsSync(dataJsPath)) {
             });
             console.log(`PASS: Verified ${filesChecked} files referenced in data.js exist on disk`);
 
-            console.log(`PASS: Total Viva Categories: ${data.vivaCategories.length}`);
-            data.vivaCategories.forEach(cat => {
-                console.log(`  - ${cat.languageName}: ${cat.questions.length} questions`);
-            });
+            if (data.vivaCategories && data.vivaCategories.length > 0) {
+                console.log(`PASS: Total Viva Categories: ${data.vivaCategories.length}`);
+            } else {
+                console.log(`PASS: Viva questions section removed as requested`);
+            }
         } catch (e) {
             console.error('FAIL: JSON parse error in data.js:', e);
             allGood = false;

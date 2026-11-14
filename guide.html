@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Languages Reference & Execution Guide | Scripting Languages Lab</title>
+    <meta name="description" content="Comprehensive reference guide and execution instructions for HTML5, CSS3, JavaScript, XML, DTD, XSLT, PHP, MySQL, and AJAX used in university scripting languages laboratory coursework.">
+
+    <!-- Anti-Flash Theme Init Script -->
+    <script>
+        (function() {
+            try {
+                var savedTheme = localStorage.getItem('sl_theme');
+                if (savedTheme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+            } catch (e) {}
+        })();
+    </script>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        themeBlack: '#111111',
+                        themeCharcoal: '#171717',
+                        themeGrey: '#F5F5F5',
+                        themeMuted: '#777777',
+                        themeBorder: '#E5E5E5',
+                        themeSilver: '#A3A3A3',
+                        themeDarkBorder: '#262626'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Prism.js for Syntax Highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-white dark:bg-[#111111] text-[#111111] dark:text-white min-h-screen flex flex-col font-sans antialiased selection:bg-[#111111] selection:text-white dark:selection:bg-white dark:selection:text-[#111111] transition-colors duration-150">
+
+    <!-- Main Navigation Header -->
+    <header class="bg-white/95 dark:bg-[#111111]/95 backdrop-blur-md sticky top-0 z-30 border-b border-[#E5E5E5] dark:border-[#262626] transition-colors duration-150">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap justify-between items-center gap-3">
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="w-8 h-8 rounded-lg bg-[#111111] text-white dark:bg-white dark:text-[#111111] flex items-center justify-center font-bold font-mono text-sm shadow-sm transition-colors" title="Back to Lab Tasks">
+                    SL
+                </a>
+                <div>
+                    <h1 class="text-base sm:text-lg font-bold text-[#111111] dark:text-white leading-tight tracking-tight">Scripting & Web Languages Reference</h1>
+                    <p class="text-xs text-[#777777] dark:text-[#A3A3A3]">Complete Technology Architecture, Specifications & Execution Manual</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <a href="index.html" class="text-xs px-3 py-1.5 rounded-lg bg-[#F5F5F5] hover:bg-[#EBEBEB] dark:bg-[#1F1F1F] dark:hover:bg-[#2A2A2A] text-[#111111] dark:text-[#F5F5F5] transition-colors font-medium border border-[#E5E5E5] dark:border-[#333333] flex items-center gap-1.5">
+                    <svg class="w-3.5 h-3.5 text-[#777777] dark:text-[#A3A3A3]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                    <span>Lab Tasks</span>
+                </a>
+
+                <!-- Theme Toggle Button -->
+                <button 
+                    id="themeToggleBtn" 
+                    onclick="toggleTheme()" 
+                    class="p-1.5 rounded-lg bg-[#F5F5F5] hover:bg-[#EBEBEB] dark:bg-[#1F1F1F] dark:hover:bg-[#2A2A2A] text-[#111111] dark:text-[#F5F5F5] border border-[#E5E5E5] dark:border-[#333333] transition-colors" 
+                    title="Toggle Light / Dark Theme"
+                    aria-label="Toggle Theme"
+                >
+                    <svg id="themeIconSun" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                    <svg id="themeIconMoon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                </button>
+
+                <button id="btnScrollTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="p-1.5 rounded-lg bg-[#F5F5F5] hover:bg-[#EBEBEB] dark:bg-[#1F1F1F] dark:hover:bg-[#2A2A2A] text-[#111111] dark:text-[#F5F5F5] border border-[#E5E5E5] dark:border-[#333333] transition-colors" title="Scroll to Top">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Sticky Technology Jump Pills -->
+        <div class="border-t border-[#E5E5E5] dark:border-[#262626] bg-[#FAFAFA] dark:bg-[#141414] py-2 px-4 sm:px-6 overflow-x-auto">
+            <div class="max-w-7xl mx-auto flex items-center gap-1.5 text-xs whitespace-nowrap min-w-max">
+                <span class="text-[11px] font-mono text-[#777777] dark:text-[#A3A3A3] mr-1">Quick Jump:</span>
+                <a href="#htmlSection" class="px-2.5 py-1 rounded bg-white dark:bg-[#222222] hover:bg-[#EBEBEB] dark:hover:bg-[#2A2A2A] border border-[#E5E5E5] dark:border-[#333333] font-medium text-[#111111] dark:text-white transition-colors">HTML5</a>
+                <a href="#cssSection" class="px-2.5 py-1 rounded bg-white dark:bg-[#222222] hover:bg-[#EBEBEB] dark:hover:bg-[#2A2A2A] border border-[#E5E5E5] dark:border-[#333333] font-medium text-[#111111] dark:text-white transition-colors">CSS3</a>
+                <a href="#jsSection" class="px-2.5 py-1 rounded bg-white dark:bg-[#222222] hover:bg-[#EBEBEB] dark:hover:bg-[#2A2A2A] border border-[#E5E5E5] dark:border-[#333333] font-medium text-[#111111] dark:text-white transition-colors">JavaScript</a>
+                <a href="#xmlSection" class="px-2.5 py-1 rounded bg-white dark:bg-[#222222] hover:bg-[#EBEBEB] dark:hover:bg-[#2A2A2A] border border-[#E5E5E5] dark:border-[#333333] font-medium text-[#111111] dark:text-white transition-colors">XML</a>
+                <a href="#dtdSection" class="px-2.5 py-1 rounded bg-white dark:bg-[#222222] hover:bg-[#EBEBEB] dark:hover:bg-[#2A2A2A] border border-[#E5E5E5] dark:border-[#333333] font-medium text-[#111111] dark:text-white transition-colors">DTD</a>
+                <a href="#xsltSection" class="px-2.5 py-1 rounded bg-white dark:bg-[#222222] hover:bg-[#EBEBEB] dark:hover:bg-[#2A2A2A] border border-[#E5E5E5] dark:border-[#333333] font-medium text-[#111111] dark:text-white transition-colors">XSL / XSLT</a>
+                <a href="#phpSection" class="px-2.5 py-1 rounded bg-white dark:bg-[#222222] hover:bg-[#EBEBEB] dark:hover:bg-[#2A2A2A] border border-[#E5E5E5] dark:border-[#333333] font-medium text-[#111111] dark:text-white transition-colors">PHP</a>
+                <a href="#mysqlSection" class="px-2.5 py-1 rounded bg-white dark:bg-[#222222] hover:bg-[#EBEBEB] dark:hover:bg-[#2A2A2A] border border-[#E5E5E5] dark:border-[#333333] font-medium text-[#111111] dark:text-white transition-colors">SQL / MySQL</a>
+                <a href="#ajaxSection" class="px-2.5 py-1 rounded bg-white dark:bg-[#222222] hover:bg-[#EBEBEB] dark:hover:bg-[#2A2A2A] border border-[#E5E5E5] dark:border-[#333333] font-medium text-[#111111] dark:text-white transition-colors">AJAX</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 py-8 space-y-10">
+
+        <!-- Intro Overview Banner -->
+        <div class="bg-[#F5F5F5] dark:bg-[#171717] border border-[#E5E5E5] dark:border-[#262626] rounded-xl p-6 sm:p-8 space-y-4 transition-colors">
+            <div class="flex items-center gap-2 text-[11px] font-mono text-[#777777] dark:text-[#A3A3A3] uppercase tracking-wider">
+                <span class="w-2 h-2 rounded-full bg-[#111111] dark:bg-white"></span>
+                <span>University Lab Technology Stack</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[#111111] dark:text-white">
+                Comprehensive Reference & Practical Execution Guide
+            </h2>
+            <p class="text-sm text-[#555555] dark:text-[#CCCCCC] max-w-4xl leading-relaxed">
+                This document serves as an exhaustive reference manual for all 9 programming languages, markup standards, data protocols, and query engines employed throughout the Scripting Languages laboratory curriculum. Each section details theoretical foundations, core syntax structures, practical lab implementation patterns, and precise execution methods.
+            </p>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 pt-2">
+                <div class="bg-white dark:bg-[#111111] border border-[#E5E5E5] dark:border-[#262626] p-2.5 rounded-lg text-center">
+                    <span class="block text-xs font-bold text-[#111111] dark:text-white">Client UI</span>
+                    <span class="text-[10px] text-[#777777] dark:text-[#A3A3A3] font-mono">HTML5 • CSS3</span>
+                </div>
+                <div class="bg-white dark:bg-[#111111] border border-[#E5E5E5] dark:border-[#262626] p-2.5 rounded-lg text-center">
+                    <span class="block text-xs font-bold text-[#111111] dark:text-white">Client Logic</span>
+                    <span class="text-[10px] text-[#777777] dark:text-[#A3A3A3] font-mono">JavaScript (ES6+)</span>
+                </div>
+                <div class="bg-white dark:bg-[#111111] border border-[#E5E5E5] dark:border-[#262626] p-2.5 rounded-lg text-center">
+                    <span class="block text-xs font-bold text-[#111111] dark:text-white">Data Interchange</span>
+                    <span class="text-[10px] text-[#777777] dark:text-[#A3A3A3] font-mono">XML • DTD • XSLT</span>
+                </div>
+                <div class="bg-white dark:bg-[#111111] border border-[#E5E5E5] dark:border-[#262626] p-2.5 rounded-lg text-center">
+                    <span class="block text-xs font-bold text-[#111111] dark:text-white">Server Processing</span>
+                    <span class="text-[10px] text-[#777777] dark:text-[#A3A3A3] font-mono">PHP (Zend Engine)</span>
+                </div>
+                <div class="bg-white dark:bg-[#111111] border border-[#E5E5E5] dark:border-[#262626] p-2.5 rounded-lg text-center">
+                    <span class="block text-xs font-bold text-[#111111] dark:text-white">Data & Async</span>
+                    <span class="text-[10px] text-[#777777] dark:text-[#A3A3A3] font-mono">MySQL • AJAX XHR</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= 1. HTML5 ================= -->
+        <section id="htmlSection" class="bg-white dark:bg-[#171717] border border-[#E5E5E5] dark:border-[#262626] rounded-xl p-6 sm:p-8 space-y-6 transition-colors scroll-mt-28">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E5E5E5] dark:border-[#262626] pb-4">
+                <div class="space-y-1">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#111111] text-white dark:bg-white dark:text-[#111111]">MARKUP</span>
+                        <h3 class="text-xl font-bold text-[#111111] dark:text-white">HTML5 (HyperText Markup Language 5)</h3>
+                    </div>
+                    <p class="text-xs text-[#777777] dark:text-[#A3A3A3]">Declarative structural backbone for defining semantic content, document trees, and input interfaces.</p>
+                </div>
+                <div class="flex items-center gap-2 text-xs">
+                    <span class="px-2 py-0.5 rounded bg-[#F5F5F5] dark:bg-[#222222] border border-[#E5E5E5] dark:border-[#333333] text-[11px] font-mono text-[#777777] dark:text-[#A3A3A3]">
+                        Tasks: 1A, 1B, 2, 3A, 3B, 4, 5, 6A, 8, 10, 11, 12
+                    </span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 text-xs text-[#333333] dark:text-[#CCCCCC] leading-relaxed">
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="font-bold text-sm text-[#111111] dark:text-white mb-1.5">Core Definition & Purpose</h4>
+                        <p>
+                            HTML5 is the standard markup language used to structure content on the World Wide Web. It provides declarative elements that browser layout engines parse into the in-memory <strong>Document Object Model (DOM)</strong> tree. HTML5 eliminates reliance on legacy browser plugins by introducing native audio/video playback, canvas 2D graphics, and semantic structuring elements.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-sm text-[#111111] dark:text-white mb-1.5">Essential University Lab Concepts</h4>
+                        <ul class="list-disc list-inside space-y-1.5 text-[#555555] dark:text-[#BBBBBB]">
+                            <li><strong>Semantic Architecture:</strong> Elements like <code class="font-mono bg-[#F5F5F5] dark:bg-[#222222] px-1 py-0.5 rounded">&lt;header&gt;</code>, <code class="font-mono bg-[#F5F5F5] dark:bg-[#222222] px-1 py-0.5 rounded">&lt;nav&gt;</code>, <code class="font-mono bg-[#F5F5F5] dark:bg-[#222222] px-1 py-0.5 rounded">&lt;main&gt;</code>, <code class="font-mono bg-[#F5F5F5] dark:bg-[#222222] px-1 py-0.5 rounded">&lt;section&gt;</code>, and <code class="font-mono bg-[#F5F5F5] dark:bg-[#222222] px-1 py-0.5 rounded">&lt;footer&gt;</code> replace generic division tags to communicate structural intent to search crawlers and screen readers.</li>
+                            <li><strong>Complex Tabular Layouts (Task 1B):</strong> Using <code class="font-mono">&lt;table&gt;</code>, <code class="font-mono">&lt;thead&gt;</code>, <code class="font-mono">&lt;tr&gt;</code>, <code class="font-mono">&lt;th&gt;</code>, <code class="font-mono">&lt;td&gt;</code>, along with <code class="font-mono">colspan</code> (horizontal merging) and <code class="font-mono">rowspan</code> (vertical merging) to design college academic timetables.</li>
+                            <li><strong>Forms & Input Controls (Tasks 1A, 2, 5, 7B):</strong> Constructing interactive input interfaces via <code class="font-mono">&lt;form action="process.php" method="POST"&gt;</code> with text, password, email, radio, checkbox, select dropdowns, and submission buttons.</li>
+                            <li><strong>Media Integration:</strong> Native integration of multimedia via <code class="font-mono">&lt;img src="..." alt="..."&gt;</code>, <code class="font-mono">&lt;audio controls&gt;</code>, and <code class="font-mono">&lt;video controls&gt;</code> without third-party flash players.</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-[#F5F5F5] dark:bg-[#111111] border border-[#E5E5E5] dark:border-[#262626] rounded-lg p-3.5 space-y-2">
+                        <span class="font-mono font-bold text-[11px] text-[#111111] dark:text-white flex items-center gap-1.5">
+                            <svg class="w-3.5 h-3.5 text-[#111111] dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            How to Execute HTML Documents:
+                        </span>
+                        <ol class="list-decimal list-inside space-y-1 text-[#666666] dark:text-[#AAAAAA]">
+                            <li>Save source code with a <code class="font-mono text-[#111111] dark:text-white">.html</code> or <code class="font-mono text-[#111111] dark:text-white">.htm</code> extension.</li>
+                            <li>Double-click the file to open directly in any modern browser (Google Chrome, Mozilla Firefox, Microsoft Edge, Safari).</li>
+                            <li>Alternatively, serve locally using VS Code "Live Server" extension or any CLI static web server (<code class="font-mono text-[#111111] dark:text-white">npx serve</code>).</li>
+                            <li>Open DevTools (<kbd class="font-mono text-[10px] bg-white dark:bg-[#222222] px-1 rounded border border-[#E5E5E5] dark:border-[#333333]">F12</kbd>) to inspect DOM tree hierarchy and debug layout rendering.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <span class="text-[11px] font-mono text-[#777777] dark:text-[#A3A3A3] font-semibold">Standard HTML5 Document Template:</span>
+                    <div class="bg-[#FAFAFA] dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-[#262626] rounded-lg p-3.5 font-mono text-[11px] overflow-x-auto">
+<pre class="!bg-transparent !p-0 !m-0"><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;University Lab Timetable&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Department of CSE (AIML)&lt;/h1&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+        &lt;table border="1" cellpadding="8"&gt;
+            &lt;thead&gt;
+                &lt;tr&gt;
+                    &lt;th&gt;Day / Time&lt;/th&gt;
+                    &lt;th&gt;09:00 - 10:00&lt;/th&gt;
+                    &lt;th&gt;10:00 - 11:00&lt;/th&gt;
+                    &lt;th rowspan="2"&gt;LUNCH&lt;/th&gt;
+                    &lt;th colspan="2"&gt;Lab Session&lt;/th&gt;
+                &lt;/tr&gt;
+            &lt;/thead&gt;
+            &lt;tbody&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;Monday&lt;/td&gt;
+                    &lt;td&gt;Scripting Lang&lt;/td&gt;
+                    &lt;td&gt;AI Principles&lt;/td&gt;
+                    &lt;td colspan="2"&gt;SL Lab (GR25A2082)&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/tbody&gt;
+        &lt;/table&gt;
+    &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 2. CSS3 ================= -->
+        <section id="cssSection" class="bg-white dark:bg-[#171717] border border-[#E5E5E5] dark:border-[#262626] rounded-xl p-6 sm:p-8 space-y-6 transition-colors scroll-mt-28">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E5E5E5] dark:border-[#262626] pb-4">
+                <div class="space-y-1">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#111111] text-white dark:bg-white dark:text-[#111111]">PRESENTATION</span>
+                        <h3 class="text-xl font-bold text-[#111111] dark:text-white">CSS3 (Cascading Style Sheets 3)</h3>
+                    </div>
+                    <p class="text-xs text-[#777777] dark:text-[#A3A3A3]">Declarative stylesheet language for visual presentation, layouts, responsiveness, and typography.</p>
+                </div>
+                <div class="flex items-center gap-2 text-xs">
+                    <span class="px-2 py-0.5 rounded bg-[#F5F5F5] dark:bg-[#222222] border border-[#E5E5E5] dark:border-[#333333] text-[11px] font-mono text-[#777777] dark:text-[#A3A3A3]">
+                        Tasks: 1A, 1B, 2, 4, 5, 6A, 6B, 9
+                    </span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 text-xs text-[#333333] dark:text-[#CCCCCC] leading-relaxed">
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="font-bold text-sm text-[#111111] dark:text-white mb-1.5">Core Definition & Purpose</h4>
+                        <p>
+                            CSS defines how HTML elements are formatted, styled, and rendered across different display viewports. The cascade algorithm computes rules based on specificity, inheritance, and source order, ensuring visual consistency across web applications.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-sm text-[#111111] dark:text-white mb-1.5">Key Stylistic Architecture Concepts</h4>
+                        <ul class="list-disc list-inside space-y-1.5 text-[#555555] dark:text-[#BBBBBB]">
+                            <li><strong>Three Insertion Methods:</strong> External (<code class="font-mono">&lt;link rel="stylesheet" href="style.css"&gt;</code>), Internal (<code class="font-mono">&lt;style&gt;</code> in head), and Inline (<code class="font-mono">style="..."</code>). External is strongly preferred for clean separation of concerns.</li>
+                            <li><strong>The CSS Box Model:</strong> Every element is treated as a rectangular box consisting of (from inside out): Content &rarr; Padding &rarr; Border &rarr; Margin. Setting <code class="font-mono">box-sizing: border-box;</code> ensures padding and borders are included in total width.</li>
+                            <li><strong>Modern Layout Systems:</strong>
+                                <ul class="list-none pl-4 pt-1 space-y-1">
+                                    <li>• <em>Flexbox (1D):</em> <code class="font-mono">display: flex; justify-content: space-between; align-items: center;</code> for aligning navigation bars and toolbars.</li>
+                                    <li>• <em>Grid (2D):</em> <code class="font-mono">display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;</code> for complex grid cards.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Responsive Media Queries:</strong> <code class="font-mono">@media (max-width: 768px) { ... }</code> dynamically adapts layouts for mobile devices.</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-[#F5F5F5] dark:bg-[#111111] border border-[#E5E5E5] dark:border-[#262626] rounded-lg p-3.5 space-y-2">
+                        <span class="font-mono font-bold text-[11px] text-[#111111] dark:text-white flex items-center gap-1.5">
+                            <svg class="w-3.5 h-3.5 text-[#111111] dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            How to Apply & Debug CSS:
+                        </span>
+                        <ol class="list-decimal list-inside space-y-1 text-[#666666] dark:text-[#AAAAAA]">
+                            <li>Save rules with a <code class="font-mono text-[#111111] dark:text-white">.css</code> extension.</li>
+                            <li>Link inside the HTML <code class="font-mono text-[#111111] dark:text-white">&lt;head&gt;</code> tag via <code class="font-mono text-[#111111] dark:text-white">&lt;link rel="stylesheet" href="style.css"&gt;</code>.</li>
+                            <li>Inspect in DevTools (<kbd class="font-mono text-[10px] bg-white dark:bg-[#222222] px-1 rounded border border-[#E5E5E5] dark:border-[#333333]">F12</kbd>) under the "Computed" and "Styles" panels to verify rule cascade and box model geometry.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <span class="text-[11px] font-mono text-[#777777] dark:text-[#A3A3A3] font-semibold">Practical Clean CSS Ruleset:</span>
+                    <div class="bg-[#FAFAFA] dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-[#262626] rounded-lg p-3.5 font-mono text-[11px] overflow-x-auto">
+<pre class="!bg-transparent !p-0 !m-0"><code class="language-css">/* Box Model Reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Typography & Layout */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #FFFFFF;
+    color: #111111;
+    line-height: 1.5;
+}
+
+/* Flexbox Navigation Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+/* Responsive Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+}
+
+th, td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border: 1px solid #E5E5E5;
+}
+
+th {
+    background-color: #F5F5F5;
+    font-weight: 600;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 3. JavaScript ================= -->
+        <section id="jsSection" class="bg-white dark:bg-[#171717] border border-[#E5E5E5] dark:border-[#262626] rounded-xl p-6 sm:p-8 space-y-6 transition-colors scroll-mt-28">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E5E5E5] dark:border-[#262626] pb-4">
+                <div class="space-y-1">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#111111] text-white dark:bg-white dark:text-[#111111]">CLIENT LOGIC</span>
+                        <h3 class="text-xl font-bold text-[#111111] dark:text-white">JavaScript (ECMAScript 6+)</h3>
+                    </div>
+                    <p class="text-xs text-[#777777] dark:text-[#A3A3A3]">High-level interpreted scripting language for client-side interactivity, DOM mutation, and validation.</p>
+                </div>
+                <div class="flex items-center gap-2 text-xs">
+                    <span class="px-2 py-0.5 rounded bg-[#F5F5F5] dark:bg-[#222222] border border-[#E5E5E5] dark:border-[#333333] text-[11px] font-mono text-[#777777] dark:text-[#A3A3A3]">
+                        Tasks: 2, 3A, 3B, 4, 10, 11, 12
+                    </span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 text-xs text-[#333333] dark:text-[#CCCCCC] leading-relaxed">
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="font-bold text-sm text-[#111111] dark:text-white mb-1.5">Core Definition & Purpose</h4>
+                        <p>
+                            JavaScript provides dynamic behavior to web pages. Executed inside the browser's JavaScript engine (e.g. Chrome's V8), it intercepts user events, mutates the live DOM tree without requiring server round-trips, validates user inputs with regular expressions, and manages asynchronous network requests.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-sm text-[#111111] dark:text-white mb-1.5">Lab Program Applications</h4>
+                        <ul class="list-disc list-inside space-y-1.5 text-[#555555] dark:text-[#BBBBBB]">
+                            <li><strong>Form Validation via Regex (Task 2):</strong> Intercepting `<form onsubmit="return validateForm()">` to verify usernames (<code class="font-mono">/^[a-zA-Z]{5,15}$/</code>), 10-digit mobile numbers (<code class="font-mono">/^[0-9]{10}$/</code>), and email syntax before submission.</li>
+                            <li><strong>Dynamic DOM Generation (Task 3A):</strong> Generating dynamic HTML multiplication tables using loops and inserting them into `<div id="result">` via `innerHTML`.</li>
+                            <li><strong>Dynamic Asset Toggling (Task 3B):</strong> Changing image elements on the fly by mutating `img.src` when buttons are clicked.</li>
+                            <li><strong>Interactive State Lists (Task 4):</strong> To-do list application managing an array of tasks, dynamically appending `<li>` nodes via `document.createElement()`, and toggling completion classes.</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-[#F5F5F5] dark:bg-[#111111] border border-[#E5E5E5] dark:border-[#262626] rounded-lg p-3.5 space-y-2">
+                        <span class="font-mono font-bold text-[11px] text-[#111111] dark:text-white flex items-center gap-1.5">
+                            <svg class="w-3.5 h-3.5 text-[#111111] dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            How to Run JavaScript:
+                        </span>
+                        <ol class="list-decimal list-inside space-y-1 text-[#666666] dark:text-[#AAAAAA]">
+                            <li>Embedded inside HTML via <code class="font-mono text-[#111111] dark:text-white">&lt;script src="script.js"&gt;&lt;/script&gt;</code> before the closing <code class="font-mono text-[#111111] dark:text-white">&lt;/body&gt;</code> tag.</li>
+                            <li>Direct interactive testing inside browser Console (<kbd class="font-mono text-[10px] bg-white dark:bg-[#222222] px-1 rounded border border-[#E5E5E5] dark:border-[#333333]">F12 &rarr; Console</kbd>).</li>
+                            <li>Standalone command-line execution using Node.js: <code class="font-mono text-[#111111] dark:text-white">node filename.js</code>.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <span class="text-[11px] font-mono text-[#777777] dark:text-[#A3A3A3] font-semibold">Form Validation & Dynamic DOM Snippet:</span>
+                    <div class="bg-[#FAFAFA] dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-[#262626] rounded-lg p-3.5 font-mono text-[11px] overflow-x-auto">
+<pre class="!bg-transparent !p-0 !m-0"><code class="language-javascript">function validateRegistration() {
+    const username = document.getElementById('uname').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const errorBox = document.getElementById('errorMsg');
+
+    // Regex: 10 digit Indian mobile number
+    const phonePattern = /^[6-9]\d{9}$/;
+
+    if (username.length < 5) {
+        errorBox.textContent = "Username must be at least 5 characters.";
+        return false;
+    }
+
+    if (!phonePattern.test(phone)) {
+        errorBox.textContent = "Please enter a valid 10-digit mobile number.";
+        return false;
+    }
+
+    errorBox.textContent = "";
+    return true;
+}
+
+// Dynamic Multiplication Table Generator (Task 3A)
+function generateTable(num) {
+    let html = "&lt;table border='1'&gt;&lt;tr&gt;&lt;th&gt;Multiplier&lt;/th&gt;&lt;th&gt;Result&lt;/th&gt;&lt;/tr&gt;";
+    for (let i = 1; i <= 10; i++) {
+        html += `&lt;tr&gt;&lt;td&gt;${num} × ${i}&lt;/td&gt;&lt;td&gt;${num * i}&lt;/td&gt;&lt;/tr&gt;`;
+    }
+    html += "&lt;/table&gt;";
+    document.getElementById("output").innerHTML = html;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 4. XML ================= -->
+        <section id="xmlSection" class="bg-white dark:bg-[#171717] border border-[#E5E5E5] dark:border-[#262626] rounded-xl p-6 sm:p-8 space-y-6 transition-colors scroll-mt-28">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E5E5E5] dark:border-[#262626] pb-4">
+                <div class="space-y-1">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#111111] text-white dark:bg-white dark:text-[#111111]">DATA STORAGE</span>
+                        <h3 class="text-xl font-bold text-[#111111] dark:text-white">XML (eXtensible Markup Language)</h3>
+                    </div>
+                    <p class="text-xs text-[#777777] dark:text-[#A3A3A3]">Platform-independent, self-describing hierarchical format designed for cross-platform data transport.</p>
+                </div>
+                <div class="flex items-center gap-2 text-xs">
+                    <span class="px-2 py-0.5 rounded bg-[#F5F5F5] dark:bg-[#222222] border border-[#E5E5E5] dark:border-[#333333] text-[11px] font-mono text-[#777777] dark:text-[#A3A3A3]">
+                        Tasks: 9 (Motorbike Catalog)
+                    </span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 text-xs text-[#333333] dark:text-[#CCCCCC] leading-relaxed">
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="font-bold text-sm text-[#111111] dark:text-white mb-1.5">Core Definition & Purpose</h4>
+                        <p>
+                            XML was designed by the W3C to store and transport structured data without prescribing visual representation. Unlike HTML, which has predefined tags, XML allows developers to invent custom domain-specific tags that describe data semantics accurately.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-sm text-[#111111] dark:text-white mb-1.5">The 5 Rules of Well-Formed XML</h4>
+                        <ol class="list-decimal list-inside space-y-1 text-[#555555] dark:text-[#BBBBBB]">
+                            <li><strong>Single Root Element:</strong> All XML content must be enclosed within one singular parent root element.</li>
+                            <li><strong>Mandatory Closing Tags:</strong> Every opening tag must possess an explicit closing tag (or self-close <code class="font-mono">&lt;tag /&gt;</code>).</li>
+                            <li><strong>Strict Case Sensitivity:</strong> Tag names are strictly case-sensitive (<code class="font-mono">&lt;Bike&gt;</code> &ne; <code class="font-mono">&lt;bike&gt;</code>).</li>
+                            <li><strong>Proper Nesting:</strong> Tags must never overlap (<code class="font-mono">&lt;b&gt;&lt;i&gt;Text&lt;/i&gt;&lt;/b&gt;</code> is valid; <code class="font-mono">&lt;b&gt;&lt;i&gt;Text&lt;/b&gt;&lt;/i&gt;</code> is illegal).</li>
+                            <li><strong>Quoted Attribute Values:</strong> All attributes must have values surrounded by quotes (<code class="font-mono">id="101"</code>).</li>
+                        </ol>
+                    </div>
+
+                    <div class="bg-[#F5F5F5] dark:bg-[#111111] border border-[#E5E5E5] dark:border-[#262626] rounded-lg p-3.5 space-y-2">
+                        <span class="font-mono font-bold text-[11px] text-[#111111] dark:text-white flex items-center gap-1.5">
+                            <svg class="w-3.5 h-3.5 text-[#111111] dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            How to View & Parse XML:
+                        </span>
+                        <p class="text-[#666666] dark:text-[#AAAAAA]">
+                            Save as a <code class="font-mono text-[#111111] dark:text-white">.xml</code> file and double-click to open in modern browsers. Browsers automatically validate well-formedness and display an expandable/collapsible colored tree view.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <span class="text-[11px] font-mono text-[#777777] dark:text-[#A3A3A3] font-semibold">Motorbike XML Catalog (Task 9):</span>
+                    <div class="bg-[#FAFAFA] dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-[#262626] rounded-lg p-3.5 font-mono text-[11px] overflow-x-auto">
+<pre class="!bg-transparent !p-0 !m-0"><code class="language-markup">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE catalog SYSTEM "motorbike_catalog.dtd"&gt;
+&lt;?xml-stylesheet type="text/xsl" href="motorbike_catalog.xsl"?&gt;
+&lt;catalog&gt;
+    &lt;bike id="B101"&gt;
+        &lt;name&gt;Royal Enfield Classic 350&lt;/name&gt;
+        &lt;engine&gt;349 cc&lt;/engine&gt;
+        &lt;mileage&gt;36 kmpl&lt;/mileage&gt;
+        &lt;price&gt;193000&lt;/price&gt;
+    &lt;/bike&gt;
+    &lt;bike id="B102"&gt;
+        &lt;name&gt;Yamaha MT-15 V2&lt;/name&gt;
+        &lt;engine&gt;155 cc&lt;/engine&gt;
+        &lt;mileage&gt;48 kmpl&lt;/mileage&gt;
+        &lt;price&gt;168000&lt;/price&gt;
+    &lt;/bike&gt;
+&lt;/catalog&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 5. DTD ================= -->
+        <section id="dtdSection" class="bg-white dark:bg-[#171717] border border-[#E5E5E5] dark:border-[#262626] rounded-xl p-6 sm:p-8 space-y-6 transition-colors scroll-mt-28">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E5E5E5] dark:border-[#262626] pb-4">
+                <div class="space-y-1">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#111111] text-white dark:bg-white dark:text-[#111111]">VALIDATION GRAMMAR</span>
+                        <h3 class="text-xl font-bold text-[#111111] dark:text-white">DTD (Document Type Definition)</h3>
+                    </div>
+                    <p class="text-xs text-[#777777] dark:text-[#A3A3A3]">Structural schema defining the legal elements, hierarchy, and attributes of an XML document.</p>
+                </div>
+                <div class="flex items-center gap-2 text-xs">
+                    <span class="px-2 py-0.5 rounded bg-[#F5F5F5] dark:bg-[#222222] border border-[#E5E5E5] dark:border-[#333333] text-[11px] font-mono text-[#777777] dark:text-[#A3A3A3]">
+                        Tasks: 9 (Motorbike Schema)
+                    </span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 text-xs text-[#333333] dark:text-[#CCCCCC] leading-relaxed">
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="font-bold text-sm text-[#111111] dark:text-white mb-1.5">Core Definition & Purpose</h4>
+                        <p>
+                            A DTD acts as a contract that defines the legal building blocks of an XML document. An XML document that follows the general XML syntax is called <strong>Well-Formed</strong>. An XML document that conforms to its specific DTD grammar is called <strong>Valid</strong>.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-sm text-[#111111] dark:text-white mb-1.5">DTD Syntax & Multiplicity Symbols</h4>
+                        <ul class="list-disc list-inside space-y-1.5 text-[#555555] dark:text-[#BBBBBB]">
+                            <li><code class="font-mono font-bold">+</code> (Plus): One or more occurrences (<code class="font-mono">&lt;!ELEMENT catalog (bike+)&gt;</code>).</li>
+                            <li><code class="font-mono font-bold">*</code> (Asterisk): Zero or more occurrences.</li>
+                            <li><code class="font-mono font-bold">?</code> (Question Mark): Optional, zero or one occurrence.</li>
+                            <li><code class="font-mono font-bold">,</code> (Comma): Ordered sequence (<code class="font-mono">(name, engine, mileage, price)</code>).</li>
+                            <li><code class="font-mono font-bold">|</code> (Pipe): Selection / choice (either A or B).</li>
+                            <li><code class="font-mono font-bold">#PCDATA</code>: Parsed Character Data (text parsed by XML parser).</li>
+                            <li><code class="font-mono font-bold">#REQUIRED</code> vs <code class="font-mono font-bold">#IMPLIED</code>: Attribute is mandatory vs optional.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <span class="text-[11px] font-mono text-[#777777] dark:text-[#A3A3A3] font-semibold">External DTD Schema (<code class="font-mono">motorbike_catalog.dtd</code>):</span>
+                    <div class="bg-[#FAFAFA] dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-[#262626] rounded-lg p-3.5 font-mono text-[11px] overflow-x-auto">
+<pre class="!bg-transparent !p-0 !m-0"><code class="language-markup">&lt;!-- DTD Definition for Motorbike Catalog --&gt;
+&lt;!ELEMENT catalog (bike+)&gt;
+&lt;!ELEMENT bike (name, engine, mileage, price)&gt;
+&lt;!ATTLIST bike id CDATA #REQUIRED&gt;
+
+&lt;!ELEMENT name (#PCDATA)&gt;
+&lt;!ELEMENT engine (#PCDATA)&gt;
+&lt;!ELEMENT mileage (#PCDATA)&gt;
+&lt;!ELEMENT price (#PCDATA)&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 6. XSL / XSLT ================= -->
+        <section id="xsltSection" class="bg-white dark:bg-[#171717] border border-[#E5E5E5] dark:border-[#262626] rounded-xl p-6 sm:p-8 space-y-6 transition-colors scroll-mt-28">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E5E5E5] dark:border-[#262626] pb-4">
+                <div class="space-y-1">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#111111] text-white dark:bg-white dark:text-[#111111]">TRANSFORMATION</span>
+                        <h3 class="text-xl font-bold text-[#111111] dark:text-white">XSLT (Extensible Stylesheet Language Transformations)</h3>
+                    </div>
+                    <p class="text-xs text-[#777777] dark:text-[#A3A3A3]">Declarative template transformation language turning XML trees into formatted HTML or documents.</p>
+                </div>
+                <div class="flex items-center gap-2 text-xs">
+                    <span class="px-2 py-0.5 rounded bg-[#F5F5F5] dark:bg-[#222222] border border-[#E5E5E5] dark:border-[#333333] text-[11px] font-mono text-[#777777] dark:text-[#A3A3A3]">
+                        Tasks: 9 (XSL Formatting)
+                    </span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 text-xs text-[#333333] dark:text-[#CCCCCC] leading-relaxed">
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="font-bold text-sm text-[#111111] dark:text-white mb-1.5">Core Definition & Purpose</h4>
+                        <p>
+                            XSLT is used to transform raw XML data into formatted HTML tables, reports, or other text documents. It matches patterns using XPath and outputs transformed content directly in the browser without writing manual backend conversion scripts.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-sm text-[#111111] dark:text-white mb-1.5">Key XSLT Directives</h4>
+                        <ul class="list-disc list-inside space-y-1.5 text-[#555555] dark:text-[#BBBBBB]">
+                            <li><code class="font-mono">&lt;xsl:template match="/"&gt;</code>: Matches the root node of the XML source document.</li>
+                            <li><code class="font-mono">&lt;xsl:for-each select="catalog/bike"&gt;</code>: Iterates through each repeated node.</li>
+                            <li><code class="font-mono">&lt;xsl:value-of select="name"/&gt;</code>: Extracts and injects the text value of a node.</li>
+                            <li><code class="font-mono">&lt;xsl:sort select="price" order="ascending"/&gt;</code>: Sorts records on output.</li>
+                            <li><code class="font-mono">&lt;xsl:if test="price &gt; 180000"&gt;</code>: Filters records meeting conditional logic.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <span class="text-[11px] font-mono text-[#777777] dark:text-[#A3A3A3] font-semibold">Transforming XML to HTML Table (<code class="font-mono">motorbike_catalog.xsl</code>):</span>
+                    <div class="bg-[#FAFAFA] dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-[#262626] rounded-lg p-3.5 font-mono text-[11px] overflow-x-auto">
+<pre class="!bg-transparent !p-0 !m-0"><code class="language-markup">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;
+&lt;xsl:template match="/"&gt;
+    &lt;html&gt;
+    &lt;body&gt;
+        &lt;h2&gt;Motorbike Inventory Catalog&lt;/h2&gt;
+        &lt;table border="1" cellpadding="6"&gt;
+            &lt;tr bgcolor="#F5F5F5"&gt;
+                &lt;th&gt;ID&lt;/th&gt;&lt;th&gt;Model Name&lt;/th&gt;&lt;th&gt;Engine&lt;/th&gt;&lt;th&gt;Mileage&lt;/th&gt;&lt;th&gt;Price (INR)&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;xsl:for-each select="catalog/bike"&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;&lt;xsl:value-of select="@id"/&gt;&lt;/td&gt;
+                    &lt;td&gt;&lt;xsl:value-of select="name"/&gt;&lt;/td&gt;
+                    &lt;td&gt;&lt;xsl:value-of select="engine"/&gt;&lt;/td&gt;
+                    &lt;td&gt;&lt;xsl:value-of select="mileage"/&gt;&lt;/td&gt;
+                    &lt;td&gt;&lt;xsl:value-of select="price"/&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/xsl:for-each&gt;
+        &lt;/table&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+&lt;/xsl:template&gt;
+&lt;/xsl:stylesheet&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 7. PHP ================= -->
+        <section id="phpSection" class="bg-white dark:bg-[#171717] border border-[#E5E5E5] dark:border-[#262626] rounded-xl p-6 sm:p-8 space-y-6 transition-colors scroll-mt-28">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E5E5E5] dark:border-[#262626] pb-4">
+                <div class="space-y-1">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#111111] text-white dark:bg-white dark:text-[#111111]">SERVER SCRIPTING</span>
+                        <h3 class="text-xl font-bold text-[#111111] dark:text-white">PHP (Hypertext Preprocessor)</h3>
+                    </div>
+                    <p class="text-xs text-[#777777] dark:text-[#A3A3A3]">Robust server-side scripting language for backend logic, form processing, state management, and DB connectivity.</p>
+                </div>
+                <div class="flex items-center gap-2 text-xs">
+                    <span class="px-2 py-0.5 rounded bg-[#F5F5F5] dark:bg-[#222222] border border-[#E5E5E5] dark:border-[#333333] text-[11px] font-mono text-[#777777] dark:text-[#A3A3A3]">
+                        Tasks: 5, 6A, 6B, 7A, 7B, 8A, 8B, 10, 11, 12
+                    </span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 text-xs text-[#333333] dark:text-[#CCCCCC] leading-relaxed">
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="font-bold text-sm text-[#111111] dark:text-white mb-1.5">Execution Architecture & Superglobals</h4>
+                        <p>
+                            PHP code executes strictly on the web server (Apache/Nginx/CLI). The client browser receives only the resulting HTML output, never raw PHP source code.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-sm text-[#111111] dark:text-white mb-1.5">Key Superglobals & Lab Implementations</h4>
+                        <ul class="list-disc list-inside space-y-1.5 text-[#555555] dark:text-[#BBBBBB]">
+                            <li><code class="font-mono font-bold">$_POST</code>: Captures data submitted via HTTP POST requests without exposing sensitive credentials in the URL (Tasks 5, 6A, 7B).</li>
+                            <li><code class="font-mono font-bold">$_GET</code>: Retrieves URL query string parameters (e.g. <code class="font-mono">?q=101</code>) used in live search and AJAX lookups (Tasks 11, 12).</li>
+                            <li><code class="font-mono font-bold">$_SESSION</code> (Task 6A): Server-side state persistence across multiple page requests. Must be initialized via <code class="font-mono">session_start()</code> before any HTML is sent.</li>
+                            <li><code class="font-mono font-bold">$_COOKIE</code> (Task 6B): Client-side persistence set via <code class="font-mono">setcookie("user", "val", time() + 3600)</code>. Useful for tracking last login time.</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-[#F5F5F5] dark:bg-[#111111] border border-[#E5E5E5] dark:border-[#262626] rounded-lg p-3.5 space-y-2">
+                        <span class="font-mono font-bold text-[11px] text-[#111111] dark:text-white flex items-center gap-1.5">
+                            <svg class="w-3.5 h-3.5 text-[#111111] dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            How to Execute PHP:
+                        </span>
+                        <div class="space-y-2 text-[#666666] dark:text-[#AAAAAA]">
+                            <p><strong>Method 1: XAMPP / WampServer (Recommended for University Lab)</strong></p>
+                            <ol class="list-decimal list-inside space-y-0.5 pl-2">
+                                <li>Copy project folder into <code class="font-mono text-[#111111] dark:text-white">C:/xampp/htdocs/</code>.</li>
+                                <li>Open XAMPP Control Panel and click <strong>Start</strong> on Apache & MySQL.</li>
+                                <li>Open browser at <code class="font-mono text-[#111111] dark:text-white">http://localhost/project/filename.php</code>.</li>
+                            </ol>
+                            <p class="pt-1"><strong>Method 2: Built-in PHP CLI Server</strong></p>
+                            <ol class="list-decimal list-inside space-y-0.5 pl-2">
+                                <li>Open terminal inside the directory containing PHP files.</li>
+                                <li>Run command: <code class="font-mono text-[#111111] dark:text-white">php -S localhost:8000</code></li>
+                                <li>Open browser at <code class="font-mono text-[#111111] dark:text-white">http://localhost:8000/filename.php</code>.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <span class="text-[11px] font-mono text-[#777777] dark:text-[#A3A3A3] font-semibold">Session Handling & Form Processing (Tasks 5 & 6A):</span>
+                    <div class="bg-[#FAFAFA] dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-[#262626] rounded-lg p-3.5 font-mono text-[11px] overflow-x-auto">
+<pre class="!bg-transparent !p-0 !m-0"><code class="language-php">&lt;?php
+// Start session for state tracking across pages
+session_start();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
+
+    // Authenticate user
+    if ($username === "student" && $password === "griet123") {
+        $_SESSION['authenticated_user'] = $username;
+        $_SESSION['login_time'] = date("Y-m-d H:i:s");
+        header("Location: details.php");
+        exit();
+    } else {
+        $error = "Invalid credentials. Please retry.";
+    }
+}
+?&gt;
+&lt;!-- HTML Form Container --&gt;
+&lt;form method="POST" action="login.php"&gt;
+    &lt;label&gt;Username:&lt;/label&gt;
+    &lt;input type="text" name="username" required&gt;
+    &lt;label&gt;Password:&lt;/label&gt;
+    &lt;input type="password" name="password" required&gt;
+    &lt;button type="submit"&gt;Login&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 8. SQL / MySQL ================= -->
+        <section id="mysqlSection" class="bg-white dark:bg-[#171717] border border-[#E5E5E5] dark:border-[#262626] rounded-xl p-6 sm:p-8 space-y-6 transition-colors scroll-mt-28">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E5E5E5] dark:border-[#262626] pb-4">
+                <div class="space-y-1">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#111111] text-white dark:bg-white dark:text-[#111111]">DATABASE MANAGEMENT</span>
+                        <h3 class="text-xl font-bold text-[#111111] dark:text-white">SQL & Relational Databases (MySQL / MariaDB)</h3>
+                    </div>
+                    <p class="text-xs text-[#777777] dark:text-[#A3A3A3]">Standard language for database schema definition, data manipulation, and PHP MySQLi integration.</p>
+                </div>
+                <div class="flex items-center gap-2 text-xs">
+                    <span class="px-2 py-0.5 rounded bg-[#F5F5F5] dark:bg-[#222222] border border-[#E5E5E5] dark:border-[#333333] text-[11px] font-mono text-[#777777] dark:text-[#A3A3A3]">
+                        Tasks: 7A, 7B, 8A, 8B, 12
+                    </span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 text-xs text-[#333333] dark:text-[#CCCCCC] leading-relaxed">
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="font-bold text-sm text-[#111111] dark:text-white mb-1.5">Relational Model & MySQLi Integration</h4>
+                        <p>
+                            Relational databases store information in normalized tables comprising rows (records) and columns (attributes). In PHP, the modern <code class="font-mono">mysqli</code> (MySQL Improved) procedural and object-oriented interfaces allow direct communication with the database engine.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-sm text-[#111111] dark:text-white mb-1.5">The 5-Step PHP MySQLi Lifecycle</h4>
+                        <ol class="list-decimal list-inside space-y-1.5 text-[#555555] dark:text-[#BBBBBB]">
+                            <li><strong>Connect:</strong> <code class="font-mono">$conn = mysqli_connect("localhost", "root", "", "lab_db");</code></li>
+                            <li><strong>Verify:</strong> <code class="font-mono">if (!$conn) die("Connection failed: " . mysqli_connect_error());</code></li>
+                            <li><strong>Execute SQL Query:</strong> <code class="font-mono">$res = mysqli_query($conn, "SELECT * FROM users");</code></li>
+                            <li><strong>Fetch Result Rows:</strong> <code class="font-mono">while ($row = mysqli_fetch_array($res)) { echo $row['name']; }</code></li>
+                            <li><strong>Close Connection:</strong> <code class="font-mono">mysqli_close($conn);</code></li>
+                        </ol>
+                    </div>
+
+                    <div class="bg-[#F5F5F5] dark:bg-[#111111] border border-[#E5E5E5] dark:border-[#262626] rounded-lg p-3.5 space-y-2">
+                        <span class="font-mono font-bold text-[11px] text-[#111111] dark:text-white flex items-center gap-1.5">
+                            <svg class="w-3.5 h-3.5 text-[#111111] dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            Managing MySQL in XAMPP:
+                        </span>
+                        <p class="text-[#666666] dark:text-[#AAAAAA]">
+                            Start MySQL in XAMPP Control Panel, then access the phpMyAdmin web dashboard at <code class="font-mono text-[#111111] dark:text-white">http://localhost/phpmyadmin</code> to create databases, inspect tables, and execute raw SQL queries.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <span class="text-[11px] font-mono text-[#777777] dark:text-[#A3A3A3] font-semibold">Complete Database Schema & PHP Connect (Task 7A/7B):</span>
+                    <div class="bg-[#FAFAFA] dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-[#262626] rounded-lg p-3.5 font-mono text-[11px] overflow-x-auto">
+<pre class="!bg-transparent !p-0 !m-0"><code class="language-sql">-- DDL: Create Database and Table
+CREATE DATABASE IF NOT EXISTS lab_db;
+USE lab_db;
+
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    phone VARCHAR(15) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- DML: Insert Sample Records
+INSERT INTO users (name, email, phone) 
+VALUES ('Kailasa Siddartha', 'siddartha@griet.in', '9876543210');</code></pre>
+                    </div>
+
+                    <div class="bg-[#FAFAFA] dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-[#262626] rounded-lg p-3.5 font-mono text-[11px] overflow-x-auto">
+<pre class="!bg-transparent !p-0 !m-0"><code class="language-php">&lt;?php
+// PHP MySQLi Integration
+$conn = mysqli_connect("localhost", "root", "", "lab_db");
+if (!$conn) {
+    die("Database Connection Error: " . mysqli_connect_error());
+}
+
+$query = "SELECT * FROM users";
+$result = mysqli_query($conn, $query);
+
+echo "&lt;table border='1'&gt;&lt;tr&gt;&lt;th&gt;ID&lt;/th&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Email&lt;/th&gt;&lt;/tr&gt;";
+while ($row = mysqli_fetch_assoc($result)) {
+    echo "&lt;tr&gt;&lt;td&gt;{$row['id']}&lt;/td&gt;&lt;td&gt;{$row['name']}&lt;/td&gt;&lt;td&gt;{$row['email']}&lt;/td&gt;&lt;/tr&gt;";
+}
+echo "&lt;/table&gt;";
+
+mysqli_close($conn);
+?&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 9. AJAX ================= -->
+        <section id="ajaxSection" class="bg-white dark:bg-[#171717] border border-[#E5E5E5] dark:border-[#262626] rounded-xl p-6 sm:p-8 space-y-6 transition-colors scroll-mt-28">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E5E5E5] dark:border-[#262626] pb-4">
+                <div class="space-y-1">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#111111] text-white dark:bg-white dark:text-[#111111]">ASYNC COMMUNICATION</span>
+                        <h3 class="text-xl font-bold text-[#111111] dark:text-white">AJAX (Asynchronous JavaScript and XML)</h3>
+                    </div>
+                    <p class="text-xs text-[#777777] dark:text-[#A3A3A3]">Asynchronous client-server communication mechanism for dynamic partial page updates without reloading.</p>
+                </div>
+                <div class="flex items-center gap-2 text-xs">
+                    <span class="px-2 py-0.5 rounded bg-[#F5F5F5] dark:bg-[#222222] border border-[#E5E5E5] dark:border-[#333333] text-[11px] font-mono text-[#777777] dark:text-[#A3A3A3]">
+                        Tasks: 10, 11, 12
+                    </span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 text-xs text-[#333333] dark:text-[#CCCCCC] leading-relaxed">
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="font-bold text-sm text-[#111111] dark:text-white mb-1.5">Core Definition & Purpose</h4>
+                        <p>
+                            AJAX is not a standalone programming language, but a web development pattern combining the browser's built-in <code class="font-mono">XMLHttpRequest</code> object with JavaScript and DOM manipulation. It enables web applications to send requests and receive server data asynchronously in the background, updating only specific page fragments without disrupting the user experience with full-page refreshes.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-sm text-[#111111] dark:text-white mb-1.5">The 5 XMLHttpRequest ReadyState Phases</h4>
+                        <ul class="list-disc list-inside space-y-1.5 text-[#555555] dark:text-[#BBBBBB]">
+                            <li><code class="font-mono">0 (UNSENT)</code>: Client instance created; <code class="font-mono">open()</code> not yet called.</li>
+                            <li><code class="font-mono">1 (OPENED)</code>: <code class="font-mono">open()</code> method invoked with HTTP verb and target URL.</li>
+                            <li><code class="font-mono">2 (HEADERS_RECEIVED)</code>: <code class="font-mono">send()</code> invoked; HTTP status and headers available.</li>
+                            <li><code class="font-mono">3 (LOADING)</code>: Response body data is currently streaming and transferring.</li>
+                            <li><code class="font-mono">4 (DONE)</code>: Data transfer operation complete. Response fully ready for DOM insertion.</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-sm text-[#111111] dark:text-white mb-1.5">Lab Program Implementations</h4>
+                        <ul class="list-disc list-inside space-y-1 text-[#555555] dark:text-[#BBBBBB]">
+                            <li><strong>Task 10 (Date & Time):</strong> Periodic AJAX polling to fetch server time without reloading.</li>
+                            <li><strong>Task 11 (Live Search):</strong> Capturing `<input onkeyup="showResult(this.value)">` to query backend PHP dynamically.</li>
+                            <li><strong>Task 12 (Database Live User Lookup):</strong> Capturing dropdown selection change to dispatch AJAX request to `getuser.php`, executing a MySQL query, and updating `<div id="txtHint">` with the generated user record table.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <span class="text-[11px] font-mono text-[#777777] dark:text-[#A3A3A3] font-semibold">Standard AJAX Implementation Pattern (Task 12):</span>
+                    <div class="bg-[#FAFAFA] dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-[#262626] rounded-lg p-3.5 font-mono text-[11px] overflow-x-auto">
+<pre class="!bg-transparent !p-0 !m-0"><code class="language-javascript">// Client AJAX Function
+function fetchUserDetails(userId) {
+    if (userId === "") {
+        document.getElementById("txtHint").innerHTML = "";
+        return;
+    }
+
+    // 1. Instantiate XHR object
+    var xhr = new XMLHttpRequest();
+
+    // 2. Register state change handler
+    xhr.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            // 3. Inject received HTML into target container
+            document.getElementById("txtHint").innerHTML = this.responseText;
+        }
+    };
+
+    // 4. Configure asynchronous GET request
+    xhr.open("GET", "getuser.php?q=" + encodeURIComponent(userId), true);
+
+    // 5. Send request
+    xhr.send();
+}</code></pre>
+                    </div>
+
+                    <div class="bg-[#FAFAFA] dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-[#262626] rounded-lg p-3.5 font-mono text-[11px] overflow-x-auto">
+<pre class="!bg-transparent !p-0 !m-0"><code class="language-php">&lt;?php
+// Backend Responder: getuser.php
+$q = intval($_GET['q']);
+
+$conn = mysqli_connect("localhost", "root", "", "lab_db");
+if (!$conn) die("Connection error");
+
+$sql = "SELECT * FROM users WHERE id = " . $q;
+$result = mysqli_query($conn, $sql);
+
+echo "&lt;table border='1'&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Email&lt;/th&gt;&lt;th&gt;Phone&lt;/th&gt;&lt;/tr&gt;";
+while($row = mysqli_fetch_array($result)) {
+    echo "&lt;tr&gt;&lt;td&gt;" . $row['name'] . "&lt;/td&gt;&lt;td&gt;" . $row['email'] . "&lt;/td&gt;&lt;td&gt;" . $row['phone'] . "&lt;/td&gt;&lt;/tr&gt;";
+}
+echo "&lt;/table&gt;";
+
+mysqli_close($conn);
+?&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Theme management script -->
+    <script>
+        function toggleTheme() {
+            var isDark = document.documentElement.classList.toggle('dark');
+            try {
+                localStorage.setItem('sl_theme', isDark ? 'dark' : 'light');
+            } catch (e) {}
+            updateThemeIcons(isDark);
+        }
+
+        function updateThemeIcons(isDark) {
+            var sun = document.getElementById('themeIconSun');
+            var moon = document.getElementById('themeIconMoon');
+            if (sun && moon) {
+                if (isDark) {
+                    sun.classList.remove('hidden');
+                    moon.classList.add('hidden');
+                } else {
+                    sun.classList.add('hidden');
+                    moon.classList.remove('hidden');
+                }
+            }
+        }
+
+        // Initialize icons on load
+        (function() {
+            var isDark = document.documentElement.classList.contains('dark');
+            updateThemeIcons(isDark);
+        })();
+    </script>
+</body>
+</html>

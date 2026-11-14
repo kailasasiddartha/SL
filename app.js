@@ -284,6 +284,14 @@ function resetSearch() {
     if (clearBtn) clearBtn.classList.add('hidden');
 }
 
+function executeSearch() {
+    const input = document.getElementById('taskSearchInput');
+    if (input) {
+        handleSearch(input.value);
+        input.focus();
+    }
+}
+
 function findTask(taskIdentifier) {
     if (!labData || !labData.tasks) return null;
     const query = String(taskIdentifier).trim().toLowerCase();
@@ -515,6 +523,17 @@ function setupEventListeners() {
         searchInput.addEventListener('input', (e) => {
             handleSearch(e.target.value);
         });
+        searchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                executeSearch();
+            }
+        });
+    }
+
+    const searchBtn = document.getElementById('searchBtn');
+    if (searchBtn) {
+        searchBtn.addEventListener('click', executeSearch);
     }
 
     const clearBtn = document.getElementById('clearSearchBtn');

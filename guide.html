@@ -134,9 +134,8 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 text-xs text-[#333333] dark:text-[#CCCCCC] leading-relaxed">
-                <div class="space-y-4">
-                    <div>
+            <div class="space-y-4 text-xs text-[#333333] dark:text-[#CCCCCC] leading-relaxed">
+                <div>
                         <h4 class="font-bold text-sm text-[#111111] dark:text-white mb-1.5">Core Definition & Purpose</h4>
                         <p>
                             HTML5 is the standard markup language used to structure content on the World Wide Web. It provides declarative elements that browser layout engines parse into the in-memory <strong>Document Object Model (DOM)</strong> tree. HTML5 eliminates reliance on legacy browser plugins by introducing native audio/video playback, canvas 2D graphics, and semantic structuring elements.
@@ -165,49 +164,6 @@
                             <li>Open DevTools (<kbd class="font-mono text-[10px] bg-white dark:bg-[#222222] px-1 rounded border border-[#E5E5E5] dark:border-[#333333]">F12</kbd>) to inspect DOM tree hierarchy and debug layout rendering.</li>
                         </ol>
                     </div>
-                </div>
-
-                <div class="space-y-3">
-                    <span class="text-[11px] font-mono text-[#777777] dark:text-[#A3A3A3] font-semibold">Standard HTML5 Document Template:</span>
-                    <div class="bg-[#FAFAFA] dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-[#262626] rounded-lg p-3.5 font-mono text-[11px] overflow-x-auto">
-<pre class="!bg-transparent !p-0 !m-0"><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;University Lab Timetable&lt;/title&gt;
-    &lt;link rel="stylesheet" href="style.css"&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;header&gt;
-        &lt;h1&gt;Department of CSE (AIML)&lt;/h1&gt;
-    &lt;/header&gt;
-
-    &lt;main&gt;
-        &lt;table border="1" cellpadding="8"&gt;
-            &lt;thead&gt;
-                &lt;tr&gt;
-                    &lt;th&gt;Day / Time&lt;/th&gt;
-                    &lt;th&gt;09:00 - 10:00&lt;/th&gt;
-                    &lt;th&gt;10:00 - 11:00&lt;/th&gt;
-                    &lt;th rowspan="2"&gt;LUNCH&lt;/th&gt;
-                    &lt;th colspan="2"&gt;Lab Session&lt;/th&gt;
-                &lt;/tr&gt;
-            &lt;/thead&gt;
-            &lt;tbody&gt;
-                &lt;tr&gt;
-                    &lt;td&gt;Monday&lt;/td&gt;
-                    &lt;td&gt;Scripting Lang&lt;/td&gt;
-                    &lt;td&gt;AI Principles&lt;/td&gt;
-                    &lt;td colspan="2"&gt;SL Lab (GR25A2082)&lt;/td&gt;
-                &lt;/tr&gt;
-            &lt;/tbody&gt;
-        &lt;/table&gt;
-    &lt;/main&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -228,9 +184,8 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 text-xs text-[#333333] dark:text-[#CCCCCC] leading-relaxed">
-                <div class="space-y-4">
-                    <div>
+            <div class="space-y-4 text-xs text-[#333333] dark:text-[#CCCCCC] leading-relaxed">
+                <div>
                         <h4 class="font-bold text-sm text-[#111111] dark:text-white mb-1.5">Core Definition & Purpose</h4>
                         <p>
                             CSS defines how HTML elements are formatted, styled, and rendered across different display viewports. The cascade algorithm computes rules based on specificity, inheritance, and source order, ensuring visual consistency across web applications.
@@ -263,54 +218,6 @@
                             <li>Inspect in DevTools (<kbd class="font-mono text-[10px] bg-white dark:bg-[#222222] px-1 rounded border border-[#E5E5E5] dark:border-[#333333]">F12</kbd>) under the "Computed" and "Styles" panels to verify rule cascade and box model geometry.</li>
                         </ol>
                     </div>
-                </div>
-
-                <div class="space-y-3">
-                    <span class="text-[11px] font-mono text-[#777777] dark:text-[#A3A3A3] font-semibold">Practical Clean CSS Ruleset:</span>
-                    <div class="bg-[#FAFAFA] dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-[#262626] rounded-lg p-3.5 font-mono text-[11px] overflow-x-auto">
-<pre class="!bg-transparent !p-0 !m-0"><code class="language-css">/* Box Model Reset */
-*, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-/* Typography & Layout */
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background-color: #FFFFFF;
-    color: #111111;
-    line-height: 1.5;
-}
-
-/* Flexbox Navigation Header */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 1.5rem;
-    border-bottom: 1px solid #E5E5E5;
-}
-
-/* Responsive Table Styling */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1.5rem;
-}
-
-th, td {
-    padding: 0.75rem 1rem;
-    text-align: left;
-    border: 1px solid #E5E5E5;
-}
-
-th {
-    background-color: #F5F5F5;
-    font-weight: 600;
-}</code></pre>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -331,9 +238,8 @@ th {
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 text-xs text-[#333333] dark:text-[#CCCCCC] leading-relaxed">
-                <div class="space-y-4">
-                    <div>
+            <div class="space-y-4 text-xs text-[#333333] dark:text-[#CCCCCC] leading-relaxed">
+                <div>
                         <h4 class="font-bold text-sm text-[#111111] dark:text-white mb-1.5">Core Definition & Purpose</h4>
                         <p>
                             JavaScript provides dynamic behavior to web pages. Executed inside the browser's JavaScript engine (e.g. Chrome's V8), it intercepts user events, mutates the live DOM tree without requiring server round-trips, validates user inputs with regular expressions, and manages asynchronous network requests.
@@ -361,44 +267,6 @@ th {
                             <li>Standalone command-line execution using Node.js: <code class="font-mono text-[#111111] dark:text-white">node filename.js</code>.</li>
                         </ol>
                     </div>
-                </div>
-
-                <div class="space-y-3">
-                    <span class="text-[11px] font-mono text-[#777777] dark:text-[#A3A3A3] font-semibold">Form Validation & Dynamic DOM Snippet:</span>
-                    <div class="bg-[#FAFAFA] dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-[#262626] rounded-lg p-3.5 font-mono text-[11px] overflow-x-auto">
-<pre class="!bg-transparent !p-0 !m-0"><code class="language-javascript">function validateRegistration() {
-    const username = document.getElementById('uname').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const errorBox = document.getElementById('errorMsg');
-
-    // Regex: 10 digit Indian mobile number
-    const phonePattern = /^[6-9]\d{9}$/;
-
-    if (username.length < 5) {
-        errorBox.textContent = "Username must be at least 5 characters.";
-        return false;
-    }
-
-    if (!phonePattern.test(phone)) {
-        errorBox.textContent = "Please enter a valid 10-digit mobile number.";
-        return false;
-    }
-
-    errorBox.textContent = "";
-    return true;
-}
-
-// Dynamic Multiplication Table Generator (Task 3A)
-function generateTable(num) {
-    let html = "&lt;table border='1'&gt;&lt;tr&gt;&lt;th&gt;Multiplier&lt;/th&gt;&lt;th&gt;Result&lt;/th&gt;&lt;/tr&gt;";
-    for (let i = 1; i <= 10; i++) {
-        html += `&lt;tr&gt;&lt;td&gt;${num} × ${i}&lt;/td&gt;&lt;td&gt;${num * i}&lt;/td&gt;&lt;/tr&gt;`;
-    }
-    html += "&lt;/table&gt;";
-    document.getElementById("output").innerHTML = html;
-}</code></pre>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -419,9 +287,8 @@ function generateTable(num) {
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 text-xs text-[#333333] dark:text-[#CCCCCC] leading-relaxed">
-                <div class="space-y-4">
-                    <div>
+            <div class="space-y-4 text-xs text-[#333333] dark:text-[#CCCCCC] leading-relaxed">
+                <div>
                         <h4 class="font-bold text-sm text-[#111111] dark:text-white mb-1.5">Core Definition & Purpose</h4>
                         <p>
                             XML was designed by the W3C to store and transport structured data without prescribing visual representation. Unlike HTML, which has predefined tags, XML allows developers to invent custom domain-specific tags that describe data semantics accurately.
@@ -448,30 +315,6 @@ function generateTable(num) {
                             Save as a <code class="font-mono text-[#111111] dark:text-white">.xml</code> file and double-click to open in modern browsers. Browsers automatically validate well-formedness and display an expandable/collapsible colored tree view.
                         </p>
                     </div>
-                </div>
-
-                <div class="space-y-3">
-                    <span class="text-[11px] font-mono text-[#777777] dark:text-[#A3A3A3] font-semibold">Motorbike XML Catalog (Task 9):</span>
-                    <div class="bg-[#FAFAFA] dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-[#262626] rounded-lg p-3.5 font-mono text-[11px] overflow-x-auto">
-<pre class="!bg-transparent !p-0 !m-0"><code class="language-markup">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;!DOCTYPE catalog SYSTEM "motorbike_catalog.dtd"&gt;
-&lt;?xml-stylesheet type="text/xsl" href="motorbike_catalog.xsl"?&gt;
-&lt;catalog&gt;
-    &lt;bike id="B101"&gt;
-        &lt;name&gt;Royal Enfield Classic 350&lt;/name&gt;
-        &lt;engine&gt;349 cc&lt;/engine&gt;
-        &lt;mileage&gt;36 kmpl&lt;/mileage&gt;
-        &lt;price&gt;193000&lt;/price&gt;
-    &lt;/bike&gt;
-    &lt;bike id="B102"&gt;
-        &lt;name&gt;Yamaha MT-15 V2&lt;/name&gt;
-        &lt;engine&gt;155 cc&lt;/engine&gt;
-        &lt;mileage&gt;48 kmpl&lt;/mileage&gt;
-        &lt;price&gt;168000&lt;/price&gt;
-    &lt;/bike&gt;
-&lt;/catalog&gt;</code></pre>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -492,9 +335,8 @@ function generateTable(num) {
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 text-xs text-[#333333] dark:text-[#CCCCCC] leading-relaxed">
-                <div class="space-y-4">
-                    <div>
+            <div class="space-y-4 text-xs text-[#333333] dark:text-[#CCCCCC] leading-relaxed">
+                <div>
                         <h4 class="font-bold text-sm text-[#111111] dark:text-white mb-1.5">Core Definition & Purpose</h4>
                         <p>
                             A DTD acts as a contract that defines the legal building blocks of an XML document. An XML document that follows the general XML syntax is called <strong>Well-Formed</strong>. An XML document that conforms to its specific DTD grammar is called <strong>Valid</strong>.
@@ -513,22 +355,6 @@ function generateTable(num) {
                             <li><code class="font-mono font-bold">#REQUIRED</code> vs <code class="font-mono font-bold">#IMPLIED</code>: Attribute is mandatory vs optional.</li>
                         </ul>
                     </div>
-                </div>
-
-                <div class="space-y-3">
-                    <span class="text-[11px] font-mono text-[#777777] dark:text-[#A3A3A3] font-semibold">External DTD Schema (<code class="font-mono">motorbike_catalog.dtd</code>):</span>
-                    <div class="bg-[#FAFAFA] dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-[#262626] rounded-lg p-3.5 font-mono text-[11px] overflow-x-auto">
-<pre class="!bg-transparent !p-0 !m-0"><code class="language-markup">&lt;!-- DTD Definition for Motorbike Catalog --&gt;
-&lt;!ELEMENT catalog (bike+)&gt;
-&lt;!ELEMENT bike (name, engine, mileage, price)&gt;
-&lt;!ATTLIST bike id CDATA #REQUIRED&gt;
-
-&lt;!ELEMENT name (#PCDATA)&gt;
-&lt;!ELEMENT engine (#PCDATA)&gt;
-&lt;!ELEMENT mileage (#PCDATA)&gt;
-&lt;!ELEMENT price (#PCDATA)&gt;</code></pre>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -549,9 +375,8 @@ function generateTable(num) {
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 text-xs text-[#333333] dark:text-[#CCCCCC] leading-relaxed">
-                <div class="space-y-4">
-                    <div>
+            <div class="space-y-4 text-xs text-[#333333] dark:text-[#CCCCCC] leading-relaxed">
+                <div>
                         <h4 class="font-bold text-sm text-[#111111] dark:text-white mb-1.5">Core Definition & Purpose</h4>
                         <p>
                             XSLT is used to transform raw XML data into formatted HTML tables, reports, or other text documents. It matches patterns using XPath and outputs transformed content directly in the browser without writing manual backend conversion scripts.
@@ -568,37 +393,6 @@ function generateTable(num) {
                             <li><code class="font-mono">&lt;xsl:if test="price &gt; 180000"&gt;</code>: Filters records meeting conditional logic.</li>
                         </ul>
                     </div>
-                </div>
-
-                <div class="space-y-3">
-                    <span class="text-[11px] font-mono text-[#777777] dark:text-[#A3A3A3] font-semibold">Transforming XML to HTML Table (<code class="font-mono">motorbike_catalog.xsl</code>):</span>
-                    <div class="bg-[#FAFAFA] dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-[#262626] rounded-lg p-3.5 font-mono text-[11px] overflow-x-auto">
-<pre class="!bg-transparent !p-0 !m-0"><code class="language-markup">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;
-&lt;xsl:template match="/"&gt;
-    &lt;html&gt;
-    &lt;body&gt;
-        &lt;h2&gt;Motorbike Inventory Catalog&lt;/h2&gt;
-        &lt;table border="1" cellpadding="6"&gt;
-            &lt;tr bgcolor="#F5F5F5"&gt;
-                &lt;th&gt;ID&lt;/th&gt;&lt;th&gt;Model Name&lt;/th&gt;&lt;th&gt;Engine&lt;/th&gt;&lt;th&gt;Mileage&lt;/th&gt;&lt;th&gt;Price (INR)&lt;/th&gt;
-            &lt;/tr&gt;
-            &lt;xsl:for-each select="catalog/bike"&gt;
-                &lt;tr&gt;
-                    &lt;td&gt;&lt;xsl:value-of select="@id"/&gt;&lt;/td&gt;
-                    &lt;td&gt;&lt;xsl:value-of select="name"/&gt;&lt;/td&gt;
-                    &lt;td&gt;&lt;xsl:value-of select="engine"/&gt;&lt;/td&gt;
-                    &lt;td&gt;&lt;xsl:value-of select="mileage"/&gt;&lt;/td&gt;
-                    &lt;td&gt;&lt;xsl:value-of select="price"/&gt;&lt;/td&gt;
-                &lt;/tr&gt;
-            &lt;/xsl:for-each&gt;
-        &lt;/table&gt;
-    &lt;/body&gt;
-    &lt;/html&gt;
-&lt;/xsl:template&gt;
-&lt;/xsl:stylesheet&gt;</code></pre>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -619,9 +413,8 @@ function generateTable(num) {
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 text-xs text-[#333333] dark:text-[#CCCCCC] leading-relaxed">
-                <div class="space-y-4">
-                    <div>
+            <div class="space-y-4 text-xs text-[#333333] dark:text-[#CCCCCC] leading-relaxed">
+                <div>
                         <h4 class="font-bold text-sm text-[#111111] dark:text-white mb-1.5">Execution Architecture & Superglobals</h4>
                         <p>
                             PHP code executes strictly on the web server (Apache/Nginx/CLI). The client browser receives only the resulting HTML output, never raw PHP source code.
@@ -658,40 +451,6 @@ function generateTable(num) {
                             </ol>
                         </div>
                     </div>
-                </div>
-
-                <div class="space-y-3">
-                    <span class="text-[11px] font-mono text-[#777777] dark:text-[#A3A3A3] font-semibold">Session Handling & Form Processing (Tasks 5 & 6A):</span>
-                    <div class="bg-[#FAFAFA] dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-[#262626] rounded-lg p-3.5 font-mono text-[11px] overflow-x-auto">
-<pre class="!bg-transparent !p-0 !m-0"><code class="language-php">&lt;?php
-// Start session for state tracking across pages
-session_start();
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = trim($_POST['username']);
-    $password = trim($_POST['password']);
-
-    // Authenticate user
-    if ($username === "student" && $password === "griet123") {
-        $_SESSION['authenticated_user'] = $username;
-        $_SESSION['login_time'] = date("Y-m-d H:i:s");
-        header("Location: details.php");
-        exit();
-    } else {
-        $error = "Invalid credentials. Please retry.";
-    }
-}
-?&gt;
-&lt;!-- HTML Form Container --&gt;
-&lt;form method="POST" action="login.php"&gt;
-    &lt;label&gt;Username:&lt;/label&gt;
-    &lt;input type="text" name="username" required&gt;
-    &lt;label&gt;Password:&lt;/label&gt;
-    &lt;input type="password" name="password" required&gt;
-    &lt;button type="submit"&gt;Login&lt;/button&gt;
-&lt;/form&gt;</code></pre>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -712,9 +471,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 text-xs text-[#333333] dark:text-[#CCCCCC] leading-relaxed">
-                <div class="space-y-4">
-                    <div>
+            <div class="space-y-4 text-xs text-[#333333] dark:text-[#CCCCCC] leading-relaxed">
+                <div>
                         <h4 class="font-bold text-sm text-[#111111] dark:text-white mb-1.5">Relational Model & MySQLi Integration</h4>
                         <p>
                             Relational databases store information in normalized tables comprising rows (records) and columns (attributes). In PHP, the modern <code class="font-mono">mysqli</code> (MySQL Improved) procedural and object-oriented interfaces allow direct communication with the database engine.
@@ -741,49 +499,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             Start MySQL in XAMPP Control Panel, then access the phpMyAdmin web dashboard at <code class="font-mono text-[#111111] dark:text-white">http://localhost/phpmyadmin</code> to create databases, inspect tables, and execute raw SQL queries.
                         </p>
                     </div>
-                </div>
-
-                <div class="space-y-3">
-                    <span class="text-[11px] font-mono text-[#777777] dark:text-[#A3A3A3] font-semibold">Complete Database Schema & PHP Connect (Task 7A/7B):</span>
-                    <div class="bg-[#FAFAFA] dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-[#262626] rounded-lg p-3.5 font-mono text-[11px] overflow-x-auto">
-<pre class="!bg-transparent !p-0 !m-0"><code class="language-sql">-- DDL: Create Database and Table
-CREATE DATABASE IF NOT EXISTS lab_db;
-USE lab_db;
-
-CREATE TABLE IF NOT EXISTS users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    phone VARCHAR(15) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- DML: Insert Sample Records
-INSERT INTO users (name, email, phone) 
-VALUES ('Kailasa Siddartha', 'siddartha@griet.in', '9876543210');</code></pre>
-                    </div>
-
-                    <div class="bg-[#FAFAFA] dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-[#262626] rounded-lg p-3.5 font-mono text-[11px] overflow-x-auto">
-<pre class="!bg-transparent !p-0 !m-0"><code class="language-php">&lt;?php
-// PHP MySQLi Integration
-$conn = mysqli_connect("localhost", "root", "", "lab_db");
-if (!$conn) {
-    die("Database Connection Error: " . mysqli_connect_error());
-}
-
-$query = "SELECT * FROM users";
-$result = mysqli_query($conn, $query);
-
-echo "&lt;table border='1'&gt;&lt;tr&gt;&lt;th&gt;ID&lt;/th&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Email&lt;/th&gt;&lt;/tr&gt;";
-while ($row = mysqli_fetch_assoc($result)) {
-    echo "&lt;tr&gt;&lt;td&gt;{$row['id']}&lt;/td&gt;&lt;td&gt;{$row['name']}&lt;/td&gt;&lt;td&gt;{$row['email']}&lt;/td&gt;&lt;/tr&gt;";
-}
-echo "&lt;/table&gt;";
-
-mysqli_close($conn);
-?&gt;</code></pre>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -804,9 +519,8 @@ mysqli_close($conn);
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 text-xs text-[#333333] dark:text-[#CCCCCC] leading-relaxed">
-                <div class="space-y-4">
-                    <div>
+            <div class="space-y-4 text-xs text-[#333333] dark:text-[#CCCCCC] leading-relaxed">
+                <div>
                         <h4 class="font-bold text-sm text-[#111111] dark:text-white mb-1.5">Core Definition & Purpose</h4>
                         <p>
                             AJAX is not a standalone programming language, but a web development pattern combining the browser's built-in <code class="font-mono">XMLHttpRequest</code> object with JavaScript and DOM manipulation. It enables web applications to send requests and receive server data asynchronously in the background, updating only specific page fragments without disrupting the user experience with full-page refreshes.
@@ -832,58 +546,6 @@ mysqli_close($conn);
                             <li><strong>Task 12 (Database Live User Lookup):</strong> Capturing dropdown selection change to dispatch AJAX request to `getuser.php`, executing a MySQL query, and updating `<div id="txtHint">` with the generated user record table.</li>
                         </ul>
                     </div>
-                </div>
-
-                <div class="space-y-3">
-                    <span class="text-[11px] font-mono text-[#777777] dark:text-[#A3A3A3] font-semibold">Standard AJAX Implementation Pattern (Task 12):</span>
-                    <div class="bg-[#FAFAFA] dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-[#262626] rounded-lg p-3.5 font-mono text-[11px] overflow-x-auto">
-<pre class="!bg-transparent !p-0 !m-0"><code class="language-javascript">// Client AJAX Function
-function fetchUserDetails(userId) {
-    if (userId === "") {
-        document.getElementById("txtHint").innerHTML = "";
-        return;
-    }
-
-    // 1. Instantiate XHR object
-    var xhr = new XMLHttpRequest();
-
-    // 2. Register state change handler
-    xhr.onreadystatechange = function() {
-        if (this.readyState === 4 && this.status === 200) {
-            // 3. Inject received HTML into target container
-            document.getElementById("txtHint").innerHTML = this.responseText;
-        }
-    };
-
-    // 4. Configure asynchronous GET request
-    xhr.open("GET", "getuser.php?q=" + encodeURIComponent(userId), true);
-
-    // 5. Send request
-    xhr.send();
-}</code></pre>
-                    </div>
-
-                    <div class="bg-[#FAFAFA] dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-[#262626] rounded-lg p-3.5 font-mono text-[11px] overflow-x-auto">
-<pre class="!bg-transparent !p-0 !m-0"><code class="language-php">&lt;?php
-// Backend Responder: getuser.php
-$q = intval($_GET['q']);
-
-$conn = mysqli_connect("localhost", "root", "", "lab_db");
-if (!$conn) die("Connection error");
-
-$sql = "SELECT * FROM users WHERE id = " . $q;
-$result = mysqli_query($conn, $sql);
-
-echo "&lt;table border='1'&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Email&lt;/th&gt;&lt;th&gt;Phone&lt;/th&gt;&lt;/tr&gt;";
-while($row = mysqli_fetch_array($result)) {
-    echo "&lt;tr&gt;&lt;td&gt;" . $row['name'] . "&lt;/td&gt;&lt;td&gt;" . $row['email'] . "&lt;/td&gt;&lt;td&gt;" . $row['phone'] . "&lt;/td&gt;&lt;/tr&gt;";
-}
-echo "&lt;/table&gt;";
-
-mysqli_close($conn);
-?&gt;</code></pre>
-                    </div>
-                </div>
             </div>
         </section>
 

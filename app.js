@@ -137,10 +137,6 @@ function renderTasks(taskList) {
     if (noResults) noResults.classList.add('hidden');
 
     grid.innerHTML = taskList.map(task => {
-        // Find primary code file to copy directly
-        const primaryCodeFile = task.files.find(f => ['html', 'php', 'js', 'xml'].includes(f.type)) || task.files[0];
-        const primaryFileName = primaryCodeFile ? primaryCodeFile.name : 'code';
-
         // Badges for files inside task
         const fileBadges = task.files.map(f => {
             let badgeClass = 'badge-' + (f.type || 'code');
@@ -195,7 +191,7 @@ function renderTasks(taskList) {
 
                 </div>
 
-                <!-- Three Main Actions: Download ZIP, View/Open Folder, Copy Code -->
+                <!-- Two Main Actions: Download ZIP & View/Open Folder -->
                 <div class="pt-4 mt-4 border-t border-[#E5E5E5] dark:border-[#262626] flex items-center gap-2">
                     <!-- 1. Download ZIP -->
                     <a 
@@ -216,15 +212,6 @@ function renderTasks(taskList) {
                     >
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
                         <span>View Folder</span>
-                    </button>
-
-                    <!-- 3. Copy Code Button -->
-                    <button 
-                        onclick="quickCopyTaskCode('${task.id}')"
-                        class="p-2 bg-[#F5F5F5] hover:bg-[#EBEBEB] dark:bg-[#262626] dark:hover:bg-[#333333] text-[#111111] dark:text-white rounded-lg text-xs transition-colors border border-[#E5E5E5] dark:border-[#333333]"
-                        title="Copy code of primary file (${primaryFileName})"
-                    >
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
                     </button>
                 </div>
             </div>

@@ -1,0 +1,1028 @@
+{
+  "portalName": "Scripting Languages Lab Portal",
+  "institution": "Gokaraju Rangaraju Institute of Engineering and Technology (GRIET)",
+  "courseCode": "GR25A2082 / GR20 CSE(AIML)",
+  "academicYear": "2026-2027",
+  "version": "2.1.0",
+  "tasks": [
+    {
+      "taskNumber": 1,
+      "id": "task-1",
+      "title": "Portfolio Profile & Class Time Table",
+      "question": "Experiment 1(a): Develop a website displaying your basic portfolio profile using HTML Controls. Implement CSS to design the page.\n\nExperiment 1(b): Design a web page to display the class time table using HTML.",
+      "aim": "To design and develop a personal portfolio webpage using HTML controls and CSS, and create a structured class time table using HTML table elements.",
+      "tags": [
+        "HTML5",
+        "CSS3",
+        "Portfolio",
+        "HTML Controls",
+        "Table",
+        "Time Table"
+      ],
+      "zipPath": "tasks/task1.zip",
+      "folderPath": "tasks/task1/",
+      "filesCount": 7,
+      "files": [
+        {
+          "name": "1a_portfolio.html",
+          "type": "html",
+          "extension": "html",
+          "size": "3.4 KB",
+          "rawSize": 3478,
+          "path": "tasks/task1/1a_portfolio.html",
+          "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Task 1(a) - Personal Portfolio</title>\n    <link rel=\"stylesheet\" href=\"1a_style.css\">\n</head>\n<body>\n    <header>\n        <div class=\"header-inner\">\n            <h1>Alex Developer</h1>\n            <p class=\"tagline\">Undergraduate Student • AI & Machine Learning</p>\n            <nav>\n                <a href=\"#about\">About</a>\n                <a href=\"#skills\">Skills</a>\n                <a href=\"#projects\">Projects</a>\n                <a href=\"#contact\">Contact</a>\n            </nav>\n        </div>\n    </header>\n\n    <main class=\"main-content\">\n        <section id=\"about\" class=\"card\">\n            <h2>About Me</h2>\n            <p>\n                Hello! I am a passionate web developer learning HTML, CSS, JavaScript, and PHP. \n                I enjoy engineering clean, functional, and distraction-free applications that prioritize performance and accessibility.\n            </p>\n        </section>\n\n        <section id=\"skills\" class=\"card\">\n            <h2>Technical Skills</h2>\n            <ul class=\"skills-list\">\n                <li>HTML5 & Semantic Structure</li>\n                <li>CSS3 (Flexbox, Grid, Responsive Design)</li>\n                <li>Client-Side Scripting (Vanilla JavaScript, DOM Manipulation)</li>\n                <li>Server Scripting (PHP & MySQL Database Systems)</li>\n                <li>XML, DTD & XSLT Transformations</li>\n            </ul>\n        </section>\n\n        <section id=\"projects\" class=\"card\">\n            <h2>Projects</h2>\n            <div class=\"project-grid\">\n                <div class=\"project-item\">\n                    <h3>Project One</h3>\n                    <p>Dynamic Interactive Calculator built with JavaScript and DOM event handling.</p>\n                </div>\n                <div class=\"project-item\">\n                    <h3>Project Two</h3>\n                    <p>AJAX Live Data Search application retrieving backend records asynchronously.</p>\n                </div>\n                <div class=\"project-item\">\n                    <h3>Project Three</h3>\n                    <p>Database CRUD Portal engineered using PHP and MySQLi prepared statements.</p>\n                </div>\n            </div>\n        </section>\n\n        <section id=\"contact\" class=\"card\">\n            <h2>Contact Me</h2>\n            <!-- HTML Controls implemented here -->\n            <form action=\"#\" method=\"POST\" class=\"contact-form\">\n                <div class=\"form-group\">\n                    <label for=\"name\">Full Name:</label>\n                    <input type=\"text\" id=\"name\" name=\"name\" placeholder=\"Enter your name\" required>\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"email\">Email Address:</label>\n                    <input type=\"email\" id=\"email\" name=\"email\" placeholder=\"student@grietcollege.com\" required>\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"message\">Message:</label>\n                    <textarea id=\"message\" name=\"message\" rows=\"4\" placeholder=\"Your message here...\" required></textarea>\n                </div>\n                <button type=\"submit\" class=\"btn\">Send Message</button>\n            </form>\n        </section>\n    </main>\n\n    <footer>\n        <p>&copy; 2026 Scripting Languages Laboratory. Experiment 1(a).</p>\n    </footer>\n</body>\n</html>"
+        },
+        {
+          "name": "1a_style.css",
+          "type": "css",
+          "extension": "css",
+          "size": "2.5 KB",
+          "rawSize": 2527,
+          "path": "tasks/task1/1a_style.css",
+          "content": "/* Minimalist Monochrome Design */\n* {\n    margin: 0;\n    padding: 0;\n    box-sizing: border-box;\n}\nbody {\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif;\n    background-color: #f8fafc;\n    color: #1e293b;\n    line-height: 1.6;\n}\nheader {\n    background-color: #0f172a;\n    color: #f8fafc;\n    padding: 30px 20px;\n    border-bottom: 1px solid #334155;\n    text-align: center;\n}\n.header-inner {\n    max-width: 800px;\n    margin: 0 auto;\n}\nh1 {\n    font-size: 1.8rem;\n    font-weight: 700;\n    letter-spacing: -0.5px;\n}\n.tagline {\n    font-size: 0.9rem;\n    color: #94a3b8;\n    margin-top: 4px;\n}\nnav {\n    margin-top: 15px;\n}\nnav a {\n    color: #cbd5e1;\n    text-decoration: none;\n    margin: 0 12px;\n    font-size: 0.9rem;\n    font-weight: 500;\n}\nnav a:hover {\n    color: #ffffff;\n    text-decoration: underline;\n}\n.main-content {\n    max-width: 800px;\n    margin: 30px auto;\n    padding: 0 16px;\n}\n.card {\n    background: #ffffff;\n    border: 1px solid #e2e8f0;\n    border-radius: 8px;\n    padding: 24px;\n    margin-bottom: 24px;\n}\nh2 {\n    font-size: 1.25rem;\n    color: #0f172a;\n    margin-bottom: 14px;\n    padding-bottom: 8px;\n    border-bottom: 1px solid #e2e8f0;\n}\n.skills-list {\n    list-style: square inside;\n    color: #334155;\n    font-size: 0.92rem;\n    line-height: 1.8;\n}\n.project-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));\n    gap: 16px;\n}\n.project-item {\n    background: #f1f5f9;\n    border: 1px solid #cbd5e1;\n    border-radius: 6px;\n    padding: 16px;\n}\n.project-item h3 {\n    font-size: 0.98rem;\n    margin-bottom: 6px;\n    color: #0f172a;\n}\n.project-item p {\n    font-size: 0.85rem;\n    color: #475569;\n}\n.form-group {\n    margin-bottom: 14px;\n}\nlabel {\n    display: block;\n    font-size: 0.85rem;\n    font-weight: 600;\n    margin-bottom: 4px;\n    color: #334155;\n}\ninput, textarea {\n    width: 100%;\n    padding: 8px 12px;\n    border: 1px solid #cbd5e1;\n    border-radius: 4px;\n    font-size: 0.9rem;\n    font-family: inherit;\n    background-color: #ffffff;\n}\ninput:focus, textarea:focus {\n    outline: none;\n    border-color: #0f172a;\n}\n.btn {\n    background: #0f172a;\n    color: #ffffff;\n    border: none;\n    padding: 10px 20px;\n    border-radius: 4px;\n    font-size: 0.9rem;\n    font-weight: 600;\n    cursor: pointer;\n}\n.btn:hover {\n    background: #1e293b;\n}\nfooter {\n    text-align: center;\n    padding: 24px 16px;\n    font-size: 0.8rem;\n    color: #64748b;\n    border-top: 1px solid #e2e8f0;\n    margin-top: 40px;\n}"
+        },
+        {
+          "name": "1b_style.css",
+          "type": "css",
+          "extension": "css",
+          "size": "1.6 KB",
+          "rawSize": 1675,
+          "path": "tasks/task1/1b_style.css",
+          "content": "body {\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif;\n    background-color: #f8fafc;\n    color: #1e293b;\n    margin: 0;\n    padding: 24px 16px;\n}\n.container {\n    max-width: 960px;\n    margin: 0 auto;\n    background: #ffffff;\n    border: 1px solid #e2e8f0;\n    border-radius: 8px;\n    padding: 24px;\n}\n.header {\n    text-align: center;\n    margin-bottom: 20px;\n}\nh1 {\n    font-size: 1.35rem;\n    font-weight: 700;\n    color: #0f172a;\n}\nh3 {\n    font-size: 0.95rem;\n    font-weight: 500;\n    color: #475569;\n    margin-top: 4px;\n}\n.table-wrapper {\n    overflow-x: auto;\n}\ntable {\n    width: 100%;\n    border-collapse: collapse;\n    margin: 16px 0;\n    font-size: 0.88rem;\n}\ncaption {\n    font-size: 1rem;\n    font-weight: 600;\n    padding: 10px;\n    caption-side: top;\n    text-align: left;\n    color: #0f172a;\n}\nth, td {\n    border: 1px solid #cbd5e1;\n    padding: 10px 8px;\n    text-align: center;\n}\nthead th {\n    background-color: #1e293b;\n    color: #ffffff;\n    font-weight: 600;\n    font-size: 0.82rem;\n    letter-spacing: 0.2px;\n}\n.day-col {\n    background-color: #f1f5f9;\n    color: #0f172a;\n    font-weight: 600;\n}\ntbody tr:nth-child(even) td:not(.break-cell):not(.lab-cell) {\n    background-color: #f8fafc;\n}\n.break-cell {\n    background-color: #e2e8f0;\n    color: #334155;\n    font-weight: 700;\n    font-size: 0.78rem;\n    letter-spacing: 1px;\n    writing-mode: vertical-rl;\n    text-orientation: mixed;\n    transform: rotate(180deg);\n}\n.lab-cell {\n    background-color: #e0e7ff;\n    color: #3730a3;\n    font-weight: 600;\n}\n.footnote {\n    font-size: 0.78rem;\n    color: #64748b;\n    margin-top: 14px;\n    text-align: center;\n}"
+        },
+        {
+          "name": "1b_timetable.html",
+          "type": "html",
+          "extension": "html",
+          "size": "3.3 KB",
+          "rawSize": 3373,
+          "path": "tasks/task1/1b_timetable.html",
+          "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Task 1(b) - Class Time Table</title>\n    <link rel=\"stylesheet\" href=\"1b_style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <header class=\"header\">\n            <h1>Department of Computer Science & Engineering (AIML)</h1>\n            <h3>Academic Class Time Table • Semester Schedule</h3>\n        </header>\n\n        <div class=\"table-wrapper\">\n            <table>\n                <caption>Weekly Class Schedule</caption>\n                <thead>\n                    <tr>\n                        <th>Day</th>\n                        <th>09:00 - 10:00</th>\n                        <th>10:00 - 11:00</th>\n                        <th>11:00 - 12:00</th>\n                        <th>12:00 - 01:00</th>\n                        <th>01:00 - 02:00</th>\n                        <th>02:00 - 03:00</th>\n                        <th>03:00 - 04:00</th>\n                    </tr>\n                </thead>\n                <tbody>\n                    <tr>\n                        <th class=\"day-col\">Monday</th>\n                        <td>Mathematics</td>\n                        <td>Python Programming</td>\n                        <td>DBMS</td>\n                        <td>English</td>\n                        <td class=\"break-cell\" rowspan=\"5\">LUNCH BREAK</td>\n                        <td>Artificial Intelligence</td>\n                        <td>Library Session</td>\n                    </tr>\n                    <tr>\n                        <th class=\"day-col\">Tuesday</th>\n                        <td>Python Programming</td>\n                        <td>Mathematics</td>\n                        <td>Artificial Intelligence</td>\n                        <td>DBMS</td>\n                        <td class=\"lab-cell\" colspan=\"2\">Python Programming Lab</td>\n                    </tr>\n                    <tr>\n                        <th class=\"day-col\">Wednesday</th>\n                        <td>DBMS</td>\n                        <td>English</td>\n                        <td>Mathematics</td>\n                        <td>Python Programming</td>\n                        <td>Artificial Intelligence</td>\n                        <td>Sports / Mentoring</td>\n                    </tr>\n                    <tr>\n                        <th class=\"day-col\">Thursday</th>\n                        <td>Artificial Intelligence</td>\n                        <td>DBMS</td>\n                        <td>Python Programming</td>\n                        <td>Mathematics</td>\n                        <td class=\"lab-cell\" colspan=\"2\">DBMS & SQL Lab</td>\n                    </tr>\n                    <tr>\n                        <th class=\"day-col\">Friday</th>\n                        <td>English</td>\n                        <td>Artificial Intelligence</td>\n                        <td>DBMS</td>\n                        <td>Python Programming</td>\n                        <td>Mathematics</td>\n                        <td>Seminar / Technical Presentation</td>\n                    </tr>\n                </tbody>\n            </table>\n        </div>\n\n        <p class=\"footnote\">Note: Demonstrates HTML table structure, caption, th/td hierarchy, rowspan=\"5\" for lunch break, and colspan=\"2\" for 2-hour practical laboratories.</p>\n    </div>\n</body>\n</html>"
+        },
+        {
+          "name": "index.html",
+          "type": "html",
+          "extension": "html",
+          "size": "1.6 KB",
+          "rawSize": 1625,
+          "path": "tasks/task1/index.html",
+          "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Task 1 - HTML Controls & Table Structure</title>\n    <style>\n        body { font-family: -apple-system, sans-serif; background: #0f172a; color: #f8fafc; margin: 0; padding: 20px; }\n        .wrapper { max-width: 1000px; margin: 0 auto; }\n        .nav-tabs { display: flex; gap: 10px; margin-bottom: 16px; border-bottom: 1px solid #334155; padding-bottom: 10px; }\n        .tab-btn { background: #1e293b; color: #94a3b8; border: 1px solid #334155; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.85rem; }\n        .tab-btn.active { background: #f8fafc; color: #0f172a; border-color: #f8fafc; }\n        iframe { width: 100%; height: 750px; border: 1px solid #334155; border-radius: 8px; background: #ffffff; }\n    </style>\n</head>\n<body>\n    <div class=\"wrapper\">\n        <div class=\"nav-tabs\">\n            <button class=\"tab-btn active\" onclick=\"loadFrame('1a_portfolio.html', this)\">Experiment 1(a): Portfolio Profile</button>\n            <button class=\"tab-btn\" onclick=\"loadFrame('1b_timetable.html', this)\">Experiment 1(b): Class Time Table</button>\n        </div>\n        <iframe id=\"previewFrame\" src=\"1a_portfolio.html\"></iframe>\n    </div>\n    <script>\n        function loadFrame(url, btn) {\n            document.getElementById('previewFrame').src = url;\n            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));\n            btn.classList.add('active');\n        }\n    </script>\n</body>\n</html>"
+        },
+        {
+          "name": "Task 1A material.doc",
+          "type": "docx",
+          "extension": "doc",
+          "size": "1.2 MB",
+          "rawSize": 1267200,
+          "path": "tasks/task1/Task 1A material.doc",
+          "content": null
+        },
+        {
+          "name": "Task 1B material.docx",
+          "type": "docx",
+          "extension": "docx",
+          "size": "53.2 KB",
+          "rawSize": 54431,
+          "path": "tasks/task1/Task 1B material.docx",
+          "content": null
+        }
+      ]
+    },
+    {
+      "taskNumber": 2,
+      "id": "task-2",
+      "title": "Registration Form Validation with JavaScript",
+      "question": "Experiment 2: Create a sample form program that collects the first name, last name, email, user id, password and confirms password. Validate all fields using JavaScript, check the email format, and display error messages in red next to the corresponding textboxes.",
+      "aim": "To design an HTML registration form and validate all input fields using JavaScript, verifying required fields, email format, and password confirmation.",
+      "tags": [
+        "JavaScript",
+        "Validation",
+        "Forms",
+        "DOM",
+        "RegEx"
+      ],
+      "zipPath": "tasks/task2.zip",
+      "folderPath": "tasks/task2/",
+      "filesCount": 4,
+      "files": [
+        {
+          "name": "index.html",
+          "type": "html",
+          "extension": "html",
+          "size": "3.2 KB",
+          "rawSize": 3228,
+          "path": "tasks/task2/index.html",
+          "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Task 2 - Registration Form Validation</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"form-container\">\n        <header>\n            <h2>Student Registration Form</h2>\n            <p>All fields are required. Client-side validation enabled via JavaScript.</p>\n        </header>\n\n        <form id=\"regForm\" onsubmit=\"return validateForm(event)\">\n            \n            <!-- First Name -->\n            <div class=\"form-row\">\n                <label for=\"fname\">First Name:</label>\n                <div class=\"input-wrap\">\n                    <input type=\"text\" id=\"fname\" name=\"fname\" placeholder=\"Enter first name\">\n                    <span id=\"fnameErr\" class=\"error-msg\"></span>\n                </div>\n            </div>\n\n            <!-- Last Name -->\n            <div class=\"form-row\">\n                <label for=\"lname\">Last Name:</label>\n                <div class=\"input-wrap\">\n                    <input type=\"text\" id=\"lname\" name=\"lname\" placeholder=\"Enter last name\">\n                    <span id=\"lnameErr\" class=\"error-msg\"></span>\n                </div>\n            </div>\n\n            <!-- Email Address -->\n            <div class=\"form-row\">\n                <label for=\"email\">Email Address:</label>\n                <div class=\"input-wrap\">\n                    <input type=\"text\" id=\"email\" name=\"email\" placeholder=\"student@example.com\">\n                    <span id=\"emailErr\" class=\"error-msg\"></span>\n                </div>\n            </div>\n\n            <!-- User ID -->\n            <div class=\"form-row\">\n                <label for=\"uid\">User ID:</label>\n                <div class=\"input-wrap\">\n                    <input type=\"text\" id=\"uid\" name=\"uid\" placeholder=\"Enter unique user ID\">\n                    <span id=\"uidErr\" class=\"error-msg\"></span>\n                </div>\n            </div>\n\n            <!-- Password -->\n            <div class=\"form-row\">\n                <label for=\"pwd\">Password:</label>\n                <div class=\"input-wrap\">\n                    <input type=\"password\" id=\"pwd\" name=\"pwd\" placeholder=\"Enter password\">\n                    <span id=\"pwdErr\" class=\"error-msg\"></span>\n                </div>\n            </div>\n\n            <!-- Confirm Password -->\n            <div class=\"form-row\">\n                <label for=\"cpwd\">Confirm Password:</label>\n                <div class=\"input-wrap\">\n                    <input type=\"password\" id=\"cpwd\" name=\"cpwd\" placeholder=\"Re-enter password\">\n                    <span id=\"cpwdErr\" class=\"error-msg\"></span>\n                </div>\n            </div>\n\n            <div class=\"form-actions\">\n                <button type=\"submit\" class=\"submit-btn\">Validate & Submit</button>\n                <button type=\"reset\" class=\"reset-btn\" onclick=\"clearErrors()\">Reset</button>\n            </div>\n\n            <div id=\"successMsg\" class=\"success-banner\">\n                Validation Successful! All fields are valid and ready for submission.\n            </div>\n        </form>\n    </div>\n\n    <script src=\"validate.js\"></script>\n</body>\n</html>"
+        },
+        {
+          "name": "style.css",
+          "type": "css",
+          "extension": "css",
+          "size": "2.3 KB",
+          "rawSize": 2372,
+          "path": "tasks/task2/style.css",
+          "content": "* {\n    margin: 0;\n    padding: 0;\n    box-sizing: border-box;\n}\nbody {\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif;\n    background-color: #f8fafc;\n    color: #0f172a;\n    padding: 40px 16px;\n    display: flex;\n    justify-content: center;\n}\n.form-container {\n    width: 100%;\n    max-width: 640px;\n    background: #ffffff;\n    border: 1px solid #e2e8f0;\n    border-radius: 8px;\n    padding: 30px;\n    box-shadow: 0 1px 3px rgba(0,0,0,0.05);\n}\nheader {\n    margin-bottom: 24px;\n    border-bottom: 1px solid #e2e8f0;\n    padding-bottom: 12px;\n}\nh2 {\n    font-size: 1.25rem;\n    font-weight: 700;\n}\nheader p {\n    font-size: 0.85rem;\n    color: #64748b;\n    margin-top: 4px;\n}\n.form-row {\n    display: flex;\n    flex-direction: column;\n    margin-bottom: 16px;\n}\n@media (min-width: 540px) {\n    .form-row {\n        flex-direction: row;\n        align-items: center;\n    }\n    label {\n        width: 160px;\n        flex-shrink: 0;\n    }\n    .input-wrap {\n        flex-grow: 1;\n        display: flex;\n        align-items: center;\n        gap: 10px;\n    }\n}\nlabel {\n    font-size: 0.88rem;\n    font-weight: 600;\n    color: #334155;\n    margin-bottom: 4px;\n}\ninput {\n    width: 100%;\n    max-width: 240px;\n    padding: 8px 10px;\n    border: 1px solid #cbd5e1;\n    border-radius: 4px;\n    font-size: 0.9rem;\n}\ninput:focus {\n    outline: none;\n    border-color: #0f172a;\n}\n.error-msg {\n    color: #dc2626; /* Display error messages in red */\n    font-size: 0.8rem;\n    font-weight: 500;\n    display: block;\n}\n.form-actions {\n    margin-top: 24px;\n    display: flex;\n    gap: 10px;\n}\n.submit-btn {\n    background-color: #0f172a;\n    color: #ffffff;\n    border: none;\n    padding: 10px 20px;\n    font-size: 0.88rem;\n    font-weight: 600;\n    border-radius: 4px;\n    cursor: pointer;\n}\n.submit-btn:hover {\n    background-color: #1e293b;\n}\n.reset-btn {\n    background-color: #e2e8f0;\n    color: #334155;\n    border: none;\n    padding: 10px 18px;\n    font-size: 0.88rem;\n    font-weight: 600;\n    border-radius: 4px;\n    cursor: pointer;\n}\n.reset-btn:hover {\n    background-color: #cbd5e1;\n}\n.success-banner {\n    display: none;\n    margin-top: 20px;\n    padding: 12px;\n    background-color: #f1f5f9;\n    border: 1px solid #cbd5e1;\n    border-radius: 4px;\n    color: #0f172a;\n    font-size: 0.88rem;\n    font-weight: 600;\n    text-align: center;\n}"
+        },
+        {
+          "name": "task 2 material.docx",
+          "type": "docx",
+          "extension": "docx",
+          "size": "71.5 KB",
+          "rawSize": 73215,
+          "path": "tasks/task2/task 2 material.docx",
+          "content": null
+        },
+        {
+          "name": "validate.js",
+          "type": "js",
+          "extension": "js",
+          "size": "2.2 KB",
+          "rawSize": 2255,
+          "path": "tasks/task2/validate.js",
+          "content": "// Experiment 2: Registration Form Validation\nfunction validateForm(event) {\n    event.preventDefault();\n\n    let isValid = true;\n\n    // Elements\n    const fname = document.getElementById('fname').value.trim();\n    const lname = document.getElementById('lname').value.trim();\n    const email = document.getElementById('email').value.trim();\n    const uid = document.getElementById('uid').value.trim();\n    const pwd = document.getElementById('pwd').value;\n    const cpwd = document.getElementById('cpwd').value;\n\n    // Clear previous error messages\n    clearErrors();\n\n    // 1. First Name Validation\n    if (fname === \"\") {\n        document.getElementById('fnameErr').innerText = \"First name is required.\";\n        isValid = false;\n    }\n\n    // 2. Last Name Validation\n    if (lname === \"\") {\n        document.getElementById('lnameErr').innerText = \"Last name is required.\";\n        isValid = false;\n    }\n\n    // 3. Email Validation\n    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/;\n    if (email === \"\") {\n        document.getElementById('emailErr').innerText = \"Email is required.\";\n        isValid = false;\n    } else if (!emailPattern.test(email)) {\n        document.getElementById('emailErr').innerText = \"Invalid email format.\";\n        isValid = false;\n    }\n\n    // 4. User ID Validation\n    if (uid === \"\") {\n        document.getElementById('uidErr').innerText = \"User ID is required.\";\n        isValid = false;\n    }\n\n    // 5. Password Validation\n    if (pwd === \"\") {\n        document.getElementById('pwdErr').innerText = \"Password is required.\";\n        isValid = false;\n    }\n\n    // 6. Confirm Password Validation\n    if (cpwd === \"\") {\n        document.getElementById('cpwdErr').innerText = \"Confirm password is required.\";\n        isValid = false;\n    } else if (pwd !== cpwd) {\n        document.getElementById('cpwdErr').innerText = \"Passwords do not match.\";\n        isValid = false;\n    }\n\n    // Display success\n    if (isValid) {\n        document.getElementById('successMsg').style.display = \"block\";\n    }\n\n    return isValid;\n}\n\nfunction clearErrors() {\n    document.querySelectorAll('.error-msg').forEach(el => el.innerText = \"\");\n    document.getElementById('successMsg').style.display = \"none\";\n}"
+        }
+      ]
+    },
+    {
+      "taskNumber": 3,
+      "id": "task-3",
+      "title": "Dynamic Multiplication Table & Image Toggle",
+      "question": "Experiment 3(a): Design a simple multiplication table using JavaScript by asking the user for the number of rows and columns.\n\nExperiment 3(b): Design and develop an Image Toggle Webpage using JavaScript that toggles between two different images upon button click.",
+      "aim": "To dynamically generate mathematical tables using nested loops and DOM manipulation, and implement interactive image toggling via event listeners.",
+      "tags": [
+        "JavaScript",
+        "Loops",
+        "DOM Manipulation",
+        "Events",
+        "Image Toggle"
+      ],
+      "zipPath": "tasks/task3.zip",
+      "folderPath": "tasks/task3/",
+      "filesCount": 7,
+      "files": [
+        {
+          "name": "3a_multiplication.html",
+          "type": "html",
+          "extension": "html",
+          "size": "3.3 KB",
+          "rawSize": 3406,
+          "path": "tasks/task3/3a_multiplication.html",
+          "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Task 3(a) - Multiplication Table</title>\n    <style>\n        body { font-family: -apple-system, sans-serif; background: #f8fafc; color: #0f172a; padding: 30px; }\n        .box { max-width: 650px; margin: 0 auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 24px; }\n        h2 { font-size: 1.25rem; margin-bottom: 12px; }\n        .form-row { margin-bottom: 12px; }\n        label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; }\n        input[type=\"number\"] { width: 100%; max-width: 220px; padding: 8px; border: 1px solid #cbd5e1; border-radius: 4px; }\n        button { background: #0f172a; color: white; border: none; padding: 9px 18px; border-radius: 4px; font-weight: 600; cursor: pointer; margin-top: 8px; }\n        button:hover { background: #1e293b; }\n        #tableArea { margin-top: 20px; overflow-x: auto; }\n        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.85rem; }\n        th, td { border: 1px solid #cbd5e1; padding: 8px 10px; text-align: center; }\n        th { background: #1e293b; color: white; }\n        tr:nth-child(even) td { background: #f8fafc; }\n        .error { color: #dc2626; font-size: 0.85rem; margin-top: 6px; }\n    </style>\n</head>\n<body>\n    <div class=\"box\">\n        <h2>Dynamic Multiplication Table Generator</h2>\n        <p style=\"font-size: 0.85rem; color: #64748b; margin-bottom: 16px;\">Enter the number of rows and columns to generate the multiplication matrix dynamically.</p>\n        \n        <div class=\"form-row\">\n            <label for=\"numRows\">Number of Rows:</label>\n            <input type=\"number\" id=\"numRows\" min=\"1\" max=\"50\" placeholder=\"e.g. 10\">\n        </div>\n\n        <div class=\"form-row\">\n            <label for=\"numCols\">Number of Columns:</label>\n            <input type=\"number\" id=\"numCols\" min=\"1\" max=\"50\" placeholder=\"e.g. 10\">\n        </div>\n\n        <button onclick=\"generateTable()\">Generate Table</button>\n        <div id=\"errMsg\" class=\"error\"></div>\n\n        <div id=\"tableArea\"></div>\n    </div>\n\n    <script>\n        function generateTable() {\n            const rows = parseInt(document.getElementById('numRows').value);\n            const cols = parseInt(document.getElementById('numCols').value);\n            const err = document.getElementById('errMsg');\n            const area = document.getElementById('tableArea');\n\n            err.innerText = \"\";\n            area.innerHTML = \"\";\n\n            if (isNaN(rows) || isNaN(cols) || rows < 1 || cols < 1) {\n                err.innerText = \"Please enter valid positive integers for both rows and columns.\";\n                return;\n            }\n\n            let html = \"<table><thead><tr><th>&times;</th>\";\n            for (let j = 1; j <= cols; j++) {\n                html += \"<th>\" + j + \"</th>\";\n            }\n            html += \"</tr></thead><tbody>\";\n\n            for (let i = 1; i <= rows; i++) {\n                html += \"<tr><th>\" + i + \"</th>\";\n                for (let j = 1; j <= cols; j++) {\n                    html += \"<td>\" + (i * j) + \"</td>\";\n                }\n                html += \"</tr>\";\n            }\n            html += \"</tbody></table>\";\n\n            area.innerHTML = html;\n        }\n    </script>\n</body>\n</html>"
+        },
+        {
+          "name": "3b_imagetoggle.html",
+          "type": "html",
+          "extension": "html",
+          "size": "2.3 KB",
+          "rawSize": 2345,
+          "path": "tasks/task3/3b_imagetoggle.html",
+          "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Task 3(b) - Image Toggle Application</title>\n    <style>\n        body { font-family: -apple-system, sans-serif; background: #f8fafc; color: #0f172a; padding: 40px 16px; text-align: center; }\n        .box { max-width: 440px; margin: 0 auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 28px; }\n        h2 { font-size: 1.25rem; margin-bottom: 8px; }\n        p { font-size: 0.85rem; color: #64748b; margin-bottom: 20px; }\n        .img-frame { width: 200px; height: 200px; margin: 0 auto 20px; border-radius: 8px; border: 1px solid #cbd5e1; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #0f172a; }\n        .img-frame img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.2s ease; }\n        .toggle-btn { background: #0f172a; color: white; border: none; padding: 10px 22px; font-size: 0.9rem; font-weight: 600; border-radius: 4px; cursor: pointer; }\n        .toggle-btn:hover { background: #1e293b; }\n        .status-badge { margin-top: 14px; font-size: 0.82rem; font-mono; color: #475569; }\n    </style>\n</head>\n<body>\n    <div class=\"box\">\n        <h2>Image Toggle Application</h2>\n        <p>Click the button below to dynamically toggle between two local image assets.</p>\n\n        <div class=\"img-frame\">\n            <img id=\"toggleImage\" src=\"image1.png\" alt=\"Toggle Target\">\n        </div>\n\n        <button class=\"toggle-btn\" onclick=\"toggleImage()\">Toggle Image</button>\n\n        <div class=\"status-badge\" id=\"statusBadge\">Current State: Image 1 (Slate Mode)</div>\n    </div>\n\n    <script>\n        let currentImage = 1;\n        function toggleImage() {\n            const img = document.getElementById('toggleImage');\n            const status = document.getElementById('statusBadge');\n            if (currentImage === 1) {\n                img.src = \"image2.png\";\n                currentImage = 2;\n                status.innerText = \"Current State: Image 2 (Silver Mode)\";\n            } else {\n                img.src = \"image1.png\";\n                currentImage = 1;\n                status.innerText = \"Current State: Image 1 (Slate Mode)\";\n            }\n        }\n    </script>\n</body>\n</html>"
+        },
+        {
+          "name": "image1.png",
+          "type": "image",
+          "extension": "png",
+          "size": "1.6 KB",
+          "rawSize": 1624,
+          "path": "tasks/task3/image1.png",
+          "content": null
+        },
+        {
+          "name": "image2.png",
+          "type": "image",
+          "extension": "png",
+          "size": "1.6 KB",
+          "rawSize": 1623,
+          "path": "tasks/task3/image2.png",
+          "content": null
+        },
+        {
+          "name": "index.html",
+          "type": "html",
+          "extension": "html",
+          "size": "1.6 KB",
+          "rawSize": 1643,
+          "path": "tasks/task3/index.html",
+          "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Task 3 - JavaScript Dynamic Table & Image Toggle</title>\n    <style>\n        body { font-family: -apple-system, sans-serif; background: #0f172a; color: #f8fafc; margin: 0; padding: 20px; }\n        .wrapper { max-width: 900px; margin: 0 auto; }\n        .nav-tabs { display: flex; gap: 10px; margin-bottom: 16px; border-bottom: 1px solid #334155; padding-bottom: 10px; }\n        .tab-btn { background: #1e293b; color: #94a3b8; border: 1px solid #334155; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.85rem; }\n        .tab-btn.active { background: #f8fafc; color: #0f172a; border-color: #f8fafc; }\n        iframe { width: 100%; height: 600px; border: 1px solid #334155; border-radius: 8px; background: #ffffff; }\n    </style>\n</head>\n<body>\n    <div class=\"wrapper\">\n        <div class=\"nav-tabs\">\n            <button class=\"tab-btn active\" onclick=\"loadFrame('3a_multiplication.html', this)\">Experiment 3(a): Multiplication Table</button>\n            <button class=\"tab-btn\" onclick=\"loadFrame('3b_imagetoggle.html', this)\">Experiment 3(b): Image Toggle</button>\n        </div>\n        <iframe id=\"previewFrame\" src=\"3a_multiplication.html\"></iframe>\n    </div>\n    <script>\n        function loadFrame(url, btn) {\n            document.getElementById('previewFrame').src = url;\n            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));\n            btn.classList.add('active');\n        }\n    </script>\n</body>\n</html>"
+        },
+        {
+          "name": "task 3A material.docx",
+          "type": "docx",
+          "extension": "docx",
+          "size": "70.2 KB",
+          "rawSize": 71851,
+          "path": "tasks/task3/task 3A material.docx",
+          "content": null
+        },
+        {
+          "name": "Task 3B Material.docx",
+          "type": "docx",
+          "extension": "docx",
+          "size": "40.0 KB",
+          "rawSize": 40941,
+          "path": "tasks/task3/Task 3B Material.docx",
+          "content": null
+        }
+      ]
+    },
+    {
+      "taskNumber": 4,
+      "id": "task-4",
+      "title": "To-Do List Application with DOM & CSS",
+      "question": "Experiment 4: Develop a To-Do List application using JavaScript. Implement CSS when needed to judge the outlook of To-Do list.",
+      "aim": "To understand JavaScript functions, DOM manipulation, task addition, strike-through completion, task deletion, and clean UI styling.",
+      "tags": [
+        "JavaScript",
+        "DOM",
+        "To-Do List",
+        "Event Handling",
+        "CSS3"
+      ],
+      "zipPath": "tasks/task4.zip",
+      "folderPath": "tasks/task4/",
+      "filesCount": 4,
+      "files": [
+        {
+          "name": "index.html",
+          "type": "html",
+          "extension": "html",
+          "size": "1018 B",
+          "rawSize": 1018,
+          "path": "tasks/task4/index.html",
+          "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Task 4 - To-Do List Application</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"todo-app\">\n        <header>\n            <h2>Task Management To-Do List</h2>\n            <p>Add, complete, and manage lab assignments with DOM manipulation.</p>\n        </header>\n\n        <div class=\"input-section\">\n            <input type=\"text\" id=\"taskInput\" placeholder=\"Enter a new task description...\" onkeydown=\"if(event.key==='Enter') addTask()\">\n            <button class=\"add-btn\" onclick=\"addTask()\">Add Task</button>\n        </div>\n\n        <div class=\"todo-stats\">\n            <span id=\"taskCounter\">0 tasks total</span>\n            <button class=\"clear-all-btn\" onclick=\"clearAllTasks()\">Clear All</button>\n        </div>\n\n        <ul id=\"taskList\" class=\"task-list\"></ul>\n    </div>\n\n    <script src=\"todo.js\"></script>\n</body>\n</html>"
+        },
+        {
+          "name": "style.css",
+          "type": "css",
+          "extension": "css",
+          "size": "2.5 KB",
+          "rawSize": 2590,
+          "path": "tasks/task4/style.css",
+          "content": "* {\n    margin: 0;\n    padding: 0;\n    box-sizing: border-box;\n}\nbody {\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif;\n    background-color: #f8fafc;\n    color: #0f172a;\n    padding: 40px 16px;\n    display: flex;\n    justify-content: center;\n}\n.todo-app {\n    width: 100%;\n    max-width: 480px;\n    background: #ffffff;\n    border: 1px solid #e2e8f0;\n    border-radius: 8px;\n    padding: 24px;\n    box-shadow: 0 1px 3px rgba(0,0,0,0.05);\n}\nheader {\n    margin-bottom: 20px;\n    border-bottom: 1px solid #e2e8f0;\n    padding-bottom: 12px;\n}\nh2 {\n    font-size: 1.25rem;\n    font-weight: 700;\n}\nheader p {\n    font-size: 0.85rem;\n    color: #64748b;\n    margin-top: 4px;\n}\n.input-section {\n    display: flex;\n    gap: 8px;\n    margin-bottom: 16px;\n}\n#taskInput {\n    flex-grow: 1;\n    padding: 9px 12px;\n    border: 1px solid #cbd5e1;\n    border-radius: 4px;\n    font-size: 0.9rem;\n}\n#taskInput:focus {\n    outline: none;\n    border-color: #0f172a;\n}\n.add-btn {\n    background-color: #0f172a;\n    color: #ffffff;\n    border: none;\n    padding: 9px 18px;\n    font-size: 0.88rem;\n    font-weight: 600;\n    border-radius: 4px;\n    cursor: pointer;\n}\n.add-btn:hover {\n    background-color: #1e293b;\n}\n.todo-stats {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    font-size: 0.8rem;\n    color: #64748b;\n    margin-bottom: 12px;\n    padding-bottom: 8px;\n    border-bottom: 1px solid #f1f5f9;\n}\n.clear-all-btn {\n    background: none;\n    border: none;\n    color: #dc2626;\n    font-size: 0.78rem;\n    cursor: pointer;\n    font-weight: 500;\n}\n.clear-all-btn:hover {\n    text-decoration: underline;\n}\n.task-list {\n    list-style: none;\n}\n.task-item {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    padding: 10px 12px;\n    border: 1px solid #e2e8f0;\n    border-radius: 6px;\n    margin-bottom: 8px;\n    background: #ffffff;\n    transition: background-color 0.15s ease;\n}\n.task-item:hover {\n    background: #f8fafc;\n}\n.task-left {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    flex-grow: 1;\n}\n.task-checkbox {\n    cursor: pointer;\n    width: 16px;\n    height: 16px;\n}\n.task-text {\n    font-size: 0.9rem;\n    color: #1e293b;\n    word-break: break-all;\n}\n.task-item.completed .task-text {\n    text-decoration: line-through;\n    color: #94a3b8;\n}\n.delete-btn {\n    background: none;\n    border: none;\n    color: #dc2626;\n    font-size: 0.8rem;\n    font-weight: 600;\n    padding: 4px 8px;\n    cursor: pointer;\n    border-radius: 4px;\n}\n.delete-btn:hover {\n    background: #fee2e2;\n}"
+        },
+        {
+          "name": "Task 4 material.docx",
+          "type": "docx",
+          "extension": "docx",
+          "size": "74.6 KB",
+          "rawSize": 76361,
+          "path": "tasks/task4/Task 4 material.docx",
+          "content": null
+        },
+        {
+          "name": "todo.js",
+          "type": "js",
+          "extension": "js",
+          "size": "2.1 KB",
+          "rawSize": 2132,
+          "path": "tasks/task4/todo.js",
+          "content": "// Experiment 4: To-Do List Application\nlet tasks = [\n    { text: \"Complete Scripting Languages Lab Record\", completed: false },\n    { text: \"Implement JQuery AJAX search program\", completed: true },\n    { text: \"Verify XML DTD validation rules\", completed: false }\n];\n\nfunction renderTasks() {\n    const list = document.getElementById('taskList');\n    const counter = document.getElementById('taskCounter');\n    list.innerHTML = \"\";\n\n    const completedCount = tasks.filter(t => t.completed).length;\n    counter.innerText = `${completedCount} of ${tasks.length} tasks completed`;\n\n    tasks.forEach((task, index) => {\n        const li = document.createElement('li');\n        li.className = `task-item ${task.completed ? 'completed' : ''}`;\n\n        const leftDiv = document.createElement('div');\n        leftDiv.className = 'task-left';\n\n        const checkbox = document.createElement('input');\n        checkbox.type = 'checkbox';\n        checkbox.className = 'task-checkbox';\n        checkbox.checked = task.completed;\n        checkbox.onchange = () => toggleTask(index);\n\n        const span = document.createElement('span');\n        span.className = 'task-text';\n        span.innerText = task.text;\n\n        leftDiv.appendChild(checkbox);\n        leftDiv.appendChild(span);\n\n        const deleteBtn = document.createElement('button');\n        deleteBtn.className = 'delete-btn';\n        deleteBtn.innerText = 'Delete';\n        deleteBtn.onclick = () => deleteTask(index);\n\n        li.appendChild(leftDiv);\n        li.appendChild(deleteBtn);\n        list.appendChild(li);\n    });\n}\n\nfunction addTask() {\n    const input = document.getElementById('taskInput');\n    const text = input.value.trim();\n    if (text === \"\") return;\n\n    tasks.push({ text: text, completed: false });\n    input.value = \"\";\n    renderTasks();\n}\n\nfunction toggleTask(index) {\n    tasks[index].completed = !tasks[index].completed;\n    renderTasks();\n}\n\nfunction deleteTask(index) {\n    tasks.splice(index, 1);\n    renderTasks();\n}\n\nfunction clearAllTasks() {\n    tasks = [];\n    renderTasks();\n}\n\ndocument.addEventListener('DOMContentLoaded', renderTasks);"
+        }
+      ]
+    },
+    {
+      "taskNumber": 5,
+      "id": "task-5",
+      "title": "Item Billing System (PHP explode function)",
+      "question": "Experiment 5: Implement PHP script to design a form to accept the details of 5 different items, such as item code, item name, units sold, and rate. Display the bill in the tabular format. Use only 4 text boxes. (Hint: Use of explode function.)",
+      "aim": "To design an Item Billing System in PHP parsing comma-separated item details with explode(), calculating amounts and displaying the invoice table.",
+      "tags": [
+        "PHP",
+        "explode()",
+        "Arrays",
+        "Forms",
+        "Billing"
+      ],
+      "zipPath": "tasks/task5.zip",
+      "folderPath": "tasks/task5/",
+      "filesCount": 4,
+      "files": [
+        {
+          "name": "bill.php",
+          "type": "php",
+          "extension": "php",
+          "size": "4.8 KB",
+          "rawSize": 4870,
+          "path": "tasks/task5/bill.php",
+          "content": "<?php\n// Experiment 5: Item Billing System using explode()\n// Accepts details of 5 different items via exactly 4 text boxes.\n\n$billGenerated = false;\n$items = [];\n$grandTotal = 0;\n$error = \"\";\n\nif ($_SERVER[\"REQUEST_METHOD\"] === \"POST\") {\n    $codesStr = trim($_POST['item_codes'] ?? '');\n    $namesStr = trim($_POST['item_names'] ?? '');\n    $unitsStr = trim($_POST['units_sold'] ?? '');\n    $ratesStr = trim($_POST['rates'] ?? '');\n\n    // Use explode() function to split comma-separated values into arrays\n    $codes = array_map('trim', explode(',', $codesStr));\n    $names = array_map('trim', explode(',', $namesStr));\n    $units = array_map('trim', explode(',', $unitsStr));\n    $rates = array_map('trim', explode(',', $ratesStr));\n\n    if (count($codes) === 5 && count($names) === 5 && count($units) === 5 && count($rates) === 5) {\n        $billGenerated = true;\n        for ($i = 0; $i < 5; $i++) {\n            $unitNum = floatval($units[$i]);\n            $rateNum = floatval($rates[$i]);\n            $amount = $unitNum * $rateNum;\n            $grandTotal += $amount;\n\n            $items[] = [\n                'code' => htmlspecialchars($codes[$i]),\n                'name' => htmlspecialchars($names[$i]),\n                'units' => $unitNum,\n                'rate' => $rateNum,\n                'amount' => $amount\n            ];\n        }\n    } else {\n        $error = \"Please provide exactly 5 comma-separated values in each of the 4 text boxes.\";\n    }\n}\n?>\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Task 5 - Item Billing System (PHP explode)</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h2>Item Billing System</h2>\n        <p class=\"subtitle\">Enter comma-separated values for 5 items using only 4 text boxes.</p>\n\n        <?php if ($error): ?>\n            <div class=\"alert error\"><?php echo $error; ?></div>\n        <?php endif; ?>\n\n        <form method=\"POST\" action=\"bill.php\">\n            <div class=\"form-group\">\n                <label for=\"item_codes\">1. Item Codes (5 comma-separated):</label>\n                <input type=\"text\" id=\"item_codes\" name=\"item_codes\" value=\"<?php echo htmlspecialchars($_POST['item_codes'] ?? '101, 102, 103, 104, 105'); ?>\" required>\n            </div>\n\n            <div class=\"form-group\">\n                <label for=\"item_names\">2. Item Names (5 comma-separated):</label>\n                <input type=\"text\" id=\"item_names\" name=\"item_names\" value=\"<?php echo htmlspecialchars($_POST['item_names'] ?? 'Notebook, Ball Pen, Pencil Box, Eraser, Ruler'); ?>\" required>\n            </div>\n\n            <div class=\"form-group\">\n                <label for=\"units_sold\">3. Units Sold (5 comma-separated):</label>\n                <input type=\"text\" id=\"units_sold\" name=\"units_sold\" value=\"<?php echo htmlspecialchars($_POST['units_sold'] ?? '5, 12, 4, 10, 3'); ?>\" required>\n            </div>\n\n            <div class=\"form-group\">\n                <label for=\"rates\">4. Rates per Unit (5 comma-separated):</label>\n                <input type=\"text\" id=\"rates\" name=\"rates\" value=\"<?php echo htmlspecialchars($_POST['rates'] ?? '40, 10, 25, 5, 15'); ?>\" required>\n            </div>\n\n            <button type=\"submit\" class=\"btn\">Generate Bill</button>\n        </form>\n\n        <?php if ($billGenerated): ?>\n            <div class=\"bill-output\">\n                <h3>Invoice / Billing Summary</h3>\n                <table>\n                    <thead>\n                        <tr>\n                            <th>Item Code</th>\n                            <th>Item Name</th>\n                            <th>Units Sold</th>\n                            <th>Rate (INR)</th>\n                            <th>Amount (INR)</th>\n                        </tr>\n                    </thead>\n                    <tbody>\n                        <?php foreach ($items as $item): ?>\n                        <tr>\n                            <td><?php echo $item['code']; ?></td>\n                            <td><?php echo $item['name']; ?></td>\n                            <td><?php echo $item['units']; ?></td>\n                            <td><?php echo number_format($item['rate'], 2); ?></td>\n                            <td><?php echo number_format($item['amount'], 2); ?></td>\n                        </tr>\n                        <?php endforeach; ?>\n                    </tbody>\n                    <tfoot>\n                        <tr class=\"total-row\">\n                            <td colspan=\"4\">Grand Total</td>\n                            <td><strong>INR <?php echo number_format($grandTotal, 2); ?></strong></td>\n                        </tr>\n                    </tfoot>\n                </table>\n            </div>\n        <?php endif; ?>\n    </div>\n</body>\n</html>"
+        },
+        {
+          "name": "index.html",
+          "type": "html",
+          "extension": "html",
+          "size": "2.6 KB",
+          "rawSize": 2693,
+          "path": "tasks/task5/index.html",
+          "content": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Task 5 - Item Billing System (PHP explode)</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h2>Item Billing System</h2>\n        <p class=\"subtitle\">Enter comma-separated values for 5 items using only 4 text boxes.</p>\n\n        \n            <div class=\"alert error\"></div>\n        \n\n        <form method=\"POST\" action=\"bill.php\">\n            <div class=\"form-group\">\n                <label for=\"item_codes\">1. Item Codes (5 comma-separated):</label>\n                <input type=\"text\" id=\"item_codes\" name=\"item_codes\" value=\"\" required>\n            </div>\n\n            <div class=\"form-group\">\n                <label for=\"item_names\">2. Item Names (5 comma-separated):</label>\n                <input type=\"text\" id=\"item_names\" name=\"item_names\" value=\"\" required>\n            </div>\n\n            <div class=\"form-group\">\n                <label for=\"units_sold\">3. Units Sold (5 comma-separated):</label>\n                <input type=\"text\" id=\"units_sold\" name=\"units_sold\" value=\"\" required>\n            </div>\n\n            <div class=\"form-group\">\n                <label for=\"rates\">4. Rates per Unit (5 comma-separated):</label>\n                <input type=\"text\" id=\"rates\" name=\"rates\" value=\"\" required>\n            </div>\n\n            <button type=\"submit\" class=\"btn\">Generate Bill</button>\n        </form>\n\n        \n            <div class=\"bill-output\">\n                <h3>Invoice / Billing Summary</h3>\n                <table>\n                    <thead>\n                        <tr>\n                            <th>Item Code</th>\n                            <th>Item Name</th>\n                            <th>Units Sold</th>\n                            <th>Rate (INR)</th>\n                            <th>Amount (INR)</th>\n                        </tr>\n                    </thead>\n                    <tbody>\n                        \n                        <tr>\n                            <td></td>\n                            <td></td>\n                            <td></td>\n                            <td></td>\n                            <td></td>\n                        </tr>\n                        \n                    </tbody>\n                    <tfoot>\n                        <tr class=\"total-row\">\n                            <td colspan=\"4\">Grand Total</td>\n                            <td><strong>INR </strong></td>\n                        </tr>\n                    </tfoot>\n                </table>\n            </div>\n        \n    </div>\n</body>\n</html>"
+        },
+        {
+          "name": "style.css",
+          "type": "css",
+          "extension": "css",
+          "size": "1.9 KB",
+          "rawSize": 1935,
+          "path": "tasks/task5/style.css",
+          "content": "body {\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif;\n    background-color: #f8fafc;\n    color: #0f172a;\n    padding: 30px 16px;\n}\n.container {\n    max-width: 680px;\n    margin: 0 auto;\n    background: #ffffff;\n    border: 1px solid #e2e8f0;\n    border-radius: 8px;\n    padding: 26px;\n    box-shadow: 0 1px 3px rgba(0,0,0,0.05);\n}\nh2 {\n    font-size: 1.25rem;\n    font-weight: 700;\n}\n.subtitle {\n    font-size: 0.85rem;\n    color: #64748b;\n    margin-top: 4px;\n    margin-bottom: 20px;\n    border-bottom: 1px solid #e2e8f0;\n    padding-bottom: 10px;\n}\n.form-group {\n    margin-bottom: 14px;\n}\nlabel {\n    display: block;\n    font-size: 0.85rem;\n    font-weight: 600;\n    color: #334155;\n    margin-bottom: 4px;\n}\ninput[type=\"text\"] {\n    width: 100%;\n    padding: 8px 10px;\n    border: 1px solid #cbd5e1;\n    border-radius: 4px;\n    font-size: 0.9rem;\n}\ninput:focus {\n    outline: none;\n    border-color: #0f172a;\n}\n.btn {\n    background: #0f172a;\n    color: white;\n    border: none;\n    padding: 10px 20px;\n    font-size: 0.88rem;\n    font-weight: 600;\n    border-radius: 4px;\n    cursor: pointer;\n    margin-top: 8px;\n}\n.btn:hover {\n    background: #1e293b;\n}\n.alert {\n    padding: 10px;\n    border-radius: 4px;\n    font-size: 0.85rem;\n    margin-bottom: 16px;\n}\n.alert.error {\n    background: #fee2e2;\n    color: #dc2626;\n    border: 1px solid #fecaca;\n}\n.bill-output {\n    margin-top: 28px;\n    border-top: 1px solid #e2e8f0;\n    padding-top: 16px;\n}\n.bill-output h3 {\n    font-size: 1.05rem;\n    margin-bottom: 12px;\n}\ntable {\n    width: 100%;\n    border-collapse: collapse;\n    font-size: 0.85rem;\n}\nth, td {\n    border: 1px solid #cbd5e1;\n    padding: 8px 10px;\n    text-align: center;\n}\nth {\n    background-color: #1e293b;\n    color: #ffffff;\n}\n.total-row {\n    font-weight: 700;\n    background-color: #f1f5f9;\n}\n.total-row td:first-child {\n    text-align: right;\n    padding-right: 14px;\n}"
+        },
+        {
+          "name": "Task 5 material.docx",
+          "type": "docx",
+          "extension": "docx",
+          "size": "99.1 KB",
+          "rawSize": 101492,
+          "path": "tasks/task5/Task 5 material.docx",
+          "content": null
+        }
+      ]
+    },
+    {
+      "taskNumber": 6,
+      "id": "task-6",
+      "title": "Session Inactivity Timeout & Cookie Management",
+      "question": "Experiment 6(a): Create a login form with a username and password. Once the user logs in, the second form should be displayed to accept user details (name, city, phone). If the user doesn't enter information within a specified time limit (60s), expire his session and give a warning.\n\nExperiment 6(b): Write a PHP script to store, retrieve and delete data cookies values.",
+      "aim": "To manage stateless HTTP communication using PHP Sessions with inactivity expiration, and manipulate client cookies via setcookie().",
+      "tags": [
+        "PHP",
+        "Sessions",
+        "Cookies",
+        "State Management",
+        "Authentication"
+      ],
+      "zipPath": "tasks/task6.zip",
+      "folderPath": "tasks/task6/",
+      "filesCount": 8,
+      "files": [
+        {
+          "name": "6a_details.php",
+          "type": "php",
+          "extension": "php",
+          "size": "2.3 KB",
+          "rawSize": 2373,
+          "path": "tasks/task6/6a_details.php",
+          "content": "<?php\n// Experiment 6(a): Second form - Accept user details with 60-second inactivity session timeout\nsession_start();\n\n$timeout = 60; // 60 seconds session timeout limit\n\nif (!isset($_SESSION['user'])) {\n    header(\"Location: 6a_login.php?warning=Please login first.\");\n    exit();\n}\n\n// Check inactivity\nif (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $timeout)) {\n    session_unset();\n    session_destroy();\n    header(\"Location: 6a_login.php?warning=Session expired due to inactivity. Please log in again.\");\n    exit();\n}\n\n// Update last activity timestamp on any user action\n$_SESSION['last_activity'] = time();\n\n$message = \"\";\nif ($_SERVER[\"REQUEST_METHOD\"] === \"POST\") {\n    $name = htmlspecialchars($_POST['name'] ?? '');\n    $city = htmlspecialchars($_POST['city'] ?? '');\n    $phone = htmlspecialchars($_POST['phone'] ?? '');\n    $message = \"User details successfully recorded: Name: $name, City: $city, Phone: $phone\";\n}\n?>\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Task 6(a) - User Details Form</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"box\">\n        <h2>User Details Form</h2>\n        <p class=\"subtitle\">Logged in as: <strong><?php echo htmlspecialchars($_SESSION['user']); ?></strong> (Session active - 60s timeout)</p>\n\n        <?php if ($message): ?>\n            <div class=\"alert success\"><?php echo $message; ?></div>\n        <?php endif; ?>\n\n        <form method=\"POST\">\n            <div class=\"form-group\">\n                <label for=\"name\">Full Name:</label>\n                <input type=\"text\" id=\"name\" name=\"name\" placeholder=\"Enter name\" required>\n            </div>\n            <div class=\"form-group\">\n                <label for=\"city\">City:</label>\n                <input type=\"text\" id=\"city\" name=\"city\" placeholder=\"Enter city\" required>\n            </div>\n            <div class=\"form-group\">\n                <label for=\"phone\">Phone Number:</label>\n                <input type=\"text\" id=\"phone\" name=\"phone\" placeholder=\"Enter phone number\" required>\n            </div>\n            <button type=\"submit\" class=\"btn\">Submit Details</button>\n            <a href=\"6a_login.php\" class=\"btn btn-secondary\">Logout</a>\n        </form>\n    </div>\n</body>\n</html>"
+        },
+        {
+          "name": "6a_login.php",
+          "type": "php",
+          "extension": "php",
+          "size": "1.8 KB",
+          "rawSize": 1813,
+          "path": "tasks/task6/6a_login.php",
+          "content": "<?php\n// Experiment 6(a): Login form with username & password\nsession_start();\n\n$error = \"\";\nif ($_SERVER[\"REQUEST_METHOD\"] === \"POST\") {\n    $username = trim($_POST['username'] ?? '');\n    $password = trim($_POST['password'] ?? '');\n\n    // Credentials check\n    if ($username === \"admin\" && $password === \"password123\") {\n        $_SESSION['user'] = $username;\n        $_SESSION['last_activity'] = time(); // Record initial timestamp\n        header(\"Location: 6a_details.php\");\n        exit();\n    } else {\n        $error = \"Invalid username or password. (Hint: admin / password123)\";\n    }\n}\n?>\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Task 6(a) - Login</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"box\">\n        <h2>User Login Portal</h2>\n        <p class=\"subtitle\">Enter credentials to proceed to the User Details Form.</p>\n\n        <?php if (isset($_GET['warning'])): ?>\n            <div class=\"alert warning\"><?php echo htmlspecialchars($_GET['warning']); ?></div>\n        <?php endif; ?>\n\n        <?php if ($error): ?>\n            <div class=\"alert error\"><?php echo $error; ?></div>\n        <?php endif; ?>\n\n        <form method=\"POST\">\n            <div class=\"form-group\">\n                <label for=\"username\">Username:</label>\n                <input type=\"text\" id=\"username\" name=\"username\" value=\"admin\" required>\n            </div>\n            <div class=\"form-group\">\n                <label for=\"password\">Password:</label>\n                <input type=\"password\" id=\"password\" name=\"password\" value=\"password123\" required>\n            </div>\n            <button type=\"submit\" class=\"btn\">Login</button>\n        </form>\n    </div>\n</body>\n</html>"
+        },
+        {
+          "name": "6b_cookies.php",
+          "type": "php",
+          "extension": "php",
+          "size": "2.2 KB",
+          "rawSize": 2235,
+          "path": "tasks/task6/6b_cookies.php",
+          "content": "<?php\n// Experiment 6(b): PHP script to store, retrieve, and delete data cookies values.\n$status = \"\";\n\nif ($_SERVER[\"REQUEST_METHOD\"] === \"POST\") {\n    $action = $_POST['action'] ?? '';\n    $val = trim($_POST['username'] ?? '');\n\n    if ($action === 'set') {\n        if (!empty($val)) {\n            setcookie(\"username\", $val, time() + 3600, \"/\");\n            $status = \"Cookie 'username' stored successfully with value: <strong>\" . htmlspecialchars($val) . \"</strong>\";\n        } else {\n            $status = \"Please enter a value to store in the cookie.\";\n        }\n    } elseif ($action === 'get') {\n        if (isset($_COOKIE['username'])) {\n            $status = \"Retrieved Cookie value: <strong>\" . htmlspecialchars($_COOKIE['username']) . \"</strong>\";\n        } else {\n            $status = \"No cookie named 'username' found in browser storage.\";\n        }\n    } elseif ($action === 'delete') {\n        setcookie(\"username\", \"\", time() - 3600, \"/\");\n        $status = \"Cookie 'username' deleted successfully.\";\n    }\n}\n?>\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Task 6(b) - Cookie Operations</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"box\">\n        <h2>Cookie Management in PHP</h2>\n        <p class=\"subtitle\">Demonstrates storing, retrieving, and deleting cookies.</p>\n\n        <?php if ($status): ?>\n            <div class=\"alert info\"><?php echo $status; ?></div>\n        <?php endif; ?>\n\n        <form method=\"POST\">\n            <div class=\"form-group\">\n                <label for=\"username\">Username / Preference Value:</label>\n                <input type=\"text\" id=\"username\" name=\"username\" placeholder=\"Enter value for cookie\">\n            </div>\n\n            <div class=\"btn-group\">\n                <button type=\"submit\" name=\"action\" value=\"set\" class=\"btn\">Set Cookie</button>\n                <button type=\"submit\" name=\"action\" value=\"get\" class=\"btn btn-secondary\">Get Cookie</button>\n                <button type=\"submit\" name=\"action\" value=\"delete\" class=\"btn btn-danger\">Delete Cookie</button>\n            </div>\n        </form>\n    </div>\n</body>\n</html>"
+        },
+        {
+          "name": "index.html",
+          "type": "html",
+          "extension": "html",
+          "size": "657 B",
+          "rawSize": 657,
+          "path": "tasks/task6/index.html",
+          "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <title>Task 6 - State Management (Sessions & Cookies)</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"box\">\n        <h2>Task 6: PHP Sessions & Cookies</h2>\n        <p class=\"subtitle\">Choose an experiment module to test:</p>\n        <div style=\"display: flex; flex-direction: column; gap: 10px;\">\n            <a href=\"6a_login.php\" class=\"btn\">Experiment 6(a): Login & 60s Session Timeout</a>\n            <a href=\"6b_cookies.php\" class=\"btn btn-secondary\">Experiment 6(b): Cookie Store, Retrieve & Delete</a>\n        </div>\n    </div>\n</body>\n</html>"
+        },
+        {
+          "name": "style.css",
+          "type": "css",
+          "extension": "css",
+          "size": "1.5 KB",
+          "rawSize": 1487,
+          "path": "tasks/task6/style.css",
+          "content": "body {\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif;\n    background: #f8fafc;\n    color: #0f172a;\n    padding: 30px 16px;\n}\n.box {\n    max-width: 500px;\n    margin: 0 auto;\n    background: #ffffff;\n    border: 1px solid #e2e8f0;\n    border-radius: 8px;\n    padding: 24px;\n}\nh2 { font-size: 1.25rem; font-weight: 700; }\n.subtitle { font-size: 0.85rem; color: #64748b; margin-top: 4px; margin-bottom: 18px; }\n.form-group { margin-bottom: 14px; }\nlabel { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; color: #334155; }\ninput { width: 100%; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 0.9rem; }\ninput:focus { outline: none; border-color: #0f172a; }\n.btn { background: #0f172a; color: white; border: none; padding: 9px 18px; border-radius: 4px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; }\n.btn-secondary { background: #475569; }\n.btn-danger { background: #dc2626; }\n.btn-group { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }\n.alert { padding: 10px; border-radius: 4px; font-size: 0.85rem; margin-bottom: 14px; }\n.alert.warning { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }\n.alert.error { background: #fee2e2; color: #dc2626; border: 1px solid #fecaca; }\n.alert.success { background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }\n.alert.info { background: #f1f5f9; color: #0f172a; border: 1px solid #cbd5e1; }"
+        },
+        {
+          "name": "TASK 6.docx",
+          "type": "docx",
+          "extension": "docx",
+          "size": "311.1 KB",
+          "rawSize": 318606,
+          "path": "tasks/task6/TASK 6.docx",
+          "content": null
+        },
+        {
+          "name": "Task 6A material.docx",
+          "type": "docx",
+          "extension": "docx",
+          "size": "83.7 KB",
+          "rawSize": 85694,
+          "path": "tasks/task6/Task 6A material.docx",
+          "content": null
+        },
+        {
+          "name": "Task 6B material.docx",
+          "type": "docx",
+          "extension": "docx",
+          "size": "90.9 KB",
+          "rawSize": 93062,
+          "path": "tasks/task6/Task 6B material.docx",
+          "content": null
+        }
+      ]
+    },
+    {
+      "taskNumber": 7,
+      "id": "task-7",
+      "title": "MySQL Database Setup & User Registration",
+      "question": "Experiment 7(a): Design a PHP application to organize a database table with user information like username, password and email.\n\nExperiment 7(b): Design a registration page and insert the data into created database table using prepared statements.",
+      "aim": "To establish MySQL database connectivity via MySQLi, create tables, and securely insert user credentials using password hashing and prepared statements.",
+      "tags": [
+        "PHP",
+        "MySQL",
+        "MySQLi",
+        "Database",
+        "Security"
+      ],
+      "zipPath": "tasks/task7.zip",
+      "folderPath": "tasks/task7/",
+      "filesCount": 5,
+      "files": [
+        {
+          "name": "7a_create_db.php",
+          "type": "php",
+          "extension": "php",
+          "size": "1007 B",
+          "rawSize": 1007,
+          "path": "tasks/task7/7a_create_db.php",
+          "content": "<?php\n// Experiment 7(a): Organize database table with user information\n// Step 1: Connect to MySQL server\n$conn = new mysqli(\"localhost\", \"root\", \"\");\n\nif ($conn->connect_error) {\n    die(\"Connection failed: \" . $conn->connect_error);\n}\n\necho \"MySQL connection successful!<br><br>\";\n\n// Step 2: Create database userdatabasenew\n$sql = \"CREATE DATABASE IF NOT EXISTS userdatabasenew\";\nif ($conn->query($sql) === TRUE) {\n    echo \"Database 'userdatabasenew' created successfully!<br><br>\";\n} else {\n    die(\"Database creation failed: \" . $conn->error);\n}\n\n// Step 3: Select database\n$conn->select_db(\"userdatabasenew\");\n\n// Step 4: Create table users\n$sql = \"CREATE TABLE IF NOT EXISTS users (\n    id INT AUTO_INCREMENT PRIMARY KEY,\n    username VARCHAR(50) NOT NULL,\n    password VARCHAR(255) NOT NULL,\n    email VARCHAR(100) NOT NULL\n)\";\n\nif ($conn->query($sql) === TRUE) {\n    echo \"Table 'users' created successfully!<br>\";\n} else {\n    echo \"Table creation failed: \" . $conn->error;\n}\n\n$conn->close();\n?>"
+        },
+        {
+          "name": "7b_register.php",
+          "type": "php",
+          "extension": "php",
+          "size": "2.3 KB",
+          "rawSize": 2388,
+          "path": "tasks/task7/7b_register.php",
+          "content": "<?php\n// Experiment 7(b): Design registration page and insert data into created database table\n$conn = new mysqli(\"localhost\", \"root\", \"\", \"userdatabasenew\");\n\n$status = \"\";\n\nif ($conn->connect_error) {\n    $status = \"Database Connection failed: \" . $conn->connect_error;\n}\n\nif ($_SERVER[\"REQUEST_METHOD\"] === \"POST\" && isset($_POST['register'])) {\n    $username = trim($_POST['username'] ?? '');\n    $password = password_hash($_POST['password'] ?? '', PASSWORD_DEFAULT);\n    $email = trim($_POST['email'] ?? '');\n\n    $sql = \"INSERT INTO users (username, password, email) VALUES (?, ?, ?)\";\n    $stmt = $conn->prepare($sql);\n    $stmt->bind_param(\"sss\", $username, $password, $email);\n\n    if ($stmt->execute()) {\n        $status = \"Registration successful for user: \" . htmlspecialchars($username);\n    } else {\n        $status = \"Registration failed: \" . $stmt->error;\n    }\n    $stmt->close();\n}\n?>\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <title>Task 7(b) - User Registration</title>\n    <style>\n        body { font-family: -apple-system, sans-serif; background: #f8fafc; color: #0f172a; padding: 30px; }\n        .box { max-width: 440px; margin: auto; background: white; border: 1px solid #cbd5e1; border-radius: 8px; padding: 24px; }\n        label { display: block; font-weight: 600; margin: 10px 0 4px; font-size: 0.85rem; }\n        input { width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #cbd5e1; border-radius: 4px; }\n        button { background: #0f172a; color: white; border: none; padding: 10px 18px; border-radius: 4px; font-weight: 600; cursor: pointer; margin-top: 14px; }\n        .alert { padding: 10px; margin-bottom: 12px; border-radius: 4px; font-size: 0.85rem; background: #f1f5f9; border: 1px solid #cbd5e1; }\n    </style>\n</head>\n<body>\n    <div class=\"box\">\n        <h2>User Registration</h2>\n        <?php if ($status): ?><div class=\"alert\"><?php echo $status; ?></div><?php endif; ?>\n        <form method=\"POST\">\n            <label>Username:</label>\n            <input type=\"text\" name=\"username\" required>\n            <label>Password:</label>\n            <input type=\"password\" name=\"password\" required>\n            <label>Email ID:</label>\n            <input type=\"email\" name=\"email\" required>\n            <button type=\"submit\" name=\"register\">Register User</button>\n        </form>\n    </div>\n</body>\n</html>"
+        },
+        {
+          "name": "db_schema.sql",
+          "type": "sql",
+          "extension": "sql",
+          "size": "274 B",
+          "rawSize": 274,
+          "path": "tasks/task7/db_schema.sql",
+          "content": "-- Task 7 Database Schema\nCREATE DATABASE IF NOT EXISTS userdatabasenew;\nUSE userdatabasenew;\n\nCREATE TABLE IF NOT EXISTS users (\n    id INT AUTO_INCREMENT PRIMARY KEY,\n    username VARCHAR(50) NOT NULL,\n    password VARCHAR(255) NOT NULL,\n    email VARCHAR(100) NOT NULL\n);"
+        },
+        {
+          "name": "index.html",
+          "type": "html",
+          "extension": "html",
+          "size": "1.4 KB",
+          "rawSize": 1427,
+          "path": "tasks/task7/index.html",
+          "content": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <title>Task 7(b) - User Registration</title>\n    <style>\n        body { font-family: -apple-system, sans-serif; background: #f8fafc; color: #0f172a; padding: 30px; }\n        .box { max-width: 440px; margin: auto; background: white; border: 1px solid #cbd5e1; border-radius: 8px; padding: 24px; }\n        label { display: block; font-weight: 600; margin: 10px 0 4px; font-size: 0.85rem; }\n        input { width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #cbd5e1; border-radius: 4px; }\n        button { background: #0f172a; color: white; border: none; padding: 10px 18px; border-radius: 4px; font-weight: 600; cursor: pointer; margin-top: 14px; }\n        .alert { padding: 10px; margin-bottom: 12px; border-radius: 4px; font-size: 0.85rem; background: #f1f5f9; border: 1px solid #cbd5e1; }\n    </style>\n</head>\n<body>\n    <div class=\"box\">\n        <h2>User Registration</h2>\n        <div class=\"alert\"></div>\n        <form method=\"POST\">\n            <label>Username:</label>\n            <input type=\"text\" name=\"username\" required>\n            <label>Password:</label>\n            <input type=\"password\" name=\"password\" required>\n            <label>Email ID:</label>\n            <input type=\"email\" name=\"email\" required>\n            <button type=\"submit\" name=\"register\">Register User</button>\n        </form>\n    </div>\n</body>\n</html>"
+        },
+        {
+          "name": "TASK 7 SL program for record.docx",
+          "type": "docx",
+          "extension": "docx",
+          "size": "820.8 KB",
+          "rawSize": 840493,
+          "path": "tasks/task7/TASK 7 SL program for record.docx",
+          "content": null
+        }
+      ]
+    },
+    {
+      "taskNumber": 8,
+      "id": "task-8",
+      "title": "Database Record Update & Delete Operations",
+      "question": "Experiment 8(a): Examine and write a PHP script for updating required user information in the database.\n\nExperiment 8(b): Write a PHP script for deleting a specified user from the database.",
+      "aim": "To execute parameterized UPDATE and DELETE queries using MySQLi prepared statements to modify and delete database records.",
+      "tags": [
+        "PHP",
+        "MySQL",
+        "Prepared Statements",
+        "UPDATE",
+        "DELETE"
+      ],
+      "zipPath": "tasks/task8.zip",
+      "folderPath": "tasks/task8/",
+      "filesCount": 4,
+      "files": [
+        {
+          "name": "index.html",
+          "type": "html",
+          "extension": "html",
+          "size": "1.1 KB",
+          "rawSize": 1102,
+          "path": "tasks/task8/index.html",
+          "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <title>Task 8 - Database Update & Delete</title>\n    <style>\n        body { font-family: -apple-system, sans-serif; background: #f8fafc; color: #0f172a; padding: 30px; }\n        .box { max-width: 520px; margin: auto; background: white; border: 1px solid #cbd5e1; border-radius: 8px; padding: 24px; }\n        h2 { font-size: 1.25rem; }\n        p { font-size: 0.85rem; color: #64748b; margin-bottom: 16px; }\n        .btn { display: inline-block; padding: 10px 18px; background: #0f172a; color: white; text-decoration: none; border-radius: 4px; font-size: 0.85rem; font-weight: 600; margin-right: 8px; }\n        .btn-danger { background: #dc2626; }\n    </style>\n</head>\n<body>\n    <div class=\"box\">\n        <h2>Task 8: User Record Management</h2>\n        <p>Choose an action to perform on database table 'userdatabasenew.users':</p>\n        <a href=\"Task 8a.php\" class=\"btn\">Experiment 8(a): Update User Record</a>\n        <a href=\"Task 8b.php\" class=\"btn btn-danger\">Experiment 8(b): Delete User Record</a>\n    </div>\n</body>\n</html>"
+        },
+        {
+          "name": "TASK 8 SL program for record.docx",
+          "type": "docx",
+          "extension": "docx",
+          "size": "1.5 MB",
+          "rawSize": 1606954,
+          "path": "tasks/task8/TASK 8 SL program for record.docx",
+          "content": null
+        },
+        {
+          "name": "Task 8a.php",
+          "type": "php",
+          "extension": "php",
+          "size": "1.0 KB",
+          "rawSize": 1055,
+          "path": "tasks/task8/Task 8a.php",
+          "content": "<?php\r\n\r\n// Connect to database\r\n$conn = new mysqli(\"localhost\", \"root\", \"\", \"userdatabasenew\");\r\n\r\n// Check connection\r\nif ($conn->connect_error) {\r\n    die(\"Connection failed: \" . $conn->connect_error);\r\n}\r\n\r\n// Update user information\r\nif (isset($_POST['update'])) {\r\n\r\n    $id = $_POST['id'];\r\n    $username = $_POST['username'];\r\n    $email = $_POST['email'];\r\n\r\n    $sql = \"UPDATE users SET username=?, email=? WHERE id=?\";\r\n\r\n    $stmt = $conn->prepare($sql);\r\n    $stmt->bind_param(\"ssi\", $username, $email, $id);\r\n\r\n    if ($stmt->execute()) {\r\n        echo \"User information updated successfully!\";\r\n    } else {\r\n        echo \"Error updating user.\";\r\n    }\r\n\r\n    $stmt->close();\r\n}\r\n\r\n$conn->close();\r\n\r\n?>\r\n\r\n<form method=\"post\">\r\n    Enter User ID:\r\n    <input type=\"number\" name=\"id\" required><br><br>\r\n\r\n    Enter New Username:\r\n    <input type=\"text\" name=\"username\" required><br><br>\r\n\r\n    Enter New Email:\r\n    <input type=\"email\" name=\"email\" required><br><br>\r\n\r\n    <input type=\"submit\" name=\"update\" value=\"Update User\">\r\n</form>\r\n"
+        },
+        {
+          "name": "Task 8b.php",
+          "type": "php",
+          "extension": "php",
+          "size": "892 B",
+          "rawSize": 892,
+          "path": "tasks/task8/Task 8b.php",
+          "content": "<?php\r\n\r\n// Connect to database\r\n$conn = new mysqli(\"localhost\", \"root\", \"\", \"userdatabasenew\");\r\n\r\n// Check connection\r\nif ($conn->connect_error) {\r\n    die(\"Connection failed: \" . $conn->connect_error);\r\n}\r\n\r\n// Delete user information\r\nif (isset($_POST['delete'])) {\r\n\r\n    $id = $_POST['id'];\r\n\r\n    $sql = \"DELETE FROM users WHERE id=?\";\r\n\r\n    $stmt = $conn->prepare($sql);\r\n    $stmt->bind_param(\"i\", $id);\r\n\r\n    if ($stmt->execute()) {\r\n\r\n        if ($stmt->affected_rows > 0) {\r\n            echo \"User deleted successfully!\";\r\n        } else {\r\n            echo \"User ID not found.\";\r\n        }\r\n\r\n    } else {\r\n        echo \"Error deleting user.\";\r\n    }\r\n\r\n    $stmt->close();\r\n}\r\n\r\n$conn->close();\r\n\r\n?>\r\n\r\n<form method=\"post\">\r\n\r\n    Enter User ID:\r\n    <input type=\"number\" name=\"id\" required><br><br>\r\n\r\n    <input type=\"submit\" name=\"delete\" value=\"Delete User\">\r\n\r\n</form>\r\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": 9,
+      "id": "task-9",
+      "title": "Four Stroke Motorbike XML Catalog (DTD, XSLT & CSS)",
+      "question": "Experiment 9: Create an XML file along with its DTD for a catalog of four stroke motorbikes, where each motor bike has the following child elements – make, model, year, color, engine, chassis number and accessories. The engine element has child elements engine number, number of cylinders, type of fuel. The accessories element has attributes disc brake, auto-start and radio. Display in a table with GREY header, capitalized bold columns, styled using XSL and CSS.",
+      "aim": "To model structured data using XML and DTD, and transform XML into an HTML table with grey header and bold columns using XSLT and CSS.",
+      "tags": [
+        "XML",
+        "DTD",
+        "XSLT",
+        "CSS",
+        "Data Modeling"
+      ],
+      "zipPath": "tasks/task9.zip",
+      "folderPath": "tasks/task9/",
+      "filesCount": 6,
+      "files": [
+        {
+          "name": "index.html",
+          "type": "html",
+          "extension": "html",
+          "size": "1.6 KB",
+          "rawSize": 1684,
+          "path": "tasks/task9/index.html",
+          "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <title>Task 9 - Motorbike Catalog (XML, DTD & XSLT)</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <h2>Four Stroke Motorbike Catalog</h2>\n    <p style=\"font-size: 0.85rem; color: #64748b; margin-bottom: 16px;\">Transformed from XML using XSLT and CSS with GREY header and bold capitalized columns.</p>\n    <table>\n        <tr>\n            <th>MAKE</th>\n            <th>MODEL</th>\n            <th>YEAR</th>\n            <th>COLOR</th>\n            <th>ENGINE NUMBER</th>\n            <th>CYLINDERS</th>\n            <th>FUEL TYPE</th>\n            <th>CHASSIS NUMBER</th>\n            <th>ACCESSORIES</th>\n        </tr>\n        <tr>\n            <td>Honda</td>\n            <td>CBR500R</td>\n            <td>2023</td>\n            <td>Red</td>\n            <td>EN123456</td>\n            <td>2</td>\n            <td>Petrol</td>\n            <td>CH123456789</td>\n            <td>Disc Brake: yes, Auto-Start: yes, Radio: no</td>\n        </tr>\n        <tr>\n            <td>Yamaha</td>\n            <td>YZF-R3</td>\n            <td>2022</td>\n            <td>Blue</td>\n            <td>EN654321</td>\n            <td>2</td>\n            <td>Petrol</td>\n            <td>CH987654321</td>\n            <td>Disc Brake: yes, Auto-Start: yes, Radio: yes</td>\n        </tr>\n        <tr>\n            <td>Kawasaki</td>\n            <td>Ninja 400</td>\n            <td>2024</td>\n            <td>Green</td>\n            <td>EN789012</td>\n            <td>2</td>\n            <td>Petrol</td>\n            <td>CH456789123</td>\n            <td>Disc Brake: yes, Auto-Start: yes, Radio: no</td>\n        </tr>\n    </table>\n</body>\n</html>"
+        },
+        {
+          "name": "m.xml",
+          "type": "xml",
+          "extension": "xml",
+          "size": "2.0 KB",
+          "rawSize": 2081,
+          "path": "tasks/task9/m.xml",
+          "content": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<?xml-stylesheet type=\"text/xsl\" href=\"motorbike_catalog.xsl\"?>\r\n\r\n<!DOCTYPE catalog SYSTEM \"motorbike_catalog.dtd\">\r\n\r\n<catalog>\r\n\r\n    <motorbike>\r\n        <make>Honda</make>\r\n        <model>CBR500R</model>\r\n        <year>2023</year>\r\n        <color>Red</color>\r\n        <engine>\r\n            <engine_number>EN123456</engine_number>\r\n            <number_of_cylinders>2</number_of_cylinders>\r\n            <type_of_fuel>Petrol</type_of_fuel>\r\n        </engine>\r\n        <chassis_number>CH123456789</chassis_number>\r\n        <accessories disc_brake=\"yes\" auto_start=\"yes\" radio=\"no\"/>\r\n    </motorbike>\r\n\r\n    <motorbike>\r\n        <make>Yamaha</make>\r\n        <model>R15</model>\r\n        <year>2022</year>\r\n        <color>Blue</color>\r\n        <engine>\r\n            <engine_number>EN987654</engine_number>\r\n            <number_of_cylinders>1</number_of_cylinders>\r\n            <type_of_fuel>Petrol</type_of_fuel>\r\n        </engine>\r\n        <chassis_number>CH987654321</chassis_number>\r\n        <accessories disc_brake=\"yes\" auto_start=\"yes\" radio=\"yes\"/>\r\n    </motorbike>\r\n\r\n    <motorbike>\r\n        <make>TVS</make>\r\n        <model>Apache RTR</model>\r\n        <year>2024</year>\r\n        <color>Black</color>\r\n        <engine>\r\n            <engine_number>EN456789</engine_number>\r\n            <number_of_cylinders>1</number_of_cylinders>\r\n            <type_of_fuel>Petrol</type_of_fuel>\r\n        </engine>\r\n        <chassis_number>CH456789123</chassis_number>\r\n        <accessories disc_brake=\"yes\" auto_start=\"no\" radio=\"no\"/>\r\n    </motorbike>\r\n\r\n    <motorbike>\r\n        <make>Kawasaki</make>\r\n        <model>Ninja 300</model>\r\n        <year>2023</year>\r\n        <color>Green</color>\r\n        <engine>\r\n            <engine_number>EN654321</engine_number>\r\n            <number_of_cylinders>2</number_of_cylinders>\r\n            <type_of_fuel>Petrol</type_of_fuel>\r\n        </engine>\r\n        <chassis_number>CH654321987</chassis_number>\r\n        <accessories disc_brake=\"yes\" auto_start=\"yes\" radio=\"no\"/>\r\n    </motorbike>\r\n\r\n</catalog>\r\n"
+        },
+        {
+          "name": "motorbike_catalog.dtd",
+          "type": "xml",
+          "extension": "dtd",
+          "size": "619 B",
+          "rawSize": 619,
+          "path": "tasks/task9/motorbike_catalog.dtd",
+          "content": "<!ELEMENT catalog (motorbike+)>\r\n\r\n<!ELEMENT motorbike\r\n(make, model, year, color, engine, chassis_number, accessories)>\r\n\r\n<!ELEMENT make (#PCDATA)>\r\n<!ELEMENT model (#PCDATA)>\r\n<!ELEMENT year (#PCDATA)>\r\n<!ELEMENT color (#PCDATA)>\r\n\r\n<!ELEMENT engine\r\n(engine_number, number_of_cylinders, type_of_fuel)>\r\n\r\n<!ELEMENT engine_number (#PCDATA)>\r\n<!ELEMENT number_of_cylinders (#PCDATA)>\r\n<!ELEMENT type_of_fuel (#PCDATA)>\r\n\r\n<!ELEMENT chassis_number (#PCDATA)>\r\n\r\n<!ELEMENT accessories EMPTY>\r\n\r\n<!ATTLIST accessories\r\n    disc_brake (yes|no) #REQUIRED\r\n    auto_start (yes|no) #REQUIRED\r\n    radio (yes|no) #REQUIRED>\r\n"
+        },
+        {
+          "name": "motorbike_catalog.xsl",
+          "type": "xml",
+          "extension": "xsl",
+          "size": "1.4 KB",
+          "rawSize": 1467,
+          "path": "tasks/task9/motorbike_catalog.xsl",
+          "content": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n<xsl:stylesheet version=\"1.0\"\r\nxmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">\r\n\r\n<xsl:output method=\"html\" encoding=\"UTF-8\"/>\r\n\r\n<xsl:template match=\"/\">\r\n\r\n<html>\r\n<head>\r\n    <title>Motorbike Catalog</title>\r\n    <link rel=\"stylesheet\"\r\n          type=\"text/css\" href=\"style.css\"/>\r\n</head>\r\n\r\n<body>\r\n\r\n<h1>Motorbike Catalog</h1>\r\n\r\n<table>\r\n\r\n<tr>\r\n    <th>MAKE</th>\r\n    <th>MODEL</th>\r\n    <th>YEAR</th>\r\n    <th>COLOR</th>\r\n    <th>ENGINE NUMBER</th>\r\n    <th>CYLINDERS</th>\r\n    <th>FUEL TYPE</th>\r\n    <th>CHASSIS NUMBER</th>\r\n    <th>DISC BRAKE</th>\r\n    <th>AUTO START</th>\r\n    <th>RADIO</th>\r\n</tr>\r\n\r\n<xsl:for-each select=\"catalog/motorbike\">\r\n\r\n<tr>\r\n    <td><xsl:value-of select=\"make\"/></td>\r\n    <td><xsl:value-of select=\"model\"/></td>\r\n    <td><xsl:value-of select=\"year\"/></td>\r\n    <td><xsl:value-of select=\"color\"/></td>\r\n\r\n    <td><xsl:value-of select=\"engine/engine_number\"/></td>\r\n\r\n    <td><xsl:value-of\r\n        select=\"engine/number_of_cylinders\"/></td>\r\n\r\n    <td><xsl:value-of\r\n        select=\"engine/type_of_fuel\"/></td>\r\n\r\n    <td><xsl:value-of select=\"chassis_number\"/></td>\r\n\r\n    <td><xsl:value-of\r\n        select=\"accessories/@disc_brake\"/></td>\r\n\r\n    <td><xsl:value-of\r\n        select=\"accessories/@auto_start\"/></td>\r\n\r\n    <td><xsl:value-of\r\n        select=\"accessories/@radio\"/></td>\r\n</tr>\r\n\r\n</xsl:for-each>\r\n\r\n</table>\r\n\r\n</body>\r\n</html>\r\n\r\n</xsl:template>\r\n</xsl:stylesheet>\r\n"
+        },
+        {
+          "name": "style.css",
+          "type": "css",
+          "extension": "css",
+          "size": "405 B",
+          "rawSize": 405,
+          "path": "tasks/task9/style.css",
+          "content": "body {\r\n    font-family: Arial;\r\n    background-color: lightyellow;\r\n    text-align: center;\r\n}\r\n\r\nh1 {\r\n    color: darkblue;\r\n}\r\n\r\ntable {\r\n    width: 95%;\r\n    margin: auto;\r\n    border-collapse: collapse;\r\n}\r\n\r\nth {\r\n    background-color: grey;\r\n    color: white;\r\n    font-weight: bold;\r\n}\r\n\r\ntd, th {\r\n    border: 1px solid black;\r\n    padding: 10px;\r\n}\r\n\r\ntd {\r\n    background-color: lightblue;\r\n}\r\n"
+        },
+        {
+          "name": "TASK 9 SL for record.docx",
+          "type": "docx",
+          "extension": "docx",
+          "size": "158.2 KB",
+          "rawSize": 162004,
+          "path": "tasks/task9/TASK 9 SL for record.docx",
+          "content": null
+        }
+      ]
+    },
+    {
+      "taskNumber": 10,
+      "id": "task-10",
+      "title": "jQuery AJAX HTTP GET Request",
+      "question": "Experiment 10: Write a JQuery AJAX program to request data from the server with an HTTP GET request.",
+      "aim": "To use the jQuery $.get() method to asynchronously retrieve server timestamp data and update DOM elements without reloading the page.",
+      "tags": [
+        "jQuery",
+        "AJAX",
+        "GET Request",
+        "PHP",
+        "DOM"
+      ],
+      "zipPath": "tasks/task10.zip",
+      "folderPath": "tasks/task10/",
+      "filesCount": 4,
+      "files": [
+        {
+          "name": "date-time.php",
+          "type": "php",
+          "extension": "php",
+          "size": "130 B",
+          "rawSize": 130,
+          "path": "tasks/task10/date-time.php",
+          "content": "<?php\r\n\r\n// Get current date and time from server\r\necho \"Current Server Date and Time: \";\r\n\r\necho date(\"d-m-Y h:i:s A\");\r\n\r\n?>\r\n\r\n"
+        },
+        {
+          "name": "index.html",
+          "type": "html",
+          "extension": "html",
+          "size": "1.8 KB",
+          "rawSize": 1889,
+          "path": "tasks/task10/index.html",
+          "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Task 10 - jQuery AJAX Date & Time</title>\n    <script src=\"https://code.jquery.com/jquery-3.6.0.min.js\"></script>\n    <style>\n        body { font-family: -apple-system, sans-serif; background: #f8fafc; color: #0f172a; padding: 40px; text-align: center; }\n        .box { max-width: 440px; margin: auto; background: white; border: 1px solid #cbd5e1; border-radius: 8px; padding: 26px; }\n        h2 { font-size: 1.25rem; margin-bottom: 8px; }\n        p { font-size: 0.85rem; color: #64748b; margin-bottom: 18px; }\n        button { background: #0f172a; color: white; border: none; padding: 10px 20px; font-weight: 600; border-radius: 4px; cursor: pointer; }\n        button:hover { background: #1e293b; }\n        #result { margin-top: 20px; padding: 12px; font-size: 0.95rem; font-weight: 600; color: #047857; background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 4px; min-height: 24px; }\n    </style>\n</head>\n<body>\n    <div class=\"box\">\n        <h2>jQuery AJAX HTTP GET Request</h2>\n        <p>Click below to request current server date and time via AJAX.</p>\n\n        <button id=\"btn\">Get Server Date & Time</button>\n\n        <div id=\"result\">Waiting for request...</div>\n    </div>\n\n    <script>\n        $(document).ready(function() {\n            $(\"#btn\").click(function() {\n                $.get(\"date-time.php\", function(data) {\n                    $(\"#result\").html(data);\n                }).fail(function() {\n                    // Client-side fallback if running statically without PHP server\n                    const now = new Date();\n                    $(\"#result\").html(\"Current Date & Time: \" + now.toLocaleString() + \" (Client Render)\");\n                });\n            });\n        });\n    </script>\n</body>\n</html>"
+        },
+        {
+          "name": "TASK 10 SL for record.docx",
+          "type": "docx",
+          "extension": "docx",
+          "size": "86.3 KB",
+          "rawSize": 88411,
+          "path": "tasks/task10/TASK 10 SL for record.docx",
+          "content": null
+        },
+        {
+          "name": "Task 10.html",
+          "type": "html",
+          "extension": "html",
+          "size": "726 B",
+          "rawSize": 726,
+          "path": "tasks/task10/Task 10.html",
+          "content": "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n    <title>jQuery AJAX Example</title>\r\n\r\n    <!-- Include jQuery library -->\r\n    <script src=\"https://code.jquery.com/jquery-3.5.1.min.js\"></script>\r\n\r\n    <script>\r\n    $(document).ready(function() {\r\n\r\n        // Execute when button is clicked\r\n        $(\"#btn\").click(function() {\r\n\r\n            // Send GET request to PHP file\r\n            $.get(\"date-time.php\", function(data) {\r\n\r\n                // Display server response\r\n                $(\"#result\").html(data);\r\n\r\n            });\r\n        });\r\n\r\n    });\r\n    </script>\r\n</head>\r\n\r\n<body>\r\n\r\n    <h2>jQuery AJAX Example</h2>\r\n\r\n    <button id=\"btn\">Get Server Date and Time</button>\r\n\r\n    <p id=\"result\"></p>\r\n\r\n</body>\r\n</html>\r\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": 11,
+      "id": "task-11",
+      "title": "Live Name Suggestions (jQuery AJAX & PHP)",
+      "question": "Experiment 11: Create a JQuery AJAX application to retrieve the contents of PHP file. Example: Consider a webpage with textbox to search for a name, as the user enters a character, the application should display all the suggested names with that character, if no match display no suggests message.",
+      "aim": "To implement real-time auto-suggest search using jQuery keyup event listeners, AJAX communication, and PHP server filtering.",
+      "tags": [
+        "jQuery",
+        "AJAX",
+        "Live Search",
+        "PHP",
+        "Auto-Suggest"
+      ],
+      "zipPath": "tasks/task11.zip",
+      "folderPath": "tasks/task11/",
+      "filesCount": 4,
+      "files": [
+        {
+          "name": "index.html",
+          "type": "html",
+          "extension": "html",
+          "size": "2.6 KB",
+          "rawSize": 2699,
+          "path": "tasks/task11/index.html",
+          "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Task 11 - Live Name Suggestions (jQuery AJAX)</title>\n    <script src=\"https://code.jquery.com/jquery-3.6.0.min.js\"></script>\n    <style>\n        body { font-family: -apple-system, sans-serif; background: #f8fafc; color: #0f172a; padding: 40px; text-align: center; }\n        .box { max-width: 460px; margin: auto; background: white; border: 1px solid #cbd5e1; border-radius: 8px; padding: 26px; }\n        h2 { font-size: 1.25rem; margin-bottom: 8px; }\n        p { font-size: 0.85rem; color: #64748b; margin-bottom: 18px; }\n        input { width: 100%; box-sizing: border-box; padding: 10px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 0.95rem; }\n        input:focus { outline: none; border-color: #0f172a; }\n        #suggestions { margin-top: 16px; text-align: left; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 10px; font-size: 0.9rem; min-height: 40px; }\n    </style>\n</head>\n<body>\n    <div class=\"box\">\n        <h2>Live Name Suggestion</h2>\n        <p>Type a character to retrieve matching suggested names via AJAX.</p>\n\n        <input type=\"text\" id=\"searchBox\" placeholder=\"Start typing a name (e.g. A, B, C)...\">\n\n        <div id=\"suggestions\">Type a character above to search.</div>\n    </div>\n\n    <script>\n        const sampleNames = [\"Alice\", \"Bob\", \"Charlie\", \"David\", \"Emma\", \"Frank\", \"Grace\", \"Hannah\", \"Ian\", \"Jack\", \"Kavya\", \"Liam\", \"Manoj\", \"Nina\", \"Oliver\", \"Priya\", \"Rahul\", \"Sneha\", \"Tarun\", \"Vikram\"];\n\n        $(document).ready(function() {\n            $(\"#searchBox\").keyup(function() {\n                var query = $(this).val().trim();\n                if (query === \"\") {\n                    $(\"#suggestions\").html(\"Type a character above to search.\");\n                    return;\n                }\n\n                $.get(\"search.php\", { query: query }, function(data) {\n                    $(\"#suggestions\").html(data);\n                }).fail(function() {\n                    // Client fallback if opened statically without PHP server\n                    var matches = sampleNames.filter(function(name) {\n                        return name.toLowerCase().indexOf(query.toLowerCase()) !== -1;\n                    });\n                    if (matches.length > 0) {\n                        $(\"#suggestions\").html(\"<strong>Suggestions:</strong> \" + matches.join(\", \"));\n                    } else {\n                        $(\"#suggestions\").html(\"<em>No suggestions found</em>\");\n                    }\n                });\n            });\n        });\n    </script>\n</body>\n</html>"
+        },
+        {
+          "name": "search.php",
+          "type": "php",
+          "extension": "php",
+          "size": "780 B",
+          "rawSize": 780,
+          "path": "tasks/task11/search.php",
+          "content": "<?php\r\n\r\n// List of sample names\r\n$names = [\"Alice\", \"Bob\", \"Charlie\", \"David\",\r\n          \"Emma\", \"Ethan\", \"Sophia\", \"Samuel\",\r\n          \"Olivia\", \"Liam\"];\r\n\r\n// Check whether query is received\r\nif (isset($_GET['query'])) {\r\n\r\n    // Get the entered character\r\n    $query = trim($_GET['query']);\r\n\r\n    // Create empty suggestions list\r\n    $suggestions = [];\r\n\r\n    // Search for matching names\r\n    if ($query != \"\") {\r\n\r\n        foreach ($names as $name) {\r\n\r\n            if (stripos($name, $query) !== false) {\r\n\r\n                $suggestions[] = $name;\r\n\r\n            }\r\n\r\n        }\r\n\r\n    }\r\n\r\n    // Display matching names\r\n    if (empty($suggestions)) {\r\n\r\n        echo \"No suggestions\";\r\n\r\n    } else {\r\n\r\n        echo implode(\", \", $suggestions);\r\n\r\n    }\r\n\r\n}\r\n\r\n?>\r\n"
+        },
+        {
+          "name": "TASK 11 SL program for record.docx",
+          "type": "docx",
+          "extension": "docx",
+          "size": "184.6 KB",
+          "rawSize": 189027,
+          "path": "tasks/task11/TASK 11 SL program for record.docx",
+          "content": null
+        },
+        {
+          "name": "Task 11.html",
+          "type": "html",
+          "extension": "html",
+          "size": "1.6 KB",
+          "rawSize": 1601,
+          "path": "tasks/task11/Task 11.html",
+          "content": "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n    <title>Live Name Suggestion</title>\r\n\r\n    <!-- Include jQuery library -->\r\n    <script src=\"https://code.jquery.com/jquery-3.6.0.min.js\"></script>\r\n\r\n</head>\r\n<body>\r\n\r\n    <h2>Search for a Name</h2>\r\n\r\n    <!-- Textbox to enter a name -->\r\n    <input type=\"text\" id=\"searchBox\" placeholder=\"Start typing...\">\r\n\r\n    <!-- Display suggested names -->\r\n    <div id=\"suggestions\"></div>\r\n\r\n    <script>\r\n\r\n    $(document).ready(function() {\r\n\r\n        // Execute when user types in textbox\r\n        $(\"#searchBox\").on(\"keyup\", function() {\r\n\r\n            // Get the entered text\r\n            let query = $(this).val();\r\n\r\n            // Check whether textbox is empty\r\n            if (query.length > 0) {\r\n\r\n                // Send AJAX request to PHP file\r\n                $.ajax({\r\n\r\n                    url: \"search.php\",\r\n                    type: \"GET\",\r\n                    data: { query: query },\r\n\r\n                    // Receive response from PHP\r\n                    success: function(response) {\r\n\r\n                        // Display suggested names\r\n                        $(\"#suggestions\").text(response);\r\n\r\n                    },\r\n\r\n                    // Display error message\r\n                    error: function() {\r\n                        $(\"#suggestions\").text(\"Error fetching data.\");\r\n                    }\r\n\r\n                });\r\n\r\n            } else {\r\n\r\n                // Clear suggestions when textbox is empty\r\n                $(\"#suggestions\").text(\"\");\r\n\r\n            }\r\n\r\n        });\r\n\r\n    });\r\n\r\n    </script>\r\n\r\n</body>\r\n</html>\r\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": 12,
+      "id": "task-12",
+      "title": "AJAX Database Retrieval without Page Reload",
+      "question": "Experiment 12: Develop a AJAX application to retrieve the contents of database. Example: Consider a webpage with a dropdown list of set of names, as user selects a name the application should be able to display selected user personal information (username, Phone number, Email-id, Place) in a table without reloading the page.",
+      "aim": "To build an asynchronous database lookup system using vanilla JavaScript XMLHttpRequest, PHP backend, and MySQL database.",
+      "tags": [
+        "AJAX",
+        "XMLHttpRequest",
+        "PHP",
+        "MySQL",
+        "Database Retrieval"
+      ],
+      "zipPath": "tasks/task12.zip",
+      "folderPath": "tasks/task12/",
+      "filesCount": 10,
+      "files": [
+        {
+          "name": "db_schema.sql",
+          "type": "sql",
+          "extension": "sql",
+          "size": "617 B",
+          "rawSize": 617,
+          "path": "tasks/task12/db_schema.sql",
+          "content": "-- Scripting Languages Lab - Task 12 Database Schema\n-- Database: ajax_db\n\nCREATE DATABASE IF NOT EXISTS ajax_db;\nUSE ajax_db;\n\nCREATE TABLE IF NOT EXISTS users (\n    id INT AUTO_INCREMENT PRIMARY KEY,\n    username VARCHAR(50) NOT NULL,\n    phone VARCHAR(15) NOT NULL,\n    email VARCHAR(100) NOT NULL,\n    place VARCHAR(50) NOT NULL\n);\n\nINSERT INTO users (username, phone, email, place) VALUES\n('Alice', '9876543210', 'alice@gmail.com', 'Hyderabad'),\n('Bob', '9876543211', 'bob@gmail.com', 'Chennai'),\n('Charlie', '9876543212', 'charlie@gmail.com', 'Bangalore'),\n('David', '9876543213', 'david@gmail.com', 'Mumbai');\n"
+        },
+        {
+          "name": "getuser.php",
+          "type": "php",
+          "extension": "php",
+          "size": "1.1 KB",
+          "rawSize": 1083,
+          "path": "tasks/task12/getuser.php",
+          "content": "<?php\r\n\r\n// Connect to MySQL database\r\n$conn = mysqli_connect(\"localhost\", \"root\", \"\", \"ajax_db\");\r\n\r\n// Check database connection\r\nif (!$conn) {\r\n    die(\"Connection failed\");\r\n}\r\n\r\n// Get selected user ID\r\n$id = intval($_GET['id']);\r\n\r\n// SQL query to retrieve user information\r\n$sql = \"SELECT * FROM users WHERE id = $id\";\r\n\r\n// Execute query\r\n$result = mysqli_query($conn, $sql);\r\n\r\n// Display user details in table\r\nif (mysqli_num_rows($result) > 0) {\r\n\r\n    echo \"<table>\";\r\n\r\n    echo \"<tr>\r\n            <th>Username</th>\r\n            <th>Phone</th>\r\n            <th>Email ID</th>\r\n            <th>Place</th>\r\n          </tr>\";\r\n\r\n    while ($row = mysqli_fetch_assoc($result)) {\r\n\r\n        echo \"<tr>\";\r\n\r\n        echo \"<td>\" .($row['username']) . \"</td>\";\r\n\r\n        echo \"<td>\" .($row['phone']) . \"</td>\";\r\n\r\n        echo \"<td>\" .($row['email']) . \"</td>\";\r\n\r\n        echo \"<td>\" .($row['place']) . \"</td>\";\r\n\r\n        echo \"</tr>\";\r\n\r\n    }\r\n\r\n    echo \"</table>\";\r\n\r\n} else {\r\n\r\n    echo \"No user found\";\r\n\r\n}\r\n\r\n// Close database connection\r\nmysqli_close($conn);\r\n\r\n?>\r\n"
+        },
+        {
+          "name": "output_screenshot1.png",
+          "type": "image",
+          "extension": "png",
+          "size": "63.1 KB",
+          "rawSize": 64576,
+          "path": "tasks/task12/output_screenshot1.png",
+          "content": null
+        },
+        {
+          "name": "output_screenshot2.png",
+          "type": "image",
+          "extension": "png",
+          "size": "79.3 KB",
+          "rawSize": 81205,
+          "path": "tasks/task12/output_screenshot2.png",
+          "content": null
+        },
+        {
+          "name": "output_screenshot3.png",
+          "type": "image",
+          "extension": "png",
+          "size": "85.8 KB",
+          "rawSize": 87820,
+          "path": "tasks/task12/output_screenshot3.png",
+          "content": null
+        },
+        {
+          "name": "output_screenshot4.png",
+          "type": "image",
+          "extension": "png",
+          "size": "87.3 KB",
+          "rawSize": 89414,
+          "path": "tasks/task12/output_screenshot4.png",
+          "content": null
+        },
+        {
+          "name": "Task 12 .html",
+          "type": "html",
+          "extension": "html",
+          "size": "1.6 KB",
+          "rawSize": 1595,
+          "path": "tasks/task12/Task 12 .html",
+          "content": "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n    <title>AJAX Database Example</title>\r\n\r\n    <style>\r\n        table, th, td {\r\n            border: 1px solid black;\r\n            border-collapse: collapse;\r\n            padding: 8px;\r\n        }\r\n    </style>\r\n\r\n</head>\r\n<body>\r\n\r\n    <h2>AJAX - Retrieve User Information</h2>\r\n\r\n    <!-- Dropdown list of names -->\r\n    <select id=\"username\" onchange=\"showUser(this.value)\">\r\n\r\n        <option value=\"\">Select a user</option>\r\n        <option value=\"1\">Alice</option>\r\n        <option value=\"2\">Bob</option>\r\n        <option value=\"3\">Charlie</option>\r\n        <option value=\"4\">David</option>\r\n\r\n    </select>\r\n\r\n    <br><br>\r\n\r\n    <!-- Display user information -->\r\n    <div id=\"result\">\r\n        User information will be displayed here.\r\n    </div>\r\n\r\n    <script>\r\n\r\n    function showUser(id) {\r\n\r\n        // Check whether user is selected\r\n        if (id == \"\") {\r\n            document.getElementById(\"result\").innerHTML = \"\";\r\n            return;\r\n        }\r\n\r\n        // Create XMLHttpRequest object\r\n        var xhttp = new XMLHttpRequest();\r\n\r\n        // Receive response from PHP\r\n        xhttp.onreadystatechange = function() {\r\n\r\n            if (this.readyState == 4 && this.status == 200) {\r\n\r\n                // Display user information\r\n                document.getElementById(\"result\").innerHTML =\r\n                    this.responseText;\r\n\r\n            }\r\n\r\n        };\r\n\r\n        // Send GET request to PHP file\r\n        xhttp.open(\"GET\", \"getuser.php?id=\" + id, true);\r\n\r\n        xhttp.send();\r\n\r\n    }\r\n\r\n    </script>\r\n\r\n</body>\r\n</html>\r\n"
+        },
+        {
+          "name": "TASK 12 SL program for record.docx",
+          "type": "docx",
+          "extension": "docx",
+          "size": "334.0 KB",
+          "rawSize": 341989,
+          "path": "tasks/task12/TASK 12 SL program for record.docx",
+          "content": null
+        },
+        {
+          "name": "Task 12(getuser).php",
+          "type": "php",
+          "extension": "php",
+          "size": "1.1 KB",
+          "rawSize": 1083,
+          "path": "tasks/task12/Task 12(getuser).php",
+          "content": "<?php\r\n\r\n// Connect to MySQL database\r\n$conn = mysqli_connect(\"localhost\", \"root\", \"\", \"ajax_db\");\r\n\r\n// Check database connection\r\nif (!$conn) {\r\n    die(\"Connection failed\");\r\n}\r\n\r\n// Get selected user ID\r\n$id = intval($_GET['id']);\r\n\r\n// SQL query to retrieve user information\r\n$sql = \"SELECT * FROM users WHERE id = $id\";\r\n\r\n// Execute query\r\n$result = mysqli_query($conn, $sql);\r\n\r\n// Display user details in table\r\nif (mysqli_num_rows($result) > 0) {\r\n\r\n    echo \"<table>\";\r\n\r\n    echo \"<tr>\r\n            <th>Username</th>\r\n            <th>Phone</th>\r\n            <th>Email ID</th>\r\n            <th>Place</th>\r\n          </tr>\";\r\n\r\n    while ($row = mysqli_fetch_assoc($result)) {\r\n\r\n        echo \"<tr>\";\r\n\r\n        echo \"<td>\" .($row['username']) . \"</td>\";\r\n\r\n        echo \"<td>\" .($row['phone']) . \"</td>\";\r\n\r\n        echo \"<td>\" .($row['email']) . \"</td>\";\r\n\r\n        echo \"<td>\" .($row['place']) . \"</td>\";\r\n\r\n        echo \"</tr>\";\r\n\r\n    }\r\n\r\n    echo \"</table>\";\r\n\r\n} else {\r\n\r\n    echo \"No user found\";\r\n\r\n}\r\n\r\n// Close database connection\r\nmysqli_close($conn);\r\n\r\n?>\r\n"
+        },
+        {
+          "name": "task12.html",
+          "type": "html",
+          "extension": "html",
+          "size": "1.6 KB",
+          "rawSize": 1595,
+          "path": "tasks/task12/task12.html",
+          "content": "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n    <title>AJAX Database Example</title>\r\n\r\n    <style>\r\n        table, th, td {\r\n            border: 1px solid black;\r\n            border-collapse: collapse;\r\n            padding: 8px;\r\n        }\r\n    </style>\r\n\r\n</head>\r\n<body>\r\n\r\n    <h2>AJAX - Retrieve User Information</h2>\r\n\r\n    <!-- Dropdown list of names -->\r\n    <select id=\"username\" onchange=\"showUser(this.value)\">\r\n\r\n        <option value=\"\">Select a user</option>\r\n        <option value=\"1\">Alice</option>\r\n        <option value=\"2\">Bob</option>\r\n        <option value=\"3\">Charlie</option>\r\n        <option value=\"4\">David</option>\r\n\r\n    </select>\r\n\r\n    <br><br>\r\n\r\n    <!-- Display user information -->\r\n    <div id=\"result\">\r\n        User information will be displayed here.\r\n    </div>\r\n\r\n    <script>\r\n\r\n    function showUser(id) {\r\n\r\n        // Check whether user is selected\r\n        if (id == \"\") {\r\n            document.getElementById(\"result\").innerHTML = \"\";\r\n            return;\r\n        }\r\n\r\n        // Create XMLHttpRequest object\r\n        var xhttp = new XMLHttpRequest();\r\n\r\n        // Receive response from PHP\r\n        xhttp.onreadystatechange = function() {\r\n\r\n            if (this.readyState == 4 && this.status == 200) {\r\n\r\n                // Display user information\r\n                document.getElementById(\"result\").innerHTML =\r\n                    this.responseText;\r\n\r\n            }\r\n\r\n        };\r\n\r\n        // Send GET request to PHP file\r\n        xhttp.open(\"GET\", \"getuser.php?id=\" + id, true);\r\n\r\n        xhttp.send();\r\n\r\n    }\r\n\r\n    </script>\r\n\r\n</body>\r\n</html>\r\n"
+        }
+      ]
+    }
+  ],
+  "vivaCategories": [
+    {
+      "languageId": "html",
+      "languageName": "HTML",
+      "categoryBadge": "Markup & DOM",
+      "icon": "🌐",
+      "description": "HyperText Markup Language fundamentals, HTML5 semantic structure, forms, and browser APIs.",
+      "questions": [
+        {
+          "q": "What is the difference between standard HTML and HTML5 semantic elements?",
+          "a": "HTML5 introduced semantic tags (such as <header>, <nav>, <article>, <section>, <aside>, and <footer>) to clearly describe the meaning of content to both browsers and developers.\nUnlike generic <div> and <span> tags that provide zero structural context, semantic elements enhance website accessibility for screen readers and search engine crawlers.\nHTML5 eliminated complex DTD declarations, simplifying the document type preamble to just <!DOCTYPE html>.\nIt natively integrates audio and video playback (<audio>, <video>) without requiring third-party plugins like Adobe Flash.\nAdditionally, HTML5 introduced advanced form controls (type=\"email\", type=\"date\", required attributes) for client-side evaluation.\nIt also provides persistent client-side storage mechanisms like localStorage and sessionStorage, replacing reliance on cookies.\nThese structural enhancements create cleaner, maintainable markup and significantly improve web standards compliance."
+        },
+        {
+          "q": "Explain the purpose of HTML forms, GET vs POST submission methods, and the enctype attribute.",
+          "a": "HTML forms (<form>) act as interactive containers designed to collect user input and transmit data to a server-side endpoint.\nThe HTTP GET method appends form data as key-value pairs directly onto the URL query string (e.g., process.php?id=1&name=Alice).\nBecause GET exposes data in the address bar and browser history, it has length limits (~2048 chars) and must never be used for sensitive credentials.\nThe HTTP POST method packages data within the HTTP request body, keeping parameters invisible in the URL and accommodating large payloads.\nWhen a form handles file uploads (<input type=\"file\">), the enctype=\"multipart/form-data\" attribute is strictly required.\nWithout multipart/form-data, the browser transmits only the file name as standard ASCII text via application/x-www-form-urlencoded.\nUsing the proper method and encoding ensures secure, robust server-side processing across stateless web transactions."
+        },
+        {
+          "q": "What is the HTML DOM (Document Object Model) and how is the node hierarchy structured?",
+          "a": "The Document Object Model (DOM) is an object-oriented programmatic interface that represents an HTML document as a structured logical tree.\nWhen a web browser parses an HTML file, it transforms each HTML tag, attribute, and text snippet into corresponding node objects in memory.\nAt the pinnacle of this tree resides the window object, whose immediate child is the document node representing the web page.\nBelow the document lies the root element (<html>), which branches into the <head> and <body> parent element nodes.\nChild nodes inherit contextual relationships (parent, child, sibling) that allow scripting languages like JavaScript to inspect and mutate the tree.\nDevelopers access and alter these nodes using methods such as getElementById(), querySelector(), and appendChild().\nThis dynamic tree structure forms the fundamental foundation for interactive, responsive web applications and Dynamic HTML (DHTML)."
+        },
+        {
+          "q": "What are HTML5 Web Storage APIs (localStorage vs sessionStorage) and how do they differ from Cookies?",
+          "a": "HTML5 Web Storage provides standardized client-side key-value persistence mechanisms offering approximately 5MB of storage per origin.\nlocalStorage stores data permanently across browser restarts with no expiration date, remaining until explicitly wiped by script or user action.\nsessionStorage maintains data strictly for the lifespan of a single browser tab session and is wiped immediately when the tab closes.\nIn contrast, HTTP Cookies are limited to a restrictive 4KB capacity and are automatically sent to the server with every HTTP header.\nThis automatic transmission of cookies adds unnecessary network overhead, whereas Web Storage stays strictly localized within the browser.\nData stored in Web Storage is easily manipulated through intuitive JavaScript methods: setItem(), getItem(), removeItem(), and clear().\nWeb Storage only accepts string formats, requiring objects and arrays to be serialized and deserialized using JSON.stringify() and JSON.parse()."
+        },
+        {
+          "q": "Compare HTML5 Canvas and SVG (Scalable Vector Graphics) with their rendering mechanisms.",
+          "a": "HTML5 <canvas> is a resolution-dependent, raster-based drawing surface manipulated entirely through programmatic JavaScript APIs (CanvasRenderingContext2D).\nCanvas draws graphics pixel-by-pixel; once a shape or shape stroke is drawn, the browser forgets its geometry and treats it solely as raw bitmap pixels.\nBecause canvas does not maintain individual DOM nodes for drawn objects, it offers exceptional performance for high-frame-rate games and real-time simulations.\nConversely, SVG is an XML-based vector graphics format where every shape (<circle>, <rect>, <path>) exists as a distinct DOM node in the tree.\nSVG maintains pristine visual clarity at any resolution or zoom level without pixelation, making it ideal for scalable UI icons, charts, and logos.\nBecause SVG elements are standard DOM nodes, they can be styled with CSS and bound directly to JavaScript event listeners like onclick.\nDevelopers choose Canvas for pixel-intensive animations and SVG for resolution-independent, interactive user interface vector components."
+        },
+        {
+          "q": "What is the difference between <div> and <span>, and block-level vs inline elements?",
+          "a": "Block-level elements (such as <div>, <p>, <h1>–<h6>, <table>, and <section>) always begin on a new line and consume the full available container width.\nThey respect top, bottom, left, and right margin and padding, and their explicit width and height properties can be customized via CSS.\nInline elements (such as <span>, <a>, <strong>, <em>, and <code>) do not break onto a new line and occupy only the space bound by their text content.\nInline elements ignore vertical margin-top and margin-bottom as well as explicit width and height declarations unless transformed by CSS.\nThe <div> tag serves as a generic, non-semantic block-level container ideal for grouping layout components and applying structural styles.\nThe <span> tag serves as an inline container designed for styling specific words or text phrases inside a block-level paragraph or heading.\nDevelopers can alter these default browser behaviors using the CSS display property (block, inline, inline-block, or none)."
+        },
+        {
+          "q": "How do viewport meta tags and character encoding declarations impact web page rendering?",
+          "a": "The <meta charset=\"UTF-8\"> tag informs the browser parser which character encoding scheme to use for decoding source bytes into glyphs.\nUTF-8 covers virtually all human languages and special symbols, preventing mojibake character corruption and security exploits based on encoding sniffing.\nThe <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> tag is indispensable for mobile-first Responsive Web Design.\nBy default, mobile browsers render desktop pages on a virtual 980px viewport and zoom out, rendering text illegibly small.\nSetting width=device-width instructs the browser to align the screen width with the device's physical hardware pixels.\nThe initial-scale=1.0 parameter establishes a 1:1 relationship between CSS pixels and device-independent pixels upon initial page load.\nTogether, these foundational meta tags guarantee accurate text representation, proper media query breakpoints, and optimal responsive usability."
+        }
+      ]
+    },
+    {
+      "languageId": "css",
+      "languageName": "CSS",
+      "categoryBadge": "Styling & Layout",
+      "icon": "🎨",
+      "description": "Cascading Style Sheets, Box Model, Flexbox, Grid, Specificity, and responsive animations.",
+      "questions": [
+        {
+          "q": "Explain the CSS Box Model in detail and the impact of the box-sizing: border-box property.",
+          "a": "The CSS Box Model is the foundational layout architecture governing how elements calculate their spatial dimensions on a webpage.\nEvery HTML box comprises four concentric layers: Content (text/media), Padding (inner clearance), Border (outer edge), and Margin (external separation).\nUnder the default box-sizing: content-box, an element's declared width and height apply exclusively to the inner content area.\nAdding padding or borders inflates the rendered element size beyond the declared width, frequently causing unintended layout overflow.\nApplying box-sizing: border-box changes this calculation so that padding and border thicknesses are absorbed inside the declared width and height.\nIf an element is assigned width: 300px with padding: 20px and border: 2px, its total rendered width remains strictly 300px.\nModern CSS best practice dictates using *, *::before, *::after { box-sizing: border-box; } to eliminate layout calculation friction."
+        },
+        {
+          "q": "What is the difference between CSS Flexbox and CSS Grid, and when should each layout model be used?",
+          "a": "CSS Flexbox is a one-dimensional layout model designed to distribute space and align items along either a single row OR a single column.\nFlexbox excels at interface components such as navigation bars, button clusters, form fields, and dynamic card rows that need even spacing.\nIt manages element positioning through properties like justify-content (main-axis alignment) and align-items (cross-axis alignment).\nCSS Grid is a two-dimensional layout model capable of coordinating items simultaneously across rows AND columns.\nGrid allows designers to divide a parent container into structured tracks using grid-template-columns, grid-template-rows, and named grid-areas.\nGrid is best suited for holistic page structures, multi-column dashboard layouts, and complex overlapping element compositions.\nIn professional web engineering, Flexbox and Grid are frequently combined, with Grid structuring page sections and Flexbox organizing inner items."
+        },
+        {
+          "q": "Explain CSS Specificity rules, cascading order, and how !important alters style precedence.",
+          "a": "CSS Specificity is the algorithmic scoring system browsers employ to determine which CSS rule takes precedence when multiple rules target one element.\nThe specificity hierarchy is evaluated in four distinct tiers: Inline Styles (1000), ID Selectors (100), Classes/Attributes/Pseudo-classes (10), and Elements (1).\nUniversal selectors (*), combinators (+, >, ~), and :where() carry a specificity score of 0.\nWhen conflicting declarations have identical specificity, the Cascade rule dictates that the declaration declared latest in the stylesheet wins.\nAppending the !important flag bypasses normal specificity, giving the property paramount priority over all author-level rules.\nOverusing !important breaks the natural cascading flow of CSS and makes future stylesheet debugging and maintenance extremely difficult.\nWriting modular, low-specificity classes (like BEM methodology or utility classes) ensures clean, predictable stylesheet maintainability."
+        },
+        {
+          "q": "What are the differences between display: none, visibility: hidden, and opacity: 0?",
+          "a": "display: none completely removes an element from the normal document flow; it takes up zero space and triggers browser layout reflow.\nSubordinate elements and child nodes inside a hidden element are completely invisible, and screen readers will ignore the subtree.\nvisibility: hidden hides the element visually, but the element preserves its original geometry, width, height, and position in the document layout.\nChild elements hidden by visibility: hidden can be individually revealed if explicitly overwritten with visibility: visible.\nopacity: 0 adjusts element alpha transparency to 0%, rendering it invisible while retaining its layout footprint and event listeners.\nUnlike display: none, an element with opacity: 0 remains interactive, meaning user clicks, focus, and hover events will still fire.\nChoosing the right technique depends on whether layout space must be preserved and whether user interaction or transitions are desired."
+        },
+        {
+          "q": "How do CSS position values (static, relative, absolute, fixed, sticky) determine element placement?",
+          "a": "static is the default positioning mode where elements flow naturally according to the normal document structure, ignoring top/left/right/bottom/z-index.\nrelative positions an element relative to its normal position in the document flow without removing its original occupied space.\nabsolute removes the element from the document flow and positions it relative to its closest ancestor having non-static positioning.\nfixed detaches the element from the document flow and locks its coordinates relative to the browser viewport, keeping it stationary during scrolling.\nsticky acts as a hybrid: the element behaves as relative until the viewport scroll reaches a specified offset, whereupon it sticks like fixed.\nBoth absolute and fixed create their own stacking contexts and permit layered element ordering via the z-index property.\nUnderstanding these positioning modes is essential for implementing modal dialogs, fixed toolbars, sticky headers, and dropdown menus."
+        },
+        {
+          "q": "Explain CSS pseudo-classes (:hover, :nth-child(), :focus) versus pseudo-elements (::before, ::after).",
+          "a": "A CSS pseudo-class targets an existing element based on its dynamic state, user interaction, or positional hierarchy in the DOM tree.\nCommon examples include :hover (cursor hovering), :focus (keyboard or input focus), :active (mouse click active), and :nth-child(n).\nPseudo-classes are designated with a single colon prefix (:) and do not create new DOM elements; they merely restyle existing elements.\nIn contrast, a CSS pseudo-element creates an abstract, cosmetic pseudo-DOM node that does not physically exist in the HTML markup.\nStandard pseudo-elements include ::before and ::after, which require the content: \"\" property to inject cosmetic icons, badges, or overlays.\nOther pseudo-elements include ::first-letter, ::first-line, and ::selection for styling highlighted text selections.\nModern CSS uses double colons (::) to distinguish pseudo-elements from single-colon pseudo-classes, maintaining syntactic clarity."
+        },
+        {
+          "q": "How do CSS Media Queries enable responsive web design across multiple viewport break-points?",
+          "a": "CSS Media Queries allow developers to apply custom style rules conditionally based on device capabilities and viewport characteristics.\nThe syntax uses the @media rule coupled with media types (screen, print) and conditional feature expressions like min-width and max-width.\nA mobile-first strategy writes base styles for small screens and progressively enhances layout using @media (min-width: 768px) for tablets and 1024px for desktops.\nMedia queries can also detect device orientation (orientation: portrait or landscape) and display pixel density (min-resolution: 2dppx).\nModern browsers support user preference media queries like @media (prefers-color-scheme: dark) to automate dark theme switching.\nThey also support @media (prefers-reduced-motion: reduce) to disable heavy animations for users with vestibular or motion sensitivities.\nLeveraging fluid units (%, vw, rem) with well-chosen media query breakpoints ensures seamless responsive usability across devices."
+        }
+      ]
+    },
+    {
+      "languageId": "javascript",
+      "languageName": "JavaScript",
+      "categoryBadge": "Client Scripting",
+      "icon": "⚡",
+      "description": "Core ECMAScript concepts, Event Loop, Closures, Promises, DOM manipulation, and AJAX.",
+      "questions": [
+        {
+          "q": "What are the differences between var, let, and const in terms of scoping, re-declaration, and hoisting?",
+          "a": "var is function-scoped (or globally scoped if declared outside a function) and is completely oblivious to block boundaries like if or for loops.\nVariables declared with var are hoisted to the top of their enclosing scope and initialized with undefined, allowing premature access without errors.\nvar permits re-declaration within the same scope, which often leads to accidental variable shadowing and difficult runtime bugs.\nlet and const were introduced in ES6 and are strictly block-scoped, existing exclusively within the enclosing {} curly braces.\nWhile let and const identifiers are hoisted, they remain uninitialized in the \"Temporal Dead Zone\" (TDZ); accessing them before declaration throws a ReferenceError.\nlet allows variable reassignment, making it ideal for loop iterators and mutable states, whereas const strictly prevents reassignment after initialization.\nHowever, const objects and arrays remain internally mutable; only the memory reference binding itself is protected from reassignment."
+        },
+        {
+          "q": "Explain the JavaScript Event Loop, Call Stack, Callback Queue, and Microtask Queue.",
+          "a": "JavaScript is a single-threaded execution language with a single Call Stack that processes one synchronous task at a time.\nWhen asynchronous tasks (like setTimeout, DOM events, or AJAX) execute, browser Web APIs handle them concurrently in the background.\nUpon completion, the Web API pushes timer and event callbacks into the Macrotask (Callback) Queue.\nPromises, async/await, and queueMicrotask() push their resolution callbacks into the higher-priority Microtask Queue.\nThe Event Loop continuously inspects whether the Call Stack is empty; if and only if the stack is clear, it dequeues tasks.\nThe Event Loop drains all pending microtasks in the Microtask Queue before yielding execution to process the next macrotask.\nThis event-driven, non-blocking architecture allows JavaScript to handle thousands of concurrent operations without locking the user interface."
+        },
+        {
+          "q": "What are Closures in JavaScript and what are their practical real-world applications?",
+          "a": "A closure is the combination of a function bundled together with references to its surrounding lexical environment.\nIn JavaScript, an inner function retains permanent access to the variables, arguments, and scope of its outer enclosing function even after the outer function has returned.\nClosures are created automatically whenever a function is defined inside another function and references outer variables.\nA primary practical application of closures is data encapsulation and information hiding, mimicking private object variables in module patterns.\nClosures power function currying and partial application, allowing functions to be pre-configured with reusable arguments.\nThey are widely used in event handlers, asynchronous callbacks, and timer functions (setTimeout) to retain state across execution cycles.\nHowever, unreleased closures can retain large object references in memory, so developers must avoid unintended memory leaks in long-lived applications."
+        },
+        {
+          "q": "Explain the difference between synchronous code, Callbacks, Promises, and async/await.",
+          "a": "Synchronous code executes sequentially from top to bottom, blocking subsequent operations until the current instruction finishes executing.\nCallbacks were the original mechanism for asynchronous programming, passing a function as an argument to be invoked when an async task finished.\nRelying on nested callbacks for interdependent async operations led to unmaintainable, deeply indented code known as \"Callback Hell\".\nES6 introduced Promises, objects representing the eventual completion or failure of an asynchronous operation (pending, fulfilled, rejected).\nPromises streamline error handling and sequential chaining through .then(), .catch(), and .finally() methods.\nES8 introduced async and await, syntactic sugar built on top of Promises that allows asynchronous code to read like synchronous statements.\nFunctions designated with async always return a Promise, and await pauses execution until the Promise settles, making error handling straightforward with try/catch."
+        },
+        {
+          "q": "What is Event Bubbling, Event Capturing, and how does Event Delegation optimize DOM listeners?",
+          "a": "When an event occurs on a DOM element, the browser executes a three-phase event dispatch cycle: Capturing, Target, and Bubbling.\nDuring Event Capturing (Trickling), the event descends from the top window object down through ancestors to the target element.\nDuring Event Bubbling (the default mode), the event triggers on the innermost target element and bubbles upwards through parent ancestor nodes.\nDevelopers can halt bubbling propagation using event.stopPropagation() or cancel default browser behaviors via event.preventDefault().\nEvent Delegation is a high-performance optimization pattern that leverages event bubbling to attach a single event listener to a common parent element.\nInstead of binding hundreds of individual listeners to list items (<li>), a single listener on the parent (<ul>) inspects event.target.\nThis technique dramatically reduces memory consumption, simplifies cleanup, and automatically handles dynamically inserted DOM nodes without re-binding."
+        },
+        {
+          "q": "Explain the differences between == (abstract equality) and === (strict equality) with type coercion.",
+          "a": "The double equals operator (==) performs loose or abstract equality comparison, comparing values after performing automatic type coercion if types differ.\nWhen evaluating operands of different types, JavaScript converts them according to complex ECMA specification rules (e.g., '5' == 5 evaluates to true).\nLoose comparison produces well-known edge cases: 0 == false, \"\" == false, and null == undefined all evaluate to true, causing subtle bugs.\nThe triple equals operator (===) performs strict equality comparison without executing any type coercion.\nUnder strict equality, if the two operands have different data types (such as string '5' and number 5), the expression immediately returns false.\nStrict equality is faster and predictable because it checks both data type and value identity without background conversion overhead.\nIn modern JavaScript engineering, using === (and !==) is standard best practice to enforce type safety and eliminate coercion pitfalls."
+        },
+        {
+          "q": "How does AJAX and the XMLHttpRequest / fetch() API work to enable asynchronous data exchange?",
+          "a": "AJAX (Asynchronous JavaScript and XML) is a web development paradigm that enables web applications to send and retrieve data asynchronously in the background.\nBy decoupling data exchange from browser navigation, AJAX updates specific segments of a webpage dynamically without triggering a full page reload.\nThe classic AJAX implementation utilizes the XMLHttpRequest (XHR) object, configuring request type, URL, and monitoring readyState and status.\nWhen xhttp.readyState === 4 (done) and xhttp.status === 200 (OK), the response payload is read from responseText or responseXML.\nModern applications prefer the Promise-based fetch() API, which provides a cleaner, cleaner syntax for executing HTTP requests.\nAJAX payloads typically utilize JSON (JavaScript Object Notation) due to its lightweight syntax and seamless parsing via JSON.parse().\nAJAX serves as the fundamental engine behind dynamic search auto-complete, infinite scrolling, real-time dashboards, and single-page applications."
+        }
+      ]
+    },
+    {
+      "languageId": "xml",
+      "languageName": "XML",
+      "categoryBadge": "Data Interchange",
+      "icon": "📄",
+      "description": "Extensible Markup Language, DTD validation, XML Schema (XSD), XSLT transformations, and XPath.",
+      "questions": [
+        {
+          "q": "What is XML (Extensible Markup Language) and what are the core rules for a 'Well-Formed' XML document?",
+          "a": "XML (Extensible Markup Language) is a platform-independent, text-based meta-markup language designed to store, structure, and transport data.\nUnlike HTML, which focuses on presenting data with predefined tags, XML has no predefined tags and is designed purely to describe data semantics.\nFor an XML document to be considered \"Well-Formed\", it must adhere strictly to syntax rules defined by the W3C specification.\nFirst, every XML document must contain exactly one single root element that encloses all other child elements in a strict hierarchy.\nSecond, all tags are case-sensitive and every opened element must have a corresponding closing tag (e.g., <name> must close with </name>).\nThird, elements must be cleanly nested without overlapping (e.g., <b><i>text</i></b> is valid, but <b><i>text</b></i> is malformed).\nFinally, all attribute values must be enclosed in quotes (\"value\" or 'value'), and special characters must be escaped using entities like &amp; and &lt;."
+        },
+        {
+          "q": "What is a Document Type Definition (DTD) and how does Internal DTD differ from External DTD?",
+          "a": "A Document Type Definition (DTD) defines the legal building blocks, structural grammar, and allowable elements and attributes of an XML document.\nA DTD validates whether an XML instance document conforms to expected organizational hierarchies, verifying tag sequences, cardinalities, and attributes.\nAn Internal DTD is declared directly within the XML document file inside the <!DOCTYPE rootName [...]> block preamble.\nInternal DTDs are convenient for standalone, single-file XML configurations where rules do not need to be shared across multiple documents.\nAn External DTD is written in a dedicated separate file (typically ending in .dtd) and referenced via SYSTEM or PUBLIC identifiers.\nExternal DTDs allow multiple distinct XML documents to reference and adhere to a single standardized structural schema across an enterprise.\nIf an XML document satisfies all Well-Formed syntax rules and satisfies its referenced DTD grammar, it is classified as \"Valid XML\"."
+        },
+        {
+          "q": "Explain XML Schema Definition (XSD) and why it is superior to traditional DTDs for data validation.",
+          "a": "XML Schema Definition (XSD) is a W3C recommendation for specifying the structural constraints, data types, and relationships of XML documents.\nUnlike DTDs, which use an obsolete idiosyncratic syntax, XSD documents are written using standard XML syntax, allowing them to be parsed by XML parsers.\nXSD introduces rich built-in data types (such as xs:integer, xs:decimal, xs:date, xs:boolean, and xs:string) that are absent in DTDs.\nIt supports custom data typing using simple types, complex types, and restriction facets like xs:pattern (regular expressions) and xs:minInclusive.\nXSD allows developers to enforce precise element occurrence limits using numeric minOccurs and maxOccurs attributes rather than basic regex tokens (*, +, ?).\nFurthermore, XSD provides comprehensive native support for XML Namespaces, preventing element naming collisions across integrated vocabularies.\nBecause of these advanced typing, validation, and namespace capabilities, modern enterprise systems have almost universally replaced DTD with XSD."
+        },
+        {
+          "q": "What is an XML Namespace (xmlns) and how does it prevent element name collisions in combined vocabularies?",
+          "a": "An XML Namespace is a qualifying mechanism used to provide uniquely named elements and attributes within an XML document.\nWhen combining multiple XML vocabularies from different domains into a single document, identical tag names (like <table> or <title>) inevitably clash.\nNamespaces solve this naming collision by associating element names with a globally unique Uniform Resource Identifier (URI).\nA namespace is declared using the reserved xmlns attribute, either with a prefix (e.g., xmlns:bk=\"http://library.org/books\") or as a default namespace.\nOnce declared, elements are prefixed (e.g., <bk:title>) to associate them explicitly with their originating vocabulary and schema.\nThe URI string is used solely as a globally unique identifier; the XML parser does not actually need to fetch or download anything from that web address.\nNamespaces ensure seamless data interchange in enterprise protocols like SOAP web services, SVG embeds, and XSD schema definitions."
+        },
+        {
+          "q": "Explain the differences between DOM Parser and SAX Parser for reading and processing XML files.",
+          "a": "The Document Object Model (DOM) Parser is a tree-based parser that reads an entire XML document into system memory before processing begins.\nDOM constructs a complete hierarchical object tree in memory, allowing developers random access to read, traverse, and modify any node in any direction.\nHowever, because DOM creates objects for every node, it consumes extensive memory (typically 3 to 10 times the original file size), making it unfit for massive files.\nThe Simple API for XML (SAX) Parser is an event-driven, push-based parser that reads XML documents sequentially as a continuous stream.\nSAX fires callback events (such as startElement, endElement, and characters) as it scans through tags from top to bottom.\nBecause SAX does not store the XML document in memory, it has an exceptionally tiny memory footprint and can parse gigabyte-sized files rapidly.\nDevelopers choose DOM when dynamic tree manipulation or bidirectional traversal is required, and SAX when memory-efficient read-only streaming is needed."
+        },
+        {
+          "q": "What is XSLT (Extensible Stylesheet Language Transformations) and how does it transform XML into HTML?",
+          "a": "XSLT (Extensible Stylesheet Language Transformations) is a declarative, XML-based language used for transforming XML documents into other formats like HTML, CSV, or XML.\nAn XSLT stylesheet comprises template rules (<xsl:template match=\"...\">) that describe how matching source XML elements should be formatted.\nAn XSLT processor matches elements from the input XML document using XPath expressions and writes formatted markup into the output tree.\nXSLT provides iterative looping with <xsl:for-each>, data sorting with <xsl:sort>, and conditional rendering with <xsl:if> and <xsl:choose>.\nSpecific element text values are extracted and embedded into output markup using the <xsl:value-of select=\"...\"/> directive.\nTransformations can execute either server-side (using PHP's XSLTProcessor) or client-side by referencing the stylesheet in XML via <?xml-stylesheet?>.\nXSLT enforces clean separation of concerns by separating raw structured XML data from its visual presentation logic."
+        },
+        {
+          "q": "What is XPath and how are location paths and expressions used to query nodes within an XML document?",
+          "a": "XPath (XML Path Language) is a specialized query language designed to navigate the node hierarchy and extract data from XML documents.\nXPath models an XML document as a tree of nodes (element nodes, attribute nodes, text nodes, and root nodes) and queries them using path expressions.\nA forward slash / represents selection from the root node, whereas a double slash // selects matching nodes anywhere in the document regardless of depth.\nAttribute nodes are targeted using the @ symbol prefix (e.g., //book[@category='Programming'] selects programming books).\nXPath supports predicates enclosed in square brackets [] to filter nodes based on index or criteria (e.g., /library/book[1] selects the first book).\nIt also includes built-in functions for calculating metrics, such as count(), sum(), string-length(), and contains().\nXPath serves as the query language powering XSLT transformations, XQuery databases, and automated web scraping and testing frameworks."
+        }
+      ]
+    },
+    {
+      "languageId": "php",
+      "languageName": "PHP",
+      "categoryBadge": "Server Scripting",
+      "icon": "🐘",
+      "description": "Server-side web programming, superglobals, state management, MySQLi database integration, and security.",
+      "questions": [
+        {
+          "q": "What is PHP and how does server-side execution differ from client-side JavaScript execution?",
+          "a": "PHP (Hypertext Preprocessor) is an open-source, interpreted server-side scripting language primarily engineered for dynamic web application development.\nIn PHP's server-side paradigm, scripts execute exclusively on the web hosting server (such as Apache or Nginx) inside the PHP runtime environment.\nWhen a client requests a .php file, the server interprets the PHP code, interacts with databases, and renders pure HTML/CSS/JS back to the browser.\nBecause the server executes all logic before sending the response, the client never sees the underlying PHP source code, protecting server business logic.\nIn contrast, client-side JavaScript runs inside the user's browser, executing directly on the user's local CPU to manipulate the live DOM.\nClient-side scripts handle instantaneous UI transitions and animations without waiting for server network latency.\nA standard web application combines both: PHP handles secure authentication, file operations, and database persistence, while JavaScript drives client-side interactivity."
+        },
+        {
+          "q": "Explain the difference between $_GET and $_POST superglobals, and when to use each for form handling.",
+          "a": "Both $_GET and $_POST are PHP associative array superglobals used to collect form data submitted via HTTP methods.\n$_GET collects parameters transmitted in the URL query string, making parameters completely visible to users in the browser address bar.\nBecause URLs are cached and logged in server history, $_GET has a data length limit (~2048 characters) and must never carry sensitive passwords or tokens.\n$_GET is designed for idempotent, read-only requests such as search filters, pagination (page=2), and bookmarkable views.\n$_POST collects parameters packaged invisibly inside the HTTP request payload body, leaving the browser address bar clean and unaffected.\n$_POST has virtually no size restrictions (configurable in php.ini via post_max_size), making it essential for secure form submissions and file uploads.\nDevelopers use $_POST whenever modifying server state (user registrations, payments, logins) and $_GET when querying or fetching public resources."
+        },
+        {
+          "q": "How do PHP Sessions (session_start(), $_SESSION) and HTTP Cookies (setcookie()) manage stateless HTTP?",
+          "a": "Because the HTTP protocol is inherently stateless, servers do not natively remember individual users between consecutive web page requests.\nHTTP Cookies are small text tokens stored directly in the user's browser using PHP's setcookie(\"name\", \"val\", $expire, $path) function.\nCookies are automatically transmitted back to the server inside HTTP request headers with every subsequent page visit until expiration.\nPHP Sessions store sensitive user state securely on the server machine, using a unique random session identifier (e.g., PHPSESSID).\nCalling session_start() at the top of a PHP script creates or restores the session, issuing a temporary cookie containing solely this session ID.\nWhen subsequent requests arrive, PHP matches the incoming ID to its server-side session file, populating the $_SESSION associative array with user data.\nSessions are ideal for sensitive authentication and shopping carts, whereas Cookies are ideal for non-sensitive client preferences like UI themes."
+        },
+        {
+          "q": "Explain the difference between MySQLi (procedural & object-oriented) and PDO for PHP database interactions.",
+          "a": "MySQLi (MySQL Improved) is a database driver developed exclusively to interact with MySQL and MariaDB databases in PHP applications.\nMySQLi supports dual programming paradigms: procedural programming (e.g., mysqli_connect(), mysqli_query()) and object-oriented syntax ($mysqli->query()).\nMySQLi is straightforward for university lab curricula and beginner projects, but it is strictly locked to MySQL and cannot connect to other database engines.\nPHP Data Objects (PDO) is a database abstraction layer that provides a unified, consistent data-access interface for 12 different database management systems.\nWith PDO, switching a production backend from MySQL to PostgreSQL, SQLite, or Oracle requires modifying only the connection DSN string.\nPDO supports named parameters in prepared statements (e.g., :email), whereas MySQLi supports only positional question mark placeholders (?).\nBoth modern MySQLi and PDO fully support prepared statements, transactions, and SSL encryption, making both secure choices when parameterized correctly."
+        },
+        {
+          "q": "How do SQL Injection attacks occur in PHP applications and how do Prepared Statements prevent them?",
+          "a": "SQL Injection occurs when untrusted user input is directly concatenated into a dynamic SQL query string without proper sanitization.\nAn attacker can input malicious SQL fragments (e.g., ' OR '1'='1) to alter query logic, bypass authentication, or drop database tables.\nFunctions like addslashes() or manual escaping can still leave vulnerabilities under edge cases like multi-byte character encodings.\nPrepared Statements prevent SQL Injection fundamentally by separating the SQL query template structure from the input parameters.\nWhen a prepared statement is created, the database pre-compiles the query template containing parameter placeholders (? or :name).\nUser data parameters are transmitted separately to the database engine in a distinct communication protocol packet.\nBecause the query structure has already been compiled, the database engine treats all bound parameters strictly as literal scalar values, never as executable SQL code."
+        },
+        {
+          "q": "Explain file uploading in PHP using $_FILES, move_uploaded_file(), and critical security validations.",
+          "a": "File uploading in PHP requires an HTML form with method=\"POST\" and enctype=\"multipart/form-data\" to transmit binary streams.\nWhen uploaded, PHP stores the incoming file in a temporary server directory and populates the $_FILES['input_name'] multidimensional array.\nThis array contains vital metadata: name (original filename), type (client-provided MIME), tmp_name (temp location), error, and size.\nDevelopers must verify that error === UPLOAD_ERR_OK and confirm file size falls within safety limits before proceeding.\nCrucially, never trust $_FILES['file']['type']; always inspect MIME types securely on the server using finfo_file(finfo_open(FILEINFO_MIME_TYPE), $tmp).\nWhitelisting extensions (pathinfo($name, PATHINFO_EXTENSION)) and generating randomized unique filenames (uniqid()) prevents script overwrite attacks.\nFinally, move_uploaded_file($tmp_name, $destination) safely moves the file from the temporary directory to its permanent storage folder."
+        },
+        {
+          "q": "What is the difference between include, require, include_once, and require_once in PHP?",
+          "a": "These four language constructs are used in PHP to import and execute the code of an external PHP file into the current running script.\ninclude attempts to import the designated file; if the file is missing or contains errors, it emits a non-fatal E_WARNING and continues execution.\nrequire also attempts to import the file; however, if the file cannot be located, it triggers a fatal E_COMPILE_ERROR and halts script execution immediately.\nDevelopers use require for mission-critical core files like database credentials, helper functions, and configurations that the application cannot function without.\nThe include_once and require_once variants verify whether the specified file has already been loaded earlier during the current request execution.\nIf the file has already been loaded, PHP silently ignores the duplicate statement, preventing fatal function and class re-declaration errors.\nUsing require_once is standard practice for foundational libraries and classes, while include is preferred for optional UI templates and footers."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,692 @@
+/**
+ * Scripting Languages (SL) University Lab Portal
+ * Minimalist, Modern Monochrome Visual Direction (Black, White, Grey, Silver)
+ * Pure Vanilla JavaScript implementation with Fuse.js and Prism.js.
+ * Fully client-side, zero backend dependencies.
+ */
+
+// Global State
+let labData = null;
+let fuseInstance = null;
+let currentFilter = 'all';
+let activeTask = null;
+let activeFile = null;
+let activeVivaCategory = 'all';
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    initApp();
+});
+
+/**
+ * Initialize application with data and event listeners
+ */
+async function initApp() {
+    try {
+        if (window.LAB_DATA) {
+            labData = window.LAB_DATA;
+        } else {
+            const res = await fetch('data.json');
+            labData = await res.json();
+        }
+
+        initFuse();
+        renderTasks(labData.tasks);
+        initVivaSection();
+        setupEventListeners();
+    } catch (err) {
+        console.error("Initialization error:", err);
+        const grid = document.getElementById('tasksGrid');
+        if (grid) {
+            grid.innerHTML = `
+                <div class="col-span-full py-8 text-center text-red-400 bg-slate-900 border border-slate-800 rounded p-4">
+                    <p class="font-bold">Error loading laboratory data.</p>
+                    <p class="text-xs text-slate-400 mt-1">Please ensure data.js or data.json is accessible.</p>
+                </div>
+            `;
+        }
+    }
+}
+
+/**
+ * Setup Fuse.js fuzzy search index
+ */
+function initFuse() {
+    if (!window.Fuse || !labData || !labData.tasks) return;
+
+    const options = {
+        includeScore: true,
+        threshold: 0.38,
+        ignoreLocation: true,
+        keys: [
+            { name: 'taskNumber', weight: 0.4 },
+            { name: 'id', weight: 0.3 },
+            { name: 'title', weight: 0.3 },
+            { name: 'tags', weight: 0.25 },
+            { name: 'question', weight: 0.2 },
+            { name: 'files.name', weight: 0.15 }
+        ]
+    };
+
+    fuseInstance = new Fuse(labData.tasks, options);
+}
+
+/**
+ * Render Lab Task Cards into the DOM with clean monochrome styling
+ */
+function renderTasks(taskList) {
+    const grid = document.getElementById('tasksGrid');
+    const countEl = document.getElementById('displayedCount');
+    const noResults = document.getElementById('noResultsState');
+
+    if (!grid) return;
+
+    if (countEl) countEl.innerText = taskList.length;
+
+    if (!taskList || taskList.length === 0) {
+        grid.innerHTML = '';
+        if (noResults) noResults.classList.remove('hidden');
+        return;
+    }
+
+    if (noResults) noResults.classList.add('hidden');
+
+    grid.innerHTML = taskList.map(task => {
+        // Find primary code file to copy directly
+        const primaryCodeFile = task.files.find(f => ['html', 'php', 'js', 'xml'].includes(f.type)) || task.files[0];
+        const primaryFileName = primaryCodeFile ? primaryCodeFile.name : 'code';
+
+        // Badges for files inside task
+        const fileBadges = task.files.map(f => {
+            let badgeClass = 'badge-' + (f.type || 'code');
+            return `<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-mono ${badgeClass}" title="${f.name} (${f.size})">${escapeHtml(f.name)}</span>`;
+        }).join(' ');
+
+        // Tags badges
+        const tagBadges = task.tags.map(t => {
+            return `<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-slate-300 border border-slate-700/80">${escapeHtml(t)}</span>`;
+        }).join(' ');
+
+        const isTask12 = task.taskNumber === 12;
+        const taskCardBorder = isTask12 ? 'border-slate-600 ring-1 ring-slate-600' : 'border-slate-800 hover:border-slate-700';
+
+        return `
+            <div class="bg-[#0f172a] ${taskCardBorder} rounded-xl p-5 flex flex-col justify-between transition-all duration-150 hover:-translate-y-0.5 group">
+                <div class="space-y-3">
+                    
+                    <!-- Card Top: Task Number, Title & Tags -->
+                    <div class="flex items-start justify-between gap-2">
+                        <div class="flex items-center gap-2">
+                            <span class="px-2.5 py-1 rounded bg-slate-800 text-white border border-slate-700 font-mono font-bold text-xs tracking-wider">
+                                TASK ${task.taskNumber}
+                            </span>
+                            ${isTask12 ? '<span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-600 text-[10px] font-bold">Populated & Tested</span>' : ''}
+                        </div>
+                        <span class="text-[11px] font-mono text-slate-400">${task.filesCount} files</span>
+                    </div>
+
+                    <!-- Title -->
+                    <h3 class="text-sm font-bold text-white group-hover:text-slate-200 transition-colors">
+                        ${escapeHtml(task.title)}
+                    </h3>
+
+                    <!-- Topic Tags -->
+                    <div class="flex flex-wrap gap-1">
+                        ${tagBadges}
+                    </div>
+
+                    <!-- Full Question Text -->
+                    <div class="pt-1">
+                        <p class="text-xs text-slate-300 leading-relaxed bg-[#090d16] p-3 rounded-lg border border-slate-800/80">
+                            ${escapeHtml(task.question)}
+                        </p>
+                    </div>
+
+                    <!-- Files Overview Chips -->
+                    <div class="pt-1 space-y-1">
+                        <div class="text-[11px] text-slate-400 font-medium">Task Assets:</div>
+                        <div class="flex flex-wrap gap-1.5 max-h-16 overflow-hidden">
+                            ${fileBadges}
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Three Main Actions: Download ZIP, View/Open Folder, Copy Code -->
+                <div class="pt-4 mt-4 border-t border-slate-800/80 flex items-center gap-2">
+                    <!-- 1. Download ZIP -->
+                    <a 
+                        href="${task.zipPath}" 
+                        download="task${task.taskNumber}.zip"
+                        class="flex-1 py-2 px-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white rounded text-xs font-medium flex items-center justify-center gap-1.5 transition-colors border border-slate-700 shadow-sm"
+                        title="Download /tasks/task${task.taskNumber}.zip directly"
+                    >
+                        <svg class="w-3.5 h-3.5 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                        <span>ZIP</span>
+                    </a>
+
+                    <!-- 2. View / Open Folder -->
+                    <button 
+                        onclick="openTaskModal(${task.taskNumber})"
+                        class="flex-1 py-2 px-2.5 bg-white hover:bg-slate-200 text-slate-950 rounded text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors shadow-sm"
+                        title="Open file switcher to preview code & assets in browser"
+                    >
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                        <span>View Folder</span>
+                    </button>
+
+                    <!-- 3. Copy Code Button -->
+                    <button 
+                        onclick="quickCopyTaskCode(${task.taskNumber})"
+                        class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded text-xs transition-colors border border-slate-700"
+                        title="Copy code of primary file (${primaryFileName})"
+                    >
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+                    </button>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+/**
+ * Handle Search Input & Filter logic
+ */
+function handleSearch(query) {
+    if (!labData || !labData.tasks) return;
+
+    const trimmed = query.trim();
+    let results = labData.tasks;
+
+    if (trimmed !== '') {
+        if (fuseInstance) {
+            const fuseResults = fuseInstance.search(trimmed);
+            results = fuseResults.map(r => r.item);
+        } else {
+            const lower = trimmed.toLowerCase();
+            results = labData.tasks.filter(t => 
+                t.title.toLowerCase().includes(lower) ||
+                t.question.toLowerCase().includes(lower) ||
+                t.tags.some(tag => tag.toLowerCase().includes(lower)) ||
+                `task ${t.taskNumber}`.includes(lower) ||
+                `${t.taskNumber}` === lower
+            );
+        }
+    }
+
+    if (currentFilter !== 'all') {
+        results = results.filter(task => {
+            const filterLower = currentFilter.toLowerCase();
+            return task.tags.some(tag => tag.toLowerCase().includes(filterLower)) ||
+                   task.title.toLowerCase().includes(filterLower);
+        });
+    }
+
+    renderTasks(results);
+
+    const clearBtn = document.getElementById('clearSearchBtn');
+    if (clearBtn) {
+        if (trimmed.length > 0) clearBtn.classList.remove('hidden');
+        else clearBtn.classList.add('hidden');
+    }
+}
+
+function resetSearch() {
+    const input = document.getElementById('taskSearchInput');
+    if (input) input.value = '';
+    currentFilter = 'all';
+    updateFilterChipUI();
+    renderTasks(labData.tasks);
+    const clearBtn = document.getElementById('clearSearchBtn');
+    if (clearBtn) clearBtn.classList.add('hidden');
+}
+
+function jumpToTask(taskNumber) {
+    const task = labData.tasks.find(t => t.taskNumber === taskNumber);
+    if (task) {
+        openTaskModal(taskNumber);
+    }
+}
+
+function quickCopyTaskCode(taskNumber) {
+    const task = labData.tasks.find(t => t.taskNumber === taskNumber);
+    if (!task) return;
+
+    const file = task.files.find(f => f.content) || task.files[0];
+    if (file && file.content) {
+        navigator.clipboard.writeText(file.content).then(() => {
+            showToast(`Copied ${file.name} to clipboard!`);
+        }).catch(() => {
+            fallbackCopy(file.content);
+            showToast(`Copied ${file.name}!`);
+        });
+    } else {
+        openTaskModal(taskNumber);
+    }
+}
+
+function openTaskModal(taskNumber) {
+    const task = labData.tasks.find(t => t.taskNumber === taskNumber);
+    if (!task) return;
+
+    activeTask = task;
+
+    const modal = document.getElementById('fileModal');
+    const modalBadge = document.getElementById('modalTaskBadge');
+    const modalTitle = document.getElementById('modalTaskTitle');
+    const modalQuestion = document.getElementById('modalTaskQuestion');
+    const modalZip = document.getElementById('modalZipDownload');
+    const filesCount = document.getElementById('modalFilesCount');
+
+    modalBadge.innerText = `TASK ${task.taskNumber}`;
+    modalTitle.innerText = task.title;
+    modalQuestion.innerText = task.question;
+    modalZip.href = task.zipPath;
+    modalZip.setAttribute('download', `task${task.taskNumber}.zip`);
+    filesCount.innerText = task.files.length;
+
+    renderModalFileList(task.files);
+
+    const defaultFile = task.files.find(f => f.content) || task.files[0];
+    if (defaultFile) {
+        selectModalFile(defaultFile.name);
+    }
+
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    const modal = document.getElementById('fileModal');
+    if (modal) modal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+    activeTask = null;
+    activeFile = null;
+}
+
+function renderModalFileList(files) {
+    const listEl = document.getElementById('modalFileList');
+    if (!listEl) return;
+
+    listEl.innerHTML = files.map(file => {
+        let badgeClass = 'badge-' + (file.type || 'code');
+        return `
+            <button 
+                onclick="selectModalFile('${escapeHtml(file.name)}')"
+                id="fileTab_${cleanId(file.name)}"
+                class="file-tab w-full text-left px-3 py-2 rounded text-xs flex items-center justify-between gap-2 hover:bg-slate-800 text-slate-300 transition-colors group"
+            >
+                <div class="flex items-center gap-2 truncate">
+                    <span class="inline-block px-1.5 py-0.5 rounded font-mono text-[9px] uppercase font-bold ${badgeClass}">
+                        ${escapeHtml(file.extension)}
+                    </span>
+                    <span class="truncate font-mono">${escapeHtml(file.name)}</span>
+                </div>
+                <span class="text-[10px] text-slate-400 font-mono">${file.size}</span>
+            </button>
+        `;
+    }).join('');
+}
+
+function selectModalFile(fileName) {
+    if (!activeTask) return;
+    const file = activeTask.files.find(f => f.name === fileName);
+    if (!file) return;
+
+    activeFile = file;
+
+    document.querySelectorAll('.file-tab').forEach(tab => {
+        tab.classList.remove('bg-slate-800', 'text-white', 'border', 'border-slate-600');
+    });
+    const selectedTab = document.getElementById(`fileTab_${cleanId(file.name)}`);
+    if (selectedTab) {
+        selectedTab.classList.add('bg-slate-800', 'text-white', 'border', 'border-slate-600');
+    }
+
+    const nameEl = document.getElementById('activeFileName');
+    const sizeEl = document.getElementById('activeFileSize');
+    const badgeEl = document.getElementById('activeFileTypeBadge');
+    const copyBtn = document.getElementById('modalCopyBtn');
+    const dlBtn = document.getElementById('modalDownloadFileBtn');
+
+    nameEl.innerText = file.name;
+    sizeEl.innerText = `(${file.size})`;
+    badgeEl.innerText = file.extension;
+    badgeEl.className = `font-mono text-[10px] uppercase font-bold px-1.5 py-0.5 rounded badge-${file.type}`;
+    dlBtn.href = file.path;
+    dlBtn.setAttribute('download', file.name);
+
+    const codeView = document.getElementById('codeViewContainer');
+    const docView = document.getElementById('docViewContainer');
+    const imgView = document.getElementById('imageViewContainer');
+
+    codeView.classList.add('hidden');
+    docView.classList.add('hidden');
+    imgView.classList.add('hidden');
+
+    if (file.type === 'docx') {
+        copyBtn.classList.add('hidden');
+        docView.classList.remove('hidden');
+        document.getElementById('docxFileName').innerText = file.name;
+        const docxLink = document.getElementById('docxDownloadLink');
+        docxLink.href = file.path;
+        docxLink.setAttribute('download', file.name);
+        return;
+    }
+
+    if (file.type === 'image') {
+        copyBtn.classList.add('hidden');
+        imgView.classList.remove('hidden');
+        const img = document.getElementById('modalImageDisplay');
+        img.src = file.path;
+        document.getElementById('modalImageCaption').innerText = `${file.name} • ${file.size}`;
+        return;
+    }
+
+    copyBtn.classList.remove('hidden');
+    codeView.classList.remove('hidden');
+
+    const codeEl = document.getElementById('modalCodeDisplay');
+    const content = file.content || '// Content unavailable for preview.';
+
+    let lang = 'markup';
+    if (file.type === 'css') lang = 'css';
+    else if (file.type === 'js') lang = 'javascript';
+    else if (file.type === 'php') lang = 'php';
+    else if (file.type === 'sql') lang = 'sql';
+    else if (file.type === 'xml') lang = 'markup';
+
+    codeEl.className = `language-${lang}`;
+    codeEl.textContent = content;
+
+    if (window.Prism) {
+        Prism.highlightElement(codeEl);
+    }
+}
+
+function copyCurrentFileCode() {
+    if (!activeFile || !activeFile.content) return;
+
+    const copyBtnText = document.getElementById('modalCopyText');
+
+    navigator.clipboard.writeText(activeFile.content).then(() => {
+        if (copyBtnText) copyBtnText.innerText = 'Copied!';
+        showToast(`Copied ${activeFile.name} code!`);
+        setTimeout(() => {
+            if (copyBtnText) copyBtnText.innerText = 'Copy Code';
+        }, 2000);
+    }).catch(() => {
+        fallbackCopy(activeFile.content);
+        if (copyBtnText) copyBtnText.innerText = 'Copied!';
+        showToast(`Copied ${activeFile.name}!`);
+        setTimeout(() => {
+            if (copyBtnText) copyBtnText.innerText = 'Copy Code';
+        }, 2000);
+    });
+}
+
+function fallbackCopy(text) {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    textArea.style.position = "fixed";
+    textArea.style.left = "-999999px";
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    try {
+        document.execCommand('copy');
+    } catch (e) {
+        console.error('Fallback copy failed', e);
+    }
+    document.body.removeChild(textArea);
+}
+
+let toastTimeout = null;
+function showToast(message) {
+    const toast = document.getElementById('toastNotification');
+    const toastMsg = document.getElementById('toastMessage');
+    if (!toast) return;
+
+    if (toastMsg) toastMsg.innerText = message;
+    toast.classList.remove('hidden');
+
+    if (toastTimeout) clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => {
+        toast.classList.add('hidden');
+    }, 2800);
+}
+
+function initVivaSection() {
+    if (!labData || !labData.vivaCategories) return;
+
+    renderVivaTabs();
+    renderVivaAccordion();
+
+    const vivaSearch = document.getElementById('vivaSearchInput');
+    if (vivaSearch) {
+        vivaSearch.addEventListener('input', (e) => {
+            renderVivaAccordion(e.target.value);
+        });
+    }
+}
+
+function renderVivaTabs() {
+    const tabsContainer = document.getElementById('vivaTabs');
+    if (!tabsContainer || !labData.vivaCategories) return;
+
+    let html = `
+        <button 
+            onclick="setVivaCategory('all')" 
+            class="viva-tab ${activeVivaCategory === 'all' ? 'active bg-white text-slate-950 font-semibold' : 'bg-slate-800 text-slate-300 hover:bg-slate-700 border border-slate-700/80'} px-3 py-1.5 rounded transition-colors"
+        >
+            All Languages (${labData.vivaCategories.reduce((acc, c) => acc + c.questions.length, 0)})
+        </button>
+    `;
+
+    labData.vivaCategories.forEach(cat => {
+        const isActive = activeVivaCategory === cat.languageId;
+        const activeClass = isActive ? 'active bg-white text-slate-950 font-semibold' : 'bg-slate-800 text-slate-300 hover:bg-slate-700 border border-slate-700/80';
+        html += `
+            <button 
+                onclick="setVivaCategory('${cat.languageId}')" 
+                class="viva-tab ${activeClass} px-3 py-1.5 rounded transition-colors flex items-center gap-1.5"
+            >
+                <span>${cat.languageName}</span>
+                <span class="text-[10px] opacity-75 font-mono">(${cat.questions.length})</span>
+            </button>
+        `;
+    });
+
+    tabsContainer.innerHTML = html;
+}
+
+function setVivaCategory(catId) {
+    activeVivaCategory = catId;
+    renderVivaTabs();
+    const searchVal = document.getElementById('vivaSearchInput') ? document.getElementById('vivaSearchInput').value : '';
+    renderVivaAccordion(searchVal);
+}
+
+function renderVivaAccordion(filterQuery = '') {
+    const container = document.getElementById('vivaContainer');
+    if (!container || !labData.vivaCategories) return;
+
+    const query = filterQuery.trim().toLowerCase();
+
+    let categoriesToRender = labData.vivaCategories;
+    if (activeVivaCategory !== 'all') {
+        categoriesToRender = categoriesToRender.filter(c => c.languageId === activeVivaCategory);
+    }
+
+    let totalQuestionsRendered = 0;
+    let html = '';
+
+    categoriesToRender.forEach(category => {
+        const matchingQuestions = category.questions.filter(item => {
+            if (!query) return true;
+            return item.q.toLowerCase().includes(query) || item.a.toLowerCase().includes(query);
+        });
+
+        if (matchingQuestions.length === 0) return;
+
+        totalQuestionsRendered += matchingQuestions.length;
+
+        html += `
+            <div class="mb-6 space-y-2">
+                <!-- Category Heading -->
+                <div class="flex items-center gap-2 pb-1.5 border-b border-slate-800">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-slate-300 font-mono">${category.languageName} Viva Voce</h3>
+                    <span class="text-xs text-slate-500 font-mono">(${matchingQuestions.length} questions)</span>
+                </div>
+
+                <!-- Questions List -->
+                <div class="space-y-2 pt-1">
+                    ${matchingQuestions.map((item, idx) => {
+                        const itemId = `viva_${category.languageId}_${idx}`;
+                        const formattedAnswer = item.a.split('\n').map(line => `<p class="leading-relaxed py-0.5">${escapeHtml(line)}</p>`).join('');
+
+                        return `
+                            <div class="bg-[#0f172a] border border-slate-800 hover:border-slate-700 rounded-lg overflow-hidden transition-all duration-150">
+                                <button 
+                                    type="button"
+                                    onclick="toggleAccordion('${itemId}')"
+                                    class="w-full text-left p-3.5 sm:p-4 flex justify-between items-center gap-3 cursor-pointer select-none"
+                                    aria-expanded="false"
+                                    id="header_${itemId}"
+                                >
+                                    <div class="flex items-start gap-2.5">
+                                        <span class="text-slate-400 font-mono text-xs font-bold pt-0.5">Q${idx + 1}.</span>
+                                        <span class="text-xs sm:text-sm font-medium text-slate-200">${escapeHtml(item.q)}</span>
+                                    </div>
+                                    <div class="flex-shrink-0 text-slate-400 ml-2">
+                                        <svg id="arrow_${itemId}" class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                        </svg>
+                                    </div>
+                                </button>
+                                <div id="content_${itemId}" class="hidden px-4 pb-4 pt-1 border-t border-slate-800/80 bg-[#090d16] text-xs text-slate-300">
+                                    <div class="pt-2 pl-4 space-y-1 border-l-2 border-slate-600">
+                                        ${formattedAnswer}
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            </div>
+        `;
+    });
+
+    if (totalQuestionsRendered === 0) {
+        html = `
+            <div class="py-12 text-center bg-[#0f172a] rounded border border-slate-800">
+                <p class="text-xs text-slate-400">No viva questions matching "${escapeHtml(filterQuery)}"</p>
+                <button onclick="document.getElementById('vivaSearchInput').value=''; renderVivaAccordion();" class="mt-2 text-xs text-slate-300 hover:underline">
+                    Clear viva search
+                </button>
+            </div>
+        `;
+    }
+
+    container.innerHTML = html;
+}
+
+function toggleAccordion(itemId) {
+    const content = document.getElementById(`content_${itemId}`);
+    const arrow = document.getElementById(`arrow_${itemId}`);
+    const header = document.getElementById(`header_${itemId}`);
+    if (!content || !arrow) return;
+
+    const isHidden = content.classList.contains('hidden');
+    if (isHidden) {
+        content.classList.remove('hidden');
+        arrow.style.transform = 'rotate(180deg)';
+        if (header) header.setAttribute('aria-expanded', 'true');
+    } else {
+        content.classList.add('hidden');
+        arrow.style.transform = 'rotate(0deg)';
+        if (header) header.setAttribute('aria-expanded', 'false');
+    }
+}
+
+function expandAllViva() {
+    document.querySelectorAll('[id^="content_viva_"]').forEach(el => el.classList.remove('hidden'));
+    document.querySelectorAll('[id^="arrow_viva_"]').forEach(el => el.style.transform = 'rotate(180deg)');
+    document.querySelectorAll('[id^="header_viva_"]').forEach(el => el.setAttribute('aria-expanded', 'true'));
+}
+
+function collapseAllViva() {
+    document.querySelectorAll('[id^="content_viva_"]').forEach(el => el.classList.add('hidden'));
+    document.querySelectorAll('[id^="arrow_viva_"]').forEach(el => el.style.transform = 'rotate(0deg)');
+    document.querySelectorAll('[id^="header_viva_"]').forEach(el => el.setAttribute('aria-expanded', 'false'));
+}
+
+function setupEventListeners() {
+    const searchInput = document.getElementById('taskSearchInput');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            handleSearch(e.target.value);
+        });
+    }
+
+    const clearBtn = document.getElementById('clearSearchBtn');
+    if (clearBtn) {
+        clearBtn.addEventListener('click', resetSearch);
+    }
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === '/' && document.activeElement !== searchInput) {
+            e.preventDefault();
+            if (searchInput) {
+                searchInput.focus();
+                searchInput.select();
+            }
+        }
+        if (e.key === 'Escape') {
+            closeModal();
+        }
+    });
+
+    const modal = document.getElementById('fileModal');
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    }
+
+    document.querySelectorAll('.filter-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+            currentFilter = chip.getAttribute('data-filter') || 'all';
+            updateFilterChipUI();
+            const searchVal = searchInput ? searchInput.value : '';
+            handleSearch(searchVal);
+        });
+    });
+}
+
+function updateFilterChipUI() {
+    document.querySelectorAll('.filter-chip').forEach(chip => {
+        const filterVal = chip.getAttribute('data-filter');
+        if (filterVal === currentFilter) {
+            chip.className = 'filter-chip active px-2.5 py-1 rounded bg-white text-slate-950 font-semibold transition-colors';
+        } else {
+            chip.className = 'filter-chip px-2.5 py-1 rounded bg-slate-800 text-slate-300 hover:bg-slate-700 transition-colors border border-slate-700/80';
+        }
+    });
+}
+
+function escapeHtml(str) {
+    if (typeof str !== 'string') return '';
+    return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+function cleanId(str) {
+    return (str || '').replace(/[^a-zA-Z0-9]/g, '_');
+}

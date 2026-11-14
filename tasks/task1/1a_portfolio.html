@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1(a) - Personal Portfolio</title>
+    <link rel="stylesheet" href="1a_style.css">
+</head>
+<body>
+    <header>
+        <div class="header-inner">
+            <h1>Alex Developer</h1>
+            <p class="tagline">Undergraduate Student • AI & Machine Learning</p>
+            <nav>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section id="about" class="card">
+            <h2>About Me</h2>
+            <p>
+                Hello! I am a passionate web developer learning HTML, CSS, JavaScript, and PHP. 
+                I enjoy engineering clean, functional, and distraction-free applications that prioritize performance and accessibility.
+            </p>
+        </section>
+
+        <section id="skills" class="card">
+            <h2>Technical Skills</h2>
+            <ul class="skills-list">
+                <li>HTML5 & Semantic Structure</li>
+                <li>CSS3 (Flexbox, Grid, Responsive Design)</li>
+                <li>Client-Side Scripting (Vanilla JavaScript, DOM Manipulation)</li>
+                <li>Server Scripting (PHP & MySQL Database Systems)</li>
+                <li>XML, DTD & XSLT Transformations</li>
+            </ul>
+        </section>
+
+        <section id="projects" class="card">
+            <h2>Projects</h2>
+            <div class="project-grid">
+                <div class="project-item">
+                    <h3>Project One</h3>
+                    <p>Dynamic Interactive Calculator built with JavaScript and DOM event handling.</p>
+                </div>
+                <div class="project-item">
+                    <h3>Project Two</h3>
+                    <p>AJAX Live Data Search application retrieving backend records asynchronously.</p>
+                </div>
+                <div class="project-item">
+                    <h3>Project Three</h3>
+                    <p>Database CRUD Portal engineered using PHP and MySQLi prepared statements.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="card">
+            <h2>Contact Me</h2>
+            <!-- HTML Controls implemented here -->
+            <form action="#" method="POST" class="contact-form">
+                <div class="form-group">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address:</label>
+                    <input type="email" id="email" name="email" placeholder="student@grietcollege.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Your message here..." required></textarea>
+                </div>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Scripting Languages Laboratory. Experiment 1(a).</p>
+    </footer>
+</body>
+</html>

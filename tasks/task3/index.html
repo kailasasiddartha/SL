@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3 - JavaScript Dynamic Table & Image Toggle</title>
+    <style>
+        body { font-family: -apple-system, sans-serif; background: #0f172a; color: #f8fafc; margin: 0; padding: 20px; }
+        .wrapper { max-width: 900px; margin: 0 auto; }
+        .nav-tabs { display: flex; gap: 10px; margin-bottom: 16px; border-bottom: 1px solid #334155; padding-bottom: 10px; }
+        .tab-btn { background: #1e293b; color: #94a3b8; border: 1px solid #334155; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.85rem; }
+        .tab-btn.active { background: #f8fafc; color: #0f172a; border-color: #f8fafc; }
+        iframe { width: 100%; height: 600px; border: 1px solid #334155; border-radius: 8px; background: #ffffff; }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="loadFrame('3a_multiplication.html', this)">Experiment 3(a): Multiplication Table</button>
+            <button class="tab-btn" onclick="loadFrame('3b_imagetoggle.html', this)">Experiment 3(b): Image Toggle</button>
+        </div>
+        <iframe id="previewFrame" src="3a_multiplication.html"></iframe>
+    </div>
+    <script>
+        function loadFrame(url, btn) {
+            document.getElementById('previewFrame').src = url;
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1 - HTML Controls & Table Structure</title>
+    <style>
+        body { font-family: -apple-system, sans-serif; background: #0f172a; color: #f8fafc; margin: 0; padding: 20px; }
+        .wrapper { max-width: 1000px; margin: 0 auto; }
+        .nav-tabs { display: flex; gap: 10px; margin-bottom: 16px; border-bottom: 1px solid #334155; padding-bottom: 10px; }
+        .tab-btn { background: #1e293b; color: #94a3b8; border: 1px solid #334155; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.85rem; }
+        .tab-btn.active { background: #f8fafc; color: #0f172a; border-color: #f8fafc; }
+        iframe { width: 100%; height: 750px; border: 1px solid #334155; border-radius: 8px; background: #ffffff; }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="loadFrame('1a_portfolio.html', this)">Experiment 1(a): Portfolio Profile</button>
+            <button class="tab-btn" onclick="loadFrame('1b_timetable.html', this)">Experiment 1(b): Class Time Table</button>
+        </div>
+        <iframe id="previewFrame" src="1a_portfolio.html"></iframe>
+    </div>
+    <script>
+        function loadFrame(url, btn) {
+            document.getElementById('previewFrame').src = url;
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+    </script>
+</body>
+</html>

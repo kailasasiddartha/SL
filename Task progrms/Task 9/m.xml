@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="motorbike_catalog.xsl"?>
+
+<!DOCTYPE catalog SYSTEM "motorbike_catalog.dtd">
+
+<catalog>
+
+    <motorbike>
+        <make>Honda</make>
+        <model>CBR500R</model>
+        <year>2023</year>
+        <color>Red</color>
+        <engine>
+            <engine_number>EN123456</engine_number>
+            <number_of_cylinders>2</number_of_cylinders>
+            <type_of_fuel>Petrol</type_of_fuel>
+        </engine>
+        <chassis_number>CH123456789</chassis_number>
+        <accessories disc_brake="yes" auto_start="yes" radio="no"/>
+    </motorbike>
+
+    <motorbike>
+        <make>Yamaha</make>
+        <model>R15</model>
+        <year>2022</year>
+        <color>Blue</color>
+        <engine>
+            <engine_number>EN987654</engine_number>
+            <number_of_cylinders>1</number_of_cylinders>
+            <type_of_fuel>Petrol</type_of_fuel>
+        </engine>
+        <chassis_number>CH987654321</chassis_number>
+        <accessories disc_brake="yes" auto_start="yes" radio="yes"/>
+    </motorbike>
+
+    <motorbike>
+        <make>TVS</make>
+        <model>Apache RTR</model>
+        <year>2024</year>
+        <color>Black</color>
+        <engine>
+            <engine_number>EN456789</engine_number>
+            <number_of_cylinders>1</number_of_cylinders>
+            <type_of_fuel>Petrol</type_of_fuel>
+        </engine>
+        <chassis_number>CH456789123</chassis_number>
+        <accessories disc_brake="yes" auto_start="no" radio="no"/>
+    </motorbike>
+
+    <motorbike>
+        <make>Kawasaki</make>
+        <model>Ninja 300</model>
+        <year>2023</year>
+        <color>Green</color>
+        <engine>
+            <engine_number>EN654321</engine_number>
+            <number_of_cylinders>2</number_of_cylinders>
+            <type_of_fuel>Petrol</type_of_fuel>
+        </engine>
+        <chassis_number>CH654321987</chassis_number>
+        <accessories disc_brake="yes" auto_start="yes" radio="no"/>
+    </motorbike>
+
+</catalog>

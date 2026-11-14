@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 4 - To-Do List Application</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="todo-app">
+        <header>
+            <h2>Task Management To-Do List</h2>
+            <p>Add, complete, and manage lab assignments with DOM manipulation.</p>
+        </header>
+
+        <div class="input-section">
+            <input type="text" id="taskInput" placeholder="Enter a new task description..." onkeydown="if(event.key==='Enter') addTask()">
+            <button class="add-btn" onclick="addTask()">Add Task</button>
+        </div>
+
+        <div class="todo-stats">
+            <span id="taskCounter">0 tasks total</span>
+            <button class="clear-all-btn" onclick="clearAllTasks()">Clear All</button>
+        </div>
+
+        <ul id="taskList" class="task-list"></ul>
+    </div>
+
+    <script src="todo.js"></script>
+</body>
+</html>

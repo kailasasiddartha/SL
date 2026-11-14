@@ -1,0 +1,29 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #f8fafc;
+    color: #0f172a;
+    padding: 30px 16px;
+}
+.box {
+    max-width: 500px;
+    margin: 0 auto;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 24px;
+}
+h2 { font-size: 1.25rem; font-weight: 700; }
+.subtitle { font-size: 0.85rem; color: #64748b; margin-top: 4px; margin-bottom: 18px; }
+.form-group { margin-bottom: 14px; }
+label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; color: #334155; }
+input { width: 100%; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 0.9rem; }
+input:focus { outline: none; border-color: #0f172a; }
+.btn { background: #0f172a; color: white; border: none; padding: 9px 18px; border-radius: 4px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; }
+.btn-secondary { background: #475569; }
+.btn-danger { background: #dc2626; }
+.btn-group { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+.alert { padding: 10px; border-radius: 4px; font-size: 0.85rem; margin-bottom: 14px; }
+.alert.warning { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+.alert.error { background: #fee2e2; color: #dc2626; border: 1px solid #fecaca; }
+.alert.success { background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
+.alert.info { background: #f1f5f9; color: #0f172a; border: 1px solid #cbd5e1; }

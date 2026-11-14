@@ -1,0 +1,82 @@
+/* Scripting Languages Lab Portal - Minimalist Monochrome Design */
+
+:root {
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --bg-page: #090d16;
+  --bg-card: #131b2e;
+  --border-color: #27354f;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --accent: #f8fafc;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #090d16;
+}
+::-webkit-scrollbar-thumb {
+  background: #27354f;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3b4d6b;
+}
+
+/* Focus outline accessibility */
+button:focus-visible, a:focus-visible, input:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* Modal Backdrop */
+.modal-backdrop {
+  background-color: rgba(9, 13, 22, 0.85);
+  backdrop-filter: blur(4px);
+}
+
+/* Line numbers for code blocks */
+.code-container {
+  counter-reset: line;
+}
+.code-line {
+  display: block;
+  line-height: 1.6;
+}
+.code-line::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 2.5rem;
+  padding-right: 1rem;
+  margin-right: 0.75rem;
+  color: #64748b;
+  text-align: right;
+  user-select: none;
+  border-right: 1px solid #27354f;
+}
+
+/* Accordion transition */
+.accordion-content {
+  transition: max-height 0.2s ease-out, opacity 0.2s ease-out;
+}
+
+/* Neutral Monochrome File extension badges */
+.badge-html { background-color: #1e293b; color: #f1f5f9; border: 1px solid #475569; }
+.badge-css { background-color: #1e293b; color: #e2e8f0; border: 1px solid #475569; }
+.badge-js { background-color: #1e293b; color: #f8fafc; border: 1px solid #64748b; }
+.badge-php { background-color: #1e293b; color: #e2e8f0; border: 1px solid #475569; }
+.badge-xml, .badge-dtd, .badge-xsd, .badge-xsl { background-color: #1e293b; color: #cbd5e1; border: 1px solid #475569; }
+.badge-docx, .badge-doc { background-color: #0f172a; color: #94a3b8; border: 1px solid #334155; }
+.badge-sql { background-color: #1e293b; color: #cbd5e1; border: 1px solid #475569; }
+.badge-image { background-color: #1e293b; color: #cbd5e1; border: 1px solid #475569; }
+
+/* Print Styles */
+@media print {
+  .no-print { display: none !important; }
+  body { background: white; color: black; }
+}

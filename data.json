@@ -24,25 +24,25 @@
       "filesCount": 4,
       "files": [
         {
-          "name": "1a_portfolio.html",
-          "path": "tasks/task1a/1a_portfolio.html",
-          "size": "3.4 KB",
-          "type": "html",
-          "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Task 1(a) - Personal Portfolio</title>\n    <link rel=\"stylesheet\" href=\"1a_style.css\">\n</head>\n<body>\n    <header>\n        <div class=\"header-inner\">\n            <h1>Alex Developer</h1>\n            <p class=\"tagline\">Undergraduate Student • AI & Machine Learning</p>\n            <nav>\n                <a href=\"#about\">About</a>\n                <a href=\"#skills\">Skills</a>\n                <a href=\"#projects\">Projects</a>\n                <a href=\"#contact\">Contact</a>\n            </nav>\n        </div>\n    </header>\n\n    <main class=\"main-content\">\n        <section id=\"about\" class=\"card\">\n            <h2>About Me</h2>\n            <p>\n                Hello! I am a passionate web developer learning HTML, CSS, JavaScript, and PHP. \n                I enjoy engineering clean, functional, and distraction-free applications that prioritize performance and accessibility.\n            </p>\n        </section>\n\n        <section id=\"skills\" class=\"card\">\n            <h2>Technical Skills</h2>\n            <ul class=\"skills-list\">\n                <li>HTML5 & Semantic Structure</li>\n                <li>CSS3 (Flexbox, Grid, Responsive Design)</li>\n                <li>Client-Side Scripting (Vanilla JavaScript, DOM Manipulation)</li>\n                <li>Server Scripting (PHP & MySQL Database Systems)</li>\n                <li>XML, DTD & XSLT Transformations</li>\n            </ul>\n        </section>\n\n        <section id=\"projects\" class=\"card\">\n            <h2>Projects</h2>\n            <div class=\"project-grid\">\n                <div class=\"project-item\">\n                    <h3>Project One</h3>\n                    <p>Dynamic Interactive Calculator built with JavaScript and DOM event handling.</p>\n                </div>\n                <div class=\"project-item\">\n                    <h3>Project Two</h3>\n                    <p>AJAX Live Data Search application retrieving backend records asynchronously.</p>\n                </div>\n                <div class=\"project-item\">\n                    <h3>Project Three</h3>\n                    <p>Database CRUD Portal engineered using PHP and MySQLi prepared statements.</p>\n                </div>\n            </div>\n        </section>\n\n        <section id=\"contact\" class=\"card\">\n            <h2>Contact Me</h2>\n            <!-- HTML Controls implemented here -->\n            <form action=\"#\" method=\"POST\" class=\"contact-form\">\n                <div class=\"form-group\">\n                    <label for=\"name\">Full Name:</label>\n                    <input type=\"text\" id=\"name\" name=\"name\" placeholder=\"Enter your name\" required>\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"email\">Email Address:</label>\n                    <input type=\"email\" id=\"email\" name=\"email\" placeholder=\"student@grietcollege.com\" required>\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"message\">Message:</label>\n                    <textarea id=\"message\" name=\"message\" rows=\"4\" placeholder=\"Your message here...\" required></textarea>\n                </div>\n                <button type=\"submit\" class=\"btn\">Send Message</button>\n            </form>\n        </section>\n    </main>\n\n    <footer>\n        <p>&copy; 2026 Scripting Languages Laboratory. Experiment 1(a).</p>\n    </footer>\n</body>\n</html>"
-        },
-        {
-          "name": "1a_style.css",
-          "path": "tasks/task1a/1a_style.css",
-          "size": "2.5 KB",
-          "type": "css",
-          "content": "/* Minimalist Monochrome Design */\n* {\n    margin: 0;\n    padding: 0;\n    box-sizing: border-box;\n}\nbody {\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif;\n    background-color: #f8fafc;\n    color: #1e293b;\n    line-height: 1.6;\n}\nheader {\n    background-color: #0f172a;\n    color: #f8fafc;\n    padding: 30px 20px;\n    border-bottom: 1px solid #334155;\n    text-align: center;\n}\n.header-inner {\n    max-width: 800px;\n    margin: 0 auto;\n}\nh1 {\n    font-size: 1.8rem;\n    font-weight: 700;\n    letter-spacing: -0.5px;\n}\n.tagline {\n    font-size: 0.9rem;\n    color: #94a3b8;\n    margin-top: 4px;\n}\nnav {\n    margin-top: 15px;\n}\nnav a {\n    color: #cbd5e1;\n    text-decoration: none;\n    margin: 0 12px;\n    font-size: 0.9rem;\n    font-weight: 500;\n}\nnav a:hover {\n    color: #ffffff;\n    text-decoration: underline;\n}\n.main-content {\n    max-width: 800px;\n    margin: 30px auto;\n    padding: 0 16px;\n}\n.card {\n    background: #ffffff;\n    border: 1px solid #e2e8f0;\n    border-radius: 8px;\n    padding: 24px;\n    margin-bottom: 24px;\n}\nh2 {\n    font-size: 1.25rem;\n    color: #0f172a;\n    margin-bottom: 14px;\n    padding-bottom: 8px;\n    border-bottom: 1px solid #e2e8f0;\n}\n.skills-list {\n    list-style: square inside;\n    color: #334155;\n    font-size: 0.92rem;\n    line-height: 1.8;\n}\n.project-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));\n    gap: 16px;\n}\n.project-item {\n    background: #f1f5f9;\n    border: 1px solid #cbd5e1;\n    border-radius: 6px;\n    padding: 16px;\n}\n.project-item h3 {\n    font-size: 0.98rem;\n    margin-bottom: 6px;\n    color: #0f172a;\n}\n.project-item p {\n    font-size: 0.85rem;\n    color: #475569;\n}\n.form-group {\n    margin-bottom: 14px;\n}\nlabel {\n    display: block;\n    font-size: 0.85rem;\n    font-weight: 600;\n    margin-bottom: 4px;\n    color: #334155;\n}\ninput, textarea {\n    width: 100%;\n    padding: 8px 12px;\n    border: 1px solid #cbd5e1;\n    border-radius: 4px;\n    font-size: 0.9rem;\n    font-family: inherit;\n    background-color: #ffffff;\n}\ninput:focus, textarea:focus {\n    outline: none;\n    border-color: #0f172a;\n}\n.btn {\n    background: #0f172a;\n    color: #ffffff;\n    border: none;\n    padding: 10px 20px;\n    border-radius: 4px;\n    font-size: 0.9rem;\n    font-weight: 600;\n    cursor: pointer;\n}\n.btn:hover {\n    background: #1e293b;\n}\nfooter {\n    text-align: center;\n    padding: 24px 16px;\n    font-size: 0.8rem;\n    color: #64748b;\n    border-top: 1px solid #e2e8f0;\n    margin-top: 40px;\n}"
-        },
-        {
           "name": "index.html",
           "path": "tasks/task1a/index.html",
           "size": "3.4 KB",
           "type": "html",
-          "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Task 1(a) - Personal Portfolio</title>\n    <link rel=\"stylesheet\" href=\"1a_style.css\">\n</head>\n<body>\n    <header>\n        <div class=\"header-inner\">\n            <h1>Alex Developer</h1>\n            <p class=\"tagline\">Undergraduate Student • AI & Machine Learning</p>\n            <nav>\n                <a href=\"#about\">About</a>\n                <a href=\"#skills\">Skills</a>\n                <a href=\"#projects\">Projects</a>\n                <a href=\"#contact\">Contact</a>\n            </nav>\n        </div>\n    </header>\n\n    <main class=\"main-content\">\n        <section id=\"about\" class=\"card\">\n            <h2>About Me</h2>\n            <p>\n                Hello! I am a passionate web developer learning HTML, CSS, JavaScript, and PHP. \n                I enjoy engineering clean, functional, and distraction-free applications that prioritize performance and accessibility.\n            </p>\n        </section>\n\n        <section id=\"skills\" class=\"card\">\n            <h2>Technical Skills</h2>\n            <ul class=\"skills-list\">\n                <li>HTML5 & Semantic Structure</li>\n                <li>CSS3 (Flexbox, Grid, Responsive Design)</li>\n                <li>Client-Side Scripting (Vanilla JavaScript, DOM Manipulation)</li>\n                <li>Server Scripting (PHP & MySQL Database Systems)</li>\n                <li>XML, DTD & XSLT Transformations</li>\n            </ul>\n        </section>\n\n        <section id=\"projects\" class=\"card\">\n            <h2>Projects</h2>\n            <div class=\"project-grid\">\n                <div class=\"project-item\">\n                    <h3>Project One</h3>\n                    <p>Dynamic Interactive Calculator built with JavaScript and DOM event handling.</p>\n                </div>\n                <div class=\"project-item\">\n                    <h3>Project Two</h3>\n                    <p>AJAX Live Data Search application retrieving backend records asynchronously.</p>\n                </div>\n                <div class=\"project-item\">\n                    <h3>Project Three</h3>\n                    <p>Database CRUD Portal engineered using PHP and MySQLi prepared statements.</p>\n                </div>\n            </div>\n        </section>\n\n        <section id=\"contact\" class=\"card\">\n            <h2>Contact Me</h2>\n            <!-- HTML Controls implemented here -->\n            <form action=\"#\" method=\"POST\" class=\"contact-form\">\n                <div class=\"form-group\">\n                    <label for=\"name\">Full Name:</label>\n                    <input type=\"text\" id=\"name\" name=\"name\" placeholder=\"Enter your name\" required>\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"email\">Email Address:</label>\n                    <input type=\"email\" id=\"email\" name=\"email\" placeholder=\"student@grietcollege.com\" required>\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"message\">Message:</label>\n                    <textarea id=\"message\" name=\"message\" rows=\"4\" placeholder=\"Your message here...\" required></textarea>\n                </div>\n                <button type=\"submit\" class=\"btn\">Send Message</button>\n            </form>\n        </section>\n    </main>\n\n    <footer>\n        <p>&copy; 2026 Scripting Languages Laboratory. Experiment 1(a).</p>\n    </footer>\n</body>\n</html>"
+          "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Task 1(a) - Personal Portfolio</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <header>\n        <div class=\"header-inner\">\n            <h1>Alex Developer</h1>\n            <p class=\"tagline\">Undergraduate Student • AI & Machine Learning</p>\n            <nav>\n                <a href=\"#about\">About</a>\n                <a href=\"#skills\">Skills</a>\n                <a href=\"#projects\">Projects</a>\n                <a href=\"#contact\">Contact</a>\n            </nav>\n        </div>\n    </header>\n\n    <main class=\"main-content\">\n        <section id=\"about\" class=\"card\">\n            <h2>About Me</h2>\n            <p>\n                Hello! I am a passionate web developer learning HTML, CSS, JavaScript, and PHP. \n                I enjoy engineering clean, functional, and distraction-free applications that prioritize performance and accessibility.\n            </p>\n        </section>\n\n        <section id=\"skills\" class=\"card\">\n            <h2>Technical Skills</h2>\n            <ul class=\"skills-list\">\n                <li>HTML5 & Semantic Structure</li>\n                <li>CSS3 (Flexbox, Grid, Responsive Design)</li>\n                <li>Client-Side Scripting (Vanilla JavaScript, DOM Manipulation)</li>\n                <li>Server Scripting (PHP & MySQL Database Systems)</li>\n                <li>XML, DTD & XSLT Transformations</li>\n            </ul>\n        </section>\n\n        <section id=\"projects\" class=\"card\">\n            <h2>Projects</h2>\n            <div class=\"project-grid\">\n                <div class=\"project-item\">\n                    <h3>Project One</h3>\n                    <p>Dynamic Interactive Calculator built with JavaScript and DOM event handling.</p>\n                </div>\n                <div class=\"project-item\">\n                    <h3>Project Two</h3>\n                    <p>AJAX Live Data Search application retrieving backend records asynchronously.</p>\n                </div>\n                <div class=\"project-item\">\n                    <h3>Project Three</h3>\n                    <p>Database CRUD Portal engineered using PHP and MySQLi prepared statements.</p>\n                </div>\n            </div>\n        </section>\n\n        <section id=\"contact\" class=\"card\">\n            <h2>Contact Me</h2>\n            <!-- HTML Controls implemented here -->\n            <form action=\"#\" method=\"POST\" class=\"contact-form\">\n                <div class=\"form-group\">\n                    <label for=\"name\">Full Name:</label>\n                    <input type=\"text\" id=\"name\" name=\"name\" placeholder=\"Enter your name\" required>\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"email\">Email Address:</label>\n                    <input type=\"email\" id=\"email\" name=\"email\" placeholder=\"student@grietcollege.com\" required>\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"message\">Message:</label>\n                    <textarea id=\"message\" name=\"message\" rows=\"4\" placeholder=\"Your message here...\" required></textarea>\n                </div>\n                <button type=\"submit\" class=\"btn\">Send Message</button>\n            </form>\n        </section>\n    </main>\n\n    <footer>\n        <p>&copy; 2026 Scripting Languages Laboratory. Experiment 1(a).</p>\n    </footer>\n</body>\n</html>"
+        },
+        {
+          "name": "output_screenshot.png",
+          "path": "tasks/task1a/output_screenshot.png",
+          "size": "1.1 MB",
+          "type": "image",
+          "content": null
+        },
+        {
+          "name": "style.css",
+          "path": "tasks/task1a/style.css",
+          "size": "2.5 KB",
+          "type": "css",
+          "content": "/* Minimalist Monochrome Design */\n* {\n    margin: 0;\n    padding: 0;\n    box-sizing: border-box;\n}\nbody {\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif;\n    background-color: #f8fafc;\n    color: #1e293b;\n    line-height: 1.6;\n}\nheader {\n    background-color: #0f172a;\n    color: #f8fafc;\n    padding: 30px 20px;\n    border-bottom: 1px solid #334155;\n    text-align: center;\n}\n.header-inner {\n    max-width: 800px;\n    margin: 0 auto;\n}\nh1 {\n    font-size: 1.8rem;\n    font-weight: 700;\n    letter-spacing: -0.5px;\n}\n.tagline {\n    font-size: 0.9rem;\n    color: #94a3b8;\n    margin-top: 4px;\n}\nnav {\n    margin-top: 15px;\n}\nnav a {\n    color: #cbd5e1;\n    text-decoration: none;\n    margin: 0 12px;\n    font-size: 0.9rem;\n    font-weight: 500;\n}\nnav a:hover {\n    color: #ffffff;\n    text-decoration: underline;\n}\n.main-content {\n    max-width: 800px;\n    margin: 30px auto;\n    padding: 0 16px;\n}\n.card {\n    background: #ffffff;\n    border: 1px solid #e2e8f0;\n    border-radius: 8px;\n    padding: 24px;\n    margin-bottom: 24px;\n}\nh2 {\n    font-size: 1.25rem;\n    color: #0f172a;\n    margin-bottom: 14px;\n    padding-bottom: 8px;\n    border-bottom: 1px solid #e2e8f0;\n}\n.skills-list {\n    list-style: square inside;\n    color: #334155;\n    font-size: 0.92rem;\n    line-height: 1.8;\n}\n.project-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));\n    gap: 16px;\n}\n.project-item {\n    background: #f1f5f9;\n    border: 1px solid #cbd5e1;\n    border-radius: 6px;\n    padding: 16px;\n}\n.project-item h3 {\n    font-size: 0.98rem;\n    margin-bottom: 6px;\n    color: #0f172a;\n}\n.project-item p {\n    font-size: 0.85rem;\n    color: #475569;\n}\n.form-group {\n    margin-bottom: 14px;\n}\nlabel {\n    display: block;\n    font-size: 0.85rem;\n    font-weight: 600;\n    margin-bottom: 4px;\n    color: #334155;\n}\ninput, textarea {\n    width: 100%;\n    padding: 8px 12px;\n    border: 1px solid #cbd5e1;\n    border-radius: 4px;\n    font-size: 0.9rem;\n    font-family: inherit;\n    background-color: #ffffff;\n}\ninput:focus, textarea:focus {\n    outline: none;\n    border-color: #0f172a;\n}\n.btn {\n    background: #0f172a;\n    color: #ffffff;\n    border: none;\n    padding: 10px 20px;\n    border-radius: 4px;\n    font-size: 0.9rem;\n    font-weight: 600;\n    cursor: pointer;\n}\n.btn:hover {\n    background: #1e293b;\n}\nfooter {\n    text-align: center;\n    padding: 24px 16px;\n    font-size: 0.8rem;\n    color: #64748b;\n    border-top: 1px solid #e2e8f0;\n    margin-top: 40px;\n}"
         },
         {
           "name": "Task 1A material.doc",
@@ -72,25 +72,25 @@
       "filesCount": 4,
       "files": [
         {
-          "name": "1b_style.css",
-          "path": "tasks/task1b/1b_style.css",
-          "size": "1.6 KB",
-          "type": "css",
-          "content": "body {\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif;\n    background-color: #f8fafc;\n    color: #1e293b;\n    margin: 0;\n    padding: 24px 16px;\n}\n.container {\n    max-width: 960px;\n    margin: 0 auto;\n    background: #ffffff;\n    border: 1px solid #e2e8f0;\n    border-radius: 8px;\n    padding: 24px;\n}\n.header {\n    text-align: center;\n    margin-bottom: 20px;\n}\nh1 {\n    font-size: 1.35rem;\n    font-weight: 700;\n    color: #0f172a;\n}\nh3 {\n    font-size: 0.95rem;\n    font-weight: 500;\n    color: #475569;\n    margin-top: 4px;\n}\n.table-wrapper {\n    overflow-x: auto;\n}\ntable {\n    width: 100%;\n    border-collapse: collapse;\n    margin: 16px 0;\n    font-size: 0.88rem;\n}\ncaption {\n    font-size: 1rem;\n    font-weight: 600;\n    padding: 10px;\n    caption-side: top;\n    text-align: left;\n    color: #0f172a;\n}\nth, td {\n    border: 1px solid #cbd5e1;\n    padding: 10px 8px;\n    text-align: center;\n}\nthead th {\n    background-color: #1e293b;\n    color: #ffffff;\n    font-weight: 600;\n    font-size: 0.82rem;\n    letter-spacing: 0.2px;\n}\n.day-col {\n    background-color: #f1f5f9;\n    color: #0f172a;\n    font-weight: 600;\n}\ntbody tr:nth-child(even) td:not(.break-cell):not(.lab-cell) {\n    background-color: #f8fafc;\n}\n.break-cell {\n    background-color: #e2e8f0;\n    color: #334155;\n    font-weight: 700;\n    font-size: 0.78rem;\n    letter-spacing: 1px;\n    writing-mode: vertical-rl;\n    text-orientation: mixed;\n    transform: rotate(180deg);\n}\n.lab-cell {\n    background-color: #e0e7ff;\n    color: #3730a3;\n    font-weight: 600;\n}\n.footnote {\n    font-size: 0.78rem;\n    color: #64748b;\n    margin-top: 14px;\n    text-align: center;\n}"
-        },
-        {
-          "name": "1b_timetable.html",
-          "path": "tasks/task1b/1b_timetable.html",
-          "size": "3.3 KB",
-          "type": "html",
-          "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Task 1(b) - Class Time Table</title>\n    <link rel=\"stylesheet\" href=\"1b_style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <header class=\"header\">\n            <h1>Department of Computer Science & Engineering (AIML)</h1>\n            <h3>Academic Class Time Table • Semester Schedule</h3>\n        </header>\n\n        <div class=\"table-wrapper\">\n            <table>\n                <caption>Weekly Class Schedule</caption>\n                <thead>\n                    <tr>\n                        <th>Day</th>\n                        <th>09:00 - 10:00</th>\n                        <th>10:00 - 11:00</th>\n                        <th>11:00 - 12:00</th>\n                        <th>12:00 - 01:00</th>\n                        <th>01:00 - 02:00</th>\n                        <th>02:00 - 03:00</th>\n                        <th>03:00 - 04:00</th>\n                    </tr>\n                </thead>\n                <tbody>\n                    <tr>\n                        <th class=\"day-col\">Monday</th>\n                        <td>Mathematics</td>\n                        <td>Python Programming</td>\n                        <td>DBMS</td>\n                        <td>English</td>\n                        <td class=\"break-cell\" rowspan=\"5\">LUNCH BREAK</td>\n                        <td>Artificial Intelligence</td>\n                        <td>Library Session</td>\n                    </tr>\n                    <tr>\n                        <th class=\"day-col\">Tuesday</th>\n                        <td>Python Programming</td>\n                        <td>Mathematics</td>\n                        <td>Artificial Intelligence</td>\n                        <td>DBMS</td>\n                        <td class=\"lab-cell\" colspan=\"2\">Python Programming Lab</td>\n                    </tr>\n                    <tr>\n                        <th class=\"day-col\">Wednesday</th>\n                        <td>DBMS</td>\n                        <td>English</td>\n                        <td>Mathematics</td>\n                        <td>Python Programming</td>\n                        <td>Artificial Intelligence</td>\n                        <td>Sports / Mentoring</td>\n                    </tr>\n                    <tr>\n                        <th class=\"day-col\">Thursday</th>\n                        <td>Artificial Intelligence</td>\n                        <td>DBMS</td>\n                        <td>Python Programming</td>\n                        <td>Mathematics</td>\n                        <td class=\"lab-cell\" colspan=\"2\">DBMS & SQL Lab</td>\n                    </tr>\n                    <tr>\n                        <th class=\"day-col\">Friday</th>\n                        <td>English</td>\n                        <td>Artificial Intelligence</td>\n                        <td>DBMS</td>\n                        <td>Python Programming</td>\n                        <td>Mathematics</td>\n                        <td>Seminar / Technical Presentation</td>\n                    </tr>\n                </tbody>\n            </table>\n        </div>\n\n        <p class=\"footnote\">Note: Demonstrates HTML table structure, caption, th/td hierarchy, rowspan=\"5\" for lunch break, and colspan=\"2\" for 2-hour practical laboratories.</p>\n    </div>\n</body>\n</html>"
-        },
-        {
           "name": "index.html",
           "path": "tasks/task1b/index.html",
           "size": "3.3 KB",
           "type": "html",
-          "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Task 1(b) - Class Time Table</title>\n    <link rel=\"stylesheet\" href=\"1b_style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <header class=\"header\">\n            <h1>Department of Computer Science & Engineering (AIML)</h1>\n            <h3>Academic Class Time Table • Semester Schedule</h3>\n        </header>\n\n        <div class=\"table-wrapper\">\n            <table>\n                <caption>Weekly Class Schedule</caption>\n                <thead>\n                    <tr>\n                        <th>Day</th>\n                        <th>09:00 - 10:00</th>\n                        <th>10:00 - 11:00</th>\n                        <th>11:00 - 12:00</th>\n                        <th>12:00 - 01:00</th>\n                        <th>01:00 - 02:00</th>\n                        <th>02:00 - 03:00</th>\n                        <th>03:00 - 04:00</th>\n                    </tr>\n                </thead>\n                <tbody>\n                    <tr>\n                        <th class=\"day-col\">Monday</th>\n                        <td>Mathematics</td>\n                        <td>Python Programming</td>\n                        <td>DBMS</td>\n                        <td>English</td>\n                        <td class=\"break-cell\" rowspan=\"5\">LUNCH BREAK</td>\n                        <td>Artificial Intelligence</td>\n                        <td>Library Session</td>\n                    </tr>\n                    <tr>\n                        <th class=\"day-col\">Tuesday</th>\n                        <td>Python Programming</td>\n                        <td>Mathematics</td>\n                        <td>Artificial Intelligence</td>\n                        <td>DBMS</td>\n                        <td class=\"lab-cell\" colspan=\"2\">Python Programming Lab</td>\n                    </tr>\n                    <tr>\n                        <th class=\"day-col\">Wednesday</th>\n                        <td>DBMS</td>\n                        <td>English</td>\n                        <td>Mathematics</td>\n                        <td>Python Programming</td>\n                        <td>Artificial Intelligence</td>\n                        <td>Sports / Mentoring</td>\n                    </tr>\n                    <tr>\n                        <th class=\"day-col\">Thursday</th>\n                        <td>Artificial Intelligence</td>\n                        <td>DBMS</td>\n                        <td>Python Programming</td>\n                        <td>Mathematics</td>\n                        <td class=\"lab-cell\" colspan=\"2\">DBMS & SQL Lab</td>\n                    </tr>\n                    <tr>\n                        <th class=\"day-col\">Friday</th>\n                        <td>English</td>\n                        <td>Artificial Intelligence</td>\n                        <td>DBMS</td>\n                        <td>Python Programming</td>\n                        <td>Mathematics</td>\n                        <td>Seminar / Technical Presentation</td>\n                    </tr>\n                </tbody>\n            </table>\n        </div>\n\n        <p class=\"footnote\">Note: Demonstrates HTML table structure, caption, th/td hierarchy, rowspan=\"5\" for lunch break, and colspan=\"2\" for 2-hour practical laboratories.</p>\n    </div>\n</body>\n</html>"
+          "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Task 1(b) - Class Time Table</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <header class=\"header\">\n            <h1>Department of Computer Science & Engineering (AIML)</h1>\n            <h3>Academic Class Time Table • Semester Schedule</h3>\n        </header>\n\n        <div class=\"table-wrapper\">\n            <table>\n                <caption>Weekly Class Schedule</caption>\n                <thead>\n                    <tr>\n                        <th>Day</th>\n                        <th>09:00 - 10:00</th>\n                        <th>10:00 - 11:00</th>\n                        <th>11:00 - 12:00</th>\n                        <th>12:00 - 01:00</th>\n                        <th>01:00 - 02:00</th>\n                        <th>02:00 - 03:00</th>\n                        <th>03:00 - 04:00</th>\n                    </tr>\n                </thead>\n                <tbody>\n                    <tr>\n                        <th class=\"day-col\">Monday</th>\n                        <td>Mathematics</td>\n                        <td>Python Programming</td>\n                        <td>DBMS</td>\n                        <td>English</td>\n                        <td class=\"break-cell\" rowspan=\"5\">LUNCH BREAK</td>\n                        <td>Artificial Intelligence</td>\n                        <td>Library Session</td>\n                    </tr>\n                    <tr>\n                        <th class=\"day-col\">Tuesday</th>\n                        <td>Python Programming</td>\n                        <td>Mathematics</td>\n                        <td>Artificial Intelligence</td>\n                        <td>DBMS</td>\n                        <td class=\"lab-cell\" colspan=\"2\">Python Programming Lab</td>\n                    </tr>\n                    <tr>\n                        <th class=\"day-col\">Wednesday</th>\n                        <td>DBMS</td>\n                        <td>English</td>\n                        <td>Mathematics</td>\n                        <td>Python Programming</td>\n                        <td>Artificial Intelligence</td>\n                        <td>Sports / Mentoring</td>\n                    </tr>\n                    <tr>\n                        <th class=\"day-col\">Thursday</th>\n                        <td>Artificial Intelligence</td>\n                        <td>DBMS</td>\n                        <td>Python Programming</td>\n                        <td>Mathematics</td>\n                        <td class=\"lab-cell\" colspan=\"2\">DBMS & SQL Lab</td>\n                    </tr>\n                    <tr>\n                        <th class=\"day-col\">Friday</th>\n                        <td>English</td>\n                        <td>Artificial Intelligence</td>\n                        <td>DBMS</td>\n                        <td>Python Programming</td>\n                        <td>Mathematics</td>\n                        <td>Seminar / Technical Presentation</td>\n                    </tr>\n                </tbody>\n            </table>\n        </div>\n\n        <p class=\"footnote\">Note: Demonstrates HTML table structure, caption, th/td hierarchy, rowspan=\"5\" for lunch break, and colspan=\"2\" for 2-hour practical laboratories.</p>\n    </div>\n</body>\n</html>"
+        },
+        {
+          "name": "output_screenshot.png",
+          "path": "tasks/task1b/output_screenshot.png",
+          "size": "22.7 KB",
+          "type": "image",
+          "content": null
+        },
+        {
+          "name": "style.css",
+          "path": "tasks/task1b/style.css",
+          "size": "1.6 KB",
+          "type": "css",
+          "content": "body {\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif;\n    background-color: #f8fafc;\n    color: #1e293b;\n    margin: 0;\n    padding: 24px 16px;\n}\n.container {\n    max-width: 960px;\n    margin: 0 auto;\n    background: #ffffff;\n    border: 1px solid #e2e8f0;\n    border-radius: 8px;\n    padding: 24px;\n}\n.header {\n    text-align: center;\n    margin-bottom: 20px;\n}\nh1 {\n    font-size: 1.35rem;\n    font-weight: 700;\n    color: #0f172a;\n}\nh3 {\n    font-size: 0.95rem;\n    font-weight: 500;\n    color: #475569;\n    margin-top: 4px;\n}\n.table-wrapper {\n    overflow-x: auto;\n}\ntable {\n    width: 100%;\n    border-collapse: collapse;\n    margin: 16px 0;\n    font-size: 0.88rem;\n}\ncaption {\n    font-size: 1rem;\n    font-weight: 600;\n    padding: 10px;\n    caption-side: top;\n    text-align: left;\n    color: #0f172a;\n}\nth, td {\n    border: 1px solid #cbd5e1;\n    padding: 10px 8px;\n    text-align: center;\n}\nthead th {\n    background-color: #1e293b;\n    color: #ffffff;\n    font-weight: 600;\n    font-size: 0.82rem;\n    letter-spacing: 0.2px;\n}\n.day-col {\n    background-color: #f1f5f9;\n    color: #0f172a;\n    font-weight: 600;\n}\ntbody tr:nth-child(even) td:not(.break-cell):not(.lab-cell) {\n    background-color: #f8fafc;\n}\n.break-cell {\n    background-color: #e2e8f0;\n    color: #334155;\n    font-weight: 700;\n    font-size: 0.78rem;\n    letter-spacing: 1px;\n    writing-mode: vertical-rl;\n    text-orientation: mixed;\n    transform: rotate(180deg);\n}\n.lab-cell {\n    background-color: #e0e7ff;\n    color: #3730a3;\n    font-weight: 600;\n}\n.footnote {\n    font-size: 0.78rem;\n    color: #64748b;\n    margin-top: 14px;\n    text-align: center;\n}"
         },
         {
           "name": "Task 1B material.docx",
@@ -116,7 +116,7 @@
       ],
       "folderPath": "tasks/task2",
       "zipPath": "tasks/task2.zip",
-      "filesCount": 4,
+      "filesCount": 5,
       "files": [
         {
           "name": "index.html",
@@ -124,6 +124,13 @@
           "size": "3.2 KB",
           "type": "html",
           "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Task 2 - Registration Form Validation</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"form-container\">\n        <header>\n            <h2>Student Registration Form</h2>\n            <p>All fields are required. Client-side validation enabled via JavaScript.</p>\n        </header>\n\n        <form id=\"regForm\" onsubmit=\"return validateForm(event)\">\n            \n            <!-- First Name -->\n            <div class=\"form-row\">\n                <label for=\"fname\">First Name:</label>\n                <div class=\"input-wrap\">\n                    <input type=\"text\" id=\"fname\" name=\"fname\" placeholder=\"Enter first name\">\n                    <span id=\"fnameErr\" class=\"error-msg\"></span>\n                </div>\n            </div>\n\n            <!-- Last Name -->\n            <div class=\"form-row\">\n                <label for=\"lname\">Last Name:</label>\n                <div class=\"input-wrap\">\n                    <input type=\"text\" id=\"lname\" name=\"lname\" placeholder=\"Enter last name\">\n                    <span id=\"lnameErr\" class=\"error-msg\"></span>\n                </div>\n            </div>\n\n            <!-- Email Address -->\n            <div class=\"form-row\">\n                <label for=\"email\">Email Address:</label>\n                <div class=\"input-wrap\">\n                    <input type=\"text\" id=\"email\" name=\"email\" placeholder=\"student@example.com\">\n                    <span id=\"emailErr\" class=\"error-msg\"></span>\n                </div>\n            </div>\n\n            <!-- User ID -->\n            <div class=\"form-row\">\n                <label for=\"uid\">User ID:</label>\n                <div class=\"input-wrap\">\n                    <input type=\"text\" id=\"uid\" name=\"uid\" placeholder=\"Enter unique user ID\">\n                    <span id=\"uidErr\" class=\"error-msg\"></span>\n                </div>\n            </div>\n\n            <!-- Password -->\n            <div class=\"form-row\">\n                <label for=\"pwd\">Password:</label>\n                <div class=\"input-wrap\">\n                    <input type=\"password\" id=\"pwd\" name=\"pwd\" placeholder=\"Enter password\">\n                    <span id=\"pwdErr\" class=\"error-msg\"></span>\n                </div>\n            </div>\n\n            <!-- Confirm Password -->\n            <div class=\"form-row\">\n                <label for=\"cpwd\">Confirm Password:</label>\n                <div class=\"input-wrap\">\n                    <input type=\"password\" id=\"cpwd\" name=\"cpwd\" placeholder=\"Re-enter password\">\n                    <span id=\"cpwdErr\" class=\"error-msg\"></span>\n                </div>\n            </div>\n\n            <div class=\"form-actions\">\n                <button type=\"submit\" class=\"submit-btn\">Validate & Submit</button>\n                <button type=\"reset\" class=\"reset-btn\" onclick=\"clearErrors()\">Reset</button>\n            </div>\n\n            <div id=\"successMsg\" class=\"success-banner\">\n                Validation Successful! All fields are valid and ready for submission.\n            </div>\n        </form>\n    </div>\n\n    <script src=\"validate.js\"></script>\n</body>\n</html>"
+        },
+        {
+          "name": "output_screenshot.png",
+          "path": "tasks/task2/output_screenshot.png",
+          "size": "16.9 KB",
+          "type": "image",
+          "content": null
         },
         {
           "name": "style.css",
@@ -165,18 +172,18 @@
       "filesCount": 3,
       "files": [
         {
-          "name": "3a_multiplication.html",
-          "path": "tasks/task3a/3a_multiplication.html",
-          "size": "3.3 KB",
-          "type": "html",
-          "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Task 3(a) - Multiplication Table</title>\n    <style>\n        body { font-family: -apple-system, sans-serif; background: #f8fafc; color: #0f172a; padding: 30px; }\n        .box { max-width: 650px; margin: 0 auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 24px; }\n        h2 { font-size: 1.25rem; margin-bottom: 12px; }\n        .form-row { margin-bottom: 12px; }\n        label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; }\n        input[type=\"number\"] { width: 100%; max-width: 220px; padding: 8px; border: 1px solid #cbd5e1; border-radius: 4px; }\n        button { background: #0f172a; color: white; border: none; padding: 9px 18px; border-radius: 4px; font-weight: 600; cursor: pointer; margin-top: 8px; }\n        button:hover { background: #1e293b; }\n        #tableArea { margin-top: 20px; overflow-x: auto; }\n        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.85rem; }\n        th, td { border: 1px solid #cbd5e1; padding: 8px 10px; text-align: center; }\n        th { background: #1e293b; color: white; }\n        tr:nth-child(even) td { background: #f8fafc; }\n        .error { color: #dc2626; font-size: 0.85rem; margin-top: 6px; }\n    </style>\n</head>\n<body>\n    <div class=\"box\">\n        <h2>Dynamic Multiplication Table Generator</h2>\n        <p style=\"font-size: 0.85rem; color: #64748b; margin-bottom: 16px;\">Enter the number of rows and columns to generate the multiplication matrix dynamically.</p>\n        \n        <div class=\"form-row\">\n            <label for=\"numRows\">Number of Rows:</label>\n            <input type=\"number\" id=\"numRows\" min=\"1\" max=\"50\" placeholder=\"e.g. 10\">\n        </div>\n\n        <div class=\"form-row\">\n            <label for=\"numCols\">Number of Columns:</label>\n            <input type=\"number\" id=\"numCols\" min=\"1\" max=\"50\" placeholder=\"e.g. 10\">\n        </div>\n\n        <button onclick=\"generateTable()\">Generate Table</button>\n        <div id=\"errMsg\" class=\"error\"></div>\n\n        <div id=\"tableArea\"></div>\n    </div>\n\n    <script>\n        function generateTable() {\n            const rows = parseInt(document.getElementById('numRows').value);\n            const cols = parseInt(document.getElementById('numCols').value);\n            const err = document.getElementById('errMsg');\n            const area = document.getElementById('tableArea');\n\n            err.innerText = \"\";\n            area.innerHTML = \"\";\n\n            if (isNaN(rows) || isNaN(cols) || rows < 1 || cols < 1) {\n                err.innerText = \"Please enter valid positive integers for both rows and columns.\";\n                return;\n            }\n\n            let html = \"<table><thead><tr><th>&times;</th>\";\n            for (let j = 1; j <= cols; j++) {\n                html += \"<th>\" + j + \"</th>\";\n            }\n            html += \"</tr></thead><tbody>\";\n\n            for (let i = 1; i <= rows; i++) {\n                html += \"<tr><th>\" + i + \"</th>\";\n                for (let j = 1; j <= cols; j++) {\n                    html += \"<td>\" + (i * j) + \"</td>\";\n                }\n                html += \"</tr>\";\n            }\n            html += \"</tbody></table>\";\n\n            area.innerHTML = html;\n        }\n    </script>\n</body>\n</html>"
-        },
-        {
           "name": "index.html",
           "path": "tasks/task3a/index.html",
           "size": "3.3 KB",
           "type": "html",
           "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Task 3(a) - Multiplication Table</title>\n    <style>\n        body { font-family: -apple-system, sans-serif; background: #f8fafc; color: #0f172a; padding: 30px; }\n        .box { max-width: 650px; margin: 0 auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 24px; }\n        h2 { font-size: 1.25rem; margin-bottom: 12px; }\n        .form-row { margin-bottom: 12px; }\n        label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; }\n        input[type=\"number\"] { width: 100%; max-width: 220px; padding: 8px; border: 1px solid #cbd5e1; border-radius: 4px; }\n        button { background: #0f172a; color: white; border: none; padding: 9px 18px; border-radius: 4px; font-weight: 600; cursor: pointer; margin-top: 8px; }\n        button:hover { background: #1e293b; }\n        #tableArea { margin-top: 20px; overflow-x: auto; }\n        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.85rem; }\n        th, td { border: 1px solid #cbd5e1; padding: 8px 10px; text-align: center; }\n        th { background: #1e293b; color: white; }\n        tr:nth-child(even) td { background: #f8fafc; }\n        .error { color: #dc2626; font-size: 0.85rem; margin-top: 6px; }\n    </style>\n</head>\n<body>\n    <div class=\"box\">\n        <h2>Dynamic Multiplication Table Generator</h2>\n        <p style=\"font-size: 0.85rem; color: #64748b; margin-bottom: 16px;\">Enter the number of rows and columns to generate the multiplication matrix dynamically.</p>\n        \n        <div class=\"form-row\">\n            <label for=\"numRows\">Number of Rows:</label>\n            <input type=\"number\" id=\"numRows\" min=\"1\" max=\"50\" placeholder=\"e.g. 10\">\n        </div>\n\n        <div class=\"form-row\">\n            <label for=\"numCols\">Number of Columns:</label>\n            <input type=\"number\" id=\"numCols\" min=\"1\" max=\"50\" placeholder=\"e.g. 10\">\n        </div>\n\n        <button onclick=\"generateTable()\">Generate Table</button>\n        <div id=\"errMsg\" class=\"error\"></div>\n\n        <div id=\"tableArea\"></div>\n    </div>\n\n    <script>\n        function generateTable() {\n            const rows = parseInt(document.getElementById('numRows').value);\n            const cols = parseInt(document.getElementById('numCols').value);\n            const err = document.getElementById('errMsg');\n            const area = document.getElementById('tableArea');\n\n            err.innerText = \"\";\n            area.innerHTML = \"\";\n\n            if (isNaN(rows) || isNaN(cols) || rows < 1 || cols < 1) {\n                err.innerText = \"Please enter valid positive integers for both rows and columns.\";\n                return;\n            }\n\n            let html = \"<table><thead><tr><th>&times;</th>\";\n            for (let j = 1; j <= cols; j++) {\n                html += \"<th>\" + j + \"</th>\";\n            }\n            html += \"</tr></thead><tbody>\";\n\n            for (let i = 1; i <= rows; i++) {\n                html += \"<tr><th>\" + i + \"</th>\";\n                for (let j = 1; j <= cols; j++) {\n                    html += \"<td>\" + (i * j) + \"</td>\";\n                }\n                html += \"</tr>\";\n            }\n            html += \"</tbody></table>\";\n\n            area.innerHTML = html;\n        }\n    </script>\n</body>\n</html>"
+        },
+        {
+          "name": "output_screenshot.png",
+          "path": "tasks/task3a/output_screenshot.png",
+          "size": "32.3 KB",
+          "type": "image",
+          "content": null
         },
         {
           "name": "task 3A material.docx",
@@ -204,13 +211,6 @@
       "filesCount": 5,
       "files": [
         {
-          "name": "3b_imagetoggle.html",
-          "path": "tasks/task3b/3b_imagetoggle.html",
-          "size": "2.3 KB",
-          "type": "html",
-          "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Task 3(b) - Image Toggle Application</title>\n    <style>\n        body { font-family: -apple-system, sans-serif; background: #f8fafc; color: #0f172a; padding: 40px 16px; text-align: center; }\n        .box { max-width: 440px; margin: 0 auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 28px; }\n        h2 { font-size: 1.25rem; margin-bottom: 8px; }\n        p { font-size: 0.85rem; color: #64748b; margin-bottom: 20px; }\n        .img-frame { width: 200px; height: 200px; margin: 0 auto 20px; border-radius: 8px; border: 1px solid #cbd5e1; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #0f172a; }\n        .img-frame img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.2s ease; }\n        .toggle-btn { background: #0f172a; color: white; border: none; padding: 10px 22px; font-size: 0.9rem; font-weight: 600; border-radius: 4px; cursor: pointer; }\n        .toggle-btn:hover { background: #1e293b; }\n        .status-badge { margin-top: 14px; font-size: 0.82rem; font-mono; color: #475569; }\n    </style>\n</head>\n<body>\n    <div class=\"box\">\n        <h2>Image Toggle Application</h2>\n        <p>Click the button below to dynamically toggle between two local image assets.</p>\n\n        <div class=\"img-frame\">\n            <img id=\"toggleImage\" src=\"image1.png\" alt=\"Toggle Target\">\n        </div>\n\n        <button class=\"toggle-btn\" onclick=\"toggleImage()\">Toggle Image</button>\n\n        <div class=\"status-badge\" id=\"statusBadge\">Current State: Image 1 (Slate Mode)</div>\n    </div>\n\n    <script>\n        let currentImage = 1;\n        function toggleImage() {\n            const img = document.getElementById('toggleImage');\n            const status = document.getElementById('statusBadge');\n            if (currentImage === 1) {\n                img.src = \"image2.png\";\n                currentImage = 2;\n                status.innerText = \"Current State: Image 2 (Silver Mode)\";\n            } else {\n                img.src = \"image1.png\";\n                currentImage = 1;\n                status.innerText = \"Current State: Image 1 (Slate Mode)\";\n            }\n        }\n    </script>\n</body>\n</html>"
-        },
-        {
           "name": "image1.png",
           "path": "tasks/task3b/image1.png",
           "size": "1.6 KB",
@@ -230,6 +230,13 @@
           "size": "2.3 KB",
           "type": "html",
           "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Task 3(b) - Image Toggle Application</title>\n    <style>\n        body { font-family: -apple-system, sans-serif; background: #f8fafc; color: #0f172a; padding: 40px 16px; text-align: center; }\n        .box { max-width: 440px; margin: 0 auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 28px; }\n        h2 { font-size: 1.25rem; margin-bottom: 8px; }\n        p { font-size: 0.85rem; color: #64748b; margin-bottom: 20px; }\n        .img-frame { width: 200px; height: 200px; margin: 0 auto 20px; border-radius: 8px; border: 1px solid #cbd5e1; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #0f172a; }\n        .img-frame img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.2s ease; }\n        .toggle-btn { background: #0f172a; color: white; border: none; padding: 10px 22px; font-size: 0.9rem; font-weight: 600; border-radius: 4px; cursor: pointer; }\n        .toggle-btn:hover { background: #1e293b; }\n        .status-badge { margin-top: 14px; font-size: 0.82rem; font-mono; color: #475569; }\n    </style>\n</head>\n<body>\n    <div class=\"box\">\n        <h2>Image Toggle Application</h2>\n        <p>Click the button below to dynamically toggle between two local image assets.</p>\n\n        <div class=\"img-frame\">\n            <img id=\"toggleImage\" src=\"image1.png\" alt=\"Toggle Target\">\n        </div>\n\n        <button class=\"toggle-btn\" onclick=\"toggleImage()\">Toggle Image</button>\n\n        <div class=\"status-badge\" id=\"statusBadge\">Current State: Image 1 (Slate Mode)</div>\n    </div>\n\n    <script>\n        let currentImage = 1;\n        function toggleImage() {\n            const img = document.getElementById('toggleImage');\n            const status = document.getElementById('statusBadge');\n            if (currentImage === 1) {\n                img.src = \"image2.png\";\n                currentImage = 2;\n                status.innerText = \"Current State: Image 2 (Silver Mode)\";\n            } else {\n                img.src = \"image1.png\";\n                currentImage = 1;\n                status.innerText = \"Current State: Image 1 (Slate Mode)\";\n            }\n        }\n    </script>\n</body>\n</html>"
+        },
+        {
+          "name": "output_screenshot.png",
+          "path": "tasks/task3b/output_screenshot.png",
+          "size": "12.8 KB",
+          "type": "image",
+          "content": null
         },
         {
           "name": "Task 3B Material.docx",
@@ -255,7 +262,7 @@
       ],
       "folderPath": "tasks/task4",
       "zipPath": "tasks/task4.zip",
-      "filesCount": 4,
+      "filesCount": 5,
       "files": [
         {
           "name": "index.html",
@@ -263,6 +270,13 @@
           "size": "1018 B",
           "type": "html",
           "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Task 4 - To-Do List Application</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"todo-app\">\n        <header>\n            <h2>Task Management To-Do List</h2>\n            <p>Add, complete, and manage lab assignments with DOM manipulation.</p>\n        </header>\n\n        <div class=\"input-section\">\n            <input type=\"text\" id=\"taskInput\" placeholder=\"Enter a new task description...\" onkeydown=\"if(event.key==='Enter') addTask()\">\n            <button class=\"add-btn\" onclick=\"addTask()\">Add Task</button>\n        </div>\n\n        <div class=\"todo-stats\">\n            <span id=\"taskCounter\">0 tasks total</span>\n            <button class=\"clear-all-btn\" onclick=\"clearAllTasks()\">Clear All</button>\n        </div>\n\n        <ul id=\"taskList\" class=\"task-list\"></ul>\n    </div>\n\n    <script src=\"todo.js\"></script>\n</body>\n</html>"
+        },
+        {
+          "name": "output_screenshot.jpeg",
+          "path": "tasks/task4/output_screenshot.jpeg",
+          "size": "25.8 KB",
+          "type": "image",
+          "content": null
         },
         {
           "name": "style.css",
@@ -302,7 +316,7 @@
       ],
       "folderPath": "tasks/task5",
       "zipPath": "tasks/task5.zip",
-      "filesCount": 4,
+      "filesCount": 5,
       "files": [
         {
           "name": "bill.php",
@@ -317,6 +331,13 @@
           "size": "2.6 KB",
           "type": "html",
           "content": "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Task 5 - Item Billing System (PHP explode)</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h2>Item Billing System</h2>\n        <p class=\"subtitle\">Enter comma-separated values for 5 items using only 4 text boxes.</p>\n\n        \n            <div class=\"alert error\"></div>\n        \n\n        <form method=\"POST\" action=\"bill.php\">\n            <div class=\"form-group\">\n                <label for=\"item_codes\">1. Item Codes (5 comma-separated):</label>\n                <input type=\"text\" id=\"item_codes\" name=\"item_codes\" value=\"\" required>\n            </div>\n\n            <div class=\"form-group\">\n                <label for=\"item_names\">2. Item Names (5 comma-separated):</label>\n                <input type=\"text\" id=\"item_names\" name=\"item_names\" value=\"\" required>\n            </div>\n\n            <div class=\"form-group\">\n                <label for=\"units_sold\">3. Units Sold (5 comma-separated):</label>\n                <input type=\"text\" id=\"units_sold\" name=\"units_sold\" value=\"\" required>\n            </div>\n\n            <div class=\"form-group\">\n                <label for=\"rates\">4. Rates per Unit (5 comma-separated):</label>\n                <input type=\"text\" id=\"rates\" name=\"rates\" value=\"\" required>\n            </div>\n\n            <button type=\"submit\" class=\"btn\">Generate Bill</button>\n        </form>\n\n        \n            <div class=\"bill-output\">\n                <h3>Invoice / Billing Summary</h3>\n                <table>\n                    <thead>\n                        <tr>\n                            <th>Item Code</th>\n                            <th>Item Name</th>\n                            <th>Units Sold</th>\n                            <th>Rate (INR)</th>\n                            <th>Amount (INR)</th>\n                        </tr>\n                    </thead>\n                    <tbody>\n                        \n                        <tr>\n                            <td></td>\n                            <td></td>\n                            <td></td>\n                            <td></td>\n                            <td></td>\n                        </tr>\n                        \n                    </tbody>\n                    <tfoot>\n                        <tr class=\"total-row\">\n                            <td colspan=\"4\">Grand Total</td>\n                            <td><strong>INR </strong></td>\n                        </tr>\n                    </tfoot>\n                </table>\n            </div>\n        \n    </div>\n</body>\n</html>"
+        },
+        {
+          "name": "output_screenshot.jpeg",
+          "path": "tasks/task5/output_screenshot.jpeg",
+          "size": "50.3 KB",
+          "type": "image",
+          "content": null
         },
         {
           "name": "style.css",
@@ -349,7 +370,7 @@
       ],
       "folderPath": "tasks/task6a",
       "zipPath": "tasks/task6a.zip",
-      "filesCount": 6,
+      "filesCount": 5,
       "files": [
         {
           "name": "6a_details.php",
@@ -366,11 +387,11 @@
           "content": "<?php\n// Experiment 6(a): Login form with username & password\nsession_start();\n\n$error = \"\";\nif ($_SERVER[\"REQUEST_METHOD\"] === \"POST\") {\n    $username = trim($_POST['username'] ?? '');\n    $password = trim($_POST['password'] ?? '');\n\n    // Credentials check\n    if ($username === \"admin\" && $password === \"password123\") {\n        $_SESSION['user'] = $username;\n        $_SESSION['last_activity'] = time(); // Record initial timestamp\n        header(\"Location: 6a_details.php\");\n        exit();\n    } else {\n        $error = \"Invalid username or password. (Hint: admin / password123)\";\n    }\n}\n?>\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Task 6(a) - Login</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"box\">\n        <h2>User Login Portal</h2>\n        <p class=\"subtitle\">Enter credentials to proceed to the User Details Form.</p>\n\n        <?php if (isset($_GET['warning'])): ?>\n            <div class=\"alert warning\"><?php echo htmlspecialchars($_GET['warning']); ?></div>\n        <?php endif; ?>\n\n        <?php if ($error): ?>\n            <div class=\"alert error\"><?php echo $error; ?></div>\n        <?php endif; ?>\n\n        <form method=\"POST\">\n            <div class=\"form-group\">\n                <label for=\"username\">Username:</label>\n                <input type=\"text\" id=\"username\" name=\"username\" value=\"admin\" required>\n            </div>\n            <div class=\"form-group\">\n                <label for=\"password\">Password:</label>\n                <input type=\"password\" id=\"password\" name=\"password\" value=\"password123\" required>\n            </div>\n            <button type=\"submit\" class=\"btn\">Login</button>\n        </form>\n    </div>\n</body>\n</html>"
         },
         {
-          "name": "index.html",
-          "path": "tasks/task6a/index.html",
-          "size": "190 B",
-          "type": "html",
-          "content": "<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"0; url=6a_login.php\"><title>Task 6A</title></head><body>Redirecting to <a href=\"6a_login.php\">6a_login.php</a>...</body></html>"
+          "name": "output_screenshot.png",
+          "path": "tasks/task6a/output_screenshot.png",
+          "size": "99.4 KB",
+          "type": "image",
+          "content": null
         },
         {
           "name": "style.css",
@@ -378,13 +399,6 @@
           "size": "1.5 KB",
           "type": "css",
           "content": "body {\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif;\n    background: #f8fafc;\n    color: #0f172a;\n    padding: 30px 16px;\n}\n.box {\n    max-width: 500px;\n    margin: 0 auto;\n    background: #ffffff;\n    border: 1px solid #e2e8f0;\n    border-radius: 8px;\n    padding: 24px;\n}\nh2 { font-size: 1.25rem; font-weight: 700; }\n.subtitle { font-size: 0.85rem; color: #64748b; margin-top: 4px; margin-bottom: 18px; }\n.form-group { margin-bottom: 14px; }\nlabel { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; color: #334155; }\ninput { width: 100%; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 0.9rem; }\ninput:focus { outline: none; border-color: #0f172a; }\n.btn { background: #0f172a; color: white; border: none; padding: 9px 18px; border-radius: 4px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; }\n.btn-secondary { background: #475569; }\n.btn-danger { background: #dc2626; }\n.btn-group { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }\n.alert { padding: 10px; border-radius: 4px; font-size: 0.85rem; margin-bottom: 14px; }\n.alert.warning { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }\n.alert.error { background: #fee2e2; color: #dc2626; border: 1px solid #fecaca; }\n.alert.success { background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }\n.alert.info { background: #f1f5f9; color: #0f172a; border: 1px solid #cbd5e1; }"
-        },
-        {
-          "name": "TASK 6.docx",
-          "path": "tasks/task6a/TASK 6.docx",
-          "size": "311.1 KB",
-          "type": "doc",
-          "content": null
         },
         {
           "name": "Task 6A material.docx",
@@ -420,11 +434,11 @@
           "content": "<?php\n// Experiment 6(b): PHP script to store, retrieve, and delete data cookies values.\n$status = \"\";\n\nif ($_SERVER[\"REQUEST_METHOD\"] === \"POST\") {\n    $action = $_POST['action'] ?? '';\n    $val = trim($_POST['username'] ?? '');\n\n    if ($action === 'set') {\n        if (!empty($val)) {\n            setcookie(\"username\", $val, time() + 3600, \"/\");\n            $status = \"Cookie 'username' stored successfully with value: <strong>\" . htmlspecialchars($val) . \"</strong>\";\n        } else {\n            $status = \"Please enter a value to store in the cookie.\";\n        }\n    } elseif ($action === 'get') {\n        if (isset($_COOKIE['username'])) {\n            $status = \"Retrieved Cookie value: <strong>\" . htmlspecialchars($_COOKIE['username']) . \"</strong>\";\n        } else {\n            $status = \"No cookie named 'username' found in browser storage.\";\n        }\n    } elseif ($action === 'delete') {\n        setcookie(\"username\", \"\", time() - 3600, \"/\");\n        $status = \"Cookie 'username' deleted successfully.\";\n    }\n}\n?>\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Task 6(b) - Cookie Operations</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"box\">\n        <h2>Cookie Management in PHP</h2>\n        <p class=\"subtitle\">Demonstrates storing, retrieving, and deleting cookies.</p>\n\n        <?php if ($status): ?>\n            <div class=\"alert info\"><?php echo $status; ?></div>\n        <?php endif; ?>\n\n        <form method=\"POST\">\n            <div class=\"form-group\">\n                <label for=\"username\">Username / Preference Value:</label>\n                <input type=\"text\" id=\"username\" name=\"username\" placeholder=\"Enter value for cookie\">\n            </div>\n\n            <div class=\"btn-group\">\n                <button type=\"submit\" name=\"action\" value=\"set\" class=\"btn\">Set Cookie</button>\n                <button type=\"submit\" name=\"action\" value=\"get\" class=\"btn btn-secondary\">Get Cookie</button>\n                <button type=\"submit\" name=\"action\" value=\"delete\" class=\"btn btn-danger\">Delete Cookie</button>\n            </div>\n        </form>\n    </div>\n</body>\n</html>"
         },
         {
-          "name": "index.html",
-          "path": "tasks/task6b/index.html",
-          "size": "196 B",
-          "type": "html",
-          "content": "<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"0; url=6b_cookies.php\"><title>Task 6B</title></head><body>Redirecting to <a href=\"6b_cookies.php\">6b_cookies.php</a>...</body></html>"
+          "name": "output_screenshot.jpeg",
+          "path": "tasks/task6b/output_screenshot.jpeg",
+          "size": "43.8 KB",
+          "type": "image",
+          "content": null
         },
         {
           "name": "style.css",
@@ -474,11 +488,11 @@
           "content": "-- Task 7 Database Schema\nCREATE DATABASE IF NOT EXISTS userdatabasenew;\nUSE userdatabasenew;\n\nCREATE TABLE IF NOT EXISTS users (\n    id INT AUTO_INCREMENT PRIMARY KEY,\n    username VARCHAR(50) NOT NULL,\n    password VARCHAR(255) NOT NULL,\n    email VARCHAR(100) NOT NULL\n);"
         },
         {
-          "name": "index.html",
-          "path": "tasks/task7a/index.html",
-          "size": "212 B",
-          "type": "html",
-          "content": "<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"0; url=7a_create_db.php\"><title>Task 7A</title></head><body>Run <a href=\"7a_create_db.php\">7a_create_db.php</a> to initialize database.</body></html>"
+          "name": "output_screenshot.png",
+          "path": "tasks/task7a/output_screenshot.png",
+          "size": "46.5 KB",
+          "type": "image",
+          "content": null
         },
         {
           "name": "TASK 7 SL program for record.docx",
@@ -522,11 +536,11 @@
           "content": "-- Task 7 Database Schema\nCREATE DATABASE IF NOT EXISTS userdatabasenew;\nUSE userdatabasenew;\n\nCREATE TABLE IF NOT EXISTS users (\n    id INT AUTO_INCREMENT PRIMARY KEY,\n    username VARCHAR(50) NOT NULL,\n    password VARCHAR(255) NOT NULL,\n    email VARCHAR(100) NOT NULL\n);"
         },
         {
-          "name": "index.html",
-          "path": "tasks/task7b/index.html",
-          "size": "213 B",
-          "type": "html",
-          "content": "<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"0; url=7b_register.php\"><title>Task 7B</title></head><body>Open <a href=\"7b_register.php\">7b_register.php</a> to test user registration.</body></html>"
+          "name": "output_screenshot.png",
+          "path": "tasks/task7b/output_screenshot.png",
+          "size": "49.5 KB",
+          "type": "image",
+          "content": null
         },
         {
           "name": "TASK 7 SL program for record.docx",
@@ -555,11 +569,11 @@
       "filesCount": 3,
       "files": [
         {
-          "name": "index.html",
-          "path": "tasks/task8a/index.html",
-          "size": "199 B",
-          "type": "html",
-          "content": "<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"0; url=Task 8a.php\"><title>Task 8A</title></head><body>Open <a href=\"Task 8a.php\">Task 8a.php</a> to test record updating.</body></html>"
+          "name": "output_screenshot.png",
+          "path": "tasks/task8a/output_screenshot.png",
+          "size": "457.8 KB",
+          "type": "image",
+          "content": null
         },
         {
           "name": "TASK 8 SL program for record.docx",
@@ -595,11 +609,11 @@
       "filesCount": 3,
       "files": [
         {
-          "name": "index.html",
-          "path": "tasks/task8b/index.html",
-          "size": "199 B",
-          "type": "html",
-          "content": "<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"0; url=Task 8b.php\"><title>Task 8B</title></head><body>Open <a href=\"Task 8b.php\">Task 8b.php</a> to test record deletion.</body></html>"
+          "name": "output_screenshot.png",
+          "path": "tasks/task8b/output_screenshot.png",
+          "size": "474.9 KB",
+          "type": "image",
+          "content": null
         },
         {
           "name": "TASK 8 SL program for record.docx",
@@ -636,13 +650,6 @@
       "filesCount": 6,
       "files": [
         {
-          "name": "index.html",
-          "path": "tasks/task9/index.html",
-          "size": "1.6 KB",
-          "type": "html",
-          "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <title>Task 9 - Motorbike Catalog (XML, DTD & XSLT)</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <h2>Four Stroke Motorbike Catalog</h2>\n    <p style=\"font-size: 0.85rem; color: #64748b; margin-bottom: 16px;\">Transformed from XML using XSLT and CSS with GREY header and bold capitalized columns.</p>\n    <table>\n        <tr>\n            <th>MAKE</th>\n            <th>MODEL</th>\n            <th>YEAR</th>\n            <th>COLOR</th>\n            <th>ENGINE NUMBER</th>\n            <th>CYLINDERS</th>\n            <th>FUEL TYPE</th>\n            <th>CHASSIS NUMBER</th>\n            <th>ACCESSORIES</th>\n        </tr>\n        <tr>\n            <td>Honda</td>\n            <td>CBR500R</td>\n            <td>2023</td>\n            <td>Red</td>\n            <td>EN123456</td>\n            <td>2</td>\n            <td>Petrol</td>\n            <td>CH123456789</td>\n            <td>Disc Brake: yes, Auto-Start: yes, Radio: no</td>\n        </tr>\n        <tr>\n            <td>Yamaha</td>\n            <td>YZF-R3</td>\n            <td>2022</td>\n            <td>Blue</td>\n            <td>EN654321</td>\n            <td>2</td>\n            <td>Petrol</td>\n            <td>CH987654321</td>\n            <td>Disc Brake: yes, Auto-Start: yes, Radio: yes</td>\n        </tr>\n        <tr>\n            <td>Kawasaki</td>\n            <td>Ninja 400</td>\n            <td>2024</td>\n            <td>Green</td>\n            <td>EN789012</td>\n            <td>2</td>\n            <td>Petrol</td>\n            <td>CH456789123</td>\n            <td>Disc Brake: yes, Auto-Start: yes, Radio: no</td>\n        </tr>\n    </table>\n</body>\n</html>"
-        },
-        {
           "name": "m.xml",
           "path": "tasks/task9/m.xml",
           "size": "2.0 KB",
@@ -662,6 +669,13 @@
           "size": "1.4 KB",
           "type": "xsl",
           "content": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n<xsl:stylesheet version=\"1.0\"\r\nxmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">\r\n\r\n<xsl:output method=\"html\" encoding=\"UTF-8\"/>\r\n\r\n<xsl:template match=\"/\">\r\n\r\n<html>\r\n<head>\r\n    <title>Motorbike Catalog</title>\r\n    <link rel=\"stylesheet\"\r\n          type=\"text/css\" href=\"style.css\"/>\r\n</head>\r\n\r\n<body>\r\n\r\n<h1>Motorbike Catalog</h1>\r\n\r\n<table>\r\n\r\n<tr>\r\n    <th>MAKE</th>\r\n    <th>MODEL</th>\r\n    <th>YEAR</th>\r\n    <th>COLOR</th>\r\n    <th>ENGINE NUMBER</th>\r\n    <th>CYLINDERS</th>\r\n    <th>FUEL TYPE</th>\r\n    <th>CHASSIS NUMBER</th>\r\n    <th>DISC BRAKE</th>\r\n    <th>AUTO START</th>\r\n    <th>RADIO</th>\r\n</tr>\r\n\r\n<xsl:for-each select=\"catalog/motorbike\">\r\n\r\n<tr>\r\n    <td><xsl:value-of select=\"make\"/></td>\r\n    <td><xsl:value-of select=\"model\"/></td>\r\n    <td><xsl:value-of select=\"year\"/></td>\r\n    <td><xsl:value-of select=\"color\"/></td>\r\n\r\n    <td><xsl:value-of select=\"engine/engine_number\"/></td>\r\n\r\n    <td><xsl:value-of\r\n        select=\"engine/number_of_cylinders\"/></td>\r\n\r\n    <td><xsl:value-of\r\n        select=\"engine/type_of_fuel\"/></td>\r\n\r\n    <td><xsl:value-of select=\"chassis_number\"/></td>\r\n\r\n    <td><xsl:value-of\r\n        select=\"accessories/@disc_brake\"/></td>\r\n\r\n    <td><xsl:value-of\r\n        select=\"accessories/@auto_start\"/></td>\r\n\r\n    <td><xsl:value-of\r\n        select=\"accessories/@radio\"/></td>\r\n</tr>\r\n\r\n</xsl:for-each>\r\n\r\n</table>\r\n\r\n</body>\r\n</html>\r\n\r\n</xsl:template>\r\n</xsl:stylesheet>\r\n"
+        },
+        {
+          "name": "output_screenshot.png",
+          "path": "tasks/task9/output_screenshot.png",
+          "size": "140.2 KB",
+          "type": "image",
+          "content": null
         },
         {
           "name": "style.css",
@@ -704,11 +718,11 @@
           "content": "<?php\r\n\r\n// Get current date and time from server\r\necho \"Current Server Date and Time: \";\r\n\r\necho date(\"d-m-Y h:i:s A\");\r\n\r\n?>\r\n\r\n"
         },
         {
-          "name": "index.html",
-          "path": "tasks/task10/index.html",
-          "size": "1.8 KB",
-          "type": "html",
-          "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Task 10 - jQuery AJAX Date & Time</title>\n    <script src=\"https://code.jquery.com/jquery-3.6.0.min.js\"></script>\n    <style>\n        body { font-family: -apple-system, sans-serif; background: #f8fafc; color: #0f172a; padding: 40px; text-align: center; }\n        .box { max-width: 440px; margin: auto; background: white; border: 1px solid #cbd5e1; border-radius: 8px; padding: 26px; }\n        h2 { font-size: 1.25rem; margin-bottom: 8px; }\n        p { font-size: 0.85rem; color: #64748b; margin-bottom: 18px; }\n        button { background: #0f172a; color: white; border: none; padding: 10px 20px; font-weight: 600; border-radius: 4px; cursor: pointer; }\n        button:hover { background: #1e293b; }\n        #result { margin-top: 20px; padding: 12px; font-size: 0.95rem; font-weight: 600; color: #047857; background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 4px; min-height: 24px; }\n    </style>\n</head>\n<body>\n    <div class=\"box\">\n        <h2>jQuery AJAX HTTP GET Request</h2>\n        <p>Click below to request current server date and time via AJAX.</p>\n\n        <button id=\"btn\">Get Server Date & Time</button>\n\n        <div id=\"result\">Waiting for request...</div>\n    </div>\n\n    <script>\n        $(document).ready(function() {\n            $(\"#btn\").click(function() {\n                $.get(\"date-time.php\", function(data) {\n                    $(\"#result\").html(data);\n                }).fail(function() {\n                    // Client-side fallback if running statically without PHP server\n                    const now = new Date();\n                    $(\"#result\").html(\"Current Date & Time: \" + now.toLocaleString() + \" (Client Render)\");\n                });\n            });\n        });\n    </script>\n</body>\n</html>"
+          "name": "output_screenshot.png",
+          "path": "tasks/task10/output_screenshot.png",
+          "size": "73.0 KB",
+          "type": "image",
+          "content": null
         },
         {
           "name": "TASK 10 SL for record.docx",
@@ -745,11 +759,11 @@
       "filesCount": 4,
       "files": [
         {
-          "name": "index.html",
-          "path": "tasks/task11/index.html",
-          "size": "2.6 KB",
-          "type": "html",
-          "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Task 11 - Live Name Suggestions (jQuery AJAX)</title>\n    <script src=\"https://code.jquery.com/jquery-3.6.0.min.js\"></script>\n    <style>\n        body { font-family: -apple-system, sans-serif; background: #f8fafc; color: #0f172a; padding: 40px; text-align: center; }\n        .box { max-width: 460px; margin: auto; background: white; border: 1px solid #cbd5e1; border-radius: 8px; padding: 26px; }\n        h2 { font-size: 1.25rem; margin-bottom: 8px; }\n        p { font-size: 0.85rem; color: #64748b; margin-bottom: 18px; }\n        input { width: 100%; box-sizing: border-box; padding: 10px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 0.95rem; }\n        input:focus { outline: none; border-color: #0f172a; }\n        #suggestions { margin-top: 16px; text-align: left; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 10px; font-size: 0.9rem; min-height: 40px; }\n    </style>\n</head>\n<body>\n    <div class=\"box\">\n        <h2>Live Name Suggestion</h2>\n        <p>Type a character to retrieve matching suggested names via AJAX.</p>\n\n        <input type=\"text\" id=\"searchBox\" placeholder=\"Start typing a name (e.g. A, B, C)...\">\n\n        <div id=\"suggestions\">Type a character above to search.</div>\n    </div>\n\n    <script>\n        const sampleNames = [\"Alice\", \"Bob\", \"Charlie\", \"David\", \"Emma\", \"Frank\", \"Grace\", \"Hannah\", \"Ian\", \"Jack\", \"Kavya\", \"Liam\", \"Manoj\", \"Nina\", \"Oliver\", \"Priya\", \"Rahul\", \"Sneha\", \"Tarun\", \"Vikram\"];\n\n        $(document).ready(function() {\n            $(\"#searchBox\").keyup(function() {\n                var query = $(this).val().trim();\n                if (query === \"\") {\n                    $(\"#suggestions\").html(\"Type a character above to search.\");\n                    return;\n                }\n\n                $.get(\"search.php\", { query: query }, function(data) {\n                    $(\"#suggestions\").html(data);\n                }).fail(function() {\n                    // Client fallback if opened statically without PHP server\n                    var matches = sampleNames.filter(function(name) {\n                        return name.toLowerCase().indexOf(query.toLowerCase()) !== -1;\n                    });\n                    if (matches.length > 0) {\n                        $(\"#suggestions\").html(\"<strong>Suggestions:</strong> \" + matches.join(\", \"));\n                    } else {\n                        $(\"#suggestions\").html(\"<em>No suggestions found</em>\");\n                    }\n                });\n            });\n        });\n    </script>\n</body>\n</html>"
+          "name": "output_screenshot.png",
+          "path": "tasks/task11/output_screenshot.png",
+          "size": "60.7 KB",
+          "type": "image",
+          "content": null
         },
         {
           "name": "search.php",
@@ -789,7 +803,7 @@
       ],
       "folderPath": "tasks/task12",
       "zipPath": "tasks/task12.zip",
-      "filesCount": 10,
+      "filesCount": 8,
       "files": [
         {
           "name": "db_schema.sql",
@@ -834,25 +848,11 @@
           "content": null
         },
         {
-          "name": "Task 12 .html",
-          "path": "tasks/task12/Task 12 .html",
-          "size": "1.6 KB",
-          "type": "html",
-          "content": "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n    <title>AJAX Database Example</title>\r\n\r\n    <style>\r\n        table, th, td {\r\n            border: 1px solid black;\r\n            border-collapse: collapse;\r\n            padding: 8px;\r\n        }\r\n    </style>\r\n\r\n</head>\r\n<body>\r\n\r\n    <h2>AJAX - Retrieve User Information</h2>\r\n\r\n    <!-- Dropdown list of names -->\r\n    <select id=\"username\" onchange=\"showUser(this.value)\">\r\n\r\n        <option value=\"\">Select a user</option>\r\n        <option value=\"1\">Alice</option>\r\n        <option value=\"2\">Bob</option>\r\n        <option value=\"3\">Charlie</option>\r\n        <option value=\"4\">David</option>\r\n\r\n    </select>\r\n\r\n    <br><br>\r\n\r\n    <!-- Display user information -->\r\n    <div id=\"result\">\r\n        User information will be displayed here.\r\n    </div>\r\n\r\n    <script>\r\n\r\n    function showUser(id) {\r\n\r\n        // Check whether user is selected\r\n        if (id == \"\") {\r\n            document.getElementById(\"result\").innerHTML = \"\";\r\n            return;\r\n        }\r\n\r\n        // Create XMLHttpRequest object\r\n        var xhttp = new XMLHttpRequest();\r\n\r\n        // Receive response from PHP\r\n        xhttp.onreadystatechange = function() {\r\n\r\n            if (this.readyState == 4 && this.status == 200) {\r\n\r\n                // Display user information\r\n                document.getElementById(\"result\").innerHTML =\r\n                    this.responseText;\r\n\r\n            }\r\n\r\n        };\r\n\r\n        // Send GET request to PHP file\r\n        xhttp.open(\"GET\", \"getuser.php?id=\" + id, true);\r\n\r\n        xhttp.send();\r\n\r\n    }\r\n\r\n    </script>\r\n\r\n</body>\r\n</html>\r\n"
-        },
-        {
           "name": "TASK 12 SL program for record.docx",
           "path": "tasks/task12/TASK 12 SL program for record.docx",
           "size": "334.0 KB",
           "type": "doc",
           "content": null
-        },
-        {
-          "name": "Task 12(getuser).php",
-          "path": "tasks/task12/Task 12(getuser).php",
-          "size": "1.1 KB",
-          "type": "php",
-          "content": "<?php\r\n\r\n// Connect to MySQL database\r\n$conn = mysqli_connect(\"localhost\", \"root\", \"\", \"ajax_db\");\r\n\r\n// Check database connection\r\nif (!$conn) {\r\n    die(\"Connection failed\");\r\n}\r\n\r\n// Get selected user ID\r\n$id = intval($_GET['id']);\r\n\r\n// SQL query to retrieve user information\r\n$sql = \"SELECT * FROM users WHERE id = $id\";\r\n\r\n// Execute query\r\n$result = mysqli_query($conn, $sql);\r\n\r\n// Display user details in table\r\nif (mysqli_num_rows($result) > 0) {\r\n\r\n    echo \"<table>\";\r\n\r\n    echo \"<tr>\r\n            <th>Username</th>\r\n            <th>Phone</th>\r\n            <th>Email ID</th>\r\n            <th>Place</th>\r\n          </tr>\";\r\n\r\n    while ($row = mysqli_fetch_assoc($result)) {\r\n\r\n        echo \"<tr>\";\r\n\r\n        echo \"<td>\" .($row['username']) . \"</td>\";\r\n\r\n        echo \"<td>\" .($row['phone']) . \"</td>\";\r\n\r\n        echo \"<td>\" .($row['email']) . \"</td>\";\r\n\r\n        echo \"<td>\" .($row['place']) . \"</td>\";\r\n\r\n        echo \"</tr>\";\r\n\r\n    }\r\n\r\n    echo \"</table>\";\r\n\r\n} else {\r\n\r\n    echo \"No user found\";\r\n\r\n}\r\n\r\n// Close database connection\r\nmysqli_close($conn);\r\n\r\n?>\r\n"
         },
         {
           "name": "task12.html",

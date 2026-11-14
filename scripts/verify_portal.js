@@ -87,7 +87,7 @@ if (!fs.existsSync(dataJsPath)) {
 }
 
 // 3. Verify server and root files
-['index.html', 'guide.html', 'style.css', 'app.js', 'data.json', 'server.js', 'netlify.toml', '_headers'].forEach(file => {
+['index.html', 'guide.html', 'style.css', 'app.js', 'data.json', 'server.js', 'netlify.toml', '_headers', 'favicon.png', 'favicon.ico', 'sl-logo.png'].forEach(file => {
     const fPath = path.join(rootDir, file);
     if (!fs.existsSync(fPath)) {
         console.error(`FAIL: ${file} is missing`);

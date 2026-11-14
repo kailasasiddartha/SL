@@ -1,119 +1,75 @@
 <?php
-// Experiment 5: Item Billing System using explode()
-// Accepts details of 5 different items via exactly 4 text boxes.
+$billOutput = "";
+if (isset($_POST['submit'])) {
+    $code = $_POST['code'];
+    $name = $_POST['name'];
+    $units = $_POST['units'];
+    $rate = $_POST['rate'];
 
-$billGenerated = false;
-$items = [];
-$grandTotal = 0;
-$error = "";
+    $codes = explode(",", $code);
+    $names = explode(",", $name);
+    $unitssold = explode(",", $units);
+    $rates = explode(",", $rate);
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $codesStr = trim($_POST['item_codes'] ?? '');
-    $namesStr = trim($_POST['item_names'] ?? '');
-    $unitsStr = trim($_POST['units_sold'] ?? '');
-    $ratesStr = trim($_POST['rates'] ?? '');
+    $billOutput .= "<h2>Bill Details</h2>";
+    $billOutput .= "<table>";
+    $billOutput .= "<tr>";
+    $billOutput .= "<th>Item Code</th>";
+    $billOutput .= "<th>Item Name</th>";
+    $billOutput .= "<th>Units Sold</th>";
+    $billOutput .= "<th>Rate</th>";
+    $billOutput .= "<th>Amount</th>";
+    $billOutput .= "</tr>";
 
-    // Use explode() function to split comma-separated values into arrays
-    $codes = array_map('trim', explode(',', $codesStr));
-    $names = array_map('trim', explode(',', $namesStr));
-    $units = array_map('trim', explode(',', $unitsStr));
-    $rates = array_map('trim', explode(',', $ratesStr));
+    $grandTotal = 0;
+    for ($i = 0; $i < 5; $i++) {
+        $c = isset($codes[$i]) ? trim($codes[$i]) : "";
+        $n = isset($names[$i]) ? trim($names[$i]) : "";
+        $u = isset($unitssold[$i]) ? floatval($unitssold[$i]) : 0;
+        $r = isset($rates[$i]) ? floatval($rates[$i]) : 0;
+        $amount = $u * $r;
+        $grandTotal += $amount;
 
-    if (count($codes) === 5 && count($names) === 5 && count($units) === 5 && count($rates) === 5) {
-        $billGenerated = true;
-        for ($i = 0; $i < 5; $i++) {
-            $unitNum = floatval($units[$i]);
-            $rateNum = floatval($rates[$i]);
-            $amount = $unitNum * $rateNum;
-            $grandTotal += $amount;
-
-            $items[] = [
-                'code' => htmlspecialchars($codes[$i]),
-                'name' => htmlspecialchars($names[$i]),
-                'units' => $unitNum,
-                'rate' => $rateNum,
-                'amount' => $amount
-            ];
-        }
-    } else {
-        $error = "Please provide exactly 5 comma-separated values in each of the 4 text boxes.";
+        $billOutput .= "<tr>";
+        $billOutput .= "<td>" . htmlspecialchars($c) . "</td>";
+        $billOutput .= "<td>" . htmlspecialchars($n) . "</td>";
+        $billOutput .= "<td>" . $u . "</td>";
+        $billOutput .= "<td>" . $r . "</td>";
+        $billOutput .= "<td>" . $amount . "</td>";
+        $billOutput .= "</tr>";
     }
+
+    $billOutput .= "<tr>";
+    $billOutput .= "<th colspan='4'>Grand Total</th>";
+    $billOutput .= "<th>" . $grandTotal . "</th>";
+    $billOutput .= "</tr>";
+    $billOutput .= "</table>";
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task 5 - Item Billing System (PHP explode)</title>
+    <title>Item Billing System</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h2>Item Billing System</h2>
-        <p class="subtitle">Enter comma-separated values for 5 items using only 4 text boxes.</p>
+    <h2>Item Billing System</h2>
+    <form method="post" action="">
+        <label>Item Codes:</label><br>
+        <input type="text" name="code" placeholder="101,102,103,104,105" required>
+        <br>
+        <label>Item Names:</label><br>
+        <input type="text" name="name" placeholder="pen,book,pencil,file,notebook" required>
+        <br>
+        <label>Units Sold:</label><br>
+        <input type="text" name="units" placeholder="10,5,20,8,12" required>
+        <br>
+        <label>Rates:</label><br>
+        <input type="text" name="rate" placeholder="10,50,5,30,40" required>
+        <br>
+        <input type="submit" name="submit" value="Generate Bill">
+    </form>
 
-        <?php if ($error): ?>
-            <div class="alert error"><?php echo $error; ?></div>
-        <?php endif; ?>
-
-        <form method="POST" action="bill.php">
-            <div class="form-group">
-                <label for="item_codes">1. Item Codes (5 comma-separated):</label>
-                <input type="text" id="item_codes" name="item_codes" value="<?php echo htmlspecialchars($_POST['item_codes'] ?? '101, 102, 103, 104, 105'); ?>" required>
-            </div>
-
-            <div class="form-group">
-                <label for="item_names">2. Item Names (5 comma-separated):</label>
-                <input type="text" id="item_names" name="item_names" value="<?php echo htmlspecialchars($_POST['item_names'] ?? 'Notebook, Ball Pen, Pencil Box, Eraser, Ruler'); ?>" required>
-            </div>
-
-            <div class="form-group">
-                <label for="units_sold">3. Units Sold (5 comma-separated):</label>
-                <input type="text" id="units_sold" name="units_sold" value="<?php echo htmlspecialchars($_POST['units_sold'] ?? '5, 12, 4, 10, 3'); ?>" required>
-            </div>
-
-            <div class="form-group">
-                <label for="rates">4. Rates per Unit (5 comma-separated):</label>
-                <input type="text" id="rates" name="rates" value="<?php echo htmlspecialchars($_POST['rates'] ?? '40, 10, 25, 5, 15'); ?>" required>
-            </div>
-
-            <button type="submit" class="btn">Generate Bill</button>
-        </form>
-
-        <?php if ($billGenerated): ?>
-            <div class="bill-output">
-                <h3>Invoice / Billing Summary</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Item Code</th>
-                            <th>Item Name</th>
-                            <th>Units Sold</th>
-                            <th>Rate (INR)</th>
-                            <th>Amount (INR)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($items as $item): ?>
-                        <tr>
-                            <td><?php echo $item['code']; ?></td>
-                            <td><?php echo $item['name']; ?></td>
-                            <td><?php echo $item['units']; ?></td>
-                            <td><?php echo number_format($item['rate'], 2); ?></td>
-                            <td><?php echo number_format($item['amount'], 2); ?></td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                    <tfoot>
-                        <tr class="total-row">
-                            <td colspan="4">Grand Total</td>
-                            <td><strong>INR <?php echo number_format($grandTotal, 2); ?></strong></td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-        <?php endif; ?>
-    </div>
+    <?php echo $billOutput; ?>
 </body>
 </html>

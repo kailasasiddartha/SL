@@ -3,30 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task 1 - HTML Controls & Table Structure</title>
-    <style>
-        body { font-family: -apple-system, sans-serif; background: #0f172a; color: #f8fafc; margin: 0; padding: 20px; }
-        .wrapper { max-width: 1000px; margin: 0 auto; }
-        .nav-tabs { display: flex; gap: 10px; margin-bottom: 16px; border-bottom: 1px solid #334155; padding-bottom: 10px; }
-        .tab-btn { background: #1e293b; color: #94a3b8; border: 1px solid #334155; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.85rem; }
-        .tab-btn.active { background: #f8fafc; color: #0f172a; border-color: #f8fafc; }
-        iframe { width: 100%; height: 750px; border: 1px solid #334155; border-radius: 8px; background: #ffffff; }
-    </style>
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="wrapper">
-        <div class="nav-tabs">
-            <button class="tab-btn active" onclick="loadFrame('1a_portfolio.html', this)">Experiment 1(a): Portfolio Profile</button>
-            <button class="tab-btn" onclick="loadFrame('1b_timetable.html', this)">Experiment 1(b): Class Time Table</button>
+    <header>
+        <h1>Alex Developer</h1>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section id="about" class="container">
+        <h2>About Me</h2>
+        <p>Hello! I am a passionate web developer learning HTML, CSS, and JavaScript. I love building clean and functional websites.</p>
+    </section>
+
+    <section id="projects" class="container">
+        <h2>My Projects</h2>
+        <div class="project-card">
+            <h3>Project One</h3>
+            <p>A simple calculator built with JavaScript.</p>
         </div>
-        <iframe id="previewFrame" src="1a_portfolio.html"></iframe>
-    </div>
-    <script>
-        function loadFrame(url, btn) {
-            document.getElementById('previewFrame').src = url;
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-        }
-    </script>
+        <div class="project-card">
+            <h3>Project Two</h3>
+            <p>A responsive landing page using CSS Flexbox.</p>
+        </div>
+    </section>
+
+    <section id="contact" class="container">
+        <h2>Contact Me</h2>
+        <!-- HTML Controls are used here -->
+        <form action="#" method="POST" class="contact-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" placeholder="Your message here..." required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Alex Developer. All rights reserved.</p>
+    </footer>
 </body>
 </html>

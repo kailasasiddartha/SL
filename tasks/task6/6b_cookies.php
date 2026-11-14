@@ -1,58 +1,45 @@
 <?php
-// Experiment 6(b): PHP script to store, retrieve, and delete data cookies values.
-$status = "";
+// Set a cookie
+if (isset($_POST['setCookie'])) {
+    setcookie("user", $_POST['username'], time() + (86400 * 30), "/"); // Cookie expires in 30 days
+    echo "Cookie set successfully!<br>";
+}
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $action = $_POST['action'] ?? '';
-    $val = trim($_POST['username'] ?? '');
-
-    if ($action === 'set') {
-        if (!empty($val)) {
-            setcookie("username", $val, time() + 3600, "/");
-            $status = "Cookie 'username' stored successfully with value: <strong>" . htmlspecialchars($val) . "</strong>";
-        } else {
-            $status = "Please enter a value to store in the cookie.";
-        }
-    } elseif ($action === 'get') {
-        if (isset($_COOKIE['username'])) {
-            $status = "Retrieved Cookie value: <strong>" . htmlspecialchars($_COOKIE['username']) . "</strong>";
-        } else {
-            $status = "No cookie named 'username' found in browser storage.";
-        }
-    } elseif ($action === 'delete') {
-        setcookie("username", "", time() - 3600, "/");
-        $status = "Cookie 'username' deleted successfully.";
+// Retrieve a cookie
+if (isset($_POST['getCookie'])) {
+    if (isset($_COOKIE['user'])) {
+        echo "Stored Cookie Value: " . htmlspecialchars($_COOKIE['user']) . "<br>";
+    } else {
+        echo "Cookie not available or deleted!<br>";
     }
+}
+
+// Delete a cookie
+if (isset($_POST['deleteCookie'])) {
+    setcookie("user", "", time() - 3600, "/"); // Expire the cookie
+    echo "Cookie deleted successfully!<br>";
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task 6(b) - Cookie Operations</title>
+    <title>Cookie Example</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="box">
-        <h2>Cookie Management in PHP</h2>
-        <p class="subtitle">Demonstrates storing, retrieving, and deleting cookies.</p>
-
-        <?php if ($status): ?>
-            <div class="alert info"><?php echo $status; ?></div>
-        <?php endif; ?>
-
-        <form method="POST">
-            <div class="form-group">
-                <label for="username">Username / Preference Value:</label>
-                <input type="text" id="username" name="username" placeholder="Enter value for cookie">
-            </div>
-
-            <div class="btn-group">
-                <button type="submit" name="action" value="set" class="btn">Set Cookie</button>
-                <button type="submit" name="action" value="get" class="btn btn-secondary">Get Cookie</button>
-                <button type="submit" name="action" value="delete" class="btn btn-danger">Delete Cookie</button>
-            </div>
+    <div class="container">
+        <h2>PHP Cookie Management</h2>
+        <form method="post">
+            <label>Enter Username:</label>
+            <input type="text" name="username" required>
+            <button type="submit" name="setCookie">Set Cookie</button>
+        </form>
+        <form method="post" style="margin-top: 10px;">
+            <button type="submit" name="getCookie">Get Cookie</button>
+        </form>
+        <form method="post" style="margin-top: 10px;">
+            <button type="submit" name="deleteCookie">Delete Cookie</button>
         </form>
     </div>
 </body>

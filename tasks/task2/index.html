@@ -3,82 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task 2 - Registration Form Validation</title>
+    <title>Registration Form Validation</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="form-container">
-        <header>
-            <h2>Student Registration Form</h2>
-            <p>All fields are required. Client-side validation enabled via JavaScript.</p>
-        </header>
+    <h2>Registration Form</h2>
 
-        <form id="regForm" onsubmit="return validateForm(event)">
-            
-            <!-- First Name -->
-            <div class="form-row">
-                <label for="fname">First Name:</label>
-                <div class="input-wrap">
-                    <input type="text" id="fname" name="fname" placeholder="Enter first name">
-                    <span id="fnameErr" class="error-msg"></span>
-                </div>
-            </div>
+    <form id="registrationForm" novalidate>
+        <div class="form-row">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName">
+            <span class="error" id="firstNameError"></span>
+        </div>
 
-            <!-- Last Name -->
-            <div class="form-row">
-                <label for="lname">Last Name:</label>
-                <div class="input-wrap">
-                    <input type="text" id="lname" name="lname" placeholder="Enter last name">
-                    <span id="lnameErr" class="error-msg"></span>
-                </div>
-            </div>
+        <div class="form-row">
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName">
+            <span class="error" id="lastNameError"></span>
+        </div>
 
-            <!-- Email Address -->
-            <div class="form-row">
-                <label for="email">Email Address:</label>
-                <div class="input-wrap">
-                    <input type="text" id="email" name="email" placeholder="student@example.com">
-                    <span id="emailErr" class="error-msg"></span>
-                </div>
-            </div>
+        <div class="form-row">
+            <label for="email">Email:</label>
+            <input type="text" id="email">
+            <span class="error" id="emailError"></span>
+        </div>
 
-            <!-- User ID -->
-            <div class="form-row">
-                <label for="uid">User ID:</label>
-                <div class="input-wrap">
-                    <input type="text" id="uid" name="uid" placeholder="Enter unique user ID">
-                    <span id="uidErr" class="error-msg"></span>
-                </div>
-            </div>
+        <div class="form-row">
+            <label for="userId">User ID:</label>
+            <input type="text" id="userId">
+            <span class="error" id="userIdError"></span>
+        </div>
 
-            <!-- Password -->
-            <div class="form-row">
-                <label for="pwd">Password:</label>
-                <div class="input-wrap">
-                    <input type="password" id="pwd" name="pwd" placeholder="Enter password">
-                    <span id="pwdErr" class="error-msg"></span>
-                </div>
-            </div>
+        <div class="form-row">
+            <label for="password">Password:</label>
+            <input type="password" id="password">
+            <span class="error" id="passwordError"></span>
+        </div>
 
-            <!-- Confirm Password -->
-            <div class="form-row">
-                <label for="cpwd">Confirm Password:</label>
-                <div class="input-wrap">
-                    <input type="password" id="cpwd" name="cpwd" placeholder="Re-enter password">
-                    <span id="cpwdErr" class="error-msg"></span>
-                </div>
-            </div>
+        <div class="form-row">
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword">
+            <span class="error" id="confirmPasswordError"></span>
+        </div>
 
-            <div class="form-actions">
-                <button type="submit" class="submit-btn">Validate & Submit</button>
-                <button type="reset" class="reset-btn" onclick="clearErrors()">Reset</button>
-            </div>
-
-            <div id="successMsg" class="success-banner">
-                Validation Successful! All fields are valid and ready for submission.
-            </div>
-        </form>
-    </div>
+        <button type="submit">Submit</button>
+        <p id="success"></p>
+    </form>
 
     <script src="validate.js"></script>
 </body>

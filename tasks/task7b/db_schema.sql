@@ -1,4 +1,3 @@
--- Task 7 Database Schema
 CREATE DATABASE IF NOT EXISTS userdatabasenew;
 USE userdatabasenew;
 

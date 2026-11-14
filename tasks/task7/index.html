@@ -1,31 +1,35 @@
+<?php
+// Step 1: Connect to MySQL
+$conn = new mysqli("localhost", "root", "");
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+echo "MySQL connection successful!<br><br>";
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Task 7(b) - User Registration</title>
-    <style>
-        body { font-family: -apple-system, sans-serif; background: #f8fafc; color: #0f172a; padding: 30px; }
-        .box { max-width: 440px; margin: auto; background: white; border: 1px solid #cbd5e1; border-radius: 8px; padding: 24px; }
-        label { display: block; font-weight: 600; margin: 10px 0 4px; font-size: 0.85rem; }
-        input { width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #cbd5e1; border-radius: 4px; }
-        button { background: #0f172a; color: white; border: none; padding: 10px 18px; border-radius: 4px; font-weight: 600; cursor: pointer; margin-top: 14px; }
-        .alert { padding: 10px; margin-bottom: 12px; border-radius: 4px; font-size: 0.85rem; background: #f1f5f9; border: 1px solid #cbd5e1; }
-    </style>
-</head>
-<body>
-    <div class="box">
-        <h2>User Registration</h2>
-        <div class="alert"></div>
-        <form method="POST">
-            <label>Username:</label>
-            <input type="text" name="username" required>
-            <label>Password:</label>
-            <input type="password" name="password" required>
-            <label>Email ID:</label>
-            <input type="email" name="email" required>
-            <button type="submit" name="register">Register User</button>
-        </form>
-    </div>
-</body>
-</html>
+// Step 2: Create database
+$sql = "CREATE DATABASE IF NOT EXISTS userdatabasenew";
+if ($conn->query($sql) === TRUE) {
+    echo "Database created successfully!<br><br>";
+} else {
+    die("Database creation failed: " . $conn->error);
+}
+
+// Step 3: Select database
+$conn->select_db("userdatabasenew");
+
+// Step 4: Create table
+$sql = "CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(100) NOT NULL
+)";
+if ($conn->query($sql) === TRUE) {
+    echo "Table created successfully!";
+} else {
+    echo "Table creation failed: " . $conn->error;
+}
+
+// Step 5: Close connection
+$conn->close();
+?>

@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="motorbike_catalog.xsl"?>
-
 <!DOCTYPE catalog SYSTEM "motorbike_catalog.dtd">
-
 <catalog>
-
     <motorbike>
         <make>Honda</make>
         <model>CBR500R</model>
@@ -60,5 +57,4 @@
         <chassis_number>CH654321987</chassis_number>
         <accessories disc_brake="yes" auto_start="yes" radio="no"/>
     </motorbike>
-
 </catalog>

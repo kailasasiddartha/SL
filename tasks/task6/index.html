@@ -1,18 +1,49 @@
+<?php
+session_start();
+
+$error = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+    // Sample username and password
+    if ($username == "admin" && $password == "12345") {
+        $_SESSION["username"] = $username;
+
+        // Session timeout: 60 seconds
+        $_SESSION["last_activity"] = time();
+
+        header("Location: 6a_details.php");
+        exit();
+    } else {
+        $error = "Invalid username or password!";
+    }
+}
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Task 6 - State Management (Sessions & Cookies)</title>
+    <title>Login Form</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="box">
-        <h2>Task 6: PHP Sessions & Cookies</h2>
-        <p class="subtitle">Choose an experiment module to test:</p>
-        <div style="display: flex; flex-direction: column; gap: 10px;">
-            <a href="6a_login.php" class="btn">Experiment 6(a): Login & 60s Session Timeout</a>
-            <a href="6b_cookies.php" class="btn btn-secondary">Experiment 6(b): Cookie Store, Retrieve & Delete</a>
-        </div>
+    <div class="container">
+        <h2>Login Form</h2>
+        <?php
+        if ($error != "") {
+            echo "<p class='error'>$error</p>";
+        }
+        ?>
+        <form method="post" action="">
+            <label>Username:</label>
+            <input type="text" name="username" required>
+
+            <label>Password:</label>
+            <input type="password" name="password" required>
+
+            <input type="submit" value="Login">
+        </form>
     </div>
 </body>
 </html>

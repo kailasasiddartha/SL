@@ -1,54 +1,48 @@
 <?php
-// Experiment 6(a): Login form with username & password
 session_start();
 
 $error = "";
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $username = trim($_POST['username'] ?? '');
-    $password = trim($_POST['password'] ?? '');
 
-    // Credentials check
-    if ($username === "admin" && $password === "password123") {
-        $_SESSION['user'] = $username;
-        $_SESSION['last_activity'] = time(); // Record initial timestamp
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+    // Sample username and password
+    if ($username == "admin" && $password == "12345") {
+        $_SESSION["username"] = $username;
+
+        // Session timeout: 60 seconds
+        $_SESSION["last_activity"] = time();
+
         header("Location: 6a_details.php");
         exit();
     } else {
-        $error = "Invalid username or password. (Hint: admin / password123)";
+        $error = "Invalid username or password!";
     }
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task 6(a) - Login</title>
+    <title>Login Form</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="box">
-        <h2>User Login Portal</h2>
-        <p class="subtitle">Enter credentials to proceed to the User Details Form.</p>
+    <div class="container">
+        <h2>Login Form</h2>
+        <?php
+        if ($error != "") {
+            echo "<p class='error'>$error</p>";
+        }
+        ?>
+        <form method="post" action="">
+            <label>Username:</label>
+            <input type="text" name="username" required>
 
-        <?php if (isset($_GET['warning'])): ?>
-            <div class="alert warning"><?php echo htmlspecialchars($_GET['warning']); ?></div>
-        <?php endif; ?>
+            <label>Password:</label>
+            <input type="password" name="password" required>
 
-        <?php if ($error): ?>
-            <div class="alert error"><?php echo $error; ?></div>
-        <?php endif; ?>
-
-        <form method="POST">
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" value="admin" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" value="password123" required>
-            </div>
-            <button type="submit" class="btn">Login</button>
+            <input type="submit" value="Login">
         </form>
     </div>
 </body>

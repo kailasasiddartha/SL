@@ -1,78 +1,75 @@
+<?php
+$billOutput = "";
+if (isset($_POST['submit'])) {
+    $code = $_POST['code'];
+    $name = $_POST['name'];
+    $units = $_POST['units'];
+    $rate = $_POST['rate'];
 
+    $codes = explode(",", $code);
+    $names = explode(",", $name);
+    $unitssold = explode(",", $units);
+    $rates = explode(",", $rate);
+
+    $billOutput .= "<h2>Bill Details</h2>";
+    $billOutput .= "<table>";
+    $billOutput .= "<tr>";
+    $billOutput .= "<th>Item Code</th>";
+    $billOutput .= "<th>Item Name</th>";
+    $billOutput .= "<th>Units Sold</th>";
+    $billOutput .= "<th>Rate</th>";
+    $billOutput .= "<th>Amount</th>";
+    $billOutput .= "</tr>";
+
+    $grandTotal = 0;
+    for ($i = 0; $i < 5; $i++) {
+        $c = isset($codes[$i]) ? trim($codes[$i]) : "";
+        $n = isset($names[$i]) ? trim($names[$i]) : "";
+        $u = isset($unitssold[$i]) ? floatval($unitssold[$i]) : 0;
+        $r = isset($rates[$i]) ? floatval($rates[$i]) : 0;
+        $amount = $u * $r;
+        $grandTotal += $amount;
+
+        $billOutput .= "<tr>";
+        $billOutput .= "<td>" . htmlspecialchars($c) . "</td>";
+        $billOutput .= "<td>" . htmlspecialchars($n) . "</td>";
+        $billOutput .= "<td>" . $u . "</td>";
+        $billOutput .= "<td>" . $r . "</td>";
+        $billOutput .= "<td>" . $amount . "</td>";
+        $billOutput .= "</tr>";
+    }
+
+    $billOutput .= "<tr>";
+    $billOutput .= "<th colspan='4'>Grand Total</th>";
+    $billOutput .= "<th>" . $grandTotal . "</th>";
+    $billOutput .= "</tr>";
+    $billOutput .= "</table>";
+}
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task 5 - Item Billing System (PHP explode)</title>
+    <title>Item Billing System</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h2>Item Billing System</h2>
-        <p class="subtitle">Enter comma-separated values for 5 items using only 4 text boxes.</p>
+    <h2>Item Billing System</h2>
+    <form method="post" action="">
+        <label>Item Codes:</label><br>
+        <input type="text" name="code" placeholder="101,102,103,104,105" required>
+        <br>
+        <label>Item Names:</label><br>
+        <input type="text" name="name" placeholder="pen,book,pencil,file,notebook" required>
+        <br>
+        <label>Units Sold:</label><br>
+        <input type="text" name="units" placeholder="10,5,20,8,12" required>
+        <br>
+        <label>Rates:</label><br>
+        <input type="text" name="rate" placeholder="10,50,5,30,40" required>
+        <br>
+        <input type="submit" name="submit" value="Generate Bill">
+    </form>
 
-        
-            <div class="alert error"></div>
-        
-
-        <form method="POST" action="bill.php">
-            <div class="form-group">
-                <label for="item_codes">1. Item Codes (5 comma-separated):</label>
-                <input type="text" id="item_codes" name="item_codes" value="" required>
-            </div>
-
-            <div class="form-group">
-                <label for="item_names">2. Item Names (5 comma-separated):</label>
-                <input type="text" id="item_names" name="item_names" value="" required>
-            </div>
-
-            <div class="form-group">
-                <label for="units_sold">3. Units Sold (5 comma-separated):</label>
-                <input type="text" id="units_sold" name="units_sold" value="" required>
-            </div>
-
-            <div class="form-group">
-                <label for="rates">4. Rates per Unit (5 comma-separated):</label>
-                <input type="text" id="rates" name="rates" value="" required>
-            </div>
-
-            <button type="submit" class="btn">Generate Bill</button>
-        </form>
-
-        
-            <div class="bill-output">
-                <h3>Invoice / Billing Summary</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Item Code</th>
-                            <th>Item Name</th>
-                            <th>Units Sold</th>
-                            <th>Rate (INR)</th>
-                            <th>Amount (INR)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        
-                    </tbody>
-                    <tfoot>
-                        <tr class="total-row">
-                            <td colspan="4">Grand Total</td>
-                            <td><strong>INR </strong></td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-        
-    </div>
+    <?php echo $billOutput; ?>
 </body>
 </html>

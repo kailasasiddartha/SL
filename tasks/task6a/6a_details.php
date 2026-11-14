@@ -1,66 +1,75 @@
 <?php
-// Experiment 6(a): Second form - Accept user details with 60-second inactivity session timeout
 session_start();
 
-$timeout = 60; // 60 seconds session timeout limit
-
-if (!isset($_SESSION['user'])) {
-    header("Location: 6a_login.php?warning=Please login first.");
+// Check whether user is logged in
+if (!isset($_SESSION["username"])) {
+    header("Location: 6a_login.php");
     exit();
 }
+
+// Session timeout in seconds
+$timeout = 60;
 
 // Check inactivity
-if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $timeout)) {
-    session_unset();
-    session_destroy();
-    header("Location: 6a_login.php?warning=Session expired due to inactivity. Please log in again.");
-    exit();
+if (isset($_SESSION["last_activity"])) {
+    $inactive_time = time() - $_SESSION["last_activity"];
+
+    if ($inactive_time > $timeout) {
+        session_unset();
+        session_destroy();
+
+        echo "<h2>Warning!</h2>";
+        echo "<p>Your session has expired because you were inactive for too long.</p>";
+        echo "<a href='6a_login.php'>Click here to Login Again</a>";
+        exit();
+    }
 }
 
-// Update last activity timestamp on any user action
-$_SESSION['last_activity'] = time();
+// Update activity time
+$_SESSION["last_activity"] = time();
 
 $message = "";
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $name = htmlspecialchars($_POST['name'] ?? '');
-    $city = htmlspecialchars($_POST['city'] ?? '');
-    $phone = htmlspecialchars($_POST['phone'] ?? '');
-    $message = "User details successfully recorded: Name: $name, City: $city, Phone: $phone";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $_POST["name"];
+    $city = $_POST["city"];
+    $phoneno = $_POST["phoneno"];
+
+    $message = "Details submitted successfully!";
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task 6(a) - User Details Form</title>
+    <title>User Details</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="box">
+    <div class="container">
         <h2>User Details Form</h2>
-        <p class="subtitle">Logged in as: <strong><?php echo htmlspecialchars($_SESSION['user']); ?></strong> (Session active - 60s timeout)</p>
+        <p>Welcome, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b></p>
+        <p class="warning">You have 60 seconds of inactivity before your session expires.</p>
 
-        <?php if ($message): ?>
-            <div class="alert success"><?php echo $message; ?></div>
-        <?php endif; ?>
+        <?php
+        if ($message != "") {
+            echo "<p class='success'>$message</p>";
+        }
+        ?>
 
-        <form method="POST">
-            <div class="form-group">
-                <label for="name">Full Name:</label>
-                <input type="text" id="name" name="name" placeholder="Enter name" required>
-            </div>
-            <div class="form-group">
-                <label for="city">City:</label>
-                <input type="text" id="city" name="city" placeholder="Enter city" required>
-            </div>
-            <div class="form-group">
-                <label for="phone">Phone Number:</label>
-                <input type="text" id="phone" name="phone" placeholder="Enter phone number" required>
-            </div>
-            <button type="submit" class="btn">Submit Details</button>
-            <a href="6a_login.php" class="btn btn-secondary">Logout</a>
+        <form method="post" action="">
+            <label>Name:</label>
+            <input type="text" name="name" required>
+
+            <label>City:</label>
+            <input type="text" name="city" required>
+
+            <label>Phone Number:</label>
+            <input type="text" name="phoneno" required>
+
+            <input type="submit" value="Submit">
         </form>
+        <br>
+        <a href="logout.php">Logout</a>
     </div>
 </body>
 </html>

@@ -8,34 +8,40 @@ const tasksDir = path.join(rootDir, 'tasks');
 
 let allGood = true;
 
-// 1. Verify tasks 1 to 12 folders & zips
-for (let i = 1; i <= 12; i++) {
-    const folder = path.join(tasksDir, `task${i}`);
-    const zip = path.join(tasksDir, `task${i}.zip`);
+// 1. Verify tasks folders & zips
+const allFolders = [
+    'task1', 'task1a', 'task1b', 'task2', 'task3', 'task3a', 'task3b',
+    'task4', 'task5', 'task6', 'task6a', 'task6b', 'task7', 'task7a',
+    'task7b', 'task8', 'task8a', 'task8b', 'task9', 'task10', 'task11', 'task12'
+];
+
+allFolders.forEach(fName => {
+    const folder = path.join(tasksDir, fName);
+    const zip = path.join(tasksDir, `${fName}.zip`);
 
     if (!fs.existsSync(folder)) {
-        console.error(`FAIL: Folder task${i} missing`);
+        console.error(`FAIL: Folder ${fName} missing`);
         allGood = false;
     } else {
         const files = fs.readdirSync(folder);
-        console.log(`PASS: task${i} folder exists with ${files.length} files: ${files.join(', ')}`);
+        console.log(`PASS: ${fName} folder exists with ${files.length} files: ${files.join(', ')}`);
         
         // Ensure at least one .doc or .docx is present in the folder
         const hasDoc = files.some(f => f.endsWith('.doc') || f.endsWith('.docx'));
         if (!hasDoc) {
-            console.error(`FAIL: task${i} is missing its original Word document!`);
+            console.error(`FAIL: ${fName} is missing its original Word document!`);
             allGood = false;
         }
     }
 
     if (!fs.existsSync(zip)) {
-        console.error(`FAIL: task${i}.zip missing`);
+        console.error(`FAIL: ${fName}.zip missing`);
         allGood = false;
     } else {
         const stats = fs.statSync(zip);
-        console.log(`PASS: task${i}.zip exists (${(stats.size / 1024).toFixed(1)} KB)`);
+        console.log(`PASS: ${fName}.zip exists (${(stats.size / 1024).toFixed(1)} KB)`);
     }
-}
+});
 
 // 2. Verify data.js
 const dataJsPath = path.join(rootDir, 'data.js');

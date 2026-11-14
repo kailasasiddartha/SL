@@ -5,22 +5,30 @@ A clean, fast, 100% frontend-only web application for university Scripting Langu
 ## 🚀 Key Features
 
 - **Fuzzy Search with Fuse.js**: Real-time, typo-tolerant search across all 12 lab task question texts, task numbers (`Task 1`–`Task 12`), language tags, and file names.
-- **12 Lab Tasks (Fully Populated & Tested)**:
-  - **Task 1**: HTML5 Student Registration Form
-  - **Task 2**: CSS3 Cascading Style Sheets & Responsive Layouts
-  - **Task 3**: JavaScript Client-Side Form Validation (RegEx & DOM)
-  - **Task 4**: Dynamic HTML & Interactive Calculator (Events & DOM tree)
-  - **Task 5**: XML Document & DTD Validation (Internal & External DTD)
-  - **Task 6**: XML Schema Definition (XSD facets & patterns)
-  - **Task 7**: XML Transformation & Presentation with XSLT & CSS
-  - **Task 8**: PHP Form Processing & String Operations (POST method)
-  - **Task 9**: PHP State Management (Cookies & Sessions)
-  - **Task 10**: PHP & MySQL Database CRUD Operations (MySQLi)
-  - **Task 11**: PHP File Handling & Regular Expressions (Upload & PCRE log parsing)
-  - **Task 12**: AJAX & PHP Database Retrieval (Dropdown selection, asynchronous DB table lookup without page reload)
+- **Core Scripting Languages Reference**:
+  - Concise definitions and runtime architecture for **HTML5**, **CSS3**, **JavaScript**, **XML/DTD/XSLT**, and **PHP**.
+  - Detailed, practical execution guidelines for **HTML** (browser rendering / live static server) and **PHP** (XAMPP / WampServer Apache & MySQL setup and built-in PHP CLI server).
+- **17 Individual Task Boxes (Separated Sub-Tasks)**:
+  - **Task 1A**: Personal Portfolio Profile with HTML Controls & CSS
+  - **Task 1B**: Class Time Table using HTML Table (Rowspan & Colspan)
+  - **Task 2**: Registration Form Validation with JavaScript (RegEx & DOM)
+  - **Task 3A**: Dynamic Multiplication Table using JavaScript Prompts & Loops
+  - **Task 3B**: Interactive Image Toggle Webpage using JavaScript Events
+  - **Task 4**: Responsive To-Do List Application with DOM & CSS
+  - **Task 5**: Item Billing System using PHP `explode()` & Table Formatting
+  - **Task 6A**: PHP Session Login Authentication with 60-Second Inactivity Timeout
+  - **Task 6B**: PHP Cookie Visit Counter & Previous Visit Timestamp Tracker
+  - **Task 7A**: Create MySQL Database and User Table via PHP Script
+  - **Task 7B**: User Registration System with MySQL Insertion & Password Hashing
+  - **Task 8A**: Update User Details in MySQL Database via PHP
+  - **Task 8B**: Delete User Record from MySQL Database via PHP
+  - **Task 9**: Four Stroke Motorbike XML Catalog with DTD Validation & XSLT/CSS Styling
+  - **Task 10**: jQuery AJAX HTTP GET Request (Dynamic Date & Time without reload)
+  - **Task 11**: Live Name Suggestions Autocomplete (jQuery AJAX & PHP array lookup)
+  - **Task 12**: AJAX Database Retrieval without Page Reload (XMLHttpRequest & MySQL)
 - **Direct Actions per Task**:
-  - **Download ZIP**: One-click download of `/tasks/taskX.zip`.
-  - **View / Open Folder**: Modal file switcher showing all source code files, `.docx` lab record documents, and output screenshots with browser preview.
+  - **Download ZIP**: One-click download of the dedicated task archive (e.g. `/tasks/task1a.zip`, `/tasks/task12.zip`).
+  - **View / Open Folder**: Modal file switcher showing all code files, `.docx` record documents, and output screenshots.
   - **Copy Code**: One-click instant clipboard copy with toast feedback.
 - **Zero Backend Dependencies**:
   - Pure HTML5, CSS3 / Tailwind CSS (CDN), Vanilla JavaScript.

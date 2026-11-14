@@ -1,0 +1,136 @@
+/* Minimalist Monochrome Design */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #f8fafc;
+    color: #1e293b;
+    line-height: 1.6;
+}
+header {
+    background-color: #0f172a;
+    color: #f8fafc;
+    padding: 30px 20px;
+    border-bottom: 1px solid #334155;
+    text-align: center;
+}
+.header-inner {
+    max-width: 800px;
+    margin: 0 auto;
+}
+h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+.tagline {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    margin-top: 4px;
+}
+nav {
+    margin-top: 15px;
+}
+nav a {
+    color: #cbd5e1;
+    text-decoration: none;
+    margin: 0 12px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+nav a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+.main-content {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 0 16px;
+}
+.card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+h2 {
+    font-size: 1.25rem;
+    color: #0f172a;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e2e8f0;
+}
+.skills-list {
+    list-style: square inside;
+    color: #334155;
+    font-size: 0.92rem;
+    line-height: 1.8;
+}
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+.project-item {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 16px;
+}
+.project-item h3 {
+    font-size: 0.98rem;
+    margin-bottom: 6px;
+    color: #0f172a;
+}
+.project-item p {
+    font-size: 0.85rem;
+    color: #475569;
+}
+.form-group {
+    margin-bottom: 14px;
+}
+label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #334155;
+}
+input, textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    background-color: #ffffff;
+}
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #0f172a;
+}
+.btn {
+    background: #0f172a;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+.btn:hover {
+    background: #1e293b;
+}
+footer {
+    text-align: center;
+    padding: 24px 16px;
+    font-size: 0.8rem;
+    color: #64748b;
+    border-top: 1px solid #e2e8f0;
+    margin-top: 40px;
+}

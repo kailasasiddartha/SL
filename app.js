@@ -80,6 +80,8 @@ function renderTasks(taskList) {
     if (!grid) return;
 
     if (countEl) countEl.innerText = taskList.length;
+    const totalEl = document.getElementById('totalTasksCount');
+    if (totalEl && labData && labData.tasks) totalEl.innerText = labData.tasks.length;
 
     if (!taskList || taskList.length === 0) {
         grid.innerHTML = '';
@@ -105,7 +107,7 @@ function renderTasks(taskList) {
             return `<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-slate-300 border border-slate-700/80">${escapeHtml(t)}</span>`;
         }).join(' ');
 
-        const isTask12 = task.taskNumber === 12;
+        const isTask12 = task.taskNumber === 12 || task.taskNumber === "12";
         const taskCardBorder = isTask12 ? 'border-slate-600 ring-1 ring-slate-600' : 'border-slate-800 hover:border-slate-700';
 
         return `
@@ -157,7 +159,7 @@ function renderTasks(taskList) {
                         href="${task.zipPath}" 
                         download="task${task.taskNumber}.zip"
                         class="flex-1 py-2 px-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white rounded text-xs font-medium flex items-center justify-center gap-1.5 transition-colors border border-slate-700 shadow-sm"
-                        title="Download /tasks/task${task.taskNumber}.zip directly"
+                        title="Download ${task.zipPath} directly"
                     >
                         <svg class="w-3.5 h-3.5 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                         <span>ZIP</span>
@@ -165,7 +167,7 @@ function renderTasks(taskList) {
 
                     <!-- 2. View / Open Folder -->
                     <button 
-                        onclick="openTaskModal(${task.taskNumber})"
+                        onclick="openTaskModal('${task.id}')"
                         class="flex-1 py-2 px-2.5 bg-white hover:bg-slate-200 text-slate-950 rounded text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors shadow-sm"
                         title="Open file switcher to preview code & assets in browser"
                     >
@@ -175,7 +177,7 @@ function renderTasks(taskList) {
 
                     <!-- 3. Copy Code Button -->
                     <button 
-                        onclick="quickCopyTaskCode(${task.taskNumber})"
+                        onclick="quickCopyTaskCode('${task.id}')"
                         class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded text-xs transition-colors border border-slate-700"
                         title="Copy code of primary file (${primaryFileName})"
                     >
@@ -239,15 +241,25 @@ function resetSearch() {
     if (clearBtn) clearBtn.classList.add('hidden');
 }
 
-function jumpToTask(taskNumber) {
-    const task = labData.tasks.find(t => t.taskNumber === taskNumber);
+function findTask(taskIdentifier) {
+    if (!labData || !labData.tasks) return null;
+    const query = String(taskIdentifier).trim().toLowerCase();
+    return labData.tasks.find(t => 
+        t.id.toLowerCase() === query || 
+        String(t.taskNumber).toLowerCase() === query ||
+        `task-${t.taskNumber}`.toLowerCase() === query
+    );
+}
+
+function jumpToTask(taskIdentifier) {
+    const task = findTask(taskIdentifier);
     if (task) {
-        openTaskModal(taskNumber);
+        openTaskModal(task.id);
     }
 }
 
-function quickCopyTaskCode(taskNumber) {
-    const task = labData.tasks.find(t => t.taskNumber === taskNumber);
+function quickCopyTaskCode(taskIdentifier) {
+    const task = findTask(taskIdentifier);
     if (!task) return;
 
     const file = task.files.find(f => f.content) || task.files[0];
@@ -259,12 +271,12 @@ function quickCopyTaskCode(taskNumber) {
             showToast(`Copied ${file.name}!`);
         });
     } else {
-        openTaskModal(taskNumber);
+        openTaskModal(task.id);
     }
 }
 
-function openTaskModal(taskNumber) {
-    const task = labData.tasks.find(t => t.taskNumber === taskNumber);
+function openTaskModal(taskIdentifier) {
+    const task = findTask(taskIdentifier);
     if (!task) return;
 
     activeTask = task;

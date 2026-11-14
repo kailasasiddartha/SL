@@ -1,16 +1,13 @@
 <?php
 session_start();
 
-// Check whether user is logged in
 if (!isset($_SESSION["username"])) {
     header("Location: 6a_login.php");
     exit();
 }
 
-// Session timeout in seconds
 $timeout = 60;
 
-// Check inactivity
 if (isset($_SESSION["last_activity"])) {
     $inactive_time = time() - $_SESSION["last_activity"];
 
@@ -25,7 +22,6 @@ if (isset($_SESSION["last_activity"])) {
     }
 }
 
-// Update activity time
 $_SESSION["last_activity"] = time();
 
 $message = "";

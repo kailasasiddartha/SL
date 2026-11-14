@@ -125,6 +125,8 @@ function renderTasks(taskList) {
     if (countEl) countEl.innerText = taskList.length;
     const totalEl = document.getElementById('totalTasksCount');
     if (totalEl && labData && labData.tasks) totalEl.innerText = labData.tasks.length;
+    const navCountEl = document.getElementById('navTaskCount');
+    if (navCountEl && labData && labData.tasks) navCountEl.innerText = labData.tasks.length;
 
     if (!taskList || taskList.length === 0) {
         grid.innerHTML = '';
@@ -150,10 +152,7 @@ function renderTasks(taskList) {
             return `<span class="px-2 py-0.5 rounded text-[10px] font-medium bg-[#F5F5F5] dark:bg-[#1F1F1F] text-[#555555] dark:text-[#CCCCCC] border border-[#E5E5E5] dark:border-[#333333]">${escapeHtml(t)}</span>`;
         }).join(' ');
 
-        const isTask12 = task.taskNumber === 12 || task.taskNumber === "12";
-        const taskCardBorder = isTask12 
-            ? 'border-[#111111] dark:border-white ring-1 ring-[#111111] dark:ring-white' 
-            : 'border-[#E5E5E5] dark:border-[#262626] hover:border-[#A3A3A3] dark:hover:border-[#525252]';
+        const taskCardBorder = 'border-[#E5E5E5] dark:border-[#262626] hover:border-[#A3A3A3] dark:hover:border-[#525252]';
 
         return `
             <div class="bg-white dark:bg-[#171717] border ${taskCardBorder} rounded-xl p-5 flex flex-col justify-between transition-all duration-150 hover:-translate-y-0.5 group">
@@ -165,7 +164,6 @@ function renderTasks(taskList) {
                             <span class="px-2.5 py-1 rounded-md bg-[#111111] text-white dark:bg-white dark:text-[#111111] font-mono font-bold text-xs tracking-wider">
                                 TASK ${task.taskNumber}
                             </span>
-                            ${isTask12 ? '<span class="px-2 py-0.5 rounded-md bg-[#F5F5F5] text-[#111111] dark:bg-[#262626] dark:text-white border border-[#E5E5E5] dark:border-[#333333] text-[10px] font-bold">Populated & Tested</span>' : ''}
                         </div>
                         <span class="text-[11px] font-mono text-[#777777] dark:text-[#A3A3A3]">${task.filesCount} files</span>
                     </div>

@@ -3,7 +3,6 @@
 <head>
     <title>Live Name Suggestion</title>
 
-    <!-- Include jQuery library -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
@@ -11,41 +10,30 @@
 
     <h2>Search for a Name</h2>
 
-    <!-- Textbox to enter a name -->
     <input type="text" id="searchBox" placeholder="Start typing...">
 
-    <!-- Display suggested names -->
     <div id="suggestions"></div>
 
-    <script>
+    <script>$(document).ready(function() {
 
-    $(document).ready(function() {
-
-        // Execute when user types in textbox
         $("#searchBox").on("keyup", function() {
 
-            // Get the entered text
             let query = $(this).val();
 
-            // Check whether textbox is empty
             if (query.length > 0) {
 
-                // Send AJAX request to PHP file
                 $.ajax({
 
                     url: "search.php",
                     type: "GET",
                     data: { query: query },
 
-                    // Receive response from PHP
                     success: function(response) {
 
-                        // Display suggested names
                         $("#suggestions").text(response);
 
                     },
 
-                    // Display error message
                     error: function() {
                         $("#suggestions").text("Error fetching data.");
                     }
@@ -54,7 +42,6 @@
 
             } else {
 
-                // Clear suggestions when textbox is empty
                 $("#suggestions").text("");
 
             }
@@ -62,8 +49,7 @@
         });
 
     });
-
-    </script>
+</script>
 
 </body>
 </html>

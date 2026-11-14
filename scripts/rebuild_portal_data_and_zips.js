@@ -15,7 +15,7 @@ console.log("--- 1. Re-compressing all 22 task folders into .zip archives ---");
 const allFolders = [
     'task1', 'task1a', 'task1b', 'task2', 'task3', 'task3a', 'task3b',
     'task4', 'task5', 'task6', 'task6a', 'task6b', 'task7', 'task7a',
-    'task7b', 'task8', 'task8a', 'task8b', 'task9', 'task10', 'task11', 'task12'
+    'task7b', 'task7c', 'task8', 'task8a', 'task8b', 'task9', 'task10', 'task11', 'task12'
 ];
 
 allFolders.forEach(folder => {
@@ -28,8 +28,8 @@ allFolders.forEach(folder => {
     }
 });
 
-console.log("--- 2. Building 17 Individual Lab Tasks for data.js and data.json ---");
-const tasks17Meta = [
+console.log("--- 2. Building 18 Individual Lab Tasks for data.js and data.json ---");
+const tasks18Meta = [
   {
     taskNumber: "1A",
     id: "task-1a",
@@ -141,6 +141,16 @@ const tasks17Meta = [
     tags: ["PHP", "MySQL", "Registration", "Prepared Statements", "Password Hash"]
   },
   {
+    taskNumber: "7C",
+    id: "task-7c",
+    folder: "task7c",
+    zipName: "task7c.zip",
+    title: "User Authentication & Session Login",
+    question: "Experiment 7(c): Design a login page and authenticate the user to display home page or else login error.",
+    aim: "To design a secure user login system in PHP that validates submitted credentials against hashed passwords in MySQL database, initializes authenticated sessions ($_SESSION), and handles logout.",
+    tags: ["PHP", "MySQL", "Authentication", "Sessions", "Login", "Security"]
+  },
+  {
     taskNumber: "8A",
     id: "task-8a",
     folder: "task8a",
@@ -202,7 +212,7 @@ const tasks17Meta = [
   }
 ];
 
-const populatedTasks = tasks17Meta.map(meta => {
+const populatedTasks = tasks18Meta.map(meta => {
     const taskDirPath = path.join(tasksDir, meta.folder);
     const files = [];
 

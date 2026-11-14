@@ -16,7 +16,6 @@
 
     <h2>AJAX - Retrieve User Information</h2>
 
-    <!-- Dropdown list of names -->
     <select id="username" onchange="showUser(this.value)">
 
         <option value="">Select a user</option>
@@ -29,30 +28,23 @@
 
     <br><br>
 
-    <!-- Display user information -->
     <div id="result">
         User information will be displayed here.
     </div>
 
-    <script>
+    <script>function showUser(id) {
 
-    function showUser(id) {
-
-        // Check whether user is selected
         if (id == "") {
             document.getElementById("result").innerHTML = "";
             return;
         }
 
-        // Create XMLHttpRequest object
         var xhttp = new XMLHttpRequest();
 
-        // Receive response from PHP
         xhttp.onreadystatechange = function() {
 
             if (this.readyState == 4 && this.status == 200) {
 
-                // Display user information
                 document.getElementById("result").innerHTML =
                     this.responseText;
 
@@ -60,14 +52,12 @@
 
         };
 
-        // Send GET request to PHP file
         xhttp.open("GET", "getuser.php?id=" + id, true);
 
         xhttp.send();
 
     }
-
-    </script>
+</script>
 
 </body>
 </html>

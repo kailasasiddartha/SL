@@ -17,8 +17,7 @@
     <label>Columns: <input type="number" id="cols" min="1" value="5"></label>
     <button onclick="generateTable()">Generate Table</button>
     <div id="output"></div>
-    <script>
-        function generateTable() {
+    <script>function generateTable() {
             const rows = parseInt(document.getElementById("rows").value);
             const cols = parseInt(document.getElementById("cols").value);
             const output = document.getElementById("output");
@@ -43,6 +42,6 @@
             output.innerHTML = html;
         }
         generateTable();
-    </script>
+</script>
 </body>
 </html>

@@ -3,26 +3,21 @@
 <head>
     <title>jQuery AJAX Example</title>
 
-    <!-- Include jQuery library -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-    <script>
-    $(document).ready(function() {
+    <script>$(document).ready(function() {
 
-        // Execute when button is clicked
         $("#btn").click(function() {
 
-            // Send GET request to PHP file
             $.get("date-time.php", function(data) {
 
-                // Display server response
                 $("#result").html(data);
 
             });
         });
 
     });
-    </script>
+</script>
 </head>
 
 <body>

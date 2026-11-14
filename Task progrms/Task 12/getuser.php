@@ -1,23 +1,17 @@
 <?php
 
-// Connect to MySQL database
 $conn = mysqli_connect("localhost", "root", "", "ajax_db");
 
-// Check database connection
 if (!$conn) {
     die("Connection failed");
 }
 
-// Get selected user ID
 $id = intval($_GET['id']);
 
-// SQL query to retrieve user information
 $sql = "SELECT * FROM users WHERE id = $id";
 
-// Execute query
 $result = mysqli_query($conn, $sql);
 
-// Display user details in table
 if (mysqli_num_rows($result) > 0) {
 
     echo "<table>";
@@ -53,7 +47,6 @@ if (mysqli_num_rows($result) > 0) {
 
 }
 
-// Close database connection
 mysqli_close($conn);
 
 ?>

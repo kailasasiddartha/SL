@@ -1,10 +1,9 @@
 <?php
-// List of sample names
+
 $names = ["Alice", "Bob", "Charlie", "David",
           "Emma", "Ethan", "Sophia", "Samuel",
           "Olivia", "Liam"];
 
-// Check whether query is received
 if (isset($_GET['query'])) {
     $query = trim($_GET['query']);
     $suggestions = [];

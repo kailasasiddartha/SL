@@ -2,21 +2,18 @@
 <html>
 <head>
     <title>Live Name Suggestion</title>
-    <!-- Include jQuery library -->
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <h2>Search for a Name</h2>
 
-    <!-- Textbox to enter a name -->
     <input type="text" id="searchBox" placeholder="Start typing...">
 
-    <!-- Display suggested names -->
     <div id="suggestions" style="margin-top: 10px; font-weight: bold;"></div>
 
-    <script>
-    $(document).ready(function() {
-        // Execute when user types in textbox
+    <script>$(document).ready(function() {
+
         $("#searchBox").on("keyup", function() {
             let query = $(this).val();
 
@@ -37,6 +34,6 @@
             }
         });
     });
-    </script>
+</script>
 </body>
 </html>

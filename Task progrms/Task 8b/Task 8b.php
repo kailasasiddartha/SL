@@ -1,14 +1,11 @@
 <?php
 
-// Connect to database
 $conn = new mysqli("localhost", "root", "", "userdatabasenew");
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Delete user information
 if (isset($_POST['delete'])) {
 
     $id = $_POST['id'];

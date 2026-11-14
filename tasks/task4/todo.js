@@ -2,7 +2,7 @@ function addTask() {
     let taskInput = document.getElementById("taskInput");
     let taskText = taskInput.value.trim();
     if (taskText == "") return;
-    
+
     let li = document.createElement("li");
     li.innerHTML = `${taskText} <button class="delete" onclick="removeTask(this, '${taskText}')">X</button>`;
     li.onclick = function() {
@@ -10,7 +10,7 @@ function addTask() {
     };
     document.getElementById("taskList").appendChild(li);
     taskInput.value = "";
-    
+
     let tableRow = document.createElement("tr");
     tableRow.setAttribute("data-task", taskText);
     tableRow.innerHTML = `<td>${taskText}</td>`;

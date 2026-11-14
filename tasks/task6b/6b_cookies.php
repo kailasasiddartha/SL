@@ -1,11 +1,10 @@
 <?php
-// Set a cookie
+
 if (isset($_POST['setCookie'])) {
-    setcookie("user", $_POST['username'], time() + (86400 * 30), "/"); // Cookie expires in 30 days
+    setcookie("user", $_POST['username'], time() + (86400 * 30), "/"); 
     echo "Cookie set successfully!<br>";
 }
 
-// Retrieve a cookie
 if (isset($_POST['getCookie'])) {
     if (isset($_COOKIE['user'])) {
         echo "Stored Cookie Value: " . htmlspecialchars($_COOKIE['user']) . "<br>";
@@ -14,9 +13,8 @@ if (isset($_POST['getCookie'])) {
     }
 }
 
-// Delete a cookie
 if (isset($_POST['deleteCookie'])) {
-    setcookie("user", "", time() - 3600, "/"); // Expire the cookie
+    setcookie("user", "", time() - 3600, "/"); 
     echo "Cookie deleted successfully!<br>";
 }
 ?>

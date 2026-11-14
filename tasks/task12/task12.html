@@ -13,7 +13,6 @@
 <body>
     <h2>AJAX - Retrieve User Information</h2>
 
-    <!-- Dropdown list of names -->
     <select id="username" onchange="showUser(this.value)">
         <option value="">Select a user</option>
         <option value="1">Alice</option>
@@ -24,13 +23,11 @@
 
     <br><br>
 
-    <!-- Display user information -->
     <div id="result">
         User information will be displayed here.
     </div>
 
-    <script>
-    function showUser(id) {
+    <script>function showUser(id) {
         if (id == "") {
             document.getElementById("result").innerHTML = "";
             return;
@@ -46,6 +43,6 @@
         xhttp.open("GET", "getuser.php?id=" + id, true);
         xhttp.send();
     }
-    </script>
+</script>
 </body>
 </html>

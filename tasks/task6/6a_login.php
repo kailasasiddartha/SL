@@ -7,11 +7,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    // Sample username and password
     if ($username == "admin" && $password == "12345") {
         $_SESSION["username"] = $username;
 
-        // Session timeout: 60 seconds
         $_SESSION["last_activity"] = time();
 
         header("Location: 6a_details.php");

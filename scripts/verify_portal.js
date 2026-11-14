@@ -12,7 +12,7 @@ let allGood = true;
 const allFolders = [
     'task1', 'task1a', 'task1b', 'task2', 'task3', 'task3a', 'task3b',
     'task4', 'task5', 'task6', 'task6a', 'task6b', 'task7', 'task7a',
-    'task7b', 'task8', 'task8a', 'task8b', 'task9', 'task10', 'task11', 'task12'
+    'task7b', 'task7c', 'task8', 'task8a', 'task8b', 'task9', 'task10', 'task11', 'task12'
 ];
 
 allFolders.forEach(fName => {

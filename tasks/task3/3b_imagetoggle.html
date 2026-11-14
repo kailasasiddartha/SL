@@ -44,17 +44,15 @@
 
     <div class="container">
         <h2>Image Toggle Application</h2>
-        <!-- Initial Image Display -->
+
         <img id="toggleImg" src="image1.png" alt="Image 1">
         <br>
         <button onclick="toggleImage()">Toggle Image</button>
     </div>
 
-    <script>
-        function toggleImage() {
+    <script>function toggleImage() {
             let imgElement = document.getElementById("toggleImg");
-            
-            // Check current source and toggle to alternate image
+
             if (imgElement.src.includes("image1")) {
                 imgElement.src = "image2.png";
                 imgElement.alt = "Image 2";
@@ -63,7 +61,7 @@
                 imgElement.alt = "Image 1";
             }
         }
-    </script>
+</script>
 
 </body>
 </html>

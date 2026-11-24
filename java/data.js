@@ -8,7 +8,7 @@ window.JAVA_LAB_DATA = {
   "courseCode": "GR20 / CSE",
   "courseTitle": "Java Programming Laboratory",
   "academicYear": "2025-2026",
-  "tasksCount": 31,
+  "tasksCount": 35,
   "tasks": [
     {
       "taskNumber": "1A",
@@ -890,6 +890,134 @@ window.JAVA_LAB_DATA = {
           "type": "java",
           "extension": "java",
           "content": "import javax.swing.*;\nimport java.awt.*;\nimport java.awt.event.*;\n\npublic class Keyboard_Event extends JFrame implements KeyListener {\n    private JLabel label;\n\n    public Keyboard_Event() {\n        setTitle(\"Key Event Example\");\n        setSize(400, 200);\n        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\n        setLocationRelativeTo(null);\n\n        label = new JLabel(\"Press any key...\", SwingConstants.CENTER);\n        label.setFont(new Font(\"Arial\", Font.PLAIN, 24));\n        setLayout(new BorderLayout());\n        add(label, BorderLayout.CENTER);\n\n        addKeyListener(this);\n    }\n\n    public void keyPressed(KeyEvent e) {\n        label.setText(\"Key Pressed: \");\n    }\n\n    public void keyReleased(KeyEvent e) {\n        label.setText(\"Key Released: \");\n    }\n\n    public void keyTyped(KeyEvent e) {\n        label.setText(\"Key Typed: \" + e.getKeyChar());\n    }\n\n    public static void main(String[] args) {\n        new Keyboard_Event().setVisible(true);\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "11A",
+      "taskGroup": "Task 11",
+      "groupTitle": "GUI with Exception Handling",
+      "id": "task-11a",
+      "title": "Integer Division Calculator (GUI Exception Handling)",
+      "question": "Experiment 11(a): Develop a Java Swing GUI application with Numerator, Denominator input fields, a Divide button, and a Result field. Handle NumberFormatException for invalid inputs and display an error message when dividing by zero.",
+      "aim": "To implement error handling within an event-driven Swing GUI application for numerical division.",
+      "tags": [
+        "Java",
+        "Swing",
+        "GUI",
+        "Exception Handling",
+        "GridLayout",
+        "Division"
+      ],
+      "folderPath": "java",
+      "filePath": "java/integerDivision.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "integerDivision.java",
+          "path": "java/integerDivision.java",
+          "size": "1.7 KB",
+          "type": "java",
+          "extension": "java",
+          "content": "import javax.swing.*;\nimport java.awt.*;\nimport java.awt.event.ActionEvent;\nimport java.awt.event.ActionListener;\n\npublic class integerDivision extends JFrame implements ActionListener {\n    private JTextField numeratorField;\n    private JTextField denominatorField;\n    private JTextArea resultArea;\n    private JButton divideButton;\n\n    public integerDivision() {\n        setTitle(\"Integer Division Calculator\");\n        setSize(350, 200);\n        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\n        setLayout(new GridLayout(4, 2));\n\n        numeratorField = new JTextField();\n        denominatorField = new JTextField();\n        divideButton = new JButton(\"Divide\");\n        resultArea = new JTextArea();\n        resultArea.setEditable(false);\n\n        add(new JLabel(\"Numerator:\"));\n        add(numeratorField);\n        add(new JLabel(\"Denominator:\"));\n        add(denominatorField);\n        add(divideButton);\n        add(new JLabel(\"Result:\"));\n        add(new JScrollPane(resultArea));\n\n        divideButton.addActionListener(this);\n        setVisible(true);\n    }\n\n    public void actionPerformed(ActionEvent event) {\n        try {\n            int numerator = Integer.parseInt(numeratorField.getText());\n            int denominator = Integer.parseInt(denominatorField.getText());\n\n            if (denominator == 0) {\n                resultArea.setText(\"Error: Cannot divide by zero.\");\n            } else {\n                resultArea.setText(\"Result: \" + (numerator / denominator));\n            }\n        } catch (NumberFormatException e) {\n            resultArea.setText(\"Error: Please enter valid integers.\");\n        }\n    }\n\n    public static void main(String[] args) {\n        new integerDivision();\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "12A",
+      "taskGroup": "Task 12",
+      "groupTitle": "Graphics and Advanced Swing",
+      "id": "task-12a",
+      "title": "Traffic Light Simulation",
+      "question": "Experiment 12(a): Simulate a traffic light using Swing components (JRadioButton, ButtonGroup) and custom Graphics painting (paint/repaint). Turning on one radio button illuminates the corresponding light (Red, Yellow, or Green).",
+      "aim": "To implement custom graphical drawing with radio button event listeners in Java Swing.",
+      "tags": [
+        "Java",
+        "Swing",
+        "GUI",
+        "Graphics",
+        "JRadioButton",
+        "Traffic Light"
+      ],
+      "folderPath": "java",
+      "filePath": "java/trafficLight.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "trafficLight.java",
+          "path": "java/trafficLight.java",
+          "size": "1.6 KB",
+          "type": "java",
+          "extension": "java",
+          "content": "import javax.swing.*;\nimport java.awt.*;\nimport java.awt.event.*;\n\npublic class trafficLight extends JFrame implements ItemListener {\n    JRadioButton redButton, yellowButton, greenButton;\n    ButtonGroup buttonGroup;\n\n    public trafficLight() {\n        setTitle(\"Traffic Light\");\n        setSize(200, 300);\n        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\n        setLayout(new FlowLayout());\n\n        redButton = new JRadioButton(\"Red\", false);\n        yellowButton = new JRadioButton(\"Yellow\", false);\n        greenButton = new JRadioButton(\"Green\", false);\n\n        buttonGroup = new ButtonGroup();\n        buttonGroup.add(redButton);\n        buttonGroup.add(yellowButton);\n        buttonGroup.add(greenButton);\n\n        add(redButton);\n        add(yellowButton);\n        add(greenButton);\n\n        redButton.addItemListener(this);\n        yellowButton.addItemListener(this);\n        greenButton.addItemListener(this);\n    }\n\n    public void itemStateChanged(ItemEvent e) {\n        repaint();\n    }\n\n    public void paint(Graphics g) {\n        super.paint(g);\n        g.fillRect(50, 60, 80, 180);\n        g.fillRect(80, 240, 20, 130);\n\n        if (redButton.isSelected()) {\n            g.setColor(Color.red);\n            g.fillOval(75, 80, 35, 35);\n        } else if (yellowButton.isSelected()) {\n            g.setColor(Color.yellow);\n            g.fillOval(75, 130, 35, 35);\n        } else if (greenButton.isSelected()) {\n            g.setColor(Color.green);\n            g.fillOval(75, 180, 35, 35);\n        }\n    }\n\n    public static void main(String[] args) {\n        new trafficLight().setVisible(true);\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "12B",
+      "taskGroup": "Task 12",
+      "groupTitle": "Graphics and Advanced Swing",
+      "id": "task-12b",
+      "title": "Lines, Rectangles and Ovals Drawing",
+      "question": "Experiment 12(b): Develop a Java Swing application extending JPanel that overrides paintComponent() to draw lines, rectangles, and ovals.",
+      "aim": "To demonstrate 2D shape rendering using the Java AWT Graphics pipeline inside a Swing container.",
+      "tags": [
+        "Java",
+        "Swing",
+        "Graphics",
+        "JPanel",
+        "2D Shapes",
+        "paintComponent"
+      ],
+      "folderPath": "java",
+      "filePath": "java/shape.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "shape.java",
+          "path": "java/shape.java",
+          "size": "574 B",
+          "type": "java",
+          "extension": "java",
+          "content": "import javax.swing.*;\nimport java.awt.*;\n\npublic class shape extends JPanel {\n    protected void paintComponent(Graphics g) {\n        super.paintComponent(g);\n        g.drawLine(40, 40, 180, 180);\n        g.drawRect(80, 240, 20, 130);\n        g.drawOval(75, 130, 35, 35);\n    }\n\n    public static void main(String[] args) {\n        JFrame frame = new JFrame(\"Draw Applet Using Swing\");\n        shape s = new shape();\n        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\n        frame.setSize(200, 300);\n        frame.add(s);\n        frame.setVisible(true);\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "12C",
+      "taskGroup": "Task 12",
+      "groupTitle": "Graphics and Advanced Swing",
+      "id": "task-12c",
+      "title": "Table Display with JTable Component",
+      "question": "Experiment 12(c): Display tabular student data read from a comma-separated file (Table.txt) dynamically populated into a JTable wrapped in JScrollPane.",
+      "aim": "To read delimited file records and populate a graphical JTable component in Java Swing.",
+      "tags": [
+        "Java",
+        "Swing",
+        "JTable",
+        "JScrollPane",
+        "File I/O",
+        "Table"
+      ],
+      "folderPath": "java",
+      "filePath": "java/table.java",
+      "filesCount": 2,
+      "files": [
+        {
+          "name": "table.java",
+          "path": "java/table.java",
+          "size": "1.5 KB",
+          "type": "java",
+          "extension": "java",
+          "content": "import java.io.*;\nimport java.awt.*;\nimport javax.swing.*;\nimport java.util.*;\n\nclass table extends JFrame {\n    static int r = 0, i = 0, j = 0, c = 0;\n    static Object d[][];\n    static Object h[];\n\n    table() {\n        setVisible(true);\n        setSize(500, 500);\n        Label l = new Label(\"Gokaraju Rangaraju Institute of Engineering and Technology\");\n        setTitle(\"TABLE DEMO\");\n        setLayout(new FlowLayout(FlowLayout.CENTER));\n        JTable jt = new JTable(d, h);\n        JScrollPane jsp = new JScrollPane(jt);\n        add(l);\n        add(jsp);\n    }\n\n    public static void main(String[] args) throws IOException {\n        FileReader f = new FileReader(\"Table.txt\");\n        BufferedReader b = new BufferedReader(f);\n        String s = b.readLine();\n        StringTokenizer g = new StringTokenizer(s, \",\");\n        c = g.countTokens();\n        h = new Object[c];\n        while (g.hasMoreTokens()) {\n            h[i] = g.nextToken();\n            i++;\n        }\n        while ((s = b.readLine()) != null) {\n            r++;\n        }\n        d = new Object[r][c];\n        BufferedReader br = new BufferedReader(new FileReader(\"Table.txt\"));\n        String e = br.readLine();\n        for (i = 0; i < r; i++) {\n            e = br.readLine();\n            StringTokenizer st = new StringTokenizer(e, \",\");\n            while (st.hasMoreTokens()) {\n                d[i][j] = st.nextToken();\n                j++;\n            }\n            j = 0;\n        }\n        new table();\n    }\n}\n"
+        },
+        {
+          "name": "Table.txt",
+          "path": "java/Table.txt",
+          "size": "122 B",
+          "type": "txt",
+          "extension": "txt",
+          "content": "NAME,NUMBER,MARKS,RESULT\nNAVEEN,501,544,PASS\nRAMESH,503,344,PASS\nDURGA,521,344,PASS\nASHOK,532,344,PASS\nMADHU,543,344,PASS\n"
         }
       ]
     }

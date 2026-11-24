@@ -179,7 +179,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 /* --------------------------------------------------------------------------
    Neutral Monochrome File Badges
    -------------------------------------------------------------------------- */
-.badge-html, .badge-css, .badge-js, .badge-php, .badge-xml, .badge-dtd, .badge-xsd, .badge-xsl, .badge-sql, .badge-java {
+.badge-html, .badge-css, .badge-js, .badge-php, .badge-xml, .badge-dtd, .badge-xsd, .badge-xsl, .badge-sql, .badge-java, .badge-txt {
   background-color: var(--badge-bg);
   color: var(--badge-text);
   border: 1px solid var(--badge-border);

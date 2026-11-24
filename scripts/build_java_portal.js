@@ -1721,11 +1721,259 @@ public class Keyboard_Event extends JFrame implements KeyListener {
     }
 }
 `
+  },
+  {
+    taskNumber: "11A",
+    taskGroup: "Task 11",
+    groupTitle: "GUI with Exception Handling",
+    id: "task-11a",
+    folder: "task11a",
+    groupFolder: "task11",
+    title: "Integer Division Calculator (GUI Exception Handling)",
+    filename: "integerDivision.java",
+    question: "Experiment 11(a): Develop a Java Swing GUI application with Numerator, Denominator input fields, a Divide button, and a Result field. Handle NumberFormatException for invalid inputs and display an error message when dividing by zero.",
+    aim: "To implement error handling within an event-driven Swing GUI application for numerical division.",
+    tags: ["Java", "Swing", "GUI", "Exception Handling", "GridLayout", "Division"],
+    code: `import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class integerDivision extends JFrame implements ActionListener {
+    private JTextField numeratorField;
+    private JTextField denominatorField;
+    private JTextArea resultArea;
+    private JButton divideButton;
+
+    public integerDivision() {
+        setTitle("Integer Division Calculator");
+        setSize(350, 200);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new GridLayout(4, 2));
+
+        numeratorField = new JTextField();
+        denominatorField = new JTextField();
+        divideButton = new JButton("Divide");
+        resultArea = new JTextArea();
+        resultArea.setEditable(false);
+
+        add(new JLabel("Numerator:"));
+        add(numeratorField);
+        add(new JLabel("Denominator:"));
+        add(denominatorField);
+        add(divideButton);
+        add(new JLabel("Result:"));
+        add(new JScrollPane(resultArea));
+
+        divideButton.addActionListener(this);
+        setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent event) {
+        try {
+            int numerator = Integer.parseInt(numeratorField.getText());
+            int denominator = Integer.parseInt(denominatorField.getText());
+
+            if (denominator == 0) {
+                resultArea.setText("Error: Cannot divide by zero.");
+            } else {
+                resultArea.setText("Result: " + (numerator / denominator));
+            }
+        } catch (NumberFormatException e) {
+            resultArea.setText("Error: Please enter valid integers.");
+        }
+    }
+
+    public static void main(String[] args) {
+        new integerDivision();
+    }
+}
+`
+  },
+  {
+    taskNumber: "12A",
+    taskGroup: "Task 12",
+    groupTitle: "Graphics and Advanced Swing",
+    id: "task-12a",
+    folder: "task12a",
+    groupFolder: "task12",
+    title: "Traffic Light Simulation",
+    filename: "trafficLight.java",
+    question: "Experiment 12(a): Simulate a traffic light using Swing components (JRadioButton, ButtonGroup) and custom Graphics painting (paint/repaint). Turning on one radio button illuminates the corresponding light (Red, Yellow, or Green).",
+    aim: "To implement custom graphical drawing with radio button event listeners in Java Swing.",
+    tags: ["Java", "Swing", "GUI", "Graphics", "JRadioButton", "Traffic Light"],
+    code: `import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class trafficLight extends JFrame implements ItemListener {
+    JRadioButton redButton, yellowButton, greenButton;
+    ButtonGroup buttonGroup;
+
+    public trafficLight() {
+        setTitle("Traffic Light");
+        setSize(200, 300);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new FlowLayout());
+
+        redButton = new JRadioButton("Red", false);
+        yellowButton = new JRadioButton("Yellow", false);
+        greenButton = new JRadioButton("Green", false);
+
+        buttonGroup = new ButtonGroup();
+        buttonGroup.add(redButton);
+        buttonGroup.add(yellowButton);
+        buttonGroup.add(greenButton);
+
+        add(redButton);
+        add(yellowButton);
+        add(greenButton);
+
+        redButton.addItemListener(this);
+        yellowButton.addItemListener(this);
+        greenButton.addItemListener(this);
+    }
+
+    public void itemStateChanged(ItemEvent e) {
+        repaint();
+    }
+
+    public void paint(Graphics g) {
+        super.paint(g);
+        g.fillRect(50, 60, 80, 180);
+        g.fillRect(80, 240, 20, 130);
+
+        if (redButton.isSelected()) {
+            g.setColor(Color.red);
+            g.fillOval(75, 80, 35, 35);
+        } else if (yellowButton.isSelected()) {
+            g.setColor(Color.yellow);
+            g.fillOval(75, 130, 35, 35);
+        } else if (greenButton.isSelected()) {
+            g.setColor(Color.green);
+            g.fillOval(75, 180, 35, 35);
+        }
+    }
+
+    public static void main(String[] args) {
+        new trafficLight().setVisible(true);
+    }
+}
+`
+  },
+  {
+    taskNumber: "12B",
+    taskGroup: "Task 12",
+    groupTitle: "Graphics and Advanced Swing",
+    id: "task-12b",
+    folder: "task12b",
+    groupFolder: "task12",
+    title: "Lines, Rectangles and Ovals Drawing",
+    filename: "shape.java",
+    question: "Experiment 12(b): Develop a Java Swing application extending JPanel that overrides paintComponent() to draw lines, rectangles, and ovals.",
+    aim: "To demonstrate 2D shape rendering using the Java AWT Graphics pipeline inside a Swing container.",
+    tags: ["Java", "Swing", "Graphics", "JPanel", "2D Shapes", "paintComponent"],
+    code: `import javax.swing.*;
+import java.awt.*;
+
+public class shape extends JPanel {
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawLine(40, 40, 180, 180);
+        g.drawRect(80, 240, 20, 130);
+        g.drawOval(75, 130, 35, 35);
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Draw Applet Using Swing");
+        shape s = new shape();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(200, 300);
+        frame.add(s);
+        frame.setVisible(true);
+    }
+}
+`
+  },
+  {
+    taskNumber: "12C",
+    taskGroup: "Task 12",
+    groupTitle: "Graphics and Advanced Swing",
+    id: "task-12c",
+    folder: "task12c",
+    groupFolder: "task12",
+    title: "Table Display with JTable Component",
+    filename: "table.java",
+    question: "Experiment 12(c): Display tabular student data read from a comma-separated file (Table.txt) dynamically populated into a JTable wrapped in JScrollPane.",
+    aim: "To read delimited file records and populate a graphical JTable component in Java Swing.",
+    tags: ["Java", "Swing", "JTable", "JScrollPane", "File I/O", "Table"],
+    code: `import java.io.*;
+import java.awt.*;
+import javax.swing.*;
+import java.util.*;
+
+class table extends JFrame {
+    static int r = 0, i = 0, j = 0, c = 0;
+    static Object d[][];
+    static Object h[];
+
+    table() {
+        setVisible(true);
+        setSize(500, 500);
+        Label l = new Label("Gokaraju Rangaraju Institute of Engineering and Technology");
+        setTitle("TABLE DEMO");
+        setLayout(new FlowLayout(FlowLayout.CENTER));
+        JTable jt = new JTable(d, h);
+        JScrollPane jsp = new JScrollPane(jt);
+        add(l);
+        add(jsp);
+    }
+
+    public static void main(String[] args) throws IOException {
+        FileReader f = new FileReader("Table.txt");
+        BufferedReader b = new BufferedReader(f);
+        String s = b.readLine();
+        StringTokenizer g = new StringTokenizer(s, ",");
+        c = g.countTokens();
+        h = new Object[c];
+        while (g.hasMoreTokens()) {
+            h[i] = g.nextToken();
+            i++;
+        }
+        while ((s = b.readLine()) != null) {
+            r++;
+        }
+        d = new Object[r][c];
+        BufferedReader br = new BufferedReader(new FileReader("Table.txt"));
+        String e = br.readLine();
+        for (i = 0; i < r; i++) {
+            e = br.readLine();
+            StringTokenizer st = new StringTokenizer(e, ",");
+            while (st.hasMoreTokens()) {
+                d[i][j] = st.nextToken();
+                j++;
+            }
+            j = 0;
+        }
+        new table();
+    }
+}
+`
   }
 ];
 
+// Write Table.txt for Task 12c
+const tableTxtContent = `NAME,NUMBER,MARKS,RESULT
+NAVEEN,501,544,PASS
+RAMESH,503,344,PASS
+DURGA,521,344,PASS
+ASHOK,532,344,PASS
+MADHU,543,344,PASS
+`;
+fs.writeFileSync(path.join(javaDir, 'Table.txt'), tableTxtContent, 'utf8');
+
 // 1. Write all .java files into java/
-console.log('--- Writing 31 Java files directly into java/ folder ---');
+console.log(`--- Writing ${javaSolutions.length} Java files directly into java/ folder ---`);
 
 javaSolutions.forEach(item => {
     // Write in root of java/
@@ -1741,6 +1989,30 @@ const builtTasks = javaSolutions.map(item => {
     const directPath = path.join(javaDir, item.filename);
     const stats = fs.statSync(directPath);
 
+    const files = [
+        {
+            name: item.filename,
+            path: `java/${item.filename}`,
+            size: formatBytes(stats.size),
+            type: "java",
+            extension: "java",
+            content: item.code
+        }
+    ];
+
+    if (item.id === 'task-12c') {
+        const tableTxtPath = path.join(javaDir, 'Table.txt');
+        const txtStats = fs.statSync(tableTxtPath);
+        files.push({
+            name: "Table.txt",
+            path: "java/Table.txt",
+            size: formatBytes(txtStats.size),
+            type: "txt",
+            extension: "txt",
+            content: tableTxtContent
+        });
+    }
+
     return {
         taskNumber: item.taskNumber,
         taskGroup: item.taskGroup,
@@ -1752,17 +2024,8 @@ const builtTasks = javaSolutions.map(item => {
         tags: item.tags,
         folderPath: "java",
         filePath: `java/${item.filename}`,
-        filesCount: 1,
-        files: [
-            {
-                name: item.filename,
-                path: `java/${item.filename}`,
-                size: formatBytes(stats.size),
-                type: "java",
-                extension: "java",
-                content: item.code
-            }
-        ]
+        filesCount: files.length,
+        files: files
     };
 });
 

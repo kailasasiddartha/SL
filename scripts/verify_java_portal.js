@@ -9,7 +9,7 @@ const javaDir = path.join(rootDir, 'java');
 
 let passed = true;
 
-// 1. Check all 31 java files
+// 1. Check all 35 java files
 const expectedJavaFiles = [
     'DefaultConstructor.java', 'ParamConstructor.java', 'MethodOverloading.java', 'ConstructorOverloading.java',
     'palindrome.java', 'sort.java', 'token.java',
@@ -20,10 +20,11 @@ const expectedJavaFiles = [
     'MultiThread.java', 'ProducerConsumer.java',
     'ArrayListDemo.java', 'VectorDemo.java', 'HashTableDemo.java', 'StackDemo.java',
     'swingExample.java', 'factorialSwing.java', 'calculator.java',
-    'Mouse_Event.java', 'Keyboard_Event.java'
+    'Mouse_Event.java', 'Keyboard_Event.java',
+    'integerDivision.java', 'trafficLight.java', 'shape.java', 'table.java', 'Table.txt'
 ];
 
-console.log(`\n--- 1. Checking 31 Java Files in ${javaDir} ---`);
+console.log(`\n--- 1. Checking 35 Java Files in ${javaDir} ---`);
 expectedJavaFiles.forEach(f => {
     const fPath = path.join(javaDir, f);
     if (!fs.existsSync(fPath)) {
@@ -62,8 +63,8 @@ if (!fs.existsSync(dataJsPath) || !fs.existsSync(dataJsonPath)) {
     const jsonContent = fs.readFileSync(dataJsonPath, 'utf8');
     const parsed = JSON.parse(jsonContent);
     console.log(`PASS: Parsed ${parsed.tasks.length} tasks from java-data.json`);
-    if (parsed.tasks.length !== 31) {
-        console.error(`FAIL: Expected 31 tasks, got ${parsed.tasks.length}`);
+    if (parsed.tasks.length !== 35) {
+        console.error(`FAIL: Expected 35 tasks, got ${parsed.tasks.length}`);
         passed = false;
     }
 

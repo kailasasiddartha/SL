@@ -1,0 +1,897 @@
+/**
+ * Java Programming Laboratory Portal Data
+ * GRIET University Coursework - 31 Saved Solutions across Tasks 1 to 10
+ */
+window.JAVA_LAB_DATA = {
+  "university": "Gokaraju Rangaraju Institute of Engineering and Technology (GRIET)",
+  "department": "Department of Computer Science and Engineering (Artificial Intelligence and Machine Learning)",
+  "courseCode": "GR20 / CSE",
+  "courseTitle": "Java Programming Laboratory",
+  "academicYear": "2025-2026",
+  "tasksCount": 31,
+  "tasks": [
+    {
+      "taskNumber": "1A",
+      "taskGroup": "Task 1",
+      "groupTitle": "Constructors and overloading",
+      "id": "task-1a",
+      "title": "Class, Object and Default Constructor",
+      "question": "Experiment 1(a): Create a class, create its object, and demonstrate the use of a default constructor to initialize college details (ID, name, city) and print them.",
+      "aim": "To demonstrate class definition, object instantiation, and default constructor initialization in Java.",
+      "tags": [
+        "Java",
+        "OOP",
+        "Classes & Objects",
+        "Default Constructor"
+      ],
+      "folderPath": "java",
+      "filePath": "java/DefaultConstructor.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "DefaultConstructor.java",
+          "path": "java/DefaultConstructor.java",
+          "size": "548 B",
+          "type": "java",
+          "extension": "java",
+          "content": "public class DefaultConstructor {\n    int college_id;\n    String college_name;\n    String city;\n\n    DefaultConstructor() {\n        college_id = 846;\n        college_name = \"GRIET\";\n        city = \"Hyderabad\";\n    }\n\n    void showDetails() {\n        System.out.println(\"College ID:\" + college_id);\n        System.out.println(\"College Name:\" + college_name);\n        System.out.println(\"City:\" + city);\n    }\n\n    public static void main(String[] args) {\n        DefaultConstructor obj = new DefaultConstructor();\n        obj.showDetails();\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "1B",
+      "taskGroup": "Task 1",
+      "groupTitle": "Constructors and overloading",
+      "id": "task-1b",
+      "title": "Parametrized Constructor",
+      "question": "Experiment 1(b): Demonstrate the use of parametrized constructor alongside a default constructor to initialize student attributes and parse name components into first, middle, and last names.",
+      "aim": "To implement parameterized constructors and string splitting in object-oriented Java programming.",
+      "tags": [
+        "Java",
+        "OOP",
+        "Parametrized Constructor",
+        "Scanner",
+        "Strings"
+      ],
+      "folderPath": "java",
+      "filePath": "java/ParamConstructor.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "ParamConstructor.java",
+          "path": "java/ParamConstructor.java",
+          "size": "1.5 KB",
+          "type": "java",
+          "extension": "java",
+          "content": "import java.util.Scanner;\n\npublic class ParamConstructor {\n    int sid;\n    String sname;\n\n    ParamConstructor() {\n        sid = 125;\n        sname = \"Sindhu\";\n    }\n\n    ParamConstructor(int id, String name) {\n        sid = id;\n        sname = name;\n    }\n\n    void showDetails1() {\n        System.out.println(\"The Default value of the student is:\");\n        System.out.println(\"Sid: \" + sid);\n        System.out.println(\"Sname: \" + sname);\n    }\n\n    void showDetails2() {\n        System.out.println(\"Sid: \" + sid);\n        System.out.println(\"Name of the Student is:\");\n        \n        String[] parts = sname.trim().split(\"\\\\s+\");\n        if (parts.length == 1) {\n            System.out.println(\"firstname: \" + parts[0]);\n        } else if (parts.length == 2) {\n            System.out.println(\"firstname: \" + parts[0]);\n            System.out.println(\"lastname: \" + parts[1]);\n        } else if (parts.length >= 3) {\n            System.out.println(\"firstname: \" + parts[0]);\n            System.out.println(\"middlename: \" + parts[1]);\n            System.out.println(\"lastname: \" + parts[2]);\n        }\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        \n        int id = sc.nextInt();\n        sc.nextLine();\n        String name = sc.nextLine();\n\n        ParamConstructor defaultObj = new ParamConstructor();\n        defaultObj.showDetails1();\n        ParamConstructor paramObj = new ParamConstructor(id, name);\n        paramObj.showDetails2();\n\n        sc.close();\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "1C",
+      "taskGroup": "Task 1",
+      "groupTitle": "Constructors and overloading",
+      "id": "task-1c",
+      "title": "Method Overloading",
+      "question": "Experiment 1(c): Implement method overloading by defining multiple display() methods accepting different argument types (char, char + int, int + double).",
+      "aim": "To understand compile-time polymorphism through method overloading in Java.",
+      "tags": [
+        "Java",
+        "OOP",
+        "Method Overloading",
+        "Polymorphism"
+      ],
+      "folderPath": "java",
+      "filePath": "java/MethodOverloading.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "MethodOverloading.java",
+          "path": "java/MethodOverloading.java",
+          "size": "882 B",
+          "type": "java",
+          "extension": "java",
+          "content": "import java.util.Scanner;\n\nclass Demo {\n    void display(char c) {\n        System.out.println(\"Value of character = \" + c);\n    }\n    \n    void display(char c, int num) {\n        System.out.println(\"Value of character = \" + c);\n        System.out.println(\"Value of Integer number = \" + num);\n    }\n    void display(int num, double d) {\n        System.out.println(\"Value of Integer number = \" + num);\n        System.out.println(\"Value of Floating Number = \" + d);\n    }\n}\n\npublic class MethodOverloading {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        \n        char c = sc.next().charAt(0);\n        int num = sc.nextInt();\n        double d = sc.nextDouble();\n        \n        Demo demo = new Demo();\n        \n        demo.display(c);\n        demo.display(c, num);\n        demo.display(num, d);\n        \n        sc.close();\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "1D",
+      "taskGroup": "Task 1",
+      "groupTitle": "Constructors and overloading",
+      "id": "task-1d",
+      "title": "Constructor Overloading",
+      "question": "Experiment 1(d): Demonstrate constructor overloading with default, single integer, single String, and double parameter (int, double) constructors.",
+      "aim": "To implement multiple constructor definitions with varying parameters in a single class.",
+      "tags": [
+        "Java",
+        "OOP",
+        "Constructor Overloading",
+        "Constructors"
+      ],
+      "folderPath": "java",
+      "filePath": "java/ConstructorOverloading.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "ConstructorOverloading.java",
+          "path": "java/ConstructorOverloading.java",
+          "size": "1.2 KB",
+          "type": "java",
+          "extension": "java",
+          "content": "import java.util.Scanner;\n\npublic class ConstructorOverloading {\n    int i;\n    int j;\n\n    ConstructorOverloading() {\n        i = 100;\n        j = 200;\n        System.out.println(\"Inside default constructor\");\n        System.out.println(\"Value of i: \" + i + \" and j: \" + j);\n    }\n\n    ConstructorOverloading(int p) {\n        System.out.println(\"Inside single parameter constructor with int value = \" + p);\n    }\n\n    ConstructorOverloading(String s) {\n        System.out.println(\"Inside single parameter constructor with String object\");\n        System.out.println(\"String Value = \" + s);\n    }\n\n    ConstructorOverloading(int p, double k) {\n        System.out.println(\"Inside double parameter constructor value of p = \" + p + \" and k = \" + k);\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n\n        int intVal = sc.nextInt();\n        sc.nextLine();\n        String strVal = sc.nextLine();\n        double doubleVal = sc.nextDouble();\n\n        new ConstructorOverloading();\n        new ConstructorOverloading(intVal);\n        new ConstructorOverloading(strVal);\n        new ConstructorOverloading(intVal, doubleVal);\n\n        sc.close();\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "2A",
+      "taskGroup": "Task 2",
+      "groupTitle": "Strings",
+      "id": "task-2a",
+      "title": "Universal Palindrome",
+      "question": "Experiment 2(a): Check whether an input string is a palindrome using StringBuilder and the reverse() method.",
+      "aim": "To reverse strings and verify palindromic equivalence using Java String and StringBuilder APIs.",
+      "tags": [
+        "Java",
+        "Strings",
+        "StringBuilder",
+        "Palindrome"
+      ],
+      "folderPath": "java",
+      "filePath": "java/palindrome.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "palindrome.java",
+          "path": "java/palindrome.java",
+          "size": "582 B",
+          "type": "java",
+          "extension": "java",
+          "content": "import java.util.Scanner;\n\npublic class palindrome {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        \n        if (sc.hasNextLine()) {\n            String str = sc.nextLine();\n            String reversed = new StringBuilder(str).reverse().toString();\n            \n            if (str.equals(reversed)) {\n                System.out.println(\"string \" + str + \" is palindrome\");\n            } else {\n                System.out.println(\"string \" + str + \" is not palindrome\");\n            }\n        }\n        \n        sc.close();\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "2B",
+      "taskGroup": "Task 2",
+      "groupTitle": "Strings",
+      "id": "task-2b",
+      "title": "Names in Ascending Order",
+      "question": "Experiment 2(b): Read an array of N names and sort them in ascending alphabetical order using Arrays.sort().",
+      "aim": "To sort string arrays in lexicographical order using Java standard utilities.",
+      "tags": [
+        "Java",
+        "Strings",
+        "Arrays.sort",
+        "Sorting",
+        "Scanner"
+      ],
+      "folderPath": "java",
+      "filePath": "java/sort.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "sort.java",
+          "path": "java/sort.java",
+          "size": "576 B",
+          "type": "java",
+          "extension": "java",
+          "content": "import java.util.Arrays;\nimport java.util.Scanner;\n\npublic class sort {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        \n        if (sc.hasNextInt()) {\n            int n = sc.nextInt();\n            String[] names = new String[n];\n            \n            for (int i = 0; i < n; i++) {\n                names[i] = sc.next();\n            }\n            \n            Arrays.sort(names);\n            \n            System.out.println(\"Names in Sorted Order:\" + String.join(\",\", names));\n        }\n        \n        sc.close();\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "2C",
+      "taskGroup": "Task 2",
+      "groupTitle": "Strings",
+      "id": "task-2c",
+      "title": "String Tokenizer",
+      "question": "Experiment 2(c): Tokenize an input line of space-separated values, display total token count, compute the sum of integers, and terminate gracefully when a non-integer token is encountered.",
+      "aim": "To parse delimited string tokens and perform type conversion with exception handling.",
+      "tags": [
+        "Java",
+        "Strings",
+        "StringTokenizer",
+        "Parsing",
+        "Exceptions"
+      ],
+      "folderPath": "java",
+      "filePath": "java/token.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "token.java",
+          "path": "java/token.java",
+          "size": "1.3 KB",
+          "type": "java",
+          "extension": "java",
+          "content": "import java.util.Scanner;\nimport java.util.StringTokenizer;\n\npublic class token {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        if (!sc.hasNextLine()) {\n            sc.close();\n            return;\n        }\n\n        String line = sc.nextLine();\n        StringTokenizer st = new StringTokenizer(line);\n        \n        int totalTokens = st.countTokens();\n        System.out.println(\"Total Number of tokens:\" + totalTokens);\n\n        int sum = 0;\n        StringBuilder integersDisplay = new StringBuilder();\n\n        while (st.hasMoreTokens()) {\n            String token = st.nextToken();\n            try {\n                int value = Integer.parseInt(token);\n                integersDisplay.append(value).append(\" \");\n                sum += value;\n            } catch (NumberFormatException e) {\n                if (integersDisplay.length() > 0) {\n                    System.out.println(integersDisplay.toString());\n                }\n                System.out.println(\"non integer is encountered. terminated.\");\n                sc.close();\n                return;\n            }\n        }\n\n        if (integersDisplay.length() > 0) {\n            System.out.println(integersDisplay.toString());\n        }\n        System.out.println(\"Sum of tokens :\" + sum);\n\n        sc.close();\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "3A",
+      "taskGroup": "Task 3",
+      "groupTitle": "Java keywords",
+      "id": "task-3a",
+      "title": "This Keyword",
+      "question": "Experiment 3(a): Demonstrate the use of the 'this' keyword to access and assign instance variables while distinguishing them from local variables.",
+      "aim": "To understand the 'this' keyword reference for current instance field disambiguation.",
+      "tags": [
+        "Java",
+        "Keywords",
+        "this keyword",
+        "Instance Variables"
+      ],
+      "folderPath": "java",
+      "filePath": "java/this_keyword.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "this_keyword.java",
+          "path": "java/this_keyword.java",
+          "size": "923 B",
+          "type": "java",
+          "extension": "java",
+          "content": "import java.util.Scanner;\n\npublic class this_keyword {\n    int x; \n    void method1(int localVar) {\n        this.x = 100;\n        localVar = 90;\n        System.out.println(\"Value of Instance variable  :\" + this.x);\n        System.out.println(\"Value of Local variable  :\" + localVar);\n    }\n\n\n    void method2() {\n        int z = 40;\n        System.out.println(\"Value of Instance variable :\" + this.x);\n        System.out.println(\"Value of Local variable z:\" + z);\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        \n        int localVal = sc.nextInt();\n        this_keyword obj = new this_keyword();\n        obj.x = sc.nextInt();\n\n        System.out.println(\"Value of Instance variable in main  :\" + obj.x);\n        System.out.println(\"Value of Local variable in main  :\" + localVal);\n\n        obj.method1(localVal);\n        obj.method2();\n\n        sc.close();\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "3B",
+      "taskGroup": "Task 3",
+      "groupTitle": "Java keywords",
+      "id": "task-3b",
+      "title": "Super Keyword",
+      "question": "Experiment 3(b): Demonstrate the 'super' keyword to access parent class member variables from within a derived subclass.",
+      "aim": "To utilize 'super' keyword to resolve superclass field references in inheritance.",
+      "tags": [
+        "Java",
+        "Keywords",
+        "super keyword",
+        "Inheritance"
+      ],
+      "folderPath": "java",
+      "filePath": "java/superExample.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "superExample.java",
+          "path": "java/superExample.java",
+          "size": "574 B",
+          "type": "java",
+          "extension": "java",
+          "content": "import java.util.Scanner;\n\nclass Parent {\n    int num;\n}\n\npublic class superExample extends Parent {\n    int num;\n\n    superExample() {\n        Scanner sc = new Scanner(System.in);\n        super.num = sc.nextInt();\n        this.num = sc.nextInt();\n    }\n\n    void display() {\n        System.out.println(\"Accessing Parentclass variable using super keyword: \" + super.num);\n        System.out.println(\"Accessing subclass variable: \" + this.num);\n    }\n\n    public static void main(String[] args) {\n        superExample obj = new superExample();\n        obj.display();\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "3C",
+      "taskGroup": "Task 3",
+      "groupTitle": "Java keywords",
+      "id": "task-3c",
+      "title": "Static Counter",
+      "question": "Experiment 3(c): Demonstrate static variables by incrementing a shared static counter across multiple object instantiations.",
+      "aim": "To demonstrate static field memory allocation shared across all class instances.",
+      "tags": [
+        "Java",
+        "Keywords",
+        "static",
+        "Static Counter",
+        "Memory"
+      ],
+      "folderPath": "java",
+      "filePath": "java/staticCounter.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "staticCounter.java",
+          "path": "java/staticCounter.java",
+          "size": "656 B",
+          "type": "java",
+          "extension": "java",
+          "content": "import java.util.Scanner;\n\nclass A {\n    static int count;\n\n    A() {\n        count++;\n    }\n}\n\npublic class staticCounter {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        if (sc.hasNextInt()) {\n            A.count = sc.nextInt();\n\n            A c1 = new A();\n            System.out.println(\"c1 count=\" + A.count);\n\n            A c2 = new A();\n            System.out.println(\"c2 count=\" + A.count);\n\n            A c3 = new A();\n            System.out.println(\"c3 count=\" + A.count);\n\n            A c4 = new A();\n            System.out.println(\"c4 count=\" + A.count);\n        }\n        sc.close();\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "3D",
+      "taskGroup": "Task 3",
+      "groupTitle": "Java keywords",
+      "id": "task-3d",
+      "title": "Final Keyword",
+      "question": "Experiment 3(d): Demonstrate the use of the 'final' keyword to declare immutable, constant variables in Java.",
+      "aim": "To enforce value immutability using the final modifier in Java.",
+      "tags": [
+        "Java",
+        "Keywords",
+        "final",
+        "Constants"
+      ],
+      "folderPath": "java",
+      "filePath": "java/FinalKeyword.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "FinalKeyword.java",
+          "path": "java/FinalKeyword.java",
+          "size": "289 B",
+          "type": "java",
+          "extension": "java",
+          "content": "import java.util.Scanner;\n\npublic class FinalKeyword {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        if (sc.hasNextInt()) {\n            final int x = sc.nextInt();\n            System.out.println(x);\n        }\n        sc.close();\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "4A",
+      "taskGroup": "Task 4",
+      "groupTitle": "Inheritance and interfaces",
+      "id": "task-4a",
+      "title": "Method Overriding",
+      "question": "Experiment 4(a): Implement runtime polymorphism via method overriding in a Bank interest rate hierarchy (SBI, ICICI, Axis).",
+      "aim": "To demonstrate method overriding and dynamic method dispatch across bank classes.",
+      "tags": [
+        "Java",
+        "OOP",
+        "Method Overriding",
+        "Polymorphism",
+        "Inheritance"
+      ],
+      "folderPath": "java",
+      "filePath": "java/MethodOverriding.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "MethodOverriding.java",
+          "path": "java/MethodOverriding.java",
+          "size": "1.2 KB",
+          "type": "java",
+          "extension": "java",
+          "content": "import java.util.Scanner;\n\nclass Bank {\n    int getROI() {\n        return 0;\n    }\n}\n\n// Child class 1\nclass SBI extends Bank {\n    @Override\n    int getROI() {\n        return 8;\n    }\n}\n\n// Child class 2\nclass ICICI extends Bank {\n    @Override\n    int getROI() {\n        return 7;\n    }\n}\n\n// Child class 3\nclass Axis extends Bank {\n    @Override\n    int getROI() {\n        return 9;\n    }\n}\n\npublic class MethodOverriding {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        int choice = scanner.nextInt();\n\n        Bank bank = null;\n\n        switch (choice) {\n            case 1:\n                bank = new SBI();\n                System.out.println(\"SBI rate of interest=\" + bank.getROI() + \"%\");\n                break;\n            case 2:\n                bank = new ICICI();\n                System.out.println(\"ICICI rate of interest=\" + bank.getROI() + \"%\");\n                break;\n            case 3:\n                bank = new Axis();\n                System.out.println(\"Axis rate of interest=\" + bank.getROI() + \"%\");\n                break;\n            default:\n                System.out.println(\"Invalid Input\");\n                break;\n        }\n\n        scanner.close();\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "4B",
+      "taskGroup": "Task 4",
+      "groupTitle": "Inheritance and interfaces",
+      "id": "task-4b",
+      "title": "Dynamic Method Dispatch",
+      "question": "Experiment 4(b): Demonstrate dynamic method dispatch (runtime polymorphism) using superclass reference variables executing overridden callme() methods.",
+      "aim": "To demonstrate polymorphic method resolution at runtime using base class reference variables.",
+      "tags": [
+        "Java",
+        "OOP",
+        "Dynamic Dispatch",
+        "Polymorphism",
+        "Inheritance"
+      ],
+      "folderPath": "java",
+      "filePath": "java/DynamicMethod.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "DynamicMethod.java",
+          "path": "java/DynamicMethod.java",
+          "size": "994 B",
+          "type": "java",
+          "extension": "java",
+          "content": "import java.util.Scanner;\n\nclass A {\n    int x;\n\n    A(int x) {\n        this.x = x;\n    }\n\n    void callme() {\n        System.out.println(\"Number in A: \" + x);\n    }\n}\n\nclass B extends A {\n    B(int x) {\n        super(x + 100);\n    }\n\n    @Override\n    void callme() {\n        System.out.println(\"Number in B: \" + x);\n    }\n}\n\nclass C extends A {\n    C(int x) {\n        super(x + 200);\n    }\n\n    @Override\n    void callme() {\n        System.out.println(\"Number in C: \" + x);\n    }\n}\n\npublic class DynamicMethod {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n\n        int valA = scanner.nextInt();\n        int valB = scanner.nextInt();\n        int valC = scanner.nextInt();\n\n        A objA = new A(valA);\n        B objB = new B(valB);\n        C objC = new C(valC);\n\n        A ref;\n\n        ref = objA;\n        ref.callme();\n\n        ref = objB;\n        ref.callme();\n\n        ref = objC;\n        ref.callme();\n\n        scanner.close();\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "4C",
+      "taskGroup": "Task 4",
+      "groupTitle": "Inheritance and interfaces",
+      "id": "task-4c",
+      "title": "Multiple Inheritance with Interface",
+      "question": "Experiment 4(c): Implement multiple inheritance using an interface (Exam) combined with class inheritance (Student -> Result) to calculate percentage.",
+      "aim": "To achieve multiple inheritance using Java interfaces and class extension.",
+      "tags": [
+        "Java",
+        "OOP",
+        "Interfaces",
+        "Multiple Inheritance"
+      ],
+      "folderPath": "java",
+      "filePath": "java/MultipleInheritance.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "MultipleInheritance.java",
+          "path": "java/MultipleInheritance.java",
+          "size": "1.4 KB",
+          "type": "java",
+          "extension": "java",
+          "content": "import java.util.Scanner;\n\ninterface Exam {\n    void percent_cal();\n}\n\n\nclass Student {\n    String name;\n    int rollno;\n    int marks1;\n    int marks2;\n\n    Student(String name, int rollno, int marks1, int marks2) {\n        this.name = name;\n        this.rollno = rollno;\n        this.marks1 = marks1;\n        this.marks2 = marks2;\n    }\n}\n\nclass Result extends Student implements Exam {\n    double percentage;\n\n    Result(String name, int rollno, int marks1, int marks2) {\n        super(name, rollno, marks1, marks2);\n    }\n\n    @Override\n    public void percent_cal() {\n        percentage = (marks1 + marks2) / 2.0;\n    }\n\n    void display() {\n        System.out.println(\"Name of Student: \" + name);\n        System.out.println(\"Roll No. of Student: \" + rollno);\n        System.out.println(\"Marks of Subject 1: \" + marks1);\n        System.out.println(\"Marks of Subject 2: \" + marks2);\n        System.out.println(\"Percentage: \" + percentage + \"%\");\n    }\n}\n\npublic class MultipleInheritance {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n\n        String name = scanner.nextLine();\n        int rollno = scanner.nextInt();\n        int marks1 = scanner.nextInt();\n        int marks2 = scanner.nextInt();\n\n        Result studentResult = new Result(name, rollno, marks1, marks2);\n        studentResult.percent_cal();\n        studentResult.display();\n\n        scanner.close();\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "4D",
+      "taskGroup": "Task 4",
+      "groupTitle": "Inheritance and interfaces",
+      "id": "task-4d",
+      "title": "Access Specifiers",
+      "question": "Experiment 4(d): Demonstrate private, public, protected, and default access modifiers in Java classes and their visibility across classes.",
+      "aim": "To verify encapsulation boundaries and access privileges of class members.",
+      "tags": [
+        "Java",
+        "OOP",
+        "Access Modifiers",
+        "Encapsulation"
+      ],
+      "folderPath": "java",
+      "filePath": "java/AccessSpecifier.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "AccessSpecifier.java",
+          "path": "java/AccessSpecifier.java",
+          "size": "844 B",
+          "type": "java",
+          "extension": "java",
+          "content": "import java.util.Scanner;\n\nclass A {\n    private int a;\n    public int b;\n    protected int c;\n    int d;\n\n    public void setA(int a) {\n        this.a = a;\n    }\n\n    public void print() {\n        System.out.println(a + \" \" + b + \" \" + c + \" \" + d);\n    }\n}\n\nclass B {\n    A objA = new A();\n\n    public void setAndDisplay(int a, int b, int c, int d) {\n        objA.setA(a);\n        \n        objA.b = b;\n        objA.c = c;\n        objA.d = d;\n\n        objA.print();\n    }\n}\n\npublic class AccessSpecifier {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n\n        int a = scanner.nextInt();\n        int b = scanner.nextInt();\n        int c = scanner.nextInt();\n        int d = scanner.nextInt();\n\n        B objB = new B();\n        objB.setAndDisplay(a, b, c, d);\n\n        scanner.close();\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "5A",
+      "taskGroup": "Task 5",
+      "groupTitle": "Working with files",
+      "id": "task-5a",
+      "title": "File Information",
+      "question": "Experiment 5(a): Query file system metadata using java.io.File: test existence, read/write permissions, check if file or directory, and get file length in bytes.",
+      "aim": "To examine file attributes and permissions using the java.io.File class.",
+      "tags": [
+        "Java",
+        "File I/O",
+        "File Metadata",
+        "java.io.File"
+      ],
+      "folderPath": "java",
+      "filePath": "java/FileInformation.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "FileInformation.java",
+          "path": "java/FileInformation.java",
+          "size": "964 B",
+          "type": "java",
+          "extension": "java",
+          "content": "import java.io.File;\nimport java.util.Scanner;\n\npublic class FileInformation {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        String fileName = scanner.nextLine().trim();\n\n        File file = new File(fileName);\n\n        if (file.exists()) {\n            System.out.println(\"File exists\");\n\n            if (file.canRead()) {\n                System.out.println(\"File is readable\");\n            }\n\n            if (file.canWrite()) {\n                System.out.println(\"File is writable\");\n            }\n\n            if (file.isFile()) {\n                System.out.println(\"It is a file\");\n            } else if (file.isDirectory()) {\n                System.out.println(\"It is a directory\");\n            }\n\n            System.out.println(\"The length of the file is \" + file.length() + \" bytes\");\n        } else {\n            System.out.println(\"File does not exist\");\n        }\n\n        scanner.close();\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "5B",
+      "taskGroup": "Task 5",
+      "groupTitle": "Working with files",
+      "id": "task-5b",
+      "title": "Reading File with Line Numbers",
+      "question": "Experiment 5(b): Read a text file line-by-line using BufferedReader and FileReader, outputting each line with its corresponding line number.",
+      "aim": "To perform buffered line-oriented file reading using java.io streams.",
+      "tags": [
+        "Java",
+        "File I/O",
+        "BufferedReader",
+        "FileReader"
+      ],
+      "folderPath": "java",
+      "filePath": "java/FileReading.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "FileReading.java",
+          "path": "java/FileReading.java",
+          "size": "767 B",
+          "type": "java",
+          "extension": "java",
+          "content": "import java.io.BufferedReader;\nimport java.io.FileReader;\nimport java.io.IOException;\nimport java.util.Scanner;\n\npublic class FileReading {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        String fileName = scanner.nextLine().trim();\n\n        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {\n            String line;\n            int lineNumber = 1;\n\n            while ((line = reader.readLine()) != null) {\n                System.out.println(lineNumber + \" \" + line);\n                lineNumber++;\n            }\n        } catch (IOException e) {\n            System.out.println(\"Error reading fil: \" + e.getMessage());\n        } finally {\n            scanner.close();\n        }\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "5C",
+      "taskGroup": "Task 5",
+      "groupTitle": "Working with files",
+      "id": "task-5c",
+      "title": "Word, Character and Line Counter",
+      "question": "Experiment 5(c): Count the total number of characters, words, and lines in a given text file using BufferedReader.",
+      "aim": "To calculate character, word, and line metrics from a file stream.",
+      "tags": [
+        "Java",
+        "File I/O",
+        "Word Count",
+        "BufferedReader"
+      ],
+      "folderPath": "java",
+      "filePath": "java/WordCount.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "WordCount.java",
+          "path": "java/WordCount.java",
+          "size": "1.2 KB",
+          "type": "java",
+          "extension": "java",
+          "content": "import java.io.BufferedReader;\nimport java.io.FileReader;\nimport java.io.IOException;\nimport java.util.Scanner;\n\npublic class WordCount {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        String fileName = scanner.nextLine().trim();\n\n        int charCount = -1;\n        int wordCount = 0;\n        int lineCount = 0;\n\n        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {\n            String line;\n            while ((line = reader.readLine()) != null) {\n                lineCount++;\n\n                charCount += line.length() + 1;\n\n                String trimmed = line.trim();\n                if (!trimmed.isEmpty()) {\n                    String[] words = trimmed.split(\"\\\\s+\");\n                    wordCount += words.length;\n                }\n            }\n\n            System.out.println(\"\\nThe number of characters is \" + charCount);\n            System.out.println(\"The number of words is \" + wordCount);\n            System.out.println(\"The number of lines is \" + lineCount);\n\n        } catch (IOException e) {\n            System.out.println(\"Error reading file: \" + e.getMessage());\n        } finally {\n            scanner.close();\n        }\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "6A",
+      "taskGroup": "Task 6",
+      "groupTitle": "Exceptions",
+      "id": "task-6a",
+      "title": "Checked Exceptions",
+      "question": "Experiment 6(a): Handle compile-time checked exceptions (IOException) using try-with-resources and catch blocks when reading files.",
+      "aim": "To demonstrate handling of checked exceptions mandated by the Java compiler.",
+      "tags": [
+        "Java",
+        "Exceptions",
+        "Checked Exceptions",
+        "IOException"
+      ],
+      "folderPath": "java",
+      "filePath": "java/checkedException.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "checkedException.java",
+          "path": "java/checkedException.java",
+          "size": "657 B",
+          "type": "java",
+          "extension": "java",
+          "content": "import java.io.BufferedReader;\nimport java.io.FileReader;\nimport java.io.IOException;\nimport java.util.Scanner;\n\npublic class checkedException {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        String fileName = scanner.nextLine();\n\n        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {\n            String line;\n            while ((line = br.readLine()) != null) {\n                System.out.println(line);\n            }\n        } catch (IOException e) {\n            System.out.println(\"Error reading file\");\n        } finally {\n            scanner.close();\n        }\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "6B",
+      "taskGroup": "Task 6",
+      "groupTitle": "Exceptions",
+      "id": "task-6b",
+      "title": "Unchecked Exceptions",
+      "question": "Experiment 6(b): Catch and handle runtime unchecked exceptions including NegativeArraySizeException and ArrayIndexOutOfBoundsException.",
+      "aim": "To manage runtime exceptions and prevent application crashes using multiple catch blocks.",
+      "tags": [
+        "Java",
+        "Exceptions",
+        "Unchecked Exceptions",
+        "ArrayIndexOutOfBoundsException"
+      ],
+      "folderPath": "java",
+      "filePath": "java/uncheckedException.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "uncheckedException.java",
+          "path": "java/uncheckedException.java",
+          "size": "801 B",
+          "type": "java",
+          "extension": "java",
+          "content": "import java.util.Scanner;\n\npublic class uncheckedException {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n\n        try {\n            int size = scanner.nextInt();\n            \n            int[] arr = new int[size];\n\n            for (int i = 0; i < size; i++) {\n                arr[i] = scanner.nextInt();\n            }\n\n            int index = scanner.nextInt();\n\n            System.out.println(\"Element at index \" + index + \": \" + arr[index]);\n\n        } catch (NegativeArraySizeException e) {\n            System.out.println(\"Array size cannot be negative.\");\n        } catch (ArrayIndexOutOfBoundsException e) {\n            System.out.println(\"The specified index does not exist\");\n        } finally {\n            scanner.close();\n        }\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "7A",
+      "taskGroup": "Task 7",
+      "groupTitle": "Threads",
+      "id": "task-7a",
+      "title": "Thread.sleep() & Concurrency",
+      "question": "Experiment 7(a): Create three concurrent threads printing 'Good Morning' (1s sleep), 'Hello' (2s sleep), and 'Welcome' (3s sleep) using Runnable.",
+      "aim": "To implement multithreaded concurrent execution using the Runnable interface and Thread.sleep().",
+      "tags": [
+        "Java",
+        "Multithreading",
+        "Runnable",
+        "Thread.sleep"
+      ],
+      "folderPath": "java",
+      "filePath": "java/MultiThread.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "MultiThread.java",
+          "path": "java/MultiThread.java",
+          "size": "1.0 KB",
+          "type": "java",
+          "extension": "java",
+          "content": "class Morning implements Runnable {\n    public void run() {\n        try {\n            for (int i = 0; i < 5; i++) {\n                System.out.println(\"Good Morning\");\n                Thread.sleep(1000);\n            }\n        } catch (InterruptedException e) {\n        }\n    }\n}\n\nclass Hello implements Runnable {\n    public void run() {\n        try {\n            for (int i = 0; i < 5; i++) {\n                System.out.println(\"Hello\");\n                Thread.sleep(2000);\n            }\n        } catch (InterruptedException e) {\n        }\n    }\n}\n\nclass Welcome implements Runnable {\n    public void run() {\n        try {\n            for (int i = 0; i < 5; i++) {\n                System.out.println(\"Welcome\");\n                Thread.sleep(3000);\n            }\n        } catch (InterruptedException e) {\n        }\n    }\n}\n\npublic class MultiThread {\n    public static void main(String[] args) {\n        new Thread(new Morning()).start();\n        new Thread(new Hello()).start();\n        new Thread(new Welcome()).start();\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "7B",
+      "taskGroup": "Task 7",
+      "groupTitle": "Threads",
+      "id": "task-7b",
+      "title": "Producer Consumer Problem",
+      "question": "Experiment 7(b): Implement inter-thread communication and synchronization for the Producer-Consumer problem using wait(), notify(), and a bounded queue buffer.",
+      "aim": "To demonstrate inter-thread communication and mutual exclusion using Java synchronized methods.",
+      "tags": [
+        "Java",
+        "Multithreading",
+        "Synchronization",
+        "Producer-Consumer",
+        "wait/notify"
+      ],
+      "folderPath": "java",
+      "filePath": "java/ProducerConsumer.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "ProducerConsumer.java",
+          "path": "java/ProducerConsumer.java",
+          "size": "2.3 KB",
+          "type": "java",
+          "extension": "java",
+          "content": "import java.util.LinkedList;\nimport java.util.Queue;\nimport java.util.Scanner;\n\nclass Buffer {\n    private final Queue<Integer> queue = new LinkedList<>();\n    private final int capacity;\n\n    public Buffer(int capacity) {\n        this.capacity = capacity;\n    }\n\n    public synchronized void produce(int item) throws InterruptedException {\n        while (queue.size() == capacity) {\n            wait();\n        }\n        queue.add(item);\n        System.out.println(\"Produced \" + item);\n        notify();\n    }\n\n    public synchronized void consume() throws InterruptedException {\n        while (queue.isEmpty()) {\n            wait();\n        }\n        int item = queue.poll();\n        System.out.println(\"Consumed \" + item);\n        notify();\n    }\n}\n\nclass Producer implements Runnable {\n    private final Buffer buffer;\n    private final int maxItems;\n\n    public Producer(Buffer buffer, int maxItems) {\n        this.buffer = buffer;\n        this.maxItems = maxItems;\n    }\n\n    @Override\n    public void run() {\n        try {\n            for (int i = 0; i < maxItems; i++) {\n                buffer.produce(i);\n            }\n        } catch (InterruptedException e) {\n            Thread.currentThread().interrupt();\n        }\n    }\n}\n\nclass Consumer implements Runnable {\n    private final Buffer buffer;\n    private final int maxItems;\n\n    public Consumer(Buffer buffer, int maxItems) {\n        this.buffer = buffer;\n        this.maxItems = maxItems;\n    }\n\n    @Override\n    public void run() {\n        try {\n            for (int i = 0; i < maxItems; i++) {\n                buffer.consume();\n            }\n        } catch (InterruptedException e) {\n            Thread.currentThread().interrupt();\n        }\n    }\n}\n\npublic class ProducerConsumer {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        \n        if (scanner.hasNextInt()) {\n            int capacity = scanner.nextInt();\n            Buffer buffer = new Buffer(capacity);\n            int itemsToProcess = 7; \n\n            Thread producerThread = new Thread(new Producer(buffer, itemsToProcess));\n            Thread consumerThread = new Thread(new Consumer(buffer, itemsToProcess));\n\n            producerThread.start();\n            consumerThread.start();\n        }\n        scanner.close();\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "8A",
+      "taskGroup": "Task 8",
+      "groupTitle": "Collections",
+      "id": "task-8a",
+      "title": "ArrayList Operations",
+      "question": "Experiment 8(a): Menu-driven program to perform dynamic array operations: append elements, update element at index, remove element at index, and display ArrayList.",
+      "aim": "To implement collection manipulation using java.util.ArrayList.",
+      "tags": [
+        "Java",
+        "Collections",
+        "ArrayList",
+        "List"
+      ],
+      "folderPath": "java",
+      "filePath": "java/ArrayListDemo.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "ArrayListDemo.java",
+          "path": "java/ArrayListDemo.java",
+          "size": "2.1 KB",
+          "type": "java",
+          "extension": "java",
+          "content": "import java.util.*;\n\npublic class ArrayListDemo {\n    public static void main(String[] args) {\n        ArrayList<Integer> al = new ArrayList<Integer>();\n        Scanner sc = new Scanner(System.in);\n\n        while (true) {\n            int ch = sc.nextInt();\n            switch (ch) {\n                case 1:\n                    int n = sc.nextInt();\n                    for (int i = 0; i < n; i++) {\n                        al.add(sc.nextInt());\n                    }\n                    break;\n\n                case 2:\n                    if (al.isEmpty()) {\n                        System.out.println(\"The list is empty. Please add elements first.\");\n                        break;\n                    }\n                    int ele = sc.nextInt();\n                    int index = sc.nextInt();\n                    if (index >= 0 && index < al.size())\n                        al.set(index, ele);\n                    else\n                        System.out.println(\"please enter valid index\");\n                    break;\n\n                case 3:\n                    if (al.isEmpty()) {\n                        System.out.println(\"The list is empty. Please add elements first.\");\n                        break;\n                    }\n                    int index1 = sc.nextInt();\n                    if (index1 >= 0 && index1 < al.size()) {\n                        al.remove(index1);\n                        System.out.println(\"Element removed.\");\n                    } else\n                        System.out.println(\"please enter valid index\");\n                    break;\n\n                case 4:\n                    if (al.isEmpty()) {\n                        System.out.println(\"The list is empty. Please add elements first.\");\n                    } else {\n                        System.out.println(\"Current ArrayList: \" + al);\n                    }\n                    break;\n\n                case 5:\n                    System.out.println(\"Exiting...\");\n                    System.exit(0);\n                    break;\n\n                default:\n                    System.out.println(\"Invalid choice\");\n                    break;\n            }\n        }\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "8B",
+      "taskGroup": "Task 8",
+      "groupTitle": "Collections",
+      "id": "task-8b",
+      "title": "Vector Operations",
+      "question": "Experiment 8(b): Create, populate, and traverse a synchronized Vector containing String elements using capacity and iteration.",
+      "aim": "To demonstrate synchronized dynamic collections using java.util.Vector.",
+      "tags": [
+        "Java",
+        "Collections",
+        "Vector",
+        "Dynamic Array"
+      ],
+      "folderPath": "java",
+      "filePath": "java/VectorDemo.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "VectorDemo.java",
+          "path": "java/VectorDemo.java",
+          "size": "508 B",
+          "type": "java",
+          "extension": "java",
+          "content": "import java.util.*;\n\nclass VectorDemo {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        sc.nextLine();\n        Vector<String> v = new Vector<String>(n);\n        for (int i = 0; i < n; i++) {\n            v.add(sc.nextLine());\n        }\n        System.out.println(\"Elements are:\");\n        for (int i = 0; i < v.size() - 1; i++)\n            System.out.print(v.get(i) + \" \");\n        System.out.print(v.get(v.size() - 1));\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "8C",
+      "taskGroup": "Task 8",
+      "groupTitle": "Collections",
+      "id": "task-8c",
+      "title": "HashTable Key-Value Storage",
+      "question": "Experiment 8(c): Store key-value mappings in a synchronized java.util.Hashtable and iterate through its keySet to display contents.",
+      "aim": "To implement dictionary key-value storage using HashTable in Java Collections.",
+      "tags": [
+        "Java",
+        "Collections",
+        "Hashtable",
+        "Key-Value"
+      ],
+      "folderPath": "java",
+      "filePath": "java/HashTableDemo.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "HashTableDemo.java",
+          "path": "java/HashTableDemo.java",
+          "size": "662 B",
+          "type": "java",
+          "extension": "java",
+          "content": "import java.util.Hashtable;\nimport java.util.Scanner;\n\npublic class HashTableDemo {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        Hashtable<String, String> hashtable = new Hashtable<>();\n\n        int n = sc.nextInt();\n        sc.nextLine();\n\n        for (int i = 0; i < n; i++) {\n            String key = sc.nextLine();\n            String value = sc.nextLine();\n            hashtable.put(key, value);\n        }\n\n        System.out.println(\"Hashtable contents:\");\n        for (String key : hashtable.keySet()) {\n            System.out.println(\"Key: \" + key + \" Value: \" + hashtable.get(key));\n        }\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "8D",
+      "taskGroup": "Task 8",
+      "groupTitle": "Collections",
+      "id": "task-8d",
+      "title": "Stack LIFO Operations",
+      "question": "Experiment 8(d): Menu-driven program to perform LIFO operations on java.util.Stack: push, pop, peek, check empty, and display stack elements.",
+      "aim": "To implement Last-In-First-Out data structure operations using Java Stack.",
+      "tags": [
+        "Java",
+        "Collections",
+        "Stack",
+        "LIFO",
+        "Data Structures"
+      ],
+      "folderPath": "java",
+      "filePath": "java/StackDemo.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "StackDemo.java",
+          "path": "java/StackDemo.java",
+          "size": "2.2 KB",
+          "type": "java",
+          "extension": "java",
+          "content": "import java.util.Scanner;\nimport java.util.Stack;\n\npublic class StackDemo {\n    public static void main(String[] args) {\n        Stack<Object> stack = new Stack<>();\n        Scanner sc = new Scanner(System.in);\n        int choice;\n\n        do {\n            choice = sc.nextInt();\n            switch (choice) {\n                case 1:\n                    sc.nextLine();\n                    String element = sc.nextLine();\n                    try {\n                        stack.push(Integer.parseInt(element));\n                    } catch (NumberFormatException e) {\n                        stack.push(element);\n                    }\n                    System.out.println(\"Element \" + element + \" pushed onto the stack.\");\n                    break;\n                case 2:\n                    if (!stack.isEmpty()) {\n                        System.out.println(\"Element \" + stack.pop() + \" popped from the stack.\");\n                    } else {\n                        System.out.println(\"Stack is empty. Nothing to pop.\");\n                    }\n                    break;\n                case 3:\n                    if (!stack.isEmpty()) {\n                        System.out.println(\"Top element of the stack is \" + stack.peek());\n                    } else {\n                        System.out.println(\"Stack is empty. Nothing to peek.\");\n                    }\n                    break;\n                case 4:\n                    if (stack.isEmpty()) {\n                        System.out.println(\"The stack is empty.\");\n                    } else {\n                        System.out.println(\"The stack is not empty.\");\n                    }\n                    break;\n                case 5:\n                    if (!stack.isEmpty()) {\n                        System.out.println(\"Elements in the stack: \" + \"\\n\" + stack);\n                    } else {\n                        System.out.println(\"Stack is empty. No elements to display.\");\n                    }\n                    break;\n                case 6:\n                    System.out.println(\"Exiting program.\");\n                    break;\n                default:\n                    System.out.println(\"Invalid choice. Please select again.\");\n            }\n        } while (choice != 6);\n\n        sc.close();\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "9A",
+      "taskGroup": "Task 9",
+      "groupTitle": "Swing applications",
+      "id": "task-9a",
+      "title": "Display Simple Message with Button",
+      "question": "Experiment 9(a): Design a Java Swing GUI application with a JFrame, JTextField, and JButton that displays a greeting message upon button click.",
+      "aim": "To implement basic event-driven GUI forms using Swing components and ActionListener.",
+      "tags": [
+        "Java",
+        "Swing",
+        "GUI",
+        "JFrame",
+        "JButton",
+        "ActionListener"
+      ],
+      "folderPath": "java",
+      "filePath": "java/swingExample.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "swingExample.java",
+          "path": "java/swingExample.java",
+          "size": "764 B",
+          "type": "java",
+          "extension": "java",
+          "content": "import javax.swing.*;\nimport java.awt.event.*;\n\npublic class swingExample implements ActionListener {\n    JFrame f;\n    JTextField tf;\n    JButton b;\n\n    swingExample() {\n        f = new JFrame(\"Button Example\");\n        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\n        f.setSize(300, 150);\n        f.setLayout(null);\n\n        tf = new JTextField();\n        tf.setBounds(50, 30, 200, 30);\n\n        b = new JButton(\"Click Here\");\n        b.setBounds(100, 70, 150, 30);\n        b.addActionListener(this);\n\n        f.add(tf);\n        f.add(b);\n        f.setVisible(true);\n    }\n\n    public void actionPerformed(ActionEvent e) {\n        tf.setText(\"Welcome to griet.\");\n    }\n\n    public static void main(String[] args) {\n        new swingExample();\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "9B",
+      "taskGroup": "Task 9",
+      "groupTitle": "Swing applications",
+      "id": "task-9b",
+      "title": "Factorial GUI Calculator",
+      "question": "Experiment 9(b): Design a Swing GUI application using FlowLayout with input field, compute button, and output field to calculate the factorial of a number.",
+      "aim": "To build interactive numerical calculator forms using Java Swing components and action listeners.",
+      "tags": [
+        "Java",
+        "Swing",
+        "GUI",
+        "Factorial",
+        "Event Handling"
+      ],
+      "folderPath": "java",
+      "filePath": "java/factorialSwing.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "factorialSwing.java",
+          "path": "java/factorialSwing.java",
+          "size": "1.3 KB",
+          "type": "java",
+          "extension": "java",
+          "content": "import javax.swing.*;\nimport java.awt.*;\nimport java.awt.event.ActionEvent;\nimport java.awt.event.ActionListener;\n\npublic class factorialSwing extends JFrame implements ActionListener {\n    JTextField i;\n    JTextField o;\n    JButton cb;\n\n    public factorialSwing() {\n        setTitle(\"Factorial Calculator\");\n        setSize(300, 150);\n        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\n        setLayout(new FlowLayout());\n\n        i = new JTextField(10);\n        add(new JLabel(\"Enter an integer:\"));\n        add(i);\n\n        cb = new JButton(\"Compute\");\n        cb.addActionListener(this);\n        add(cb);\n\n        o = new JTextField(10);\n        o.setEditable(false);\n        add(new JLabel(\"Factorial value:\"));\n        add(o);\n    }\n\n    public void actionPerformed(ActionEvent e) {\n        try {\n            int number = Integer.parseInt(i.getText());\n            if (number < 0) {\n                o.setText(\"Invalid input\");\n                return;\n            }\n            long result = 1;\n            for (int k = 1; k <= number; k++) {\n                result *= k;\n            }\n            o.setText(Long.toString(result));\n        } catch (NumberFormatException ex) {\n            o.setText(\"Invalid input\");\n        }\n    }\n\n    public static void main(String[] args) {\n        new factorialSwing().setVisible(true);\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "9C",
+      "taskGroup": "Task 9",
+      "groupTitle": "Swing applications",
+      "id": "task-9c",
+      "title": "Simple GUI Calculator",
+      "question": "Experiment 9(c): Build a full 16-button arithmetic calculator GUI in Swing combining BorderLayout and GridLayout with real-time operations (+, -, *, /).",
+      "aim": "To implement desktop calculator software using multi-panel layout managers and arithmetic handlers.",
+      "tags": [
+        "Java",
+        "Swing",
+        "GUI",
+        "Calculator",
+        "GridLayout",
+        "BorderLayout"
+      ],
+      "folderPath": "java",
+      "filePath": "java/calculator.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "calculator.java",
+          "path": "java/calculator.java",
+          "size": "2.3 KB",
+          "type": "java",
+          "extension": "java",
+          "content": "import javax.swing.*;\nimport java.awt.*;\nimport java.awt.event.ActionEvent;\nimport java.awt.event.ActionListener;\n\npublic class calculator extends JFrame implements ActionListener {\n    JTextField display;\n    double firstNumber;\n    String operation;\n\n    public calculator() {\n        setTitle(\"Simple Calculator\");\n        setSize(300, 400);\n        setDefaultCloseOperation(EXIT_ON_CLOSE);\n        setLayout(new BorderLayout());\n\n        display = new JTextField();\n        display.setEditable(false);\n        display.setFont(new Font(\"Arial\", Font.PLAIN, 24));\n        add(display, BorderLayout.NORTH);\n\n        JPanel panel = new JPanel();\n        panel.setLayout(new GridLayout(4, 4));\n\n        String[] labels = {\n            \"7\", \"8\", \"9\", \"/\",\n            \"4\", \"5\", \"6\", \"*\",\n            \"1\", \"2\", \"3\", \"-\",\n            \"0\", \"C\", \"=\", \"+\"\n        };\n\n        for (String label : labels) {\n            JButton button = new JButton(label);\n            button.addActionListener(this);\n            panel.add(button);\n        }\n        add(panel, BorderLayout.CENTER);\n    }\n\n    public void actionPerformed(ActionEvent e) {\n        String command = e.getActionCommand();\n\n        if (command.matches(\"\\\\d\")) {\n            display.setText(display.getText() + command);\n        } else if (command.equals(\"C\")) {\n            display.setText(\"\");\n            firstNumber = 0;\n            operation = null;\n        } else if (command.equals(\"=\")) {\n            if (operation != null && !display.getText().isEmpty()) {\n                double second = Double.parseDouble(display.getText());\n                display.setText(String.valueOf(calculate(firstNumber, second, operation)));\n                operation = null;\n            }\n        } else {\n            if (!display.getText().isEmpty()) {\n                firstNumber = Double.parseDouble(display.getText());\n                operation = command;\n                display.setText(\"\");\n            }\n        }\n    }\n\n    double calculate(double a, double b, String op) {\n        switch (op) {\n            case \"+\": return a + b;\n            case \"-\": return a - b;\n            case \"*\": return a * b;\n            case \"/\": return a / b;\n            default: return 0;\n        }\n    }\n\n    public static void main(String[] args) {\n        new calculator().setVisible(true);\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "10A",
+      "taskGroup": "Task 10",
+      "groupTitle": "Mouse and keyboard events",
+      "id": "task-10a",
+      "title": "Mouse Events Handling",
+      "question": "Experiment 10(a): Implement MouseListener and MouseMotionListener to capture and report mouse clicks, press, release, entered, exited, dragged, and moved events with coordinates.",
+      "aim": "To capture, process, and log low-level mouse pointer events and coordinates in Java Swing.",
+      "tags": [
+        "Java",
+        "Events",
+        "MouseListener",
+        "MouseMotionListener",
+        "Swing"
+      ],
+      "folderPath": "java",
+      "filePath": "java/Mouse_Event.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "Mouse_Event.java",
+          "path": "java/Mouse_Event.java",
+          "size": "1.6 KB",
+          "type": "java",
+          "extension": "java",
+          "content": "import javax.swing.*;\nimport java.awt.*;\nimport java.awt.event.*;\n\npublic class Mouse_Event extends JFrame implements MouseListener, MouseMotionListener {\n    JTextArea textArea;\n\n    public Mouse_Event() {\n        setTitle(\"Mouse Event Example\");\n        setSize(400, 300);\n        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\n        setLocationRelativeTo(null);\n\n        textArea = new JTextArea();\n        textArea.setEditable(false);\n        textArea.setFont(new Font(\"Arial\", Font.PLAIN, 16));\n        textArea.addMouseListener(this);\n        textArea.addMouseMotionListener(this);\n        add(new JScrollPane(textArea), BorderLayout.CENTER);\n    }\n\n    public void mouseClicked(MouseEvent e) {\n        textArea.setText(\"Mouse Clicked at (\" + e.getX() + \", \" + e.getY() + \")\\n\");\n    }\n\n    public void mousePressed(MouseEvent e) {\n        textArea.setText(\"Mouse Pressed at (\" + e.getX() + \", \" + e.getY() + \")\\n\");\n    }\n\n    public void mouseReleased(MouseEvent e) {\n        textArea.setText(\"Mouse Released at (\" + e.getX() + \", \" + e.getY() + \")\\n\");\n    }\n\n    public void mouseEntered(MouseEvent e) {\n        textArea.setText(\"Mouse Entered the component\\n\");\n    }\n\n    public void mouseExited(MouseEvent e) {\n        textArea.setText(\"Mouse Exited the component\\n\");\n    }\n\n    public void mouseDragged(MouseEvent e) {\n        textArea.setText(\"Mouse Dragged at (\" + e.getX() + \", \" + e.getY() + \")\\n\");\n    }\n\n    public void mouseMoved(MouseEvent e) {\n        textArea.setText(\"Mouse Moved at (\" + e.getX() + \", \" + e.getY() + \")\\n\");\n    }\n\n    public static void main(String[] args) {\n        new Mouse_Event().setVisible(true);\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "taskNumber": "10B",
+      "taskGroup": "Task 10",
+      "groupTitle": "Mouse and keyboard events",
+      "id": "task-10b",
+      "title": "Keyboard Events Handling",
+      "question": "Experiment 10(b): Implement KeyListener to detect and display keyPressed, keyReleased, and keyTyped events with typed key characters.",
+      "aim": "To capture, process, and display keyboard input events in real time using Swing.",
+      "tags": [
+        "Java",
+        "Events",
+        "KeyListener",
+        "Keyboard Events",
+        "Swing"
+      ],
+      "folderPath": "java",
+      "filePath": "java/Keyboard_Event.java",
+      "filesCount": 1,
+      "files": [
+        {
+          "name": "Keyboard_Event.java",
+          "path": "java/Keyboard_Event.java",
+          "size": "978 B",
+          "type": "java",
+          "extension": "java",
+          "content": "import javax.swing.*;\nimport java.awt.*;\nimport java.awt.event.*;\n\npublic class Keyboard_Event extends JFrame implements KeyListener {\n    private JLabel label;\n\n    public Keyboard_Event() {\n        setTitle(\"Key Event Example\");\n        setSize(400, 200);\n        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\n        setLocationRelativeTo(null);\n\n        label = new JLabel(\"Press any key...\", SwingConstants.CENTER);\n        label.setFont(new Font(\"Arial\", Font.PLAIN, 24));\n        setLayout(new BorderLayout());\n        add(label, BorderLayout.CENTER);\n\n        addKeyListener(this);\n    }\n\n    public void keyPressed(KeyEvent e) {\n        label.setText(\"Key Pressed: \");\n    }\n\n    public void keyReleased(KeyEvent e) {\n        label.setText(\"Key Released: \");\n    }\n\n    public void keyTyped(KeyEvent e) {\n        label.setText(\"Key Typed: \" + e.getKeyChar());\n    }\n\n    public static void main(String[] args) {\n        new Keyboard_Event().setVisible(true);\n    }\n}\n"
+        }
+      ]
+    }
+  ]
+};

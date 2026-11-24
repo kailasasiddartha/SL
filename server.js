@@ -17,6 +17,7 @@ const MIME_TYPES = {
     '.svg': 'image/svg+xml',
     '.zip': 'application/zip',
     '.docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    '.java': 'text/plain; charset=utf-8',
     '.sql': 'text/plain; charset=utf-8',
     '.xml': 'text/xml; charset=utf-8',
     '.txt': 'text/plain; charset=utf-8',
@@ -39,6 +40,15 @@ const server = http.createServer((req, res) => {
     }
 
     fs.stat(targetFilePath, (err, stats) => {
+        if (!err && stats.isDirectory()) {
+            const indexInside = path.join(targetFilePath, 'index.html');
+            if (fs.existsSync(indexInside)) {
+                res.writeHead(302, { 'Location': safeUrl.endsWith('/') ? `${safeUrl}index.html` : `${safeUrl}/index.html` });
+                res.end();
+                return;
+            }
+        }
+
         if (err || !stats.isFile()) {
             res.writeHead(404, { 'Content-Type': 'text/plain' });
             res.end('404 Not Found');

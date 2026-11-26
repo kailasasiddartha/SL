@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GR25A2073 DBMS Lab — Command & Query Finder</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../favicon.png" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+  <link rel="shortcut icon" href="../favicon.ico" />
+
+  <!-- Typography: Inter for UI, JetBrains Mono for SQL/PLSQL -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fuse.js for Fuzzy Search (graceful fallback included in JS if offline) -->
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+
+  <style>
+    /* Monochrome Design Tokens (Light default, Charcoal Dark toggleable) */
+    :root {
+      --bg-primary: #FFFFFF;
+      --bg-secondary: #F5F5F5;
+      --bg-code: #FAFAFA;
+      --bg-hover: #ECECEC;
+      --text-primary: #111111;
+      --text-secondary: #555555;
+      --text-muted: #777777;
+      --border-subtle: #E5E5E5;
+      --border-strong: #CCCCCC;
+      --accent-bg: #111111;
+      --accent-text: #FFFFFF;
+      --badge-bg: #EAEAEA;
+      --badge-text: #222222;
+    }
+
+    html.dark {
+      --bg-primary: #171717;
+      --bg-secondary: #222222;
+      --bg-code: #1B1B1B;
+      --bg-hover: #2C2C2C;
+      --text-primary: #F5F5F5;
+      --text-secondary: #B5B5B5;
+      --text-muted: #A3A3A3;
+      --border-subtle: #2E2E2E;
+      --border-strong: #444444;
+      --accent-bg: #F5F5F5;
+      --accent-text: #111111;
+      --badge-bg: #2C2C2C;
+      --badge-text: #E5E5E5;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .font-mono-code {
+      font-family: 'JetBrains Mono', 'Consolas', 'Courier New', monospace;
+    }
+
+    /* Custom utility classes mapped strictly to monochrome variables */
+    .bg-primary { background-color: var(--bg-primary); }
+    .bg-secondary { background-color: var(--bg-secondary); }
+    .bg-code { background-color: var(--bg-code); }
+    .hover-surface:hover { background-color: var(--bg-hover); }
+    .text-primary { color: var(--text-primary); }
+    .text-secondary { color: var(--text-secondary); }
+    .text-muted { color: var(--text-muted); }
+    .border-subtle { border-color: var(--border-subtle); }
+    .border-strong { border-color: var(--border-strong); }
+    .btn-accent {
+      background-color: var(--accent-bg);
+      color: var(--accent-text);
+    }
+    .badge-mono {
+      background-color: var(--badge-bg);
+      color: var(--badge-text);
+    }
+
+    /* Hide scrollbar for horizontal filter pills while keeping scrollability */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Clean code block formatting */
+    pre.sql-pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.55;
+      tab-size: 2;
+    }
+
+    textarea.sql-editor {
+      width: 100%;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      border: 1px solid var(--border-strong);
+      border-radius: 0.5rem;
+      padding: 0.875rem;
+      line-height: 1.55;
+      resize: vertical;
+      outline: none;
+    }
+
+    textarea.sql-editor:focus {
+      border-color: var(--text-primary);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Sticky Top Header -->
+  <header class="sticky top-0 z-30 bg-primary border-b border-subtle">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg btn-accent flex items-center justify-center font-mono-code text-xs font-semibold tracking-tight select-none">
+          SQL
+        </div>
+        <div>
+          <h1 class="text-sm sm:text-base font-semibold tracking-tight text-primary leading-tight">
+            DBMS Lab Portal
+          </h1>
+          <p class="text-xs text-muted leading-tight mt-0.5">
+            Oracle SQL &amp; PL/SQL · Tasks 1–12 · Dependency &amp; Reset Engine
+          </p>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2">
+        <!-- Switch to SL Lab -->
+        <a
+          href="../index.html"
+          class="px-3 py-2 text-xs font-medium rounded-lg border border-subtle bg-secondary text-primary hover-surface transition-colors flex items-center gap-1.5"
+          title="Switch to Scripting Languages Lab Portal"
+        >
+          <img src="../sl-logo.png" alt="SL" class="w-3.5 h-3.5 rounded object-contain" />
+          <span>SL Lab</span>
+        </a>
+
+        <!-- Switch to Java Lab -->
+        <a
+          href="../java.html"
+          class="px-3 py-2 text-xs font-medium rounded-lg border border-subtle bg-secondary text-primary hover-surface transition-colors flex items-center gap-1.5"
+          title="Switch to Java Programming Lab Portal"
+        >
+          <span class="w-3.5 h-3.5 rounded btn-accent font-mono-code font-bold text-[9px] flex items-center justify-center">J</span>
+          <span>Java Lab</span>
+        </a>
+
+        <!-- Quick Schema Reference Drawer Trigger -->
+        <button
+          id="openSchemaBtn"
+          type="button"
+          class="px-3 py-2 text-xs font-medium rounded-lg border border-subtle bg-secondary text-primary hover-surface transition-colors flex items-center gap-1.5 cursor-pointer"
+          title="View & copy CREATE, INSERT, TRUNCATE, and DROP scripts for all lab tables"
+        >
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+          </svg>
+          <span>Schemas</span>
+        </button>
+
+        <!-- Light / Dark Theme Toggle -->
+        <button
+          id="themeToggleBtn"
+          type="button"
+          class="p-2 rounded-lg border border-subtle bg-secondary text-primary hover-surface transition-colors cursor-pointer"
+          title="Toggle Light / Dark Theme"
+          aria-label="Toggle Theme"
+        >
+          <svg id="themeIconSun" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg id="themeIconMoon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        </button>
+
+        <!-- Scroll to Top -->
+        <button
+          id="btnScrollTop"
+          type="button"
+          onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+          class="p-2 rounded-lg border border-subtle bg-secondary text-primary hover-surface transition-colors cursor-pointer"
+          title="Scroll to Top"
+          aria-label="Scroll to Top"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Search Bar & Filter Pills Container -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 pb-3.5 space-y-3">
+      <!-- Search Input -->
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-muted">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </div>
+        <input
+          id="searchInput"
+          type="text"
+          autocomplete="off"
+          spellcheck="false"
+          autofocus
+          placeholder="Search any question or keyword... (e.g. '3rd highest', 'sal 5000 7500', 'left join', 'cursor', 'trigger', 'savepoint')"
+          class="w-full pl-10 pr-24 py-2.5 text-sm rounded-lg border border-subtle bg-secondary text-primary placeholder:text-muted focus:outline-none focus:border-strong transition-colors"
+        />
+        <div class="absolute inset-y-0 right-0 pr-2.5 flex items-center gap-1.5">
+          <button
+            id="clearSearchBtn"
+            type="button"
+            class="hidden px-2 py-1 text-[11px] font-medium rounded border border-subtle bg-primary text-secondary hover-surface cursor-pointer"
+          >
+            Clear
+          </button>
+          <kbd class="hidden sm:inline-block px-1.5 py-0.5 text-[11px] font-mono-code rounded border border-subtle bg-primary text-muted">
+            /
+          </kbd>
+        </div>
+      </div>
+
+      <!-- Task Filter Pills -->
+      <div id="taskFilterBar" class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-0.5">
+        <!-- Pills dynamically rendered by JS -->
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-5">
+    <!-- Status & Quick Tip Row -->
+    <div class="flex flex-wrap items-center justify-between gap-2 mb-4 text-xs text-muted">
+      <div id="resultCount" class="font-medium text-secondary">Loading queries...</div>
+      <div class="flex items-center gap-3">
+        <span id="searchEngineStatus" class="font-mono-code text-[11px]">Fuzzy Engine: Active</span>
+        <span class="hidden sm:inline">·</span>
+        <span class="hidden sm:inline">Press <kbd class="px-1 py-0.5 rounded border border-subtle font-mono-code">Esc</kbd> to clear search</span>
+      </div>
+    </div>
+
+    <!-- Query Cards Container -->
+    <div id="cardsContainer" class="space-y-4">
+      <!-- Cards rendered dynamically -->
+    </div>
+
+    <!-- Empty State -->
+    <div id="emptyState" class="hidden border border-subtle rounded-xl bg-secondary p-10 text-center">
+      <p class="text-sm font-medium text-primary">No matching queries found.</p>
+      <p class="text-xs text-muted mt-1">Try shorter keywords like <span class="font-mono-code">join</span>, <span class="font-mono-code">cursor</span>, <span class="font-mono-code">view</span>, <span class="font-mono-code">sal</span>, or clear the task filter.</p>
+      <button
+        id="resetFiltersBtn"
+        type="button"
+        class="mt-4 px-3.5 py-2 text-xs font-medium rounded-lg btn-accent cursor-pointer"
+      >
+        Reset Search &amp; Filters
+      </button>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-subtle py-4 mt-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-between gap-2 text-xs text-muted">
+      <span>GR25A2073 Database Management Systems Lab · Oracle SQL*Plus Ready</span>
+      <span>Tip: Run <code class="font-mono-code text-primary">SET SERVEROUTPUT ON;</code> once per session for PL/SQL outputs.</span>
+    </div>
+  </footer>
+
+  <!-- Quick Schema Reference Drawer / Modal -->
+  <div id="schemaModal" class="hidden fixed inset-0 z-50 flex justify-end bg-black/50">
+    <div class="w-full max-w-2xl bg-primary h-full flex flex-col border-l border-subtle">
+      <!-- Modal Header -->
+      <div class="px-5 py-4 border-b border-subtle flex items-center justify-between">
+        <div>
+          <h2 class="text-sm font-semibold text-primary">Quick Schema Reference</h2>
+          <p class="text-xs text-muted mt-0.5">Copy CREATE, INSERT, TRUNCATE, or DROP scripts for any lab table.</p>
+        </div>
+        <button
+          id="closeSchemaBtn"
+          type="button"
+          class="px-2.5 py-1.5 text-xs font-medium rounded-lg border border-subtle bg-secondary text-primary hover-surface cursor-pointer"
+        >
+          Close (Esc)
+        </button>
+      </div>
+
+      <!-- Table Selector Pills inside Modal -->
+      <div id="schemaTablePills" class="px-5 py-3 border-b border-subtle flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- Modal Body -->
+      <div id="schemaModalBody" class="flex-1 overflow-y-auto p-5 space-y-4">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification (replaces alert()) -->
+  <div
+    id="toast"
+    class="fixed bottom-5 right-5 z-50 px-3.5 py-2 rounded-lg btn-accent text-xs font-medium opacity-0 pointer-events-none transition-opacity duration-200 border border-subtle"
+  >
+    Copied to clipboard
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      /* =========================================================================
+       * 1. SCHEMA REGISTRY (All tables used across Tasks 1-12)
+       *    Dependency order: DEPT -> EMP -> JOB_HIST; independent: EMPLOYEES, STUDENT
+       * ========================================================================= */
+      const TABLE_ORDER = ['DEPT', 'EMP', 'JOB_HIST', 'EMPLOYEES', 'STUDENT'];
+
+      const SCHEMAS = {
+        DEPT: {
+          name: 'DEPT',
+          description: 'Department master table (Parent of EMP via DEPTNO FK).',
+          create: `-- Create DEPT table\nCREATE TABLE dept (\n  deptno NUMBER(2) CONSTRAINT dept_pk PRIMARY KEY,\n  dname  VARCHAR2(15),\n  loc    VARCHAR2(15)\n);`,
+          seed: `-- Insert 5 sample rows into DEPT\nINSERT INTO dept VALUES (10, 'Executive', 'HYD');\nINSERT INTO dept VALUES (20, 'Marketing', 'PUNE');\nINSERT INTO dept VALUES (30, 'Production', 'MUMBAI');\nINSERT INTO dept VALUES (33, 'Despatch', 'VZG');\nINSERT INTO dept VALUES (40, 'Packaging', 'BLR');\nCOMMIT;`,
+          truncate: `TRUNCATE TABLE dept;`,
+          drop: `DROP TABLE dept CASCADE CONSTRAINTS;`
+        },
+        EMP: {
+          name: 'EMP',
+          description: 'Core employee table used in Tasks 1–9 with full columns (commission, dob, doj, hire_date, jobid).',
+          create: `-- Create EMP table with all columns & constraints\nCREATE TABLE emp (\n  empno      NUMBER(6) CONSTRAINT emp_id_pk PRIMARY KEY CHECK (empno > 100),\n  ename      VARCHAR2(20),\n  job        VARCHAR2(15),\n  mgr        NUMBER(4),\n  deptno     NUMBER(3) CONSTRAINT emp_deptno_fk REFERENCES dept(deptno),\n  sal        NUMBER(7,2) DEFAULT 5000 NOT NULL,\n  commission NUMBER(6),\n  dob        DATE,\n  doj        DATE,\n  hire_date  DATE,\n  jobid      NUMBER(10)\n);`,
+          seed: `-- Insert 11 sample rows into EMP\nINSERT INTO emp VALUES (7000, 'King',      'President',  7500, 20, 10000,  500, TO_DATE('12-JAN-88','DD-MON-YY'), TO_DATE('12-JAN-95','DD-MON-YY'), TO_DATE('12-JAN-95','DD-MON-YY'), 2);\nINSERT INTO emp VALUES (7200, 'Whalen',    'Supervisor', 7580, 10,  8000,  200, TO_DATE('04-FEB-91','DD-MON-YY'), TO_DATE('04-FEB-98','DD-MON-YY'), TO_DATE('04-FEB-98','DD-MON-YY'), 1);\nINSERT INTO emp VALUES (7500, 'OConnell',  'Manager',    NULL, 30,  9000, 1000, TO_DATE('07-JUL-89','DD-MON-YY'), TO_DATE('07-JUL-96','DD-MON-YY'), TO_DATE('07-JUL-96','DD-MON-YY'), 1);\nINSERT INTO emp VALUES (7580, 'Jane',      'SWManager',  NULL, 10,  8000, 1000, TO_DATE('09-DEC-91','DD-MON-YY'), TO_DATE('09-DEC-98','DD-MON-YY'), TO_DATE('09-DEC-98','DD-MON-YY'), 3);\nINSERT INTO emp VALUES (7599, 'Mary',      'Advisor',    7500, 33,  9000,  300, TO_DATE('13-FEB-89','DD-MON-YY'), TO_DATE('13-FEB-97','DD-MON-YY'), TO_DATE('13-FEB-97','DD-MON-YY'), 2);\nINSERT INTO emp VALUES (7600, 'Birch',     'Clerk',      7800, 20,  6000, NULL, TO_DATE('26-JAN-94','DD-MON-YY'), TO_DATE('26-JAN-00','DD-MON-YY'), TO_DATE('26-JAN-00','DD-MON-YY'), 1);\nINSERT INTO emp VALUES (7650, 'SPaul',     'GM',         7580, 10, 10000,  300, TO_DATE('19-SEP-89','DD-MON-YY'), TO_DATE('19-SEP-96','DD-MON-YY'), TO_DATE('19-SEP-96','DD-MON-YY'), 3);\nINSERT INTO emp VALUES (7680, 'Kochhar',   'AsstHead',   7850, 10, 10000, NULL, TO_DATE('15-AUG-92','DD-MON-YY'), TO_DATE('15-AUG-99','DD-MON-YY'), TO_DATE('15-AUG-99','DD-MON-YY'), 2);\nINSERT INTO emp VALUES (7850, 'Hartstein', 'Manager',    NULL, 20,  5000, 1000, TO_DATE('13-AUG-90','DD-MON-YY'), TO_DATE('13-AUG-97','DD-MON-YY'), TO_DATE('13-AUG-97','DD-MON-YY'), 1);\nINSERT INTO emp VALUES (7700, 'Russell',   'Clerk',      7800, 10,  9000,  300, TO_DATE('29-JAN-93','DD-MON-YY'), TO_DATE('29-JAN-01','DD-MON-YY'), TO_DATE('29-JAN-01','DD-MON-YY'), 1);\nINSERT INTO emp VALUES (7800, 'Grant',     'ExeManager', NULL, 33,  9000, 1000, TO_DATE('18-NOV-91','DD-MON-YY'), TO_DATE('18-NOV-98','DD-MON-YY'), TO_DATE('18-NOV-98','DD-MON-YY'), 3);\nCOMMIT;`,
+          truncate: `TRUNCATE TABLE emp;`,
+          drop: `DROP TABLE emp CASCADE CONSTRAINTS;`
+        },
+        JOB_HIST: {
+          name: 'JOB_HIST',
+          description: 'Job history table used in Task 7 Set Operators (INTERSECT / UNION).',
+          create: `-- Create JOB_HIST table\nCREATE TABLE job_hist (\n  empno NUMBER(6),\n  jobid NUMBER(10),\n  job   VARCHAR2(15)\n);`,
+          seed: `-- Insert 3 sample rows into JOB_HIST\nINSERT INTO job_hist VALUES (7000, 2, 'President');\nINSERT INTO job_hist VALUES (7200, 1, 'Clerk');\nINSERT INTO job_hist VALUES (7700, 1, 'Clerk');\nCOMMIT;`,
+          truncate: `TRUNCATE TABLE job_hist;`,
+          drop: `DROP TABLE job_hist CASCADE CONSTRAINTS;`
+        },
+        EMPLOYEES: {
+          name: 'EMPLOYEES',
+          description: 'Pre-built in Oracle HR Schema. Use this fallback script ONLY if HR.EMPLOYEES does not exist in your login.',
+          create: `-- NOTE: Pre-built in Oracle HR schema. Run only if EMPLOYEES table is missing.\nCREATE TABLE employees (\n  employee_id    NUMBER(6) PRIMARY KEY,\n  first_name     VARCHAR2(20),\n  last_name      VARCHAR2(25) NOT NULL,\n  email          VARCHAR2(25) NOT NULL,\n  hire_date      DATE NOT NULL,\n  job_id         VARCHAR2(10) NOT NULL,\n  salary         NUMBER(8,2),\n  commission_pct NUMBER(2,2),\n  manager_id     NUMBER(6),\n  department_id  NUMBER(4)\n);`,
+          seed: `-- Insert 8 fallback HR sample rows into EMPLOYEES\nINSERT INTO employees VALUES (100, 'Steven',  'King',      'SKING',    TO_DATE('17-JUN-87','DD-MON-YY'), 'AD_PRES',  24000, NULL, NULL, 90);\nINSERT INTO employees VALUES (101, 'Neena',   'Kochhar',   'NKOCHHAR', TO_DATE('21-SEP-89','DD-MON-YY'), 'AD_VP',    17000, NULL,  100, 90);\nINSERT INTO employees VALUES (104, 'Bruce',   'Ernst',     'BERNST',   TO_DATE('21-MAY-98','DD-MON-YY'), 'IT_PROG',   6000, NULL,  103, 60);\nINSERT INTO employees VALUES (157, 'Patrick', 'Sully',     'PSULLY',   TO_DATE('04-MAR-98','DD-MON-YY'), 'SA_REP',    9500, 0.35,  146, 80);\nINSERT INTO employees VALUES (159, 'Lindsey', 'Smith',     'LSMITH',   TO_DATE('10-MAR-98','DD-MON-YY'), 'SA_REP',    8000, 0.30,  146, 80);\nINSERT INTO employees VALUES (193, 'Britney', 'Everett',   'BEVERETT', TO_DATE('03-MAR-05','DD-MON-YY'), 'SH_CLERK',  3900, NULL,  123, 50);\nINSERT INTO employees VALUES (200, 'Jennifer','Whalen',    'JWHALEN',  TO_DATE('17-SEP-87','DD-MON-YY'), 'AD_ASST',   4400, NULL,  101, 10);\nINSERT INTO employees VALUES (201, 'Michael', 'Hartstein', 'MHARTSTE', TO_DATE('17-FEB-98','DD-MON-YY'), 'MK_MAN',   13000, NULL,  100, 20);\nCOMMIT;`,
+          truncate: `TRUNCATE TABLE employees;`,
+          drop: `DROP TABLE employees CASCADE CONSTRAINTS;`
+        },
+        STUDENT: {
+          name: 'STUDENT',
+          description: 'Student table used in Task 10 (TCL) and Task 12 (Packages).',
+          create: `-- Create STUDENT table\nCREATE TABLE student (\n  sid   NUMBER(4) PRIMARY KEY,\n  sname VARCHAR2(20),\n  total NUMBER(4)\n);`,
+          seed: `-- Insert 4 sample rows into STUDENT\nINSERT INTO student VALUES (101, 'sai', 300);\nINSERT INTO student VALUES (102, 'ram', 400);\nINSERT INTO student VALUES (103, 'rai', 500);\nINSERT INTO student VALUES (114, 'rao', 600);\nCOMMIT;`,
+          truncate: `TRUNCATE TABLE student;`,
+          drop: `DROP TABLE student CASCADE CONSTRAINTS;`
+        }
+      };
+
+      /* =========================================================================
+       * 2. TASK METADATA
+       * ========================================================================= */
+      const TASKS = [
+        { id: 'all', label: 'All (1–12)' },
+        { id: 1, label: 'Task 1: DDL' },
+        { id: 2, label: 'Task 2: DML' },
+        { id: 3, label: 'Task 3: DQL' },
+        { id: 4, label: 'Task 4: Aggregate' },
+        { id: 5, label: 'Task 5: Functions' },
+        { id: 6, label: 'Task 6: Nested' },
+        { id: 7, label: 'Task 7: Joins & Set' },
+        { id: 8, label: 'Task 8: Views' },
+        { id: 9, label: 'Task 9: Seq/Idx/Cursors' },
+        { id: 10, label: 'Task 10: TCL' },
+        { id: 11, label: 'Task 11: Trig/Proc/Func' },
+        { id: 12, label: 'Task 12: Exc/Packages' }
+      ];
+
+      /* =========================================================================
+       * 3. COMPLETE QUERY BANK (ALL 12 TASKS — 74 QUERIES)
+       * ========================================================================= */
+      const QUERIES = [
+        // ==================== TASK 1: DDL COMMANDS (9) ====================
+        {
+          id: 't1_q1', task: 1, taskName: 'Task 1: DDL Commands', qNum: '1.1',
+          question: 'Create a table EMP with EMPNO, ENAME, JOB, MGR, DEPTNO, and SAL.',
+          keywords: 'create table emp ddl structure empno ename job mgr deptno sal desc',
+          tables_needed: [],
+          sql: `CREATE TABLE emp (\n  empno  NUMBER(6),\n  ename  VARCHAR2(20),\n  job    VARCHAR2(10),\n  mgr    NUMBER(4),\n  deptno NUMBER(3),\n  sal    NUMBER(7,2)\n);\n\nDESC emp;`
+        },
+        {
+          id: 't1_q2', task: 1, taskName: 'Task 1: DDL Commands', qNum: '1.2',
+          question: 'Add a column commission to the EMP table (numeric, null values allowed).',
+          keywords: 'alter table add column commission numeric null allowed emp ddl',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `ALTER TABLE emp ADD (commission NUMBER(6));\n\nDESC emp;`
+        },
+        {
+          id: 't1_q3', task: 1, taskName: 'Task 1: DDL Commands', qNum: '1.3',
+          question: 'Alter the JOB field of EMP table by modifying its column width to VARCHAR2(15).',
+          keywords: 'alter table modify column width size job varchar2 15 emp ddl',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `ALTER TABLE emp MODIFY (job VARCHAR2(15));\n\nDESC emp;`
+        },
+        {
+          id: 't1_q4', task: 1, taskName: 'Task 1: DDL Commands', qNum: '1.4',
+          question: 'Create DEPT table with DEPTNO (Primary Key), DNAME, and LOC.',
+          keywords: 'create table dept primary key deptno dname loc ddl',
+          tables_needed: [],
+          sql: `CREATE TABLE dept (\n  deptno NUMBER(2) PRIMARY KEY,\n  dname  VARCHAR2(10),\n  loc    VARCHAR2(10)\n);\n\nDESC dept;`
+        },
+        {
+          id: 't1_q5', task: 1, taskName: 'Task 1: DDL Commands', qNum: '1.5',
+          question: 'Add constraints to EMP table: EMPNO as Primary Key and DEPTNO as Foreign Key referencing DEPT.',
+          keywords: 'add constraint primary key foreign key empno deptno references dept alter table ddl',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `ALTER TABLE emp ADD CONSTRAINT emp_id_pk PRIMARY KEY (empno);\n\nALTER TABLE emp ADD CONSTRAINT emp_deptno_fk FOREIGN KEY (deptno) REFERENCES dept(deptno);`
+        },
+        {
+          id: 't1_q6', task: 1, taskName: 'Task 1: DDL Commands', qNum: '1.6',
+          question: 'Add CHECK constraint to EMP table to ensure EMPNO > 100.',
+          keywords: 'add check constraint empno greater than 100 emp alter table ddl',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `ALTER TABLE emp ADD CONSTRAINT emp_no_chk CHECK (empno > 100);`
+        },
+        {
+          id: 't1_q7', task: 1, taskName: 'Task 1: DDL Commands', qNum: '1.7',
+          question: 'Add NOT NULL constraint on SAL field with DEFAULT value 5000.',
+          keywords: 'not null default 5000 sal modify constraint emp alter table ddl',
+          tables_needed: ['DEPT', 'EMP'],
+          fixedBug: 'Manual only set DEFAULT 5000 and omitted NOT NULL; both are now applied together.',
+          sql: `ALTER TABLE emp MODIFY (sal NUMBER(7,2) DEFAULT 5000 NOT NULL);`
+        },
+        {
+          id: 't1_q8', task: 1, taskName: 'Task 1: DDL Commands', qNum: '1.8',
+          question: 'Add columns DOB and DOJ (DATE type) to EMP table, then drop column DOJ.',
+          keywords: 'add dob doj date drop column doj alter table emp ddl',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `ALTER TABLE emp ADD (dob DATE, doj DATE);\n\nALTER TABLE emp DROP COLUMN doj;`
+        },
+        {
+          id: 't1_q9', task: 1, taskName: 'Task 1: DDL Commands', qNum: '1.9',
+          question: 'Create EMP1 and EMP2 tables as copy of EMP; drop EMP1 and truncate EMP2.',
+          keywords: 'create table as select copy emp1 emp2 drop truncate ddl',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `CREATE TABLE emp1 AS SELECT * FROM emp;\nCREATE TABLE emp2 AS SELECT * FROM emp;\n\nDROP TABLE emp1;\nTRUNCATE TABLE emp2;`
+        },
+
+        // ==================== TASK 2: DML COMMANDS (5) ====================
+        {
+          id: 't2_q1', task: 2, taskName: 'Task 2: DML Commands', qNum: '2.1',
+          question: 'Insert 5 records into DEPT table.',
+          keywords: 'insert 5 records rows dept table dml values',
+          tables_needed: ['DEPT'],
+          sql: `INSERT INTO dept VALUES (10, 'Executive', 'HYD');\nINSERT INTO dept VALUES (20, 'Marketing', 'PUNE');\nINSERT INTO dept VALUES (30, 'Production', 'MUMBAI');\nINSERT INTO dept VALUES (33, 'Despatch', 'VZG');\nINSERT INTO dept VALUES (40, 'Packaging', 'BLR');\nCOMMIT;\n\nSELECT * FROM dept;`
+        },
+        {
+          id: 't2_q2', task: 2, taskName: 'Task 2: DML Commands', qNum: '2.2',
+          question: 'Insert 11 records into EMP table.',
+          keywords: 'insert 11 records rows emp table dml values',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `INSERT INTO emp (empno, ename, job, mgr, deptno, sal, commission, dob) VALUES (7000, 'King',      'President',  7500, 20, 10000,  500, TO_DATE('12-JAN-88','DD-MON-YY'));\nINSERT INTO emp (empno, ename, job, mgr, deptno, sal, commission, dob) VALUES (7200, 'Whalen',    'Supervisor', 7580, 10,  8000,  200, TO_DATE('04-FEB-91','DD-MON-YY'));\nINSERT INTO emp (empno, ename, job, mgr, deptno, sal, commission, dob) VALUES (7500, 'OConnell',  'Manager',    NULL, 30,  9000, 1000, TO_DATE('07-JUL-89','DD-MON-YY'));\nINSERT INTO emp (empno, ename, job, mgr, deptno, sal, commission, dob) VALUES (7580, 'Jane',      'SWManager',  NULL, 10,  8000, 1000, TO_DATE('09-DEC-91','DD-MON-YY'));\nINSERT INTO emp (empno, ename, job, mgr, deptno, sal, commission, dob) VALUES (7599, 'Mary',      'Advisor',    7500, 33,  9000,  300, TO_DATE('13-FEB-89','DD-MON-YY'));\nINSERT INTO emp (empno, ename, job, mgr, deptno, sal, commission, dob) VALUES (7600, 'Birch',     'Clerk',      7800, 20,  6000, NULL, TO_DATE('26-JAN-94','DD-MON-YY'));\nINSERT INTO emp (empno, ename, job, mgr, deptno, sal, commission, dob) VALUES (7650, 'SPaul',     'GM',         7580, 10, 10000,  300, TO_DATE('19-SEP-89','DD-MON-YY'));\nINSERT INTO emp (empno, ename, job, mgr, deptno, sal, commission, dob) VALUES (7680, 'Kochhar',   'AsstHead',   7850, 10, 10000, NULL, TO_DATE('15-AUG-92','DD-MON-YY'));\nINSERT INTO emp (empno, ename, job, mgr, deptno, sal, commission, dob) VALUES (7850, 'Hartstein', 'Manager',    NULL, 20,  5000, 1000, TO_DATE('13-AUG-90','DD-MON-YY'));\nINSERT INTO emp (empno, ename, job, mgr, deptno, sal, commission, dob) VALUES (7700, 'Russell',   'Clerk',      7800, 10,  9000,  300, TO_DATE('29-JAN-93','DD-MON-YY'));\nINSERT INTO emp (empno, ename, job, mgr, deptno, sal, commission, dob) VALUES (7800, 'Grant',     'ExeManager', NULL, 33,  9000, 1000, TO_DATE('18-NOV-91','DD-MON-YY'));\nCOMMIT;`
+        },
+        {
+          id: 't2_q3', task: 2, taskName: 'Task 2: DML Commands', qNum: '2.3',
+          question: 'Update EMP table to set commission to Rs. 1000/- for all employees working as "Clerk".',
+          keywords: 'update emp set commission 1000 clerk dml',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `UPDATE emp\nSET commission = 1000\nWHERE LOWER(job) LIKE '%clerk%';`
+        },
+        {
+          id: 't2_q4', task: 2, taskName: 'Task 2: DML Commands', qNum: '2.4',
+          question: 'Delete records from EMP table whose job is "Admin".',
+          keywords: 'delete from emp where job admin dml',
+          tables_needed: ['DEPT', 'EMP'],
+          fixedBug: 'Manual query referenced table "employee" instead of "emp".',
+          sql: `DELETE FROM emp\nWHERE LOWER(job) LIKE '%admin%';`
+        },
+        {
+          id: 't2_q5', task: 2, taskName: 'Task 2: DML Commands', qNum: '2.5',
+          question: 'Delete rows from DEPT table whose DEPTNO is 10.',
+          keywords: 'delete from dept where deptno 10 dml foreign key',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `-- Note: If EMP has child rows in dept 10, delete or reassign them first:\n-- DELETE FROM emp WHERE deptno = 10;\nDELETE FROM dept\nWHERE deptno = 10;`
+        },
+
+        // ==================== TASK 3: DQL SELECT & OPERATORS (10) ====================
+        {
+          id: 't3_q1', task: 3, taskName: 'Task 3: DQL & Operators', qNum: '3.1',
+          question: 'List records in EMP / EMPLOYEES table by sorting salary in descending order.',
+          keywords: 'sort salary descending order by sal desc dql select',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `SELECT * FROM emp\nORDER BY sal DESC;`
+        },
+        {
+          id: 't3_q2', task: 3, taskName: 'Task 3: DQL & Operators', qNum: '3.2',
+          question: 'Display only those employees whose DEPTNO is 30.',
+          keywords: 'where deptno 30 employees department 30 select',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `SELECT * FROM emp\nWHERE deptno = 30;`
+        },
+        {
+          id: 't3_q3', task: 3, taskName: 'Task 3: DQL & Operators', qNum: '3.3',
+          question: 'Display the unique department numbers from EMP table.',
+          keywords: 'unique distinct department numbers deptno select',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `SELECT DISTINCT deptno FROM emp;`
+        },
+        {
+          id: 't3_q4', task: 3, taskName: 'Task 3: DQL & Operators', qNum: '3.4',
+          question: 'List all employee names, salary, and 15% rise in salary labeled as pay_hike.',
+          keywords: '15% rise hike pay_hike salary increment sal*1.15 alias',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `SELECT ename, sal, (sal * 1.15) AS "pay_hike"\nFROM emp;`
+        },
+        {
+          id: 't3_q5', task: 3, taskName: 'Task 3: DQL & Operators', qNum: '3.5',
+          question: 'Display rows whose salary ranges from 5000 to 7500.',
+          keywords: 'salary range between 5000 and 7500 sal dql',
+          tables_needed: ['DEPT', 'EMP'],
+          fixedBug: 'Manual mistakenly filtered "WHERE empno BETWEEN 5000 AND 7500" instead of "sal".',
+          sql: `SELECT empno, ename, sal\nFROM emp\nWHERE sal BETWEEN 5000 AND 7500;`
+        },
+        {
+          id: 't3_q6', task: 3, taskName: 'Task 3: DQL & Operators', qNum: '3.6',
+          question: 'Display all employees in dept 10 and 20 in alphabetical order of names.',
+          keywords: 'dept 10 and 20 in alphabetical order by ename asc',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `SELECT empno, ename, deptno\nFROM emp\nWHERE deptno IN (10, 20)\nORDER BY ename ASC;`
+        },
+        {
+          id: 't3_q7', task: 3, taskName: 'Task 3: DQL & Operators', qNum: '3.7',
+          question: 'List employee names who do not earn commission.',
+          keywords: 'no commission do not earn commission is null ename',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `SELECT empno, ename, sal\nFROM emp\nWHERE commission IS NULL;`
+        },
+        {
+          id: 't3_q8', task: 3, taskName: 'Task 3: DQL & Operators', qNum: '3.8',
+          question: 'Display all details of records with 5-character names starting with "S".',
+          keywords: '5 character length 5 starting with S like S% S____ last_name',
+          tables_needed: ['EMPLOYEES'],
+          sql: `SELECT * FROM employees\nWHERE LENGTH(last_name) = 5\n  AND last_name LIKE 'S%';`
+        },
+        {
+          id: 't3_q9', task: 3, taskName: 'Task 3: DQL & Operators', qNum: '3.9',
+          question: 'Display joining date (hire_date) of all employees hired in the year 1998.',
+          keywords: 'joining date hire_date year 1998 between 1-jan-1998 31-dec-1998',
+          tables_needed: ['EMPLOYEES'],
+          sql: `SELECT employee_id, last_name, hire_date\nFROM employees\nWHERE hire_date BETWEEN TO_DATE('01-JAN-1998','DD-MON-YYYY')\n                    AND TO_DATE('31-DEC-1998','DD-MON-YYYY');`
+        },
+        {
+          id: 't3_q10', task: 3, taskName: 'Task 3: DQL & Operators', qNum: '3.10',
+          question: 'List employee names whose salary is greater than 5000 and less than 6000.',
+          keywords: 'salary greater than 5000 less than 6000 sal > 5000 and sal < 6000',
+          tables_needed: ['DEPT', 'EMP'],
+          fixedBug: 'Manual mistakenly wrote "sal > 5000 AND sal > 6000" instead of "< 6000".',
+          sql: `SELECT ename, sal\nFROM emp\nWHERE sal > 5000 AND sal < 6000;`
+        },
+
+        // ==================== TASK 4: AGGREGATE, GROUP BY, HAVING (7) ====================
+        {
+          id: 't4_q1', task: 4, taskName: 'Task 4: Aggregate Functions', qNum: '4.1',
+          question: 'Count the total records in the EMP table.',
+          keywords: 'count total records rows count(*) emp aggregate',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `SELECT COUNT(*) AS total_records\nFROM emp;`
+        },
+        {
+          id: 't4_q2', task: 4, taskName: 'Task 4: Aggregate Functions', qNum: '4.2',
+          question: 'Calculate the total and average salary of employees.',
+          keywords: 'total sum average avg salary sal aggregate',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `SELECT SUM(sal) AS "Total", AVG(sal) AS "Average"\nFROM emp;`
+        },
+        {
+          id: 't4_q3', task: 4, taskName: 'Task 4: Aggregate Functions', qNum: '4.3',
+          question: 'Determine maximum and minimum salary and rename columns as "max_salary" and "min_salary".',
+          keywords: 'max min salary max_salary min_salary rename alias aggregate',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `SELECT MAX(sal) AS "max_salary", MIN(sal) AS "min_salary"\nFROM emp;`
+        },
+        {
+          id: 't4_q4', task: 4, taskName: 'Task 4: Aggregate Functions', qNum: '4.4',
+          question: 'Find the number of unique departments in the EMP table.',
+          keywords: 'number of unique departments count distinct deptno group by',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `-- Total count of unique departments:\nSELECT COUNT(DISTINCT deptno) AS unique_depts FROM emp;\n\n-- Breakdown per department:\nSELECT deptno, COUNT(*) AS emp_count\nFROM emp\nGROUP BY deptno;`
+        },
+        {
+          id: 't4_q5', task: 4, taskName: 'Task 4: Aggregate Functions', qNum: '4.5',
+          question: 'Display job-wise sum, average, maximum, and minimum salary.',
+          keywords: 'job wise sum avg max min salary group by job aggregate',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `SELECT job, SUM(sal) AS total_sal, AVG(sal) AS avg_sal, MAX(sal) AS max_sal, MIN(sal) AS min_sal\nFROM emp\nGROUP BY job;`
+        },
+        {
+          id: 't4_q6', task: 4, taskName: 'Task 4: Aggregate Functions', qNum: '4.6',
+          question: 'Display maximum salaries of all departments having maximum salary > 2000.',
+          keywords: 'maximum salary departments having max sal > 2000 group by deptno',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `SELECT deptno, MAX(sal) AS max_sal\nFROM emp\nGROUP BY deptno\nHAVING MAX(sal) > 2000;`
+        },
+        {
+          id: 't4_q7', task: 4, taskName: 'Task 4: Aggregate Functions', qNum: '4.7',
+          question: 'Display job-wise sum, avg, max, min salaries in dept 10 having avg(sal) > 1000, sorted by sum(sal) descending.',
+          keywords: 'job wise dept 10 avg > 1000 having order by sum sal desc',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `SELECT job, SUM(sal) AS total_sal, AVG(sal) AS avg_sal, MAX(sal) AS max_sal, MIN(sal) AS min_sal\nFROM emp\nWHERE deptno = 10\nGROUP BY job\nHAVING AVG(sal) > 1000\nORDER BY SUM(sal) DESC;`
+        },
+
+        // ==================== TASK 5: SQL FUNCTIONS (8) ====================
+        {
+          id: 't5_q1', task: 5, taskName: 'Task 5: SQL Functions', qNum: '5.1',
+          question: 'Display the employee name concatenated with employee number.',
+          keywords: 'concat concatenate ename empno string function',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `SELECT CONCAT(empno, CONCAT(' ', ename)) AS emp_details\nFROM emp;`
+        },
+        {
+          id: 't5_q2', task: 5, taskName: 'Task 5: SQL Functions', qNum: '5.2',
+          question: 'Display employee name with first half in UPPERCASE and second half in lowercase.',
+          keywords: 'half upper lower case substr length ename string function',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `SELECT UPPER(SUBSTR(ename, 1, FLOOR(LENGTH(ename)/2))) ||\n       LOWER(SUBSTR(ename, FLOOR(LENGTH(ename)/2) + 1)) AS "Name"\nFROM emp;`
+        },
+        {
+          id: 't5_q3', task: 5, taskName: 'Task 5: SQL Functions', qNum: '5.3',
+          question: 'Display the full month name of date "14-OCT-09".',
+          keywords: 'month name full 14-oct-09 to_char to_date dual date function',
+          tables_needed: [],
+          sql: `SELECT TO_CHAR(TO_DATE('14-OCT-09', 'DD-MON-YY'), 'MONTH') AS "Month"\nFROM dual;`
+        },
+        {
+          id: 't5_q4', task: 5, taskName: 'Task 5: SQL Functions', qNum: '5.4',
+          question: 'Display Date of Joining (DOJ) of all employees in the format "dd-mm-yy".',
+          keywords: 'doj date of joining format dd-mm-yy to_char date function',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `SELECT ename, TO_CHAR(doj, 'dd-mm-yy') AS doj_formatted\nFROM emp;`
+        },
+        {
+          id: 't5_q5', task: 5, taskName: 'Task 5: SQL Functions', qNum: '5.5',
+          question: 'Display the date after two months of hire_date of employees.',
+          keywords: 'after two months 2 months add_months hire_date date function',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `SELECT ename, hire_date, ADD_MONTHS(hire_date, 2) AS after_2_months\nFROM emp;`
+        },
+        {
+          id: 't5_q6', task: 5, taskName: 'Task 5: SQL Functions', qNum: '5.6',
+          question: 'Display the last date of that month in "05-Oct-09".',
+          keywords: 'last date last_day month 05-oct-09 dual date function',
+          tables_needed: [],
+          sql: `SELECT LAST_DAY(TO_DATE('05-OCT-09', 'DD-MON-YY')) AS "Last"\nFROM dual;`
+        },
+        {
+          id: 't5_q7', task: 5, taskName: 'Task 5: SQL Functions', qNum: '5.7',
+          question: 'Display the hire date / DOB rounded with respect to month and year.',
+          keywords: 'round date month year hire_date dob date function',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `SELECT ename, ROUND(dob, 'MONTH') AS round_month, ROUND(dob, 'YEAR') AS round_year\nFROM emp;`
+        },
+        {
+          id: 't5_q8', task: 5, taskName: 'Task 5: SQL Functions', qNum: '5.8',
+          question: 'Display commissions earned by employees; if null, display "No Commission".',
+          keywords: 'nvl no commission null commission_pct to_char',
+          tables_needed: ['EMPLOYEES'],
+          sql: `SELECT employee_id, last_name, NVL(TO_CHAR(commission_pct), 'No Commission') AS "commission"\nFROM employees;`
+        },
+
+        // ==================== TASK 6: NESTED QUERIES (8) ====================
+        {
+          id: 't6_q1', task: 6, taskName: 'Task 6: Nested Queries', qNum: '6.1',
+          question: 'Display the salary of the third highest paid employee.',
+          keywords: '3rd third highest paid salary max subquery nested',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `SELECT MAX(sal) AS third_highest_sal\nFROM emp\nWHERE sal < (\n  SELECT MAX(sal) FROM emp\n  WHERE sal < (SELECT MAX(sal) FROM emp)\n);`
+        },
+        {
+          id: 't6_q2', task: 6, taskName: 'Task 6: Nested Queries', qNum: '6.2',
+          question: 'Display employee names and salary where salary > minimum salary of company and job starts with "I".',
+          keywords: 'greater than minimum salary min sal job starts with I like I% subquery',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `SELECT ename, sal\nFROM emp\nWHERE sal > (SELECT MIN(sal) FROM emp)\n  AND job LIKE 'I%';`
+        },
+        {
+          id: 't6_q3', task: 6, taskName: 'Task 6: Nested Queries', qNum: '6.3',
+          question: 'Display information about employees who earn more than ANY employee in dept 30.',
+          keywords: 'earn more than any dept 30 > any subquery nested',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `SELECT empno, ename, sal, deptno\nFROM emp\nWHERE sal > ANY (SELECT sal FROM emp WHERE deptno = 30);`
+        },
+        {
+          id: 't6_q4', task: 6, taskName: 'Task 6: Nested Queries', qNum: '6.4',
+          question: 'Display employees who have the same job as "Jones" and salary >= salary of "Ford".',
+          keywords: 'same job as jones salary greater equal ford subquery nested',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `SELECT empno, ename, sal, job\nFROM emp\nWHERE job = (SELECT job FROM emp WHERE ename = 'Jones')\n  AND sal >= (SELECT sal FROM emp WHERE ename = 'Ford');`
+        },
+        {
+          id: 't6_q5', task: 6, taskName: 'Task 6: Nested Queries', qNum: '6.5',
+          question: 'List employee names who get salary greater than maximum salaries of dept 20 and 30.',
+          keywords: 'salary greater than maximum dept 20 30 in 20,30 > all subquery',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `SELECT ename, sal\nFROM emp\nWHERE sal > (SELECT MAX(sal) FROM emp WHERE deptno IN (20, 30));`
+        },
+        {
+          id: 't6_q6', task: 6, taskName: 'Task 6: Nested Queries', qNum: '6.6',
+          question: 'Display maximum salaries of departments whose maximum salary is greater than 9000.',
+          keywords: 'maximum salaries departments max sal > 9000 group by having',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `SELECT deptno, MAX(sal) AS max_sal\nFROM emp\nGROUP BY deptno\nHAVING MAX(sal) > 9000;`
+        },
+        {
+          id: 't6_q7', task: 6, taskName: 'Task 6: Nested Queries', qNum: '6.7',
+          question: 'Create a table EMPLOYEE with the same structure and rows as EMP using SELECT clause.',
+          keywords: 'create table employee as select copy structure rows emp',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `CREATE TABLE employee AS\nSELECT * FROM emp;\n\nSELECT * FROM employee;`
+        },
+        {
+          id: 't6_q8', task: 6, taskName: 'Task 6: Nested Queries', qNum: '6.8',
+          question: 'Create a MANAGER table from EMP holding details only about managers.',
+          keywords: 'create table manager from emp where job like manager',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `CREATE TABLE manager AS\nSELECT * FROM emp\nWHERE job LIKE '%Manager%';\n\nSELECT * FROM manager;`
+        },
+
+        // ==================== TASK 7: JOINS & SET OPERATORS (8) ====================
+        {
+          id: 't7_q1', task: 7, taskName: 'Task 7: Joins & Set Operators', qNum: '7.1',
+          question: 'Display all employees and departments implementing a LEFT OUTER JOIN.',
+          keywords: 'left outer join emp dept deptno',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `SELECT e.empno, e.ename, d.deptno, d.dname\nFROM emp e\nLEFT OUTER JOIN dept d ON e.deptno = d.deptno;`
+        },
+        {
+          id: 't7_q2', task: 7, taskName: 'Task 7: Joins & Set Operators', qNum: '7.2',
+          question: 'Display employee name and department name implementing a FULL OUTER JOIN.',
+          keywords: 'full outer join ename dname emp dept',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `SELECT e.ename, d.dname\nFROM emp e\nFULL OUTER JOIN dept d ON e.deptno = d.deptno;`
+        },
+        {
+          id: 't7_q3', task: 7, taskName: 'Task 7: Joins & Set Operators', qNum: '7.3',
+          question: 'Display employee names along with their manager name and manager salary (Self Join).',
+          keywords: 'self join manager name manager salary mgr empno',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `SELECT e.ename AS employee, m.ename AS "MGR", m.sal AS "MGRSAL"\nFROM emp e\nJOIN emp m ON e.mgr = m.empno;`
+        },
+        {
+          id: 't7_q4', task: 7, taskName: 'Task 7: Joins & Set Operators', qNum: '7.4',
+          question: 'Output name, job, empno, dname, and location for each dept even if there are no employees (Right Outer Join).',
+          keywords: 'right outer join even if no employees deptname loc dname',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `SELECT e.empno, e.ename, e.job, d.deptno, d.dname, d.loc\nFROM emp e\nRIGHT OUTER JOIN dept d ON e.deptno = d.deptno;`
+        },
+        {
+          id: 't7_q5', task: 7, taskName: 'Task 7: Joins & Set Operators', qNum: '7.5',
+          question: 'Display details of employees who draw the same salary (Self Join).',
+          keywords: 'same salary draw same sal self join duplicate salary',
+          tables_needed: ['DEPT', 'EMP'],
+          fixedBug: 'Manual used column "eno" which does not exist in EMP; corrected to "empno".',
+          sql: `SELECT e.empno, e.ename, e.job, e.sal\nFROM emp e, emp d\nWHERE e.sal = d.sal\n  AND e.empno <> d.empno;`
+        },
+        {
+          id: 't7_q6', task: 7, taskName: 'Task 7: Joins & Set Operators', qNum: '7.6',
+          question: 'Display employees who did not change their job at least once (Set Operator: MINUS).',
+          keywords: 'minus set operator did not change job at least once jobid',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `SELECT empno FROM emp\nMINUS\nSELECT empno FROM emp GROUP BY empno HAVING COUNT(DISTINCT jobid) > 1;`
+        },
+        {
+          id: 't7_q7', task: 7, taskName: 'Task 7: Joins & Set Operators', qNum: '7.7',
+          question: 'Display employees whose current job is same as their previous one (Set Operator: INTERSECT).',
+          keywords: 'intersect set operator current job same previous job_hist',
+          tables_needed: ['DEPT', 'EMP', 'JOB_HIST'],
+          sql: `SELECT empno, ename FROM emp\nINTERSECT\nSELECT j.empno, e.ename\nFROM emp e\nJOIN job_hist j ON e.empno = j.empno\nWHERE e.job = j.job;`
+        },
+        {
+          id: 't7_q8', task: 7, taskName: 'Task 7: Joins & Set Operators', qNum: '7.8',
+          question: 'Display employees with their current and previous job details (Set Operator: UNION).',
+          keywords: 'union set operator current previous job details job_hist',
+          tables_needed: ['DEPT', 'EMP', 'JOB_HIST'],
+          sql: `SELECT empno, ename, job FROM emp\nUNION\nSELECT j.empno, e.ename, j.job\nFROM emp e\nJOIN job_hist j ON e.empno = j.empno;`
+        },
+
+        // ==================== TASK 8: VIEWS (4) ====================
+        {
+          id: 't8_q1', task: 8, taskName: 'Task 8: Views', qNum: '8.1',
+          question: 'Create a view displaying employee id, name, and salary of employees in 10th department WITH CHECK OPTION.',
+          keywords: 'create view emp_view 10th department with check option',
+          tables_needed: ['EMPLOYEES'],
+          sql: `CREATE OR REPLACE VIEW emp_view AS\nSELECT employee_id, last_name, salary\nFROM employees\nWHERE department_id = 10\nWITH CHECK OPTION;\n\nSELECT * FROM emp_view;`
+        },
+        {
+          id: 't8_q2', task: 8, taskName: 'Task 8: Views', qNum: '8.2',
+          question: 'Create a READ ONLY view displaying employee name and department.',
+          keywords: 'create view read only emp_dept constraint readonly',
+          tables_needed: ['EMPLOYEES'],
+          sql: `CREATE OR REPLACE VIEW emp_dept AS\nSELECT employee_id, last_name, department_id\nFROM employees\nWITH READ ONLY CONSTRAINT emp_dept_readonly;\n\nSELECT * FROM emp_dept;`
+        },
+        {
+          id: 't8_q3', task: 8, taskName: 'Task 8: Views', qNum: '8.3',
+          question: 'Display all views generated in the current schema.',
+          keywords: 'display all views user_views view_name',
+          tables_needed: [],
+          sql: `SELECT view_name FROM user_views;`
+        },
+        {
+          id: 't8_q4', task: 8, taskName: 'Task 8: Views', qNum: '8.4',
+          question: 'Execute DML commands (INSERT, UPDATE, DELETE) on a view and drop the view.',
+          keywords: 'dml on view insert update delete drop view my_view',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `CREATE OR REPLACE VIEW my_view AS\nSELECT empno, ename, job, mgr, deptno, sal, commission, dob FROM emp;\n\nINSERT INTO my_view VALUES (8000, 'Grant2', 'ExeHead', NULL, 10, 19000, 200, TO_DATE('19-DEC-90','DD-MON-YY'));\nUPDATE my_view SET sal = 15000 WHERE empno = 8000;\nDELETE FROM my_view WHERE empno = 8000;\n\nDROP VIEW my_view;`
+        },
+
+        // ==================== TASK 9: INDEX, SEQUENCE & PL/SQL CURSORS (6) ====================
+        {
+          id: 't9_q1', task: 9, taskName: 'Task 9: Index, Seq & PL/SQL', qNum: '9.1',
+          question: 'Create a function-based index, view user_indexes, and drop the index.',
+          keywords: 'create index function based upper ename user_indexes drop index',
+          tables_needed: ['DEPT', 'EMP'],
+          sql: `CREATE INDEX emp_index ON emp (UPPER(ename));\n\nSELECT index_name, table_name\nFROM user_indexes\nWHERE table_name = 'EMP';\n\nDROP INDEX emp_index;`
+        },
+        {
+          id: 't9_q2', task: 9, taskName: 'Task 9: Index, Seq & PL/SQL', qNum: '9.2',
+          question: 'Create a Sequence (start 10, increment 10, maxvalue 100), use NEXTVAL & CURRVAL, insert row, and drop sequence.',
+          keywords: 'create sequence my_seq nextval currval nocache maxvalue drop sequence',
+          tables_needed: ['DEPT'],
+          sql: `CREATE SEQUENCE my_seq\nSTART WITH 50\nINCREMENT BY 10\nMAXVALUE 100\nNOCACHE;\n\nSELECT my_seq.NEXTVAL FROM dual;\nSELECT my_seq.CURRVAL FROM dual;\n\nINSERT INTO dept VALUES (my_seq.NEXTVAL, 'Support', 'DEL');\n\nDROP SEQUENCE my_seq;`
+        },
+        {
+          id: 't9_q3', task: 9, taskName: 'Task 9: Index, Seq & PL/SQL', qNum: '9.3',
+          question: 'PL/SQL: Retrieve employee name, join date, and designation for an employee ID given as user input.',
+          keywords: 'plsql retrieve name join date designation input user employee_id &id',
+          tables_needed: ['EMPLOYEES'],
+          sql: `SET SERVEROUTPUT ON;\n\nDECLARE\n  v_name     VARCHAR2(25);\n  v_joindate DATE;\n  v_dsgn     employees.job_id%TYPE;\nBEGIN\n  SELECT last_name, hire_date, job_id\n  INTO v_name, v_joindate, v_dsgn\n  FROM employees\n  WHERE employee_id = &id;\n\n  DBMS_OUTPUT.PUT_LINE('Name: ' || v_name || ' | Join Date: ' || v_joindate || ' | Designation: ' || v_dsgn);\nEND;\n/`
+        },
+        {
+          id: 't9_q4', task: 9, taskName: 'Task 9: Index, Seq & PL/SQL', qNum: '9.4',
+          question: 'PL/SQL: Calculate tax for an employee (10% if <10k, 20% if 10k–20k, 30% if >20k).',
+          keywords: 'plsql calculate tax employee salary if elsif else',
+          tables_needed: ['EMPLOYEES'],
+          sql: `SET SERVEROUTPUT ON;\n\nDECLARE\n  v_sal  NUMBER(8);\n  v_tax  NUMBER(8,2);\n  v_name VARCHAR2(25);\nBEGIN\n  SELECT salary, last_name\n  INTO v_sal, v_name\n  FROM employees\n  WHERE employee_id = &id;\n\n  IF v_sal < 10000 THEN\n    v_tax := v_sal * 0.10;\n  ELSIF v_sal BETWEEN 10000 AND 20000 THEN\n    v_tax := v_sal * 0.20;\n  ELSE\n    v_tax := v_sal * 0.30;\n  END IF;\n\n  DBMS_OUTPUT.PUT_LINE('Name: ' || v_name || ' | Salary: ' || v_sal || ' | Tax: ' || v_tax);\nEND;\n/`
+        },
+        {
+          id: 't9_q5', task: 9, taskName: 'Task 9: Index, Seq & PL/SQL', qNum: '9.5',
+          question: 'PL/SQL Cursor: Display top 10 employee details based on salary descending.',
+          keywords: 'plsql cursor top 10 employee details salary desc rowtype fetch',
+          tables_needed: ['EMPLOYEES'],
+          sql: `SET SERVEROUTPUT ON;\n\nDECLARE\n  CURSOR c_emp_cursor IS\n    SELECT employee_id, last_name, salary\n    FROM employees\n    ORDER BY salary DESC;\n  v_rec c_emp_cursor%ROWTYPE;\n  v_i   NUMBER(3) := 0;\nBEGIN\n  OPEN c_emp_cursor;\n  LOOP\n    FETCH c_emp_cursor INTO v_rec;\n    EXIT WHEN c_emp_cursor%NOTFOUND OR v_i >= 10;\n    v_i := v_i + 1;\n    DBMS_OUTPUT.PUT_LINE(v_rec.employee_id || '  ' || v_rec.last_name || '  ' || v_rec.salary);\n  END LOOP;\n  CLOSE c_emp_cursor;\nEND;\n/`
+        },
+        {
+          id: 't9_q6', task: 9, taskName: 'Task 9: Index, Seq & PL/SQL', qNum: '9.6',
+          question: 'PL/SQL Cursor: Update commission values for all employees with salary < 2000 by adding 1000.',
+          keywords: 'plsql cursor update commission salary less than 2000 adding 1000',
+          tables_needed: ['EMPLOYEES'],
+          fixedBug: 'Manual cursor omitted employee_id and referenced v_temp.employee_id (invalid); fixed to select employee_id and use v_emp.employee_id.',
+          sql: `SET SERVEROUTPUT ON;\n\nDECLARE\n  CURSOR c_emp IS\n    SELECT employee_id, salary, NVL(commission_pct, 0) AS comm_pct\n    FROM employees\n    WHERE salary < 2000;\n  v_emp      c_emp%ROWTYPE;\n  v_new_comm NUMBER(4,2);\nBEGIN\n  OPEN c_emp;\n  LOOP\n    FETCH c_emp INTO v_emp;\n    EXIT WHEN c_emp%NOTFOUND;\n\n    v_new_comm := ROUND(((v_emp.salary * v_emp.comm_pct) + 1000) / v_emp.salary, 2);\n\n    UPDATE employees\n    SET commission_pct = v_new_comm\n    WHERE employee_id = v_emp.employee_id;\n\n    DBMS_OUTPUT.PUT_LINE('Emp ' || v_emp.employee_id || ': Commission updated from ' || v_emp.comm_pct || ' to ' || v_new_comm);\n  END LOOP;\n  CLOSE c_emp;\nEND;\n/`
+        },
+
+        // ==================== TASK 10: TCL COMMANDS (3) ====================
+        {
+          id: 't10_q1', task: 10, taskName: 'Task 10: TCL Commands', qNum: '10.1',
+          question: 'Demonstrate basic TCL commands: COMMIT, SAVEPOINT, and ROLLBACK.',
+          keywords: 'tcl commit rollback savepoint s_1 transaction control',
+          tables_needed: [],
+          sql: `SAVEPOINT s_1;\n\n-- Perform DML here, then undo back to savepoint:\nROLLBACK TO s_1;\n\n-- Or make changes permanent:\nCOMMIT;`
+        },
+        {
+          id: 't10_q2', task: 10, taskName: 'Task 10: TCL Commands', qNum: '10.2',
+          question: 'Demonstrate DML with TCL (UPDATE, COMMIT, SAVEPOINT, DELETE, ROLLBACK TO SAVEPOINT) on STUDENT table.',
+          keywords: 'tcl dml student update commit savepoint delete rollback',
+          tables_needed: ['STUDENT'],
+          sql: `UPDATE student SET total = 350 WHERE sid = 101;\nCOMMIT;\n\nSAVEPOINT s_1;\nDELETE FROM student WHERE sid = 102;\nSELECT * FROM student;\n\nROLLBACK TO s_1;\nSELECT * FROM student;`
+        },
+        {
+          id: 't10_q3', task: 10, taskName: 'Task 10: TCL Commands', qNum: '10.3',
+          question: 'PL/SQL block demonstrating INSERT, COMMIT, SAVEPOINT, second INSERT, and ROLLBACK TO savepoint.',
+          keywords: 'plsql tcl insert commit savepoint sp1 rollback student',
+          tables_needed: ['STUDENT'],
+          sql: `SET SERVEROUTPUT ON;\n\nDECLARE\n  rollno  student.sid%TYPE;\n  snm     student.sname%TYPE;\n  s_marks student.total%TYPE;\nBEGIN\n  rollno  := &sno1;\n  snm     := '&sname1';\n  s_marks := &smarks1;\n  INSERT INTO student VALUES (rollno, snm, s_marks);\n  DBMS_OUTPUT.PUT_LINE('First record inserted and committed.');\n  COMMIT;\n\n  SAVEPOINT sp1;\n\n  rollno  := &sno2;\n  snm     := '&sname2';\n  s_marks := &smarks2;\n  INSERT INTO student VALUES (rollno, snm, s_marks);\n  DBMS_OUTPUT.PUT_LINE('Second record inserted, now rolling back to sp1...');\n\n  ROLLBACK TO sp1;\nEND;\n/`
+        },
+
+        // ==================== TASK 11: TRIGGERS, PROCEDURES & FUNCTIONS (3) ====================
+        {
+          id: 't11_q1', task: 11, taskName: 'Task 11: Triggers, Procs & Funcs', qNum: '11.1',
+          question: 'Write a trigger on EMPLOYEES table that shows OLD and NEW values of name after updating last_name.',
+          keywords: 'trigger after update for each row old new last_name employee name',
+          tables_needed: ['EMPLOYEES'],
+          sql: `SET SERVEROUTPUT ON;\n\nCREATE OR REPLACE TRIGGER t_emp_name\nAFTER UPDATE OF last_name ON employees\nFOR EACH ROW\nBEGIN\n  DBMS_OUTPUT.PUT_LINE('Name updated from ' || :OLD.last_name || ' to ' || :NEW.last_name);\nEND;\n/\n\n-- Test trigger:\nUPDATE employees SET last_name = 'Smith' WHERE employee_id = 200;`
+        },
+        {
+          id: 't11_q2', task: 11, taskName: 'Task 11: Triggers, Procs & Funcs', qNum: '11.2',
+          question: 'Write a PL/SQL stored procedure for INSERT (1), DELETE (2), and UPDATE (3) on EMPLOYEES table.',
+          keywords: 'stored procedure proc_dml insert delete update case plsql',
+          tables_needed: ['EMPLOYEES'],
+          sql: `SET SERVEROUTPUT ON;\n\nCREATE OR REPLACE PROCEDURE proc_dml (\n  p_id   employees.employee_id%TYPE,\n  p_sal  NUMBER,\n  p_case NUMBER\n) IS\nBEGIN\n  CASE p_case\n    WHEN 1 THEN\n      DBMS_OUTPUT.PUT_LINE('Insertion...');\n      INSERT INTO employees (employee_id, last_name, email, hire_date, job_id, salary)\n      VALUES (p_id, 'Franco', 'FJAMES' || p_id, TO_DATE('12-JAN-02','DD-MON-YY'), 'ST_CLERK', p_sal);\n    WHEN 2 THEN\n      DBMS_OUTPUT.PUT_LINE('Deletion...');\n      DELETE FROM employees WHERE employee_id = p_id;\n    WHEN 3 THEN\n      DBMS_OUTPUT.PUT_LINE('Updation...');\n      UPDATE employees SET salary = p_sal WHERE employee_id = p_id;\n  END CASE;\n  DBMS_OUTPUT.PUT_LINE('DML operation performed on ' || SQL%ROWCOUNT || ' row(s).');\nEND;\n/\n\n-- Execute procedure:\nBEGIN\n  proc_dml(&id, &sal, &case_1_2_or_3);\nEND;\n/`
+        },
+        {
+          id: 't11_q3', task: 11, taskName: 'Task 11: Triggers, Procs & Funcs', qNum: '11.3',
+          question: 'Write a PL/SQL function that accepts department number and returns total salary of that department.',
+          keywords: 'plsql function func_dept return total sum salary department number',
+          tables_needed: ['EMPLOYEES'],
+          sql: `SET SERVEROUTPUT ON;\n\nCREATE OR REPLACE FUNCTION func_dept (p_dept NUMBER)\nRETURN NUMBER IS\n  v_total NUMBER;\nBEGIN\n  SELECT SUM(salary) INTO v_total\n  FROM employees\n  WHERE department_id = p_dept;\n  RETURN NVL(v_total, 0);\nEND;\n/\n\n-- Execute function:\nDECLARE\n  v_dept  NUMBER := &department_id;\n  v_total NUMBER;\nBEGIN\n  v_total := func_dept(v_dept);\n  DBMS_OUTPUT.PUT_LINE('Total salary in Department ' || v_dept || ' is ' || v_total);\nEND;\n/`
+        },
+
+        // ==================== TASK 12: EXCEPTIONS & PACKAGES (3) ====================
+        {
+          id: 't12_q1', task: 12, taskName: 'Task 12: Exceptions & Packages', qNum: '12.1',
+          question: 'Write a PL/SQL program to handle predefined exceptions (NO_DATA_FOUND, TOO_MANY_ROWS, OTHERS).',
+          keywords: 'predefined exception no_data_found too_many_rows others plsql',
+          tables_needed: ['EMPLOYEES'],
+          sql: `SET SERVEROUTPUT ON;\n\nDECLARE\n  v_id   NUMBER(6) := &employee_id;\n  v_sal  employees.salary%TYPE;\n  v_name employees.last_name%TYPE;\n  v_job  employees.job_id%TYPE;\nBEGIN\n  SELECT last_name, salary INTO v_name, v_sal\n  FROM employees WHERE employee_id = v_id;\n  DBMS_OUTPUT.PUT_LINE(v_name || '''s salary is ' || v_sal);\n\n  SELECT job_id INTO v_job\n  FROM employees WHERE last_name = v_name;\n  DBMS_OUTPUT.PUT_LINE(v_name || '''s job is ' || v_job);\nEXCEPTION\n  WHEN NO_DATA_FOUND THEN\n    DBMS_OUTPUT.PUT_LINE('No employee with ID: ' || v_id);\n  WHEN TOO_MANY_ROWS THEN\n    DBMS_OUTPUT.PUT_LINE('Many employees with Name: ' || v_name);\n  WHEN OTHERS THEN\n    DBMS_OUTPUT.PUT_LINE('Some other error occurred: ' || SQLERRM);\nEND;\n/`
+        },
+        {
+          id: 't12_q2', task: 12, taskName: 'Task 12: Exceptions & Packages', qNum: '12.2',
+          question: 'Write a PL/SQL program to handle a user-defined exception (e_nodept on SQL%NOTFOUND).',
+          keywords: 'user defined exception raise e_nodept sql%notfound plsql',
+          tables_needed: ['EMPLOYEES'],
+          sql: `SET SERVEROUTPUT ON;\n\nDECLARE\n  v_dept   NUMBER := &department_id;\n  e_nodept EXCEPTION;\nBEGIN\n  UPDATE employees\n  SET salary = salary + 1050\n  WHERE department_id = v_dept;\n\n  IF SQL%NOTFOUND THEN\n    RAISE e_nodept;\n  ELSE\n    DBMS_OUTPUT.PUT_LINE(SQL%ROWCOUNT || ' row(s) updated.');\n  END IF;\nEXCEPTION\n  WHEN e_nodept THEN\n    DBMS_OUTPUT.PUT_LINE('No Department with ID: ' || v_dept);\nEND;\n/`
+        },
+        {
+          id: 't12_q3', task: 12, taskName: 'Task 12: Exceptions & Packages', qNum: '12.3',
+          question: 'Create Package Specification & Package Body (pack_dml) to insert, delete, update, and retrieve data.',
+          keywords: 'package specification body pack_dml insert update delete retrieve student plsql',
+          tables_needed: ['STUDENT'],
+          sql: `SET SERVEROUTPUT ON;\n\n-- 1. Package Specification\nCREATE OR REPLACE PACKAGE pack_dml IS\n  PROCEDURE proc_dml(p_id NUMBER, choice NUMBER);\nEND pack_dml;\n/\n\n-- 2. Package Body\nCREATE OR REPLACE PACKAGE BODY pack_dml IS\n  PROCEDURE proc_dml(p_id NUMBER, choice NUMBER) IS\n    v_name  VARCHAR2(20);\n    v_total NUMBER;\n  BEGIN\n    CASE choice\n      WHEN 1 THEN\n        DBMS_OUTPUT.PUT_LINE('Insertion...');\n        INSERT INTO student VALUES (p_id, 'Franco', 90);\n      WHEN 2 THEN\n        DBMS_OUTPUT.PUT_LINE('Deletion...');\n        DELETE FROM student WHERE sid = p_id;\n      WHEN 3 THEN\n        DBMS_OUTPUT.PUT_LINE('Updation...');\n        UPDATE student SET total = total + 1 WHERE sid = p_id;\n      WHEN 4 THEN\n        SELECT sname, total INTO v_name, v_total FROM student WHERE sid = p_id;\n        DBMS_OUTPUT.PUT_LINE('Total marks of ' || v_name || ' is ' || v_total);\n    END CASE;\n    DBMS_OUTPUT.PUT_LINE('Operation performed on ' || SQL%ROWCOUNT || ' row(s).');\n  END proc_dml;\nEND pack_dml;\n/\n\n-- 3. Execute Package\nBEGIN\n  pack_dml.proc_dml(&StudentID, &choice_1_to_4);\nEND;\n/`
+        }
+      ];
+
+      /* =========================================================================
+       * 4. DEPENDENCY GENERATOR (Fresh Setup, Quick Truncate, Hard Reset)
+       * ========================================================================= */
+      function sortTablesParentFirst(tables) {
+        return [...new Set(tables)].sort((a, b) => TABLE_ORDER.indexOf(a) - TABLE_ORDER.indexOf(b));
+      }
+
+      function buildFreshSetupScript(tablesNeeded) {
+        if (!tablesNeeded || tablesNeeded.length === 0) {
+          return '-- No pre-existing tables required for this command.\n-- Run the Query / Solution tab directly.';
+        }
+        const ordered = sortTablesParentFirst(tablesNeeded);
+        const creates = ordered.map(t => SCHEMAS[t].create).join('\n\n');
+        const seeds = ordered.map(t => SCHEMAS[t].seed).join('\n\n');
+        return `${creates}\n\n${seeds}`;
+      }
+
+      function buildQuickTruncateScript(tablesNeeded) {
+        if (!tablesNeeded || tablesNeeded.length === 0) {
+          return '-- No tables to truncate for this command.';
+        }
+        const parentFirst = sortTablesParentFirst(tablesNeeded);
+        const childFirst = [...parentFirst].reverse();
+        const truncates = childFirst.map(t => SCHEMAS[t].truncate).join('\n');
+        const seeds = parentFirst.map(t => SCHEMAS[t].seed).join('\n\n');
+        return `-- Quick Truncate (use when table structure already matches)\n-- Note: If a foreign key blocks TRUNCATE (ORA-02266), use Hard Reset below.\n${truncates}\n\n${seeds}`;
+      }
+
+      function buildHardResetScript(tablesNeeded) {
+        if (!tablesNeeded || tablesNeeded.length === 0) {
+          return '-- No tables to reset for this command.';
+        }
+        const parentFirst = sortTablesParentFirst(tablesNeeded);
+        const childFirst = [...parentFirst].reverse();
+        const drops = childFirst.map(t => SCHEMAS[t].drop).join('\n');
+        const creates = parentFirst.map(t => SCHEMAS[t].create).join('\n\n');
+        const seeds = parentFirst.map(t => SCHEMAS[t].seed).join('\n\n');
+        return `-- Hard Reset (wipes mismatched columns & foreign keys cleanly)\n${drops}\n\n${creates}\n\n${seeds}`;
+      }
+
+      /* =========================================================================
+       * 5. STATE & FUSE.JS INITIALIZATION
+       * ========================================================================= */
+      let activeTask = 'all';
+      let searchTerm = '';
+      let activeSchemaTab = 'DEPT';
+      let fuse = null;
+
+      // Track per-card UI state (active tab, edit mode, custom edited SQL)
+      const cardState = {};
+      QUERIES.forEach(q => {
+        cardState[q.id] = {
+          tab: 'query',       // 'query' | 'fresh' | 'reset'
+          editing: false,
+          editedSql: q.sql
+        };
+      });
+
+      // Initialize Fuse.js if CDN loaded, otherwise fallback gracefully
+      const engineStatusEl = document.getElementById('searchEngineStatus');
+      if (typeof window.Fuse === 'function') {
+        fuse = new window.Fuse(QUERIES, {
+          keys: [
+            { name: 'question', weight: 0.45 },
+            { name: 'keywords', weight: 0.35 },
+            { name: 'sql', weight: 0.12 },
+            { name: 'taskName', weight: 0.08 }
+          ],
+          threshold: 0.38,
+          ignoreLocation: true,
+          minMatchCharLength: 2
+        });
+        engineStatusEl.textContent = 'Fuzzy Engine: Fuse.js';
+      } else {
+        engineStatusEl.textContent = 'Search: Offline Fallback';
+      }
+
+      /* =========================================================================
+       * 6. CLIPBOARD HELPER (Works in iframes & offline files)
+       * ========================================================================= */
+      let toastTimer = null;
+      function showToast(msg) {
+        const toast = document.getElementById('toast');
+        toast.textContent = msg;
+        toast.classList.remove('opacity-0');
+        toast.classList.add('opacity-100');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toast.classList.remove('opacity-100');
+          toast.classList.add('opacity-0');
+        }, 1600);
+      }
+
+      function copyText(text, btnElement) {
+        let copied = false;
+        try {
+          const temp = document.createElement('textarea');
+          temp.value = text;
+          temp.style.position = 'fixed';
+          temp.style.opacity = '0';
+          document.body.appendChild(temp);
+          temp.focus();
+          temp.select();
+          copied = document.execCommand('copy');
+          document.body.removeChild(temp);
+        } catch (e) {
+          copied = false;
+        }
+
+        if (!copied && navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).catch(() => {});
+        }
+
+        showToast('Copied SQL to clipboard');
+        if (btnElement) {
+          const originalText = btnElement.dataset.label || btnElement.textContent;
+          btnElement.dataset.label = originalText;
+          btnElement.textContent = 'Copied!';
+          setTimeout(() => {
+            btnElement.textContent = originalText;
+          }, 1400);
+        }
+      }
+
+      /* =========================================================================
+       * 7. HTML ESCAPE HELPER
+       * ========================================================================= */
+      function escapeHtml(str) {
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      /* =========================================================================
+       * 8. RENDER TASK FILTER PILLS
+       * ========================================================================= */
+      const taskFilterBar = document.getElementById('taskFilterBar');
+      function renderTaskPills() {
+        taskFilterBar.innerHTML = TASKS.map(t => {
+          const isActive = activeTask === t.id;
+          const classes = isActive
+            ? 'btn-accent border-transparent'
+            : 'bg-secondary text-secondary border-subtle hover-surface';
+          return `
+            <button
+              type="button"
+              data-task="${t.id}"
+              class="shrink-0 px-3 py-1.5 text-xs font-medium rounded-lg border transition-colors cursor-pointer ${classes}"
+            >${escapeHtml(t.label)}</button>
+          `;
+        }).join('');
+      }
+
+      taskFilterBar.addEventListener('click', (e) => {
+        const btn = e.target.closest('button[data-task]');
+        if (!btn) return;
+        const val = btn.dataset.task;
+        activeTask = val === 'all' ? 'all' : Number(val);
+        renderTaskPills();
+        renderCards();
+      });
+
+      /* =========================================================================
+       * 9. FILTERING & RENDERING QUERY CARDS
+       * ========================================================================= */
+      function getFilteredQueries() {
+        let list = QUERIES;
+
+        // Apply fuzzy or fallback text search
+        const trimmed = searchTerm.trim();
+        if (trimmed.length > 0) {
+          if (fuse) {
+            list = fuse.search(trimmed).map(r => r.item);
+          } else {
+            const tokens = trimmed.toLowerCase().split(/\s+/);
+            list = QUERIES.filter(q => {
+              const hay = `${q.question} ${q.keywords} ${q.sql} ${q.taskName}`.toLowerCase();
+              return tokens.every(tok => hay.includes(tok));
+            });
+          }
+        }
+
+        // Apply task filter
+        if (activeTask !== 'all') {
+          list = list.filter(q => q.task === activeTask);
+        }
+
+        return list;
+      }
+
+      const cardsContainer = document.getElementById('cardsContainer');
+      const emptyState = document.getElementById('emptyState');
+      const resultCount = document.getElementById('resultCount');
+
+      function renderCardInner(q) {
+        const st = cardState[q.id];
+        const hasTables = q.tables_needed && q.tables_needed.length > 0;
+        const tablesBadges = hasTables
+          ? sortTablesParentFirst(q.tables_needed).map(t =>
+              `<span class="px-2 py-0.5 text-[11px] font-mono-code rounded border border-subtle bg-primary text-secondary">${t}</span>`
+            ).join('')
+          : `<span class="px-2 py-0.5 text-[11px] font-mono-code rounded border border-subtle bg-primary text-muted">No table required</span>`;
+
+        const fixedBadge = q.fixedBug
+          ? `<span class="px-2 py-0.5 text-[11px] font-medium rounded border border-strong bg-primary text-primary" title="${escapeHtml(q.fixedBug)}">Fixed Manual Bug</span>`
+          : '';
+
+        const fixedNote = q.fixedBug
+          ? `<div class="mt-2 px-3 py-1.5 rounded-lg border border-subtle bg-primary text-xs text-secondary"><strong class="text-primary font-medium">Correction:</strong> ${escapeHtml(q.fixedBug)}</div>`
+          : '';
+
+        // Build Tab Content
+        let tabBodyHtml = '';
+        if (st.tab === 'query') {
+          const currentSql = st.editedSql;
+          tabBodyHtml = `
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span class="text-[11px] font-medium text-muted uppercase tracking-wider">Oracle SQL / PLSQL Solution</span>
+              <div class="flex items-center gap-1.5">
+                <button
+                  type="button"
+                  data-action="toggle-edit"
+                  data-id="${q.id}"
+                  class="px-2.5 py-1 text-xs font-medium rounded-md border border-subtle bg-primary text-secondary hover-surface cursor-pointer"
+                >${st.editing ? 'Done Editing' : 'Edit before copy'}</button>
+                ${st.editedSql !== q.sql ? `
+                  <button
+                    type="button"
+                    data-action="reset-edit"
+                    data-id="${q.id}"
+                    class="px-2.5 py-1 text-xs font-medium rounded-md border border-subtle bg-primary text-muted hover-surface cursor-pointer"
+                  >Reset</button>
+                ` : ''}
+                <button
+                  type="button"
+                  data-action="copy-query"
+                  data-id="${q.id}"
+                  class="px-3 py-1 text-xs font-medium rounded-md btn-accent cursor-pointer"
+                >Copy SQL</button>
+              </div>
+            </div>
+            ${st.editing
+              ? `<textarea data-action="edit-textarea" data-id="${q.id}" rows="${Math.max(4, currentSql.split('\n').length + 1)}" class="sql-editor font-mono-code text-xs sm:text-[13px]">${escapeHtml(currentSql)}</textarea>`
+              : `<div class="rounded-lg border border-subtle bg-code p-3.5 overflow-x-auto"><pre class="sql-pre font-mono-code text-xs sm:text-[13px] text-primary">${escapeHtml(currentSql)}</pre></div>`
+            }
+          `;
+        } else if (st.tab === 'fresh') {
+          const freshSql = buildFreshSetupScript(q.tables_needed);
+          tabBodyHtml = `
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span class="text-[11px] font-medium text-muted uppercase tracking-wider">Create Table + Insert Sample Rows (FK Ordered)</span>
+              <button
+                type="button"
+                data-action="copy-fresh"
+                data-id="${q.id}"
+                class="px-3 py-1 text-xs font-medium rounded-md btn-accent cursor-pointer"
+              >Copy Fresh Setup</button>
+            </div>
+            <div class="rounded-lg border border-subtle bg-code p-3.5 overflow-x-auto">
+              <pre class="sql-pre font-mono-code text-xs sm:text-[13px] text-primary">${escapeHtml(freshSql)}</pre>
+            </div>
+          `;
+        } else if (st.tab === 'reset') {
+          const truncSql = buildQuickTruncateScript(q.tables_needed);
+          const hardSql = buildHardResetScript(q.tables_needed);
+          tabBodyHtml = `
+            <div class="space-y-4">
+              <!-- Block 1: Quick Truncate -->
+              <div>
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                  <span class="text-[11px] font-medium text-muted uppercase tracking-wider">1. Quick Truncate + Re-seed (Structure Matches)</span>
+                  <button
+                    type="button"
+                    data-action="copy-truncate"
+                    data-id="${q.id}"
+                    class="px-3 py-1 text-xs font-medium rounded-md btn-accent cursor-pointer"
+                  >Copy Truncate</button>
+                </div>
+                <div class="rounded-lg border border-subtle bg-code p-3.5 overflow-x-auto">
+                  <pre class="sql-pre font-mono-code text-xs sm:text-[13px] text-primary">${escapeHtml(truncSql)}</pre>
+                </div>
+              </div>
+
+              <!-- Block 2: Hard Reset -->
+              <div>
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                  <span class="text-[11px] font-medium text-muted uppercase tracking-wider">2. Hard Reset — Drop Cascade + Recreate + Seed</span>
+                  <button
+                    type="button"
+                    data-action="copy-hard"
+                    data-id="${q.id}"
+                    class="px-3 py-1 text-xs font-medium rounded-md border border-strong bg-primary text-primary hover-surface cursor-pointer"
+                  >Copy Hard Reset</button>
+                </div>
+                <div class="rounded-lg border border-subtle bg-code p-3.5 overflow-x-auto">
+                  <pre class="sql-pre font-mono-code text-xs sm:text-[13px] text-primary">${escapeHtml(hardSql)}</pre>
+                </div>
+              </div>
+            </div>
+          `;
+        }
+
+        const tabBtn = (key, label) => {
+          const active = st.tab === key;
+          return `
+            <button
+              type="button"
+              data-action="switch-tab"
+              data-id="${q.id}"
+              data-tab="${key}"
+              class="px-3 py-1.5 text-xs font-medium rounded-md transition-colors cursor-pointer ${
+                active ? 'btn-accent' : 'text-secondary hover-surface'
+              }"
+            >${label}</button>
+          `;
+        };
+
+        return `
+          <!-- Card Header -->
+          <div class="p-4 sm:p-5 border-b border-subtle">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <div class="flex flex-wrap items-center gap-1.5">
+                <span class="px-2 py-0.5 text-[11px] font-semibold rounded badge-mono">${escapeHtml(q.taskName)}</span>
+                <span class="px-2 py-0.5 text-[11px] font-mono-code rounded border border-subtle bg-primary text-muted">Q${escapeHtml(q.qNum)}</span>
+                ${fixedBadge}
+              </div>
+              <div class="flex flex-wrap items-center gap-1.5">
+                ${tablesBadges}
+              </div>
+            </div>
+            <h3 class="text-sm sm:text-[15px] font-semibold text-primary leading-snug">
+              ${escapeHtml(q.question)}
+            </h3>
+            ${fixedNote}
+          </div>
+
+          <!-- Card Tabs Bar -->
+          <div class="px-4 sm:px-5 py-2.5 border-b border-subtle bg-primary flex flex-wrap items-center gap-1.5">
+            ${tabBtn('query', '1. Query / Solution')}
+            ${tabBtn('fresh', '2. Fresh Setup')}
+            ${tabBtn('reset', '3. Table Exists (Truncate / Reset)')}
+          </div>
+
+          <!-- Card Tab Body -->
+          <div class="p-4 sm:p-5">
+            ${tabBodyHtml}
+          </div>
+        `;
+      }
+
+      function renderCards() {
+        const filtered = getFilteredQueries();
+        resultCount.textContent = `Showing ${filtered.length} of ${QUERIES.length} lab queries`;
+
+        if (filtered.length === 0) {
+          cardsContainer.innerHTML = '';
+          emptyState.classList.remove('hidden');
+          return;
+        }
+
+        emptyState.classList.add('hidden');
+        cardsContainer.innerHTML = filtered.map(q => `
+          <article id="card-${q.id}" class="rounded-xl border border-subtle bg-secondary overflow-hidden">
+            ${renderCardInner(q)}
+          </article>
+        `).join('');
+      }
+
+      function reRenderSingleCard(id) {
+        const q = QUERIES.find(item => item.id === id);
+        const cardEl = document.getElementById(`card-${id}`);
+        if (q && cardEl) {
+          cardEl.innerHTML = renderCardInner(q);
+        }
+      }
+
+      /* =========================================================================
+       * 10. CARD EVENT DELEGATION (Tabs, Copy, Edit)
+       * ========================================================================= */
+      cardsContainer.addEventListener('click', (e) => {
+        const btn = e.target.closest('button[data-action]');
+        if (!btn) return;
+        const action = btn.dataset.action;
+        const id = btn.dataset.id;
+        const q = QUERIES.find(item => item.id === id);
+        if (!q) return;
+
+        if (action === 'switch-tab') {
+          cardState[id].tab = btn.dataset.tab;
+          reRenderSingleCard(id);
+        } else if (action === 'toggle-edit') {
+          cardState[id].editing = !cardState[id].editing;
+          reRenderSingleCard(id);
+        } else if (action === 'reset-edit') {
+          cardState[id].editedSql = q.sql;
+          reRenderSingleCard(id);
+          showToast('Query reset to original');
+        } else if (action === 'copy-query') {
+          copyText(cardState[id].editedSql, btn);
+        } else if (action === 'copy-fresh') {
+          copyText(buildFreshSetupScript(q.tables_needed), btn);
+        } else if (action === 'copy-truncate') {
+          copyText(buildQuickTruncateScript(q.tables_needed), btn);
+        } else if (action === 'copy-hard') {
+          copyText(buildHardResetScript(q.tables_needed), btn);
+        }
+      });
+
+      // Live capture edits in Quick Edit textarea
+      cardsContainer.addEventListener('input', (e) => {
+        const ta = e.target.closest('textarea[data-action="edit-textarea"]');
+        if (!ta) return;
+        const id = ta.dataset.id;
+        if (cardState[id]) {
+          cardState[id].editedSql = ta.value;
+        }
+      });
+
+      /* =========================================================================
+       * 11. SEARCH INPUT & KEYBOARD SHORTCUTS
+       * ========================================================================= */
+      const searchInput = document.getElementById('searchInput');
+      const clearSearchBtn = document.getElementById('clearSearchBtn');
+      const resetFiltersBtn = document.getElementById('resetFiltersBtn');
+
+      function updateSearchUI() {
+        clearSearchBtn.classList.toggle('hidden', searchInput.value.length === 0);
+      }
+
+      searchInput.addEventListener('input', () => {
+        searchTerm = searchInput.value;
+        updateSearchUI();
+        renderCards();
+      });
+
+      clearSearchBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        searchTerm = '';
+        updateSearchUI();
+        renderCards();
+        searchInput.focus();
+      });
+
+      resetFiltersBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        searchTerm = '';
+        activeTask = 'all';
+        updateSearchUI();
+        renderTaskPills();
+        renderCards();
+        searchInput.focus();
+      });
+
+      // Global shortcuts: "/" to focus search, "Esc" to close modal or clear search
+      document.addEventListener('keydown', (e) => {
+        const schemaModal = document.getElementById('schemaModal');
+        const isModalOpen = !schemaModal.classList.contains('hidden');
+
+        if (e.key === 'Escape') {
+          if (isModalOpen) {
+            closeSchemaModal();
+          } else if (searchInput.value.length > 0) {
+            searchInput.value = '';
+            searchTerm = '';
+            updateSearchUI();
+            renderCards();
+          }
+          return;
+        }
+
+        const tag = document.activeElement ? document.activeElement.tagName : '';
+        if (e.key === '/' && tag !== 'INPUT' && tag !== 'TEXTAREA' && !isModalOpen) {
+          e.preventDefault();
+          searchInput.focus();
+          searchInput.select();
+        }
+      });
+
+      /* =========================================================================
+       * 12. QUICK SCHEMA REFERENCE MODAL
+       * ========================================================================= */
+      const schemaModal = document.getElementById('schemaModal');
+      const schemaTablePills = document.getElementById('schemaTablePills');
+      const schemaModalBody = document.getElementById('schemaModalBody');
+      const openSchemaBtn = document.getElementById('openSchemaBtn');
+      const closeSchemaBtn = document.getElementById('closeSchemaBtn');
+
+      function renderSchemaModal() {
+        schemaTablePills.innerHTML = TABLE_ORDER.map(name => {
+          const active = activeSchemaTab === name;
+          return `
+            <button
+              type="button"
+              data-schema-tab="${name}"
+              class="shrink-0 px-3 py-1.5 text-xs font-mono-code font-medium rounded-lg border transition-colors cursor-pointer ${
+                active ? 'btn-accent border-transparent' : 'bg-secondary text-secondary border-subtle hover-surface'
+              }"
+            >${name}</button>
+          `;
+        }).join('');
+
+        const s = SCHEMAS[activeSchemaTab];
+        const blocks = [
+          { title: 'CREATE TABLE', code: s.create, key: 'create' },
+          { title: 'INSERT SAMPLE ROWS', code: s.seed, key: 'seed' },
+          { title: 'TRUNCATE TABLE', code: s.truncate, key: 'truncate' },
+          { title: 'DROP TABLE (CASCADE CONSTRAINTS)', code: s.drop, key: 'drop' }
+        ];
+
+        schemaModalBody.innerHTML = `
+          <div class="p-3.5 rounded-lg border border-subtle bg-secondary text-xs text-secondary">
+            <strong class="text-primary font-mono-code">${s.name}</strong> — ${escapeHtml(s.description)}
+          </div>
+          ${blocks.map(b => `
+            <div class="rounded-xl border border-subtle bg-secondary p-4">
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <span class="text-[11px] font-medium text-muted uppercase tracking-wider">${b.title}</span>
+                <button
+                  type="button"
+                  data-copy-schema="${b.key}"
+                  class="px-2.5 py-1 text-xs font-medium rounded-md btn-accent cursor-pointer"
+                >Copy</button>
+              </div>
+              <div class="rounded-lg border border-subtle bg-code p-3 overflow-x-auto">
+                <pre class="sql-pre font-mono-code text-xs text-primary">${escapeHtml(b.code)}</pre>
+              </div>
+            </div>
+          `).join('')}
+        `;
+      }
+
+      function openSchemaModal() {
+        renderSchemaModal();
+        schemaModal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeSchemaModal() {
+        schemaModal.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+
+      openSchemaBtn.addEventListener('click', openSchemaModal);
+      closeSchemaBtn.addEventListener('click', closeSchemaModal);
+      schemaModal.addEventListener('click', (e) => {
+        if (e.target === schemaModal) closeSchemaModal();
+      });
+
+      schemaTablePills.addEventListener('click', (e) => {
+        const btn = e.target.closest('button[data-schema-tab]');
+        if (!btn) return;
+        activeSchemaTab = btn.dataset.schemaTab;
+        renderSchemaModal();
+      });
+
+      schemaModalBody.addEventListener('click', (e) => {
+        const btn = e.target.closest('button[data-copy-schema]');
+        if (!btn) return;
+        const key = btn.dataset.copySchema;
+        const code = SCHEMAS[activeSchemaTab][key];
+        copyText(code, btn);
+      });
+
+      /* =========================================================================
+       * 13. THEME TOGGLE (Light Default / Charcoal Dark Mode)
+       * ========================================================================= */
+      const themeToggleBtn = document.getElementById('themeToggleBtn');
+      const themeIconSun = document.getElementById('themeIconSun');
+      const themeIconMoon = document.getElementById('themeIconMoon');
+
+      function applyTheme(isDark) {
+        document.documentElement.classList.toggle('dark', isDark);
+        if (themeIconSun && themeIconMoon) {
+          themeIconSun.classList.toggle('hidden', !isDark);
+          themeIconMoon.classList.toggle('hidden', isDark);
+        }
+        try {
+          localStorage.setItem('sl_theme', isDark ? 'dark' : 'light');
+          localStorage.setItem('dbms_finder_theme', isDark ? 'dark' : 'light');
+        } catch (e) {}
+      }
+
+      let savedTheme = 'light';
+      try {
+        savedTheme = localStorage.getItem('sl_theme') || localStorage.getItem('dbms_finder_theme') || 'light';
+      } catch (e) {}
+      applyTheme(savedTheme === 'dark');
+
+      themeToggleBtn.addEventListener('click', () => {
+        const isNowDark = !document.documentElement.classList.contains('dark');
+        applyTheme(isNowDark);
+      });
+
+      /* =========================================================================
+       * 14. INITIAL RENDER
+       * ========================================================================= */
+      renderTaskPills();
+      renderCards();
+    })();
+  </script>
+</body>
+</html>

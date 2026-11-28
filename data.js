@@ -21,20 +21,28 @@ window.LAB_DATA = {
       ],
       "folderPath": "tasks/task1a",
       "zipPath": "tasks/task1a.zip",
-      "filesCount": 4,
+      "filesCount": 5,
       "files": [
         {
           "name": "index.html",
           "path": "tasks/task1a/index.html",
-          "size": "852 B",
+          "size": "812 B",
           "type": "html",
           "extension": "html",
-          "content": "<!DOCTYPE html>\n<html>\n<head>\n<title>My Portfolio</title>\n<link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n<header>\n<h1>My Portfolio</h1>\n</header>\n<section class=\"profile\">\n<img src=\"C:\\Users\\Admin\\Desktop\\Om Shiva Parvathi Namah.jpeg\" alt=\"Profile Picture\">\n<h2>Name</h2>\n<p>Web Developer | Designer | Freelancer</p>\n</section>\n<section class=\"skills\">\n<h2>Skills</h2>\n<ul>\n<li>HTML</li>\n<li>CSS</li>\n<li>JavaScript</li>\n<li>React</li>\n</ul>\n</section>\n<section class=\"projects\">\n<h2>Projects</h2>\n<div class=\"project\">\n<h3>Project 1</h3>\n<p>Description of your project.</p>\n</div>\n<div class=\"project\">\n<h3>Project 2</h3>\n<p>Description of your project.</p>\n</div>\n</section>\n<section class=\"contact\">\n<h2>Contact Me</h2>\n<p>Email: yourname@example.com</p>\n<p>LinkedIn: <a href=\"#\">linkedin.com/in/yourname</a></p>\n</section>\n</body>\n</html>\n"
+          "content": "<!DOCTYPE html>\n<html>\n<head>\n<title>My Portfolio</title>\n<link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n<header>\n<h1>My Portfolio</h1>\n</header>\n<section class=\"profile\">\n<img src=\"profile.png\" alt=\"Profile Picture\">\n<h2>Name</h2>\n<p>Web Developer | Designer | Freelancer</p>\n</section>\n<section class=\"skills\">\n<h2>Skills</h2>\n<ul>\n<li>HTML</li>\n<li>CSS</li>\n<li>JavaScript</li>\n<li>React</li>\n</ul>\n</section>\n<section class=\"projects\">\n<h2>Projects</h2>\n<div class=\"project\">\n<h3>Project 1</h3>\n<p>Description of your project.</p>\n</div>\n<div class=\"project\">\n<h3>Project 2</h3>\n<p>Description of your project.</p>\n</div>\n</section>\n<section class=\"contact\">\n<h2>Contact Me</h2>\n<p>Email: yourname@example.com</p>\n<p>LinkedIn: <a href=\"#\">linkedin.com/in/yourname</a></p>\n</section>\n</body>\n</html>\n"
         },
         {
           "name": "output_screenshot.png",
           "path": "tasks/task1a/output_screenshot.png",
           "size": "216.2 KB",
+          "type": "image",
+          "extension": "png",
+          "content": null
+        },
+        {
+          "name": "profile.png",
+          "path": "tasks/task1a/profile.png",
+          "size": "19.9 KB",
           "type": "image",
           "extension": "png",
           "content": null

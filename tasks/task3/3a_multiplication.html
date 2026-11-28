@@ -1,47 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multiplication Table</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; }
-        table { border-collapse: collapse; margin: 20px auto; }
-        th, td { border: 1px solid #777; padding: 10px; }
-        th { background-color: #2563eb; color: white; }
-    </style>
-</head>
-<body>
-    <h2>Multiplication Table Generator</h2>
-    <label>Rows: <input type="number" id="rows" min="1" value="4"></label>
-    <label>Columns: <input type="number" id="cols" min="1" value="5"></label>
-    <button onclick="generateTable()">Generate Table</button>
-    <div id="output"></div>
-    <script>function generateTable() {
-            const rows = parseInt(document.getElementById("rows").value);
-            const cols = parseInt(document.getElementById("cols").value);
-            const output = document.getElementById("output");
-
-            if (!Number.isInteger(rows) || !Number.isInteger(cols) ||
-                rows < 1 || cols < 1) {
-                output.textContent = "Please enter positive row and column values.";
-                return;
-            }
-
-            let html = "<table><tr>";
-            for (let j = 1; j <= cols; j++) html += `<th>${j}</th>`;
-            html += "</tr>";
-            for (let i = 1; i <= rows; i++) {
-                html += "<tr>";
-                for (let j = 1; j <= cols; j++) {
-                    html += `<td>${i} × ${j} = ${i * j}</td>`;
-                }
-                html += "</tr>";
-            }
-            html += "</table>";
-            output.innerHTML = html;
-        }
-        generateTable();
+<title>Multiplication Table</title>
+<script type="text/javascript">
+var rows = prompt("How many rows for your multiplication table?");
+var cols = prompt("How many columns for your multiplication table?");
+if(rows == "" || rows == null)
+{
+rows = 10;
+}
+if(cols == "" || cols == null)
+{
+cols = 10;
+}
+createTable(rows, cols);
+function createTable(rows, cols)
+{
+var j = 1;
+var output = "<table border='5' width='500' cellspacing='1' cellpadding='5'>";
+for(i = 1; i <= rows; i++)
+{
+output = output + "<tr>";
+while(j <= cols)
+{
+output = output + "<td>" + i * j + "</td>";
+j = j + 1;
+}
+output = output + "</tr>";
+j = 1;
+}
+output = output + "</table>";
+document.write(output);
+}
 </script>
-</body>
+</head>
 </html>

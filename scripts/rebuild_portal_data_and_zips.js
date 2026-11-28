@@ -243,6 +243,7 @@ const populatedTasks = tasks18Meta.map(meta => {
                 path: `tasks/${meta.folder}/${fn}`,
                 size: formatBytes(stat.size),
                 type: type,
+                extension: ext,
                 content: content
             });
         });
